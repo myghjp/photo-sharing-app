@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title><!--http://localhost:8080/login-->
+</head>
+<body>
+	
+<form method="post" th:action="@{/postlogin}">
+    <div class="form-group">
+        <label for="user" >アカウント名</label>
+        <input type="text" id="user" name="user"><!--th:field-->
+    </div>
+    <div class="form-group">
+        <label for="pass" >パスワード</label>
+        <input type="password"  id="pass" name="pass">
+    </div>
+    <input type="submit" value="ログイン">
+    <a href="/entry-account" >アカウント登録</a>
+    
+</form>
+       
+</body>
+</html>
