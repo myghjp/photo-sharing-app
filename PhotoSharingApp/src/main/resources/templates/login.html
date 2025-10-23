@@ -6,19 +6,18 @@
 </head>
 <body>
 	
-<form method="post" th:action="@{/postlogin}">
+<form method="post" th:action="@{/postlogin}"><!--※-->
     <div class="form-group">
         <label for="user" >アカウント名</label>
-        <input type="text" id="user" name="user"><!--th:field-->
+        <input type="text" id="user" name="user">
     </div>
     <div class="form-group">
         <label for="pass" >パスワード</label>
         <input type="password"  id="pass" name="pass">
     </div>
     <input type="submit" value="ログイン">
-    <a href="/entry-account" >アカウント登録</a>
-    
 </form>
+<a href="/entry-account" >アカウント登録</a>
        
 </body>
 </html>

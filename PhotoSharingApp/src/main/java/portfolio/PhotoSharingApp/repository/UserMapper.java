@@ -10,4 +10,7 @@ public interface UserMapper {
 	
 	/*アカウント情報を登録*/
 	public void insertAccount(@Param("accounts") Accounts accounts);
+	
+	/*formで入力されたユーザ名を検索*/
+	public Accounts getSelectUser(String user);
 }

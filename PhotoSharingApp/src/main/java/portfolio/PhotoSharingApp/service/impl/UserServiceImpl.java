@@ -15,7 +15,13 @@ public class UserServiceImpl implements UserService  {
 	
 	/*アカウント登録*/
 	@Override
-	public void  insertEntryAccount(Accounts accounts){
+	public void insertEntryAccount(Accounts accounts){
 		userMapper.insertAccount(accounts);
+	}
+	
+	/*アカウント名を取得する*/
+	@Override
+	public Accounts getLoginAccount(String user) {
+		return userMapper.getSelectUser(user);
 	}
 }

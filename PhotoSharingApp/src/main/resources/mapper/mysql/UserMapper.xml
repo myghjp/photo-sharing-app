@@ -24,4 +24,11 @@
 		)
 	</insert>
 	
+	<!-- ログイン(アカウント名が存在するか確認) -->
+	<select id="getSelectUser" resultMap="accountsTable">
+		select *
+		from accounts 
+		where user = #{user}
+	</select>
+	
 </mapper>
