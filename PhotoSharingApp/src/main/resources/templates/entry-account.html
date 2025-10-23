@@ -6,7 +6,7 @@
 </head>
 <body>
 	
-<form method="post" th:action="@{/postEntryAccount}" th:object="${entryAccountForm}">
+<form method="post" th:action="@{/entry-account}" th:object="${entryAccountForm}">
     <div class="form-group">
         <label for="user" >アカウント名</label>
         <input type="text" th:field="*{user}">
@@ -17,7 +17,7 @@
     </div>
     <div class="form-group">
         <label for="pass" >メールアドレス</label><!--th:field確認-->
-        <input type="email" th:field="*{}">
+        <input type="email" th:field="*{email_address}">
     </div>
     
     <a href="/login" >キャンセル</a>

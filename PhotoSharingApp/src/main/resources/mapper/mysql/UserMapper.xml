@@ -8,19 +8,19 @@
 		<id column="id" property="id" />
 		<result column="user" property="user" />
 		<result column="pass" property="pass" />
-		<result column="email" property="email" />
+		<result column="email_address" property="email_address" />
 	</resultMap>
 	
 	<!-- アカウント登録 -->
-	<insert id="insert">
+	<insert id="insertAccount">
 		insert into accounts(
 			 user
 			,pass
-			,email
+			,email_address
 		)VALUES(
 			 #{accounts.user}
 			,#{accounts.pass}
-			,#{accounts.email}
+			,#{accounts.email_address}
 		)
 	</insert>
 	
