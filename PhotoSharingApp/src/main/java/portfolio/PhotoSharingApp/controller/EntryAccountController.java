@@ -11,12 +11,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.form.EntryAccountForm;
+import portfolio.PhotoSharingApp.service.UserService;
 
 @Controller
 public class EntryAccountController {
 	
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private UserService userService;
 	
 	@GetMapping("/entry-account")
 	public String getEntryAccount(Model model
@@ -32,12 +36,8 @@ public class EntryAccountController {
 			,RedirectAttributes redirectAttributes) {
 		
 		Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);
-		/*serviceへ*/
-		/*○○Service.insertEntry？(accounts);*/
-		
-		
+		userService.insertEntryAccount(accounts);
 		
 		return "redirect:login";
 	}
-	
 }

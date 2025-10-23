@@ -6,18 +6,18 @@
 </head>
 <body>
 	
-<form method="post" th:action="@{/postEntryAccount}" >
+<form method="post" th:action="@{/postEntryAccount}" th:object="${entryAccountForm}">
     <div class="form-group">
         <label for="user" >アカウント名</label>
-        <input type="text" id="user" name="user">
+        <input type="text" th:field="*{user}">
     </div>
     <div class="form-group">
-        <label for="pass" >パスワード</label><!--th:field確認-->
-        <input type="password"  id="pass" name="pass">
+        <label for="pass" >パスワード</label>
+        <input type="password" id="pass" name="pass" th:value="${pass}">
     </div>
     <div class="form-group">
         <label for="pass" >メールアドレス</label><!--th:field確認-->
-        <input type="email"  id="email" name="email">
+        <input type="email" th:field="*{}">
     </div>
     
     <a href="/login" >キャンセル</a>

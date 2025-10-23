@@ -10,5 +10,18 @@
 		<result column="pass" property="pass" />
 		<result column="email" property="email" />
 	</resultMap>
-
+	
+	<!-- アカウント登録 -->
+	<insert id="insert">
+		insert into accounts(
+			 user
+			,pass
+			,email
+		)VALUES(
+			 #{accounts.user}
+			,#{accounts.pass}
+			,#{accounts.email}
+		)
+	</insert>
+	
 </mapper>
