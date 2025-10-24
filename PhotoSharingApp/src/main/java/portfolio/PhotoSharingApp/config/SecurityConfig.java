@@ -30,8 +30,8 @@ public class SecurityConfig {
 
 		http.authorizeHttpRequests(authorize -> authorize
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-				.requestMatchers(mvc.pattern("/login"))/*←複数*/
-				
+				/*.requestMatchers(mvc.pattern("/login"))*/
+				.requestMatchers("/login","/entry-account")/*←複数画面許可*/
 				.permitAll()
 				.anyRequest().authenticated()
 			);
@@ -53,5 +53,4 @@ public class SecurityConfig {
 
 		return http.build();
 	}
-
 }

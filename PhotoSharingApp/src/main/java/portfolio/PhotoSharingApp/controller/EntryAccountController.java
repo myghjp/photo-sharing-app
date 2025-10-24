@@ -2,6 +2,7 @@ package portfolio.PhotoSharingApp.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,10 @@ public class EntryAccountController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	
 	@GetMapping("/entry-account")
 	public String getEntryAccount(Model model
 		,EntryAccountForm entryAccountForm
@@ -36,6 +41,10 @@ public class EntryAccountController {
 			,RedirectAttributes redirectAttributes) {
 		
 		Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);
+		
+		/*※コントローラでパスワードをハッシュ化している*/
+		accounts.setPass(passwordEncoder.encode(accounts.getPass()));
+
 		userService.insertEntryAccount(accounts);
 		
 		return "redirect:login";
