@@ -6,7 +6,21 @@
 </head>
 <body>
 	
-<h1>ここはグループ選択画面</h1>
+<h3>ここはグループ選択画面</h3>
+<p>ここにヘッダーを仮作成</p>
+
+<div>
+	
+	<a href="/" >パスワード変更</a>
+	<a href="/" >アカウント削除</a>
+	
+	<p>アカウント名</p>
+	<!--<span sec:authentication="principal.fullName"></span>-->
+
+	<form method="post" th:action="@{/postlogout}">
+		<input type="submit" value="ログアウト">
+	</form>
+</div>
 
 </body>
 </html>

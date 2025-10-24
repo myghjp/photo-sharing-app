@@ -42,7 +42,7 @@ public class EntryAccountController {
 		
 		Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);
 		
-		/*※コントローラでパスワードをハッシュ化している*/
+		/*※コントローラでパスワードをハッシュ化している×*/
 		accounts.setPass(passwordEncoder.encode(accounts.getPass()));
 
 		userService.insertEntryAccount(accounts);

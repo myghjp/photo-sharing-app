@@ -12,7 +12,7 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity/*カスタム*/
 public class SecurityConfig {
 	
 	@Bean
@@ -30,10 +30,10 @@ public class SecurityConfig {
 
 		http.authorizeHttpRequests(authorize -> authorize
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-				/*.requestMatchers(mvc.pattern("/login"))*/
-				.requestMatchers("/login","/entry-account")/*←複数画面許可*/
-				.permitAll()
-				.anyRequest().authenticated()
+				/*↓複数の画面を許可*/
+				.requestMatchers(mvc.pattern("/login")).permitAll()
+				.requestMatchers(mvc.pattern("/entry-account")).permitAll()
+				.anyRequest().authenticated()/*※それ以外は認証必要*/
 			);
 
 		http.formLogin(login -> login
@@ -44,11 +44,11 @@ public class SecurityConfig {
 				.passwordParameter("pass")
 				.defaultSuccessUrl("/select-group", true)
 				.permitAll()
-			/*).logout(logout -> logout
+			).logout(logout -> logout
 				.logoutUrl("/postlogout")
 				.logoutSuccessUrl("/login")
 				.invalidateHttpSession(true)
-				.permitAll()*/
+				.permitAll()
 			);
 
 		return http.build();
