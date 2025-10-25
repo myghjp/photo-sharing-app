@@ -9,6 +9,7 @@
 <body>
 	<nav layout:replace="~{layout/menu::menu}"></nav><!--replaceが読み込み-->
 	
+	
 	<p>パスワードを変更します、よろしいですか？</p>
 	
 	<p>エラーメッセージを表示</p>
@@ -20,8 +21,11 @@
 	        <input type="password" id="pass" name="pass" th:value="${pass}">
 	    </div>
 	    
+	    <!--<span sec:authentication="principal.fullName"></span>-->
+	    <!--principalを送信？-->
+	    
 	    <!--<a href="/" >キャンセル</a>-->
-	   <!-- 元の画面に戻る？-->
+	   <!-- 元の画面に戻るボタン	大変-->
 	    
 	    <input type="submit" value="変更">
     </form>
