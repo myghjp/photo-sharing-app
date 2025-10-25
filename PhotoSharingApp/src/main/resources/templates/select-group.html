@@ -1,26 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header.css}">
 <title>グループ選択</title>
 </head>
 <body>
+	<nav layout:replace="~{layout/menu::menu}"></nav><!--replaceが読み込み-->
 	
 <h3>ここはグループ選択画面</h3>
-<p>ここにヘッダーを仮作成</p>
+<p>templatesファイル</p>
 
-<div>
-	
-	<a href="/" >パスワード変更</a>
-	<a href="/" >アカウント削除</a>
-	
-	<p>アカウント名</p>
-	<!--<span sec:authentication="principal.fullName"></span>-->
 
-	<form method="post" th:action="@{/postlogout}">
-		<input type="submit" value="ログアウト">
-	</form>
-</div>
+<!--ーーーーーーーーーーーーー-->
+<form method="post" th:action="@{/edit-account}" >
+	    <input type="submit" value="変更">
+    </form>
 
 </body>
 </html>

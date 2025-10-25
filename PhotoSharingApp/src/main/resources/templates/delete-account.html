@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<title>アカウント削除</title>
+</head>
+<body>
+	<nav layout:replace="~{layout/menu::menu}"></nav><!--replaceが読み込み-->
+	
+	<p>ログイン中のアカウント情報を削除します、よろしいですか？</p>
+	
+	<p>作成したグループがある場合すべて削除してください</p>
+	
+	<p>エラーメッセージを表示</p>
+	
+	<!--<form method="post" th:action="@{/}" th:object="${}">
+    
+	   ？？？
+	    
+	    <a href="/" >キャンセル</a>
+	    <input type="submit" value="削除">
+    </form>-->
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<title>アカウント変更</title>
+</head>
+<body>
+	<nav layout:replace="~{layout/menu::menu}"></nav><!--replaceが読み込み-->
+	
+	<p>パスワードを変更します、よろしいですか？</p>
+	
+	<p>エラーメッセージを表示</p>
+	
+	<form method="post" th:action="@{/edit-account}" th:object="${editAccountForm}">
+    
+	    <div class="form-group">
+	        <label for="pass" >パスワード</label>
+	        <input type="password" id="pass" name="pass" th:value="${pass}">
+	    </div>
+	    
+	    <!--<a href="/" >キャンセル</a>-->
+	   <!-- 元の画面に戻る？-->
+	    
+	    <input type="submit" value="変更">
+    </form>
+
+</body>
+</html>

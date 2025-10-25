@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.header {
+	width: 1024px;
+    margin: 0 auto;
+    text-align: center;
+    border-bottom: 1px solid #000000;
+}
+
+.nav {
+	width: 1024px;
+    margin: 0 auto;
+	display: inline-block;
+}
+
+.nav-logo{
+	float:left;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+li{
+	list-style: none;
+	padding: 10px;
+	display: inline-block;
+	text-align: right;
+}
