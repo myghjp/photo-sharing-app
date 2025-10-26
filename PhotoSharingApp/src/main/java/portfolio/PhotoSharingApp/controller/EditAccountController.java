@@ -34,8 +34,8 @@ public class EditAccountController {
 		model.addAttribute("editAccountForm", editAccountForm);
 		return "edit-account";
 		
-		
-		
+		/*テスト*/
+		system.out.println();
 	}
 	
 	@PostMapping("/edit-account")
