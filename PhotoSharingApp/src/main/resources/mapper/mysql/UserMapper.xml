@@ -31,4 +31,11 @@
 		where user = #{user}
 	</select>
 	
+	<!-- パスワード変更 -->
+	<update id="updateAccount">
+		update Accounts
+		set pass = #{accounts.pass}
+		where id = #{accounts.id}
+	</update>
+	
 </mapper>

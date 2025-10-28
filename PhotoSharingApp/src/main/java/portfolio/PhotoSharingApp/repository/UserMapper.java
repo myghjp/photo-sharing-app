@@ -13,4 +13,8 @@ public interface UserMapper {
 	
 	/*formで入力されたユーザ名を検索*/
 	public Accounts getSelectUser(String user);
+	
+	/*idを使用してパスワードを変更*/
+	public void updateAccount(@Param("accounts") Accounts accounts);
+	
 }

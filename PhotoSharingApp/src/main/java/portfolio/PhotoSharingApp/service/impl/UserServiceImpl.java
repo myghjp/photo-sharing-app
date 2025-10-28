@@ -24,4 +24,10 @@ public class UserServiceImpl implements UserService  {
 	public Accounts getLoginAccount(String user) {
 		return userMapper.getSelectUser(user);
 	}
+	
+	/*idを使用してパスワードを変更*/
+	@Override
+	public void updateEditAccount(Accounts accounts) {
+		userMapper.updateAccount(accounts);
+	};
 }

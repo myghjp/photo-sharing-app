@@ -25,7 +25,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			throw new UsernameNotFoundException("user not found");
 		}
 		
-		/*※↓カスタム不要か確認*/
 		UserDetails userDetails = (UserDetails) new LoginUserDetails(accounts);
 		return userDetails;
 	}

@@ -2,6 +2,7 @@ package portfolio.PhotoSharingApp.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.form.EditAccountForm;
+import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.UserService;
 
 @Controller
@@ -24,8 +27,6 @@ public class EditAccountController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
-	/*コントローラクラスはまとめる？*/
 
 	@GetMapping("/edit-account")
 	public String getEditAccount(Model model
@@ -33,19 +34,27 @@ public class EditAccountController {
 	){
 		model.addAttribute("editAccountForm", editAccountForm);
 		return "edit-account";
-		
-		
-		
 	}
 	
 	@PostMapping("/edit-account")
 	public String postEditAccount (Model model
 			,@ModelAttribute EditAccountForm editAccountForm
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,RedirectAttributes redirectAttributes) {
 		
+		/*formをentityに変換*/
+		Accounts accounts = modelMapper.map(editAccountForm, Accounts.class);
 		
 		
-		/*ログインしているアカウントの、パスワードを変更*/
+		/*ログインしているユーザーのID取得してセット*/
+		accounts.setId(loginUserDetails.getUserId());
+		
+		/*パスワードをハッシュ化*/
+		accounts.setPass(passwordEncoder.encode(accounts.getPass()));
+
+		/*パスワードを変更*/
+		userService.updateEditAccount(accounts);
+		
 		
 		/*※パスワードを変更すると、ログアウトする*/
 		return "redirect:login";
