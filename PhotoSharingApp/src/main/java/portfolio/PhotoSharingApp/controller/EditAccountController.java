@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.form.EditAccountForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
@@ -40,11 +41,13 @@ public class EditAccountController {
 	public String postEditAccount (Model model
 			,@ModelAttribute EditAccountForm editAccountForm
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,HttpSession session
 			,RedirectAttributes redirectAttributes) {
+		
+		/*CSRF対策(後で)*/
 		
 		/*formをentityに変換*/
 		Accounts accounts = modelMapper.map(editAccountForm, Accounts.class);
-		
 		
 		/*ログインしているユーザーのID取得してセット*/
 		accounts.setId(loginUserDetails.getUserId());
@@ -55,8 +58,9 @@ public class EditAccountController {
 		/*パスワードを変更*/
 		userService.updateEditAccount(accounts);
 		
+		/*※パスワードを変更すると、ログアウトする(session破棄)*/
+		session.invalidate();
 		
-		/*※パスワードを変更すると、ログアウトする*/
 		return "redirect:login";
 	}
 }
