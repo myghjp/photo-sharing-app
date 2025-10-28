@@ -9,7 +9,8 @@
 <body>
 	<nav layout:replace="~{layout/header::header}"></nav>
 	
-	<p>※エラーメッセージを赤色で表示</p>
+	<!--※仮-->
+	<span style="color:red">エラーメッセージを赤色で表示</span>
 	
 	<form method="post" th:action="@{/entry-account}" th:object="${entryAccountForm}">
 	    <div class="form-group">
