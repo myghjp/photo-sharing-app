@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	>
 <head>
 <meta charset="UTF-8">
-
 <link rel="stylesheet" th:href="@{/css/header.css}">
-
 <title>アカウント削除</title>
 </head>
 <body>
@@ -15,14 +14,16 @@
 	
 	<p>作成したグループがある場合すべて削除してください</p>
 	
-	<p>エラーメッセージを表示</p>
+	<p>※エラーメッセージを赤色で表示</p>
 	
 	<form method="post" th:action="@{/delete-account}">
-		
 		<input type="button" value="キャンセル" onclick="history.back();">
-		
     	<input type="submit" value="削除">
 	</form>
+	
+	<h3>
+		※未定(ユーザ自身が作成したグループを削除しないとアカウントの削除を実行できない)
+	</h3>
 	
 </body>
 </html>

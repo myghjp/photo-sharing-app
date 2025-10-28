@@ -10,7 +10,7 @@
 
 <!--<p th:text="${status} + ' ' + ${error}"></p>
 <p th:text="${message}"></p>-->
-<p>エラーが発生しました。</p>
+<p>エラーが発生しました。(※エラーメッセージを赤色で表示)</p>
 
 <form th:action="@{/postlogout}" method="post">
 	<input type="button" onclick="location.href='/login'" th:value="ログイン画面に戻る">

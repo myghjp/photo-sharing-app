@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{/css/header.css}">
@@ -8,10 +10,8 @@
 </head>
 <body>
 	<nav layout:replace="~{layout/menu::menu}"></nav>
-	
-<h3>ここはグループ選択画面</h3>
 
-<p>[D-1 グループ選択画面]より上部を全て作成する</p>
+<h3>[D-1 グループ選択画面]より上部を全て作成する</h3>
 
 </body>
 </html>

@@ -8,18 +8,22 @@
 <body>
 	<nav layout:replace="~{layout/header::header}"></nav>
 	
-<form method="post" th:action="@{/postlogin}"><!--※-->
-    <div class="form-group">
-        <label for="user" >アカウント名</label>
-        <input type="text" id="user" name="user">
-    </div>
-    <div class="form-group">
-        <label for="pass" >パスワード</label>
-        <input type="password" id="pass" name="pass">
-    </div>
-    <input type="submit" value="ログイン">
-    <input type="button" onclick="location.href='./entry-account'" value="アカウント登録">
-</form>
+	<p>※エラーメッセージを赤色で表示</p>
+	
+	<form method="post" th:action="@{/postlogin}"><!--※-->
+	    <div class="form-group">
+	        <label for="user" >アカウント名</label>
+	        <input type="text" id="user" name="user">
+	        <!--※入力されていること-->
+	    </div>
+	    <div class="form-group">
+	        <label for="pass" >パスワード</label>
+	        <input type="password" id="pass" name="pass">
+	        <!--※入力されていること-->
+	    </div>
+	    <input type="submit" value="ログイン">
+	    <input type="button" onclick="location.href='./entry-account'" value="アカウント登録">
+	</form>
        
 </body>
 </html>
