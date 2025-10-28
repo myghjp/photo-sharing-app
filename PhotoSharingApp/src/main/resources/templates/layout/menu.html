@@ -11,17 +11,19 @@
 			<ul class="nav">
 				<h3 class="nav-logo">共有写真アプリ(css後から)</h3>
 				
-				<li><a href="/edit-account" >パスワード変更</a></li>
+				<li>
+				 <input type="button" onclick="location.href='./edit-account'"
+				 value="パスワード変更">
+				</li>
 				
-				<li><a href="/delete-account" >アカウント削除</a></li>
+				<li>
+				<input type="button" onclick="location.href='./delete-account'"
+				value="アカウント削除">
+				</li>
 				
 				<li>アカウント名</li>
 				<!--<span sec:authentication="principal.fullName"></span>-->
 				<li>
-					
-				<!--principal id?-->
-					
-					
 					
 				<form method="post" th:action="@{/postlogout}">
 					<input type="submit" value="ログアウト">

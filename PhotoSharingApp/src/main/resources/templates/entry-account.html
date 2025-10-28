@@ -21,10 +21,8 @@
         <label for="pass" >メールアドレス</label><!--th:field確認-->
         <input type="email" th:field="*{email_address}">
     </div>
-    
-    <a href="/login" >キャンセル</a>
+    <input type="button" onclick="location.href='./login'" value="キャンセル">
     <input type="submit" value="登録">
-    
 </form>
 
 </body>

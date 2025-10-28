@@ -12,10 +12,8 @@
 <p th:text="${message}"></p>-->
 <p>エラーが発生しました。</p>
 
-<!--※postlogout編集-->
 <form th:action="@{/postlogout}" method="post">
-	<input type="button" class="btn btn-danger" th:value="ログイン画面に戻る"
-		onclick="location.href='/login'">
+	<input type="button" onclick="location.href='/login'" th:value="ログイン画面に戻る">
 </form>
 
 </body>
