@@ -33,9 +33,15 @@
 	
 	<!-- パスワード変更 -->
 	<update id="updateAccount">
-		update Accounts
+		update accounts
 		set pass = #{accounts.pass}
 		where id = #{accounts.id}
 	</update>
+	
+	<!-- アカウントを削除 -->
+	<delete id="deleteAccount">
+		delete from accounts
+		where id = #{accounts.id}
+	</delete>
 	
 </mapper>

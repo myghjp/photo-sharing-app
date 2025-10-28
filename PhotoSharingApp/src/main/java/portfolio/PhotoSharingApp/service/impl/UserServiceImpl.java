@@ -30,4 +30,10 @@ public class UserServiceImpl implements UserService  {
 	public void updateEditAccount(Accounts accounts) {
 		userMapper.updateAccount(accounts);
 	};
+	
+	/*idを使用してアカウントを削除*/
+	@Override
+	public void deleteAccount(Accounts accounts){
+		userMapper.deleteAccount(accounts);
+	};
 }

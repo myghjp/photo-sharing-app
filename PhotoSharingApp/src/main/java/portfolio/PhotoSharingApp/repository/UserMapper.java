@@ -17,4 +17,7 @@ public interface UserMapper {
 	/*idを使用してパスワードを変更*/
 	public void updateAccount(@Param("accounts") Accounts accounts);
 	
+	/*idを使用してアカウントを削除*/
+	public void deleteAccount(@Param("accounts") Accounts accounts);
+	
 }

@@ -13,4 +13,6 @@ public interface UserService {
 	/*idを使用してパスワードを変更*/
 	public void updateEditAccount(Accounts accounts);
 	
+	/*idを使用してアカウントを削除*/
+	public void deleteAccount(Accounts accounts);
 }
