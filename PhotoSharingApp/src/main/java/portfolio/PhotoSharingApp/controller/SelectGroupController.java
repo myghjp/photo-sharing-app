@@ -8,6 +8,7 @@ public class SelectGroupController {
 
 	@GetMapping("/select-group")
 	public String getLogin() {
+		
 		return "select-group";
 	}
 }

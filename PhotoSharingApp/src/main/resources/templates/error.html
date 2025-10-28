@@ -8,11 +8,10 @@
 <body>
 	<nav layout:replace="~{layout/header::header}"></nav>
 
-<!--<p th:text="${status} + ' ' + ${error}"></p>
-<p th:text="${message}"></p>-->
-
-<!--※仮-->
-<span style="color:red">エラーが発生しました。</span>
+<!--※仮ーーーーーーーーーーーーーーーーー-->
+<p th:text="${status} + ' ' + ${error}"></p>
+<span style="color:red" th:text="${message}"></span>
+<!--ーーーーーーーーーーーーーーーーーーー-->
 
 <form th:action="@{/postlogout}" method="post">
 	<input type="button" onclick="location.href='/login'" th:value="ログイン画面に戻る">
