@@ -3,7 +3,9 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
+
 <link rel="stylesheet" th:href="@{/css/header.css}">
+
 <title>アカウント削除</title>
 </head>
 <body>
@@ -17,7 +19,8 @@
 	
 	<form method="post" th:action="@{/delete-account}">
 		
-		<!--<a href="/" >キャンセル</a>-->
+		<input type="button" value="キャンセル" onclick="history.back();">
+		
     	<input type="submit" value="削除">
 	</form>
 	

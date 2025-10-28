@@ -3,7 +3,9 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
+
 <link rel="stylesheet" th:href="@{/css/header.css}">
+
 <title>アカウント変更</title>
 </head>
 <body>
@@ -22,8 +24,7 @@
 	    </div>
 	    
 	    
-	    <!--<a href="/" >キャンセル</a>-->
-	   <!-- 元の画面に戻るボタン	大変-->
+	    <input type="button" value="キャンセル" onclick="history.back();">
 	    
 	    <input type="submit" value="変更">
     </form>
