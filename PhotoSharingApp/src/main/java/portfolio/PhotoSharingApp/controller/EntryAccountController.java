@@ -45,19 +45,17 @@ public class EntryAccountController {
 		
 		
 		/*カスタム重複チェックが必要*/
-		
-		/*UsersData usersData = modelMapper.map(form, UsersData.class);
+		Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);
 
-		if (userService.isExistingUserName(usersData)) {
-			bindingResult.rejectValue("userName", "userName.search");
-		}*/
-		
+		if (userService.isExistingAccountsData(accounts)) {
+			bindingResult.rejectValue("user", "user.Alert");
+		} /*単体か複数*/
 		
 		if (bindingResult.hasErrors()) {
 			return getEntryAccount(model, entryAccountForm);
 		}
 		
-		Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);
+		/*Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);*/
 		
 		accounts.setPass(passwordEncoder.encode(accounts.getPass()));
 

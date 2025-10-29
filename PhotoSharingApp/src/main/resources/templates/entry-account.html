@@ -11,15 +11,29 @@
 	
 	<!--※仮-->
 	<span style="color:red">
-		エラーメッセージを赤色で表示(th:ifに変更？)
+		<!--エラーメッセージを赤色で表示(th:ifに変更？)-->	
 	</span>
 	
 	<form method="post" th:action="@{/entry-account}" th:object="${entryAccountForm}">
+		
+		<!--ーーー-->
+		<!--<li th:each="error : ${#fields.detailedErrors()}"
+    	class="text text-danger" th:text="${error.message}"></li>-->
+
+		<!--10/29detailedErrors()メソッド？-->
+		<!--ーーー-->
+		
+		
+		
+		<!--入力されていない箇所があります？-->
+		
+		
 	    <div class="form-group">
 	        <label for="user" th:text="#{user}"></label>
 	        <input type="text" th:field="*{user}" th:errorclass="is-invalid">
-	        <div class="invalid-feedback" th:errors="*{user}"></div>
 	        
+	        <div class="invalid-feedback" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
+	       
 	    </div>
 	    <div class="form-group">
 	        <label for="pass" th:text="#{pass}"></label>
@@ -29,10 +43,10 @@
 	        
 	    </div>
 	    <div class="form-group">
-	        <label for="pass" th:text="#{email}"></label><!--th:field確認-->
+	        <label for="pass" th:text="#{email_address}"></label><!--th:field確認-->
 	        <input type="email" th:field="*{email_address}" th:errorclass="is-invalid">
-	        <div class="invalid-feedback" th:errors="*{email_address}"></div>
-	        
+	        <div class="invalid-feedback" th:if="${#fields.hasErrors('user')}" th:errors="*{email_address}"></div>
+	        <!--※th:if="${#fields.hasErrors('user')}"は上で表示される-->
 	    </div>
 	    <input type="button" onclick="location.href='./login'" value="キャンセル">
 	    <input type="submit" value="登録">

@@ -15,4 +15,7 @@ public interface UserService {
 	
 	/*idを使用してアカウントを削除*/
 	public void deleteAccount(Accounts accounts);
+	
+	/*アカウント名とデータベースがデータベースに存在するかを確認*/
+	public boolean isExistingAccountsData(Accounts Accounts);
 }

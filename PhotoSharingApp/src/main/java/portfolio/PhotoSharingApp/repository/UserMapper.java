@@ -20,4 +20,7 @@ public interface UserMapper {
 	/*idを使用してアカウントを削除*/
 	public void deleteAccount(@Param("accounts") Accounts accounts);
 	
+	/*アカウント名とデータベースがデータベースに存在するかを確認*/
+	public String selectAccountsData(@Param("accounts") Accounts accounts);
+	
 }

@@ -36,4 +36,14 @@ public class UserServiceImpl implements UserService  {
 	public void deleteAccount(Accounts accounts){
 		userMapper.deleteAccount(accounts);
 	};
+	
+	/*アカウント名とデータベースがデータベースに存在するかを確認*/
+	@Override
+	public boolean isExistingAccountsData(Accounts accounts) {
+		if (userMapper.selectAccountsData(accounts) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }
