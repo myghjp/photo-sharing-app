@@ -3,7 +3,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<title>ログイン</title><!--http://localhost:8080/login-->
+<!--http://localhost:8080/login-->
+<title th:text="#{loginPage}"></title>
 </head>
 <body>
 	<nav layout:replace="~{layout/header::header}"></nav>
@@ -11,14 +12,14 @@
 	<!--※仮-->
 	<span style="color:red">エラーメッセージを赤色で表示</span>
 	
-	<form method="post" th:action="@{/postlogin}"><!--※-->
+	<form method="post" th:action="@{/postlogin}">
 	    <div class="form-group">
-	        <label for="user" >アカウント名</label>
+	        <label for="user" th:text="#{user}"></label>
 	        <input type="text" id="user" name="user">
 	        
 	    </div>
 	    <div class="form-group">
-	        <label for="pass" >パスワード</label>
+	        <label for="pass" th:text="#{pass}"></label>
 	        <input type="password" id="pass" name="pass">
 	        
 	    </div>

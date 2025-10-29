@@ -4,10 +4,8 @@
 	>
 <head>
 <meta charset="UTF-8">
-
 <link rel="stylesheet" th:href="@{/css/header.css}">
-
-<title>アカウント変更</title>
+<title th:text="#{editAccountPage}"></title>
 </head>
 <body>
 	<nav layout:replace="~{layout/menu::menu}"></nav><!--replaceが読み込み-->
@@ -20,9 +18,8 @@
 	<form method="post" th:action="@{/edit-account}" th:object="${editAccountForm}">
     
 	    <div class="form-group">
-	        <label for="pass" >パスワード</label>
+	        <label for="pass" th:text="#{pass}"></label>
 	        <input type="password" id="pass" name="pass" th:value="${pass}">
-	        <!--半角英数字のみ,8文字以上12文字以下,入力されている-->
 	    </div>
 	    
 	    <input type="button" value="キャンセル" onclick="history.back();">
