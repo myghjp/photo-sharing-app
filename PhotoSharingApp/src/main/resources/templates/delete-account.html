@@ -10,9 +10,8 @@
 <body>
 	<nav layout:replace="~{layout/menu::menu}"></nav><!--replaceが読み込み-->
 	
-	<p>ログイン中のアカウント情報を削除します、よろしいですか？</p>
-	
-	<p>作成したグループがある場合すべて削除してください</p>
+	<div th:text="#{deleteAccountAlert1}"></div>
+	<div th:text="#{deleteAccountAlert2}"></div>
 	
 	<!--※仮-->
 	<span style="color:red">エラーメッセージを赤色で表示</span>

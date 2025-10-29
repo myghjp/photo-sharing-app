@@ -10,7 +10,9 @@
 	<nav layout:replace="~{layout/header::header}"></nav>
 	
 	<!--※仮-->
-	<span style="color:red">エラーメッセージを赤色で表示</span>
+	<span style="color:red">
+		エラーメッセージを赤色で表示(th:ifに変更？)
+	</span>
 	
 	<form method="post" th:action="@{/entry-account}" th:object="${entryAccountForm}">
 	    <div class="form-group">
@@ -21,12 +23,15 @@
 	    </div>
 	    <div class="form-group">
 	        <label for="pass" th:text="#{pass}"></label>
-	        <input type="password" id="pass" name="pass" th:value="${pass}">
+	        <!--<input type="password" id="pass" name="pass" th:value="${pass}">-->
+	        <input type="password" th:field="*{pass}" th:errorclass="is-invalid">
+	        <div class="invalid-feedback" th:errors="*{pass}"></div>
 	        
 	    </div>
 	    <div class="form-group">
 	        <label for="pass" th:text="#{email}"></label><!--th:field確認-->
-	        <input type="email" th:field="*{email_address}">
+	        <input type="email" th:field="*{email_address}" th:errorclass="is-invalid">
+	        <div class="invalid-feedback" th:errors="*{email_address}"></div>
 	        
 	    </div>
 	    <input type="button" onclick="location.href='./login'" value="キャンセル">

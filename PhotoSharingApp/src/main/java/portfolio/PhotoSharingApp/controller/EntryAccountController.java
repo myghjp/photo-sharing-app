@@ -43,11 +43,19 @@ public class EntryAccountController {
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes) {
 		
-		/*ーーー10/28バインドの開始ーーー*/
+		
+		/*カスタム重複チェックが必要*/
+		
+		/*UsersData usersData = modelMapper.map(form, UsersData.class);
+
+		if (userService.isExistingUserName(usersData)) {
+			bindingResult.rejectValue("userName", "userName.search");
+		}*/
+		
+		
 		if (bindingResult.hasErrors()) {
 			return getEntryAccount(model, entryAccountForm);
 		}
-		/*ーーーーーーーーーーーーーーー*/
 		
 		Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);
 		

@@ -10,7 +10,7 @@
 <body>
 	<nav layout:replace="~{layout/menu::menu}"></nav><!--replaceが読み込み-->
 	
-	<p>パスワードを変更します、よろしいですか？</p>
+	<div th:text="#{editAccountAlert}"></div>
 	
 	<!--※仮-->
 	<span style="color:red">エラーメッセージを赤色で表示</span>

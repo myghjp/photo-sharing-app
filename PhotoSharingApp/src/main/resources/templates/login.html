@@ -9,8 +9,11 @@
 <body>
 	<nav layout:replace="~{layout/header::header}"></nav>
 	
-	<!--※仮-->
-	<span style="color:red">エラーメッセージを赤色で表示</span>
+	<th:block th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+		<span style="color:red" th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+			th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+		</span>    
+    </th:block>
 	
 	<form method="post" th:action="@{/postlogin}">
 	    <div class="form-group">

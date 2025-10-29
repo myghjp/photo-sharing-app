@@ -20,6 +20,8 @@ public class EntryAccountForm {
 	@Pattern(regexp = "^[a-zA-Z0-9]+$")
 	@Length(min = 8, max = 12)
 	private String pass;
+	
+	/*グループ化*/
 	/*ーーーーーーーーーーーーーーーーーーー*/
 	@NotBlank
 	
