@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	>
 <head>
 <meta charset="UTF-8">
@@ -13,7 +12,31 @@
 	<nav layout:replace="~{layout/menu::menu}"></nav>
 
 	<div class="center">
-		<h3>[D-1 グループ選択画面]より上部を全て作成する</h3>
+		
+		<input type="button" onclick="location.href='./entry-group'" value="グループ作成">
+				
+		<p>グループを選択してください。</p>
+		
+		<!--ーーーーーーーーーーーーーーーーーーー-->
+				
+		<!--<form method="post" th:action="@{/postlogout}">
+		
+				<tr th:each="list: ${todoItemsList}" >	
+					<td th:text="${list.itemName}">
+						<button type="submit" >完了</button>
+							
+						<a th:href="@{'/edit/' + ${list.id}}">修正</a>
+						<a th:href="@{'/delete/' + ${list.id}}">削除</a>
+					</td>
+				</tr>
+			
+			<input type="submit" value="グループを開く">
+		</form>-->
+				
+		<!--ーーーーーーーーーーーーーーーーーーー-->
+		
+		<p>※グループが一つもない場合、グループを開くボタンを表示しない</p>
+		
 	</div>
 
 </body>
