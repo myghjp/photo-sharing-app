@@ -12,7 +12,7 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
-@EnableWebSecurity/*カスタム*/
+@EnableWebSecurity
 public class SecurityConfig {
 	
 	@Bean

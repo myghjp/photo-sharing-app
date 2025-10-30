@@ -47,9 +47,6 @@ public class EditAccountController {
 			,HttpSession session
 			,RedirectAttributes redirectAttributes) {
 		
-		/*CSRF対策(後で)*/
-		
-		
 		Accounts accounts = modelMapper.map(editAccountForm, Accounts.class);
 		
 		if (bindingResult.hasErrors()) {

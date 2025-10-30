@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.form.EntryAccountForm;
 import portfolio.PhotoSharingApp.service.UserService;
@@ -33,7 +32,6 @@ public class EntryAccountController {
 	@GetMapping("/entry-account")
 	public String getEntryAccount(Model model
 		,EntryAccountForm entryAccountForm
-		,HttpSession session
 	){
 		model.addAttribute("entryAccountForm", entryAccountForm);
 		
