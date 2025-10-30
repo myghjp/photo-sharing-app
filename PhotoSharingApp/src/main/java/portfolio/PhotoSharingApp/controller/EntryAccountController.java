@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.form.EntryAccountForm;
 import portfolio.PhotoSharingApp.service.UserService;
@@ -32,8 +33,13 @@ public class EntryAccountController {
 	@GetMapping("/entry-account")
 	public String getEntryAccount(Model model
 		,EntryAccountForm entryAccountForm
+		,HttpSession session
 	){
 		model.addAttribute("entryAccountForm", entryAccountForm);
+		
+		/*ログインエラーメッセージの破棄*/
+		/*session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");*/
+		
 		return "entry-account";
 	}
 	
@@ -43,10 +49,9 @@ public class EntryAccountController {
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes) {
 		
-		
-		/*カスタム重複チェックが必要*/
 		Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);
 
+		/*冗長*/
 		if (userService.isExistingAccountsData1(accounts)) {
 			bindingResult.rejectValue("user", "user.Alert");
 		}
@@ -54,13 +59,9 @@ public class EntryAccountController {
 			bindingResult.rejectValue("email_address", "email_address.Alert");
 		}
 		
-		
-		
 		if (bindingResult.hasErrors()) {
 			return getEntryAccount(model, entryAccountForm);
 		}
-		
-		/*Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);*/
 		
 		accounts.setPass(passwordEncoder.encode(accounts.getPass()));
 

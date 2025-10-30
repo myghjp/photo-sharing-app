@@ -3,34 +3,34 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<!--http://localhost:8080/login-->
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/form.css}">
 <title th:text="#{loginPage}"></title>
 </head>
 <body>
 	<nav layout:replace="~{layout/header::header}"></nav>
 	
-	<th:block th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
-		<span style="color:red" th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
-			th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
-		</span>    
-    </th:block>
-	
-	<form method="post" th:action="@{/postlogin}">
-	    <div class="form-group">
-	        <label for="user" th:text="#{user}"></label>
-	        <input type="text" id="user" name="user">
-	        
-	    </div>
-	    <div class="form-group">
-	        <label for="pass" th:text="#{pass}"></label>
-	        <input type="password" id="pass" name="pass">
-	        
-	    </div>
-	    <input type="submit" value="ログイン">
-	    <input type="button" onclick="location.href='./entry-account'" value="アカウント登録">
-	</form>
-	
-	<!--※ログインの入力チェック-->
-       
+	<div class="center">
+		<th:block th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+			<span style="color:red" th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+				th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+			</span>    
+	    </th:block>
+		
+		<form method="post" th:action="@{/postlogin}">
+		    <div class="form-group">
+		        <label for="user" th:text="#{user}"></label>
+		        <input type="text" id="user" name="user">
+		        
+		    </div>
+		    <div class="form-group">
+		        <label for="pass" th:text="#{pass}"></label>
+		        <input type="password" id="pass" name="pass">
+		        
+		    </div>
+		    <input type="submit" value="ログイン">
+		    <input type="button" onclick="location.href='./entry-account'" value="アカウント登録">
+		</form>
+	</div>
 </body>
 </html>

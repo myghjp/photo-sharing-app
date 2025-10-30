@@ -5,25 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/form.css}">
 <title th:text="#{deleteAccountPage}"></title>
 </head>
 <body>
 	<nav layout:replace="~{layout/menu::menu}"></nav><!--replaceが読み込み-->
 	
-	<div th:text="#{deleteAccountAlert1}"></div>
-	<div th:text="#{deleteAccountAlert2}"></div>
-	
-	<!--※仮-->
-	<span style="color:red">エラーメッセージを赤色で表示</span>
-	
-	<form method="post" th:action="@{/delete-account}">
-		<input type="button" value="キャンセル" onclick="history.back();">
-    	<input type="submit" value="削除">
-	</form>
-	
-	<h3>
-		※未定(ユーザ自身が作成したグループを削除しないとアカウントの削除を実行できない)
-	</h3>
-	
+	<div class="center">
+		<form method="post" th:action="@{/delete-account}">
+			
+			<div th:text="#{deleteAccountAlert1}"></div>
+			<div th:text="#{deleteAccountAlert2}"></div>
+			
+			<span style="color:red">エラーメッセージを赤色で表示</span>
+			
+			<input type="button" value="キャンセル" onclick="history.back();">
+	    	<input type="submit" value="削除">
+		</form>
+		<h3>※未定(ユーザ自身が作成したグループを削除しないとアカウントの削除を実行できない)</h3>
+	</div>
 </body>
 </html>

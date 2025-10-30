@@ -5,26 +5,29 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/form.css}">
 <title th:text="#{editAccountPage}"></title>
 </head>
 <body>
 	<nav layout:replace="~{layout/menu::menu}"></nav><!--replaceが読み込み-->
 	
-	<div th:text="#{editAccountAlert}"></div>
-	
-	<!--※仮-->
-	<span style="color:red">エラーメッセージを赤色で表示</span>
+	<div class="center">
 	
 	<form method="post" th:action="@{/edit-account}" th:object="${editAccountForm}">
     
+    	<div th:text="#{editAccountAlert}"></div>
+    
 	    <div class="form-group">
 	        <label for="pass" th:text="#{pass}"></label>
-	        <input type="password" id="pass" name="pass" th:value="${pass}">
+	         <input type="password" th:field="*{pass}" th:errorclass="is-invalid">
+	        <div class="invalid-feedback" th:errors="*{pass}"></div>
 	    </div>
 	    
 	    <input type="button" value="キャンセル" onclick="history.back();">
 	    <input type="submit" value="変更">
     </form>
+    
+	</div>
 
 </body>
 </html>

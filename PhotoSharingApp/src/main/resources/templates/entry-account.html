@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	>
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/form.css}">
 <title th:text="#{entryAccountPage}"></title>
 </head>
 <body>
@@ -11,6 +12,8 @@
 	
 	<!--画面設計書のエラーメッセージの表示箇所を変更 10月30日-->
 	
+	<div class="center">
+		
 	<form method="post" th:action="@{/entry-account}" th:object="${entryAccountForm}">
 	    <div class="form-group">
 	        <label for="user" th:text="#{user}"></label>
@@ -20,20 +23,20 @@
 	    <p>ーーーーーーーーーーーーーーーーーーーー</p>
 	    <div class="form-group">
 	        <label for="pass" th:text="#{pass}"></label>
-	        <!--<input type="password" id="pass" name="pass" th:value="${pass}">-->
 	        <input type="password" th:field="*{pass}" th:errorclass="is-invalid">
 	        <div class="invalid-feedback" th:errors="*{pass}"></div>
 	    </div>
 	    <p>ーーーーーーーーーーーーーーーーーーーー</p>
 	    <div class="form-group">
-	        <label for="pass" th:text="#{email_address}"></label><!--th:field確認-->
+	        <label for="pass" th:text="#{email_address}"></label>
 	        <input type="email" th:field="*{email_address}" th:errorclass="is-invalid">
 	        <div class="invalid-feedback" th:if="${#fields.hasErrors('email_address')}" th:errors="*{email_address}"></div>
-	        <!--※th:if="${#fields.hasErrors('user')}"は上で表示される-->
 	    </div>
 	    <p>ーーーーーーーーーーーーーーーーーーーー</p>
 	    <input type="button" onclick="location.href='./login'" value="キャンセル">
 	    <input type="submit" value="登録">
 	</form>
+	
+	</div>
 </body>
 </html>

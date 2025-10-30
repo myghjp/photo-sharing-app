@@ -6,6 +6,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,23 +41,25 @@ public class EditAccountController {
 	
 	@PostMapping("/edit-account")
 	public String postEditAccount (Model model
-			,@ModelAttribute EditAccountForm editAccountForm
+			,@ModelAttribute @Validated EditAccountForm editAccountForm
+			,BindingResult bindingResult
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,HttpSession session
 			,RedirectAttributes redirectAttributes) {
 		
 		/*CSRF対策(後で)*/
 		
-		/*formをentityに変換*/
+		
 		Accounts accounts = modelMapper.map(editAccountForm, Accounts.class);
 		
-		/*ログインしているユーザーのID取得してセット*/
+		if (bindingResult.hasErrors()) {
+			return getEditAccount(model, editAccountForm);
+		}
+		
 		accounts.setId(loginUserDetails.getUserId());
 		
-		/*パスワードをハッシュ化*/
 		accounts.setPass(passwordEncoder.encode(accounts.getPass()));
 
-		/*パスワードを変更*/
 		userService.updateEditAccount(accounts);
 		
 		/*※パスワードを変更すると、ログアウトする(session破棄)*/
