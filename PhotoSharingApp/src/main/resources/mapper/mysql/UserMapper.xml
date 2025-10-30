@@ -44,13 +44,18 @@
 		where id = #{accounts.id}
 	</delete>
 	
-	<!-- アカウント名またはアドレスの重複確認 -->
-	<select id="selectAccountsData">
-		select user,email_address
+	<!-- 重複確認 -->
+	<select id="selectAccountsData1">
+		select user
 		from accounts
 		where user = #{accounts.user}
-		<!-- ↓※ -->
-		or email_address = #{accounts.email_address}
 	</select>
+	
+	<select id="selectAccountsData2">
+		select email_address
+		from accounts
+		where email_address = #{accounts.email_address}
+	</select>
+	<!-- ーーーーーーー -->
 	
 </mapper>

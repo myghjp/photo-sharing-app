@@ -17,5 +17,6 @@ public interface UserService {
 	public void deleteAccount(Accounts accounts);
 	
 	/*アカウント名とデータベースがデータベースに存在するかを確認*/
-	public boolean isExistingAccountsData(Accounts Accounts);
+	public boolean isExistingAccountsData1(Accounts Accounts);
+	public boolean isExistingAccountsData2(Accounts Accounts);
 }

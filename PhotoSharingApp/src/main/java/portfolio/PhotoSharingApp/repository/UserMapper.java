@@ -21,6 +21,7 @@ public interface UserMapper {
 	public void deleteAccount(@Param("accounts") Accounts accounts);
 	
 	/*アカウント名とデータベースがデータベースに存在するかを確認*/
-	public String selectAccountsData(@Param("accounts") Accounts accounts);
+	public String selectAccountsData1(@Param("accounts") Accounts accounts);
+	public String selectAccountsData2(@Param("accounts") Accounts accounts);
 	
 }

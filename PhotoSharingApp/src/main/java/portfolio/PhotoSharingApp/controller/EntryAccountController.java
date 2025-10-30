@@ -47,9 +47,14 @@ public class EntryAccountController {
 		/*カスタム重複チェックが必要*/
 		Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);
 
-		if (userService.isExistingAccountsData(accounts)) {
+		if (userService.isExistingAccountsData1(accounts)) {
 			bindingResult.rejectValue("user", "user.Alert");
-		} /*単体か複数*/
+		}
+		if (userService.isExistingAccountsData2(accounts)) {
+			bindingResult.rejectValue("email_address", "email_address.Alert");
+		}
+		
+		
 		
 		if (bindingResult.hasErrors()) {
 			return getEntryAccount(model, entryAccountForm);

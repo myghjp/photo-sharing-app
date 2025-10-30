@@ -39,8 +39,15 @@ public class UserServiceImpl implements UserService  {
 	
 	/*アカウント名とデータベースがデータベースに存在するかを確認*/
 	@Override
-	public boolean isExistingAccountsData(Accounts accounts) {
-		if (userMapper.selectAccountsData(accounts) == null) {
+	public boolean isExistingAccountsData1(Accounts accounts) {
+		if (userMapper.selectAccountsData1(accounts) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	public boolean isExistingAccountsData2(Accounts accounts) {
+		if (userMapper.selectAccountsData2(accounts) == null) {
 			return false;
 		} else {
 			return true;
