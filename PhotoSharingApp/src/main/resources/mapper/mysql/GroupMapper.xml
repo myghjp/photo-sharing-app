@@ -10,15 +10,15 @@
 	</resultMap> -->
 	
 	<!-- アカウント登録 -->
-	<!-- <insert id="insertGroupName">
-		insert into `groups`(
+	<insert id="insertGroupName">
+		insert into groups(
 			 group_name
+			 ,account_id
 		)VALUES(
 			 #{groups.group_name}
+			 ,#{groups.account_id}
 		)
-	</insert> -->
-	
-	<!-- JOIN -->
+	</insert>
 	
 	<!-- insert into groups(group_name)VALUES(テストinsert); -->
 
