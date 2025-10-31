@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.form;
+package portfolio.PhotoSharingApp.form.group;
 
 import lombok.Data;
 

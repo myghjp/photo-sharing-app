@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.controller;
+package portfolio.PhotoSharingApp.controller.group;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Groups;
-import portfolio.PhotoSharingApp.form.EntryGroupForm;
-import portfolio.PhotoSharingApp.service.GroupService;
+import portfolio.PhotoSharingApp.form.group.EntryGroupForm;
+import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
 public class EntryGroupController {
@@ -28,7 +28,7 @@ public class EntryGroupController {
 		
 		model.addAttribute("entryGroupForm", entryGroupForm);
 		
-		return "entry-group";
+		return "group/entry-group";
 	}
 
 	/*@Validated*/
@@ -53,6 +53,6 @@ public class EntryGroupController {
 
 		groupService.insertEntryGroup(groups);
 		
-		return "redirect:select-group";
+		return "redirect:group/select-group";
 	}
 }

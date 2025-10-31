@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.form;
+package portfolio.PhotoSharingApp.form.account;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

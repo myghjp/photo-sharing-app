@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.controller;
+package portfolio.PhotoSharingApp.controller.account;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Accounts;
-import portfolio.PhotoSharingApp.form.EntryAccountForm;
-import portfolio.PhotoSharingApp.service.UserService;
+import portfolio.PhotoSharingApp.form.account.EntryAccountForm;
+import portfolio.PhotoSharingApp.service.user.UserService;
 
 @Controller
 public class EntryAccountController {
@@ -38,7 +38,7 @@ public class EntryAccountController {
 		/*ログインエラーメッセージの破棄*/
 		/*session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");*/
 		
-		return "entry-account";
+		return "account/entry-account";
 	}
 	
 	@PostMapping("/entry-account")

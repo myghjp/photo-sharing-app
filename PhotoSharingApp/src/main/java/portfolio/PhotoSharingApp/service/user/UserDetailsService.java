@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.service;
+package portfolio.PhotoSharingApp.service.user;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

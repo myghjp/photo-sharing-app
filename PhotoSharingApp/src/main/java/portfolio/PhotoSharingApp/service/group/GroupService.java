@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.service;
+package portfolio.PhotoSharingApp.service.group;
 
 import portfolio.PhotoSharingApp.entity.Groups;
 

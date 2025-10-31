@@ -1,11 +1,11 @@
-package portfolio.PhotoSharingApp.service.impl;
+package portfolio.PhotoSharingApp.service.user.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.repository.UserMapper;
-import portfolio.PhotoSharingApp.service.UserService;
+import portfolio.PhotoSharingApp.service.user.UserService;
 
 @Service
 public class UserServiceImpl implements UserService  {

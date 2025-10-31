@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.controller;
+package portfolio.PhotoSharingApp.controller.group;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +13,6 @@ public class SelectGroupController {
 		List<TodoItems> todoItemsList = todoService.getListAll();
 		model.addAttribute("todoItemsList", todoItemsList);*/
 		
-		return "select-group";
+		return "group/select-group";
 	}
 }

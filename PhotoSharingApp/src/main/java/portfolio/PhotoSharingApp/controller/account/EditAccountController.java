@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.controller;
+package portfolio.PhotoSharingApp.controller.account;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +15,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Accounts;
-import portfolio.PhotoSharingApp.form.EditAccountForm;
+import portfolio.PhotoSharingApp.form.account.EditAccountForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
-import portfolio.PhotoSharingApp.service.UserService;
+import portfolio.PhotoSharingApp.service.user.UserService;
 
 @Controller
 public class EditAccountController {
@@ -36,7 +36,7 @@ public class EditAccountController {
 			,EditAccountForm editAccountForm
 	){
 		model.addAttribute("editAccountForm", editAccountForm);
-		return "edit-account";
+		return "account/edit-account";
 	}
 	
 	@PostMapping("/edit-account")
