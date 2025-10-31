@@ -1,19 +1,58 @@
 package portfolio.PhotoSharingApp.controller;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import portfolio.PhotoSharingApp.entity.Groups;
+import portfolio.PhotoSharingApp.form.EntryGroupForm;
+import portfolio.PhotoSharingApp.service.GroupService;
 
 @Controller
 public class EntryGroupController {
 	
+	@Autowired
+	private ModelMapper modelMapper;
+	
+	@Autowired
+	private GroupService groupService;
+	
 	@GetMapping("/entry-group")
-	public String getEntryGroup() {
+	public String getEntryGroup(Model model
+			,EntryGroupForm entryGroupForm) {
 		
-		/*※サービスからグループリストの呼び出し
-		List<TodoItems> todoItemsList = todoService.getListAll();
-		model.addAttribute("todoItemsList", todoItemsList);*/
+		model.addAttribute("entryGroupForm", entryGroupForm);
 		
 		return "entry-group";
 	}
 
+	/*@Validated*/
+	@PostMapping("/entry-group")
+	public String postEntryAcount(Model model
+			,@ModelAttribute EntryGroupForm entryGroupForm
+			/*,BindingResult bindingResult*/
+			,RedirectAttributes redirectAttributes) {
+		
+		Groups groups = modelMapper.map(entryGroupForm, Groups.class);
+
+		
+		/*if (userService.isExistingAccountsData1(accounts)) {
+			bindingResult.rejectValue("user", "user.Alert");
+		}*/
+		
+		
+		/*if (bindingResult.hasErrors()) {
+			return getEntryAccount(model, entryAccountForm);
+		}*/
+		
+
+		groupService.insertEntryGroup(groups);
+		
+		return "redirect:select-group";
+	}
 }
