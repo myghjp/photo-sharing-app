@@ -8,7 +8,7 @@
 		<id column="id" property="id" />
 		<result column="user" property="user" />
 		<result column="pass" property="pass" />
-		<result column="email_address" property="email_address" />
+		<result column="email_address" property="emailAddress" />
 	</resultMap>
 	
 	<!-- アカウント登録 -->
@@ -20,7 +20,7 @@
 		)VALUES(
 			 #{accounts.user}
 			,#{accounts.pass}
-			,#{accounts.email_address}
+			,#{accounts.emailAddress}
 		)
 	</insert>
 	
@@ -54,7 +54,7 @@
 	<select id="selectAccountsData2">
 		select email_address
 		from accounts
-		where email_address = #{accounts.email_address}
+		where email_address = #{accounts.emailAddress}
 	</select>
 	<!-- ーーーーーーー -->
 	

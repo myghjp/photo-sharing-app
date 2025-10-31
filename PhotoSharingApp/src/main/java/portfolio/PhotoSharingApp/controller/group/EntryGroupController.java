@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.form.group.EntryGroupForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
+@Slf4j
 public class EntryGroupController {
 	
 	@Autowired
@@ -54,8 +56,9 @@ public class EntryGroupController {
 		}*/
 		
 		
-		groups.setAccount_id(loginUserDetails.getUserId());
+		groups.setAccountId(loginUserDetails.getUserId());
 		
+		log.info(groups.toString());
 
 		groupService.insertEntryGroup(groups);
 		

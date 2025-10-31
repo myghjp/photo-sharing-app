@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class EntryGroupForm {
 	
-	private String group_name;
-	private int account_id;
+	private String groupName;
+	private int accountId;
 
 }

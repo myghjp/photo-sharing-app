@@ -20,5 +20,5 @@ public class EntryAccountForm {
 	
 	@NotBlank
 	@Email
-	private String email_address;
+	private String emailAddress;
 }

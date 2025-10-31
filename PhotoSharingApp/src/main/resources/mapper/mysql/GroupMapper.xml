@@ -4,22 +4,21 @@
 	
 <mapper namespace="portfolio.PhotoSharingApp.repository.GroupMapper">
 
-	<!-- <resultMap type="portfolio.PhotoSharingApp.entity.Groups" id="GroupsTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Groups" id="GroupsTable">
 		<id column="id" property="id" />
-		<result column="group_name" property="group_name" />
-	</resultMap> -->
+		<result column="group_name" property="groupName" />
+		<result column="account_id" property="accountId" />
+	</resultMap>
 	
 	<!-- アカウント登録 -->
 	<insert id="insertGroupName">
-		insert into groups(
+		insert into `groups`(
 			 group_name
-			 ,account_id
+			,account_id
 		)VALUES(
-			 #{groups.group_name}
-			 ,#{groups.account_id}
+			 #{`groups`.groupName}
+			,#{`groups`.accountId}
 		)
 	</insert>
 	
-	<!-- insert into groups(group_name)VALUES(テストinsert); -->
-
 </mapper>
