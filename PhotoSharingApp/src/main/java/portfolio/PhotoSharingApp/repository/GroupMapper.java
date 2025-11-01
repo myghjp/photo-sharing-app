@@ -8,6 +8,6 @@ import portfolio.PhotoSharingApp.entity.Groups;
 @Mapper
 public interface GroupMapper {
 	
-	public void insertGroupName(@Param("`groups`") Groups groups);
+	public void insertGroupName(@Param("groups") Groups groups);
 
 }

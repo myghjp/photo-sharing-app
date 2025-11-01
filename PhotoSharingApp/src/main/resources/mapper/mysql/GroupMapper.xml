@@ -16,8 +16,8 @@
 			 group_name
 			,account_id
 		)VALUES(
-			 #{`groups`.groupName}
-			,#{`groups`.accountId}
+			 #{groups.groupName}
+			,#{groups.accountId}
 		)
 	</insert>
 	
