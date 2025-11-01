@@ -15,27 +15,25 @@
 		
 		<input type="button" onclick="location.href='./entry-group'" value="グループ作成">
 				
-		<p>グループを選択してください。</p>
-		
-		<!--ーーーーーーーーーーーーーーーーーーー-->
+		<div th:text="#{selectGroupAlert}"></div>
 				
-		<!--<form method="post" th:action="@{/postlogout}">
+		<form method="post" th:action="@{/home-group}"><!--th:object="${inputForm}"-->
 		
-				<tr th:each="list: ${todoItemsList}" >	
-					<td th:text="${list.itemName}">
-						<button type="submit" >完了</button>
-							
-						<a th:href="@{'/edit/' + ${list.id}}">修正</a>
-						<a th:href="@{'/delete/' + ${list.id}}">削除</a>
-					</td>
+				<tr th:each="list: ${groupList}" >
+					
+					<input type="radio" th:text="${list.groupName}" th:value="${list.groupName}" name="test"><!--th:field="*{}"-->
+					<br>
+					
 				</tr>
-			
-			<input type="submit" value="グループを開く">
-		</form>-->
 				
-		<!--ーーーーーーーーーーーーーーーーーーー-->
-		
-		<p>※グループが一つもない場合、グループを開くボタンを表示しない</p>
+			<br>
+			
+			<!--<th:block th:if="${ != null}">-->
+				
+				<input type="submit" value="グループを開く">
+			<!--</th:block>-->
+			
+		</form>
 		
 	</div>
 

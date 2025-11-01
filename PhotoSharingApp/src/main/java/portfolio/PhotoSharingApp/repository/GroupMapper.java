@@ -1,5 +1,7 @@
 package portfolio.PhotoSharingApp.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -9,5 +11,7 @@ import portfolio.PhotoSharingApp.entity.Groups;
 public interface GroupMapper {
 	
 	public void insertGroupName(@Param("groups") Groups groups);
+	
+	public List<Groups> selectGroupName();
 
 }

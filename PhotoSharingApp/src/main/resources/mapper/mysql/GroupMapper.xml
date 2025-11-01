@@ -21,4 +21,9 @@
 		)
 	</insert>
 	
+	<select id="selectGroupName" resultMap="GroupsTable">
+		select group_name
+		from `groups`
+	</select>
+	
 </mapper>

@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	>
 <head>
 <meta charset="UTF-8">
-<title>グループホーム</title>
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/form.css}">
+<title th:text="#{homeGroupPage}"></title>
 </head>
 <body>
-
+	<nav layout:replace="~{layout/menu::menu}"></nav>
+	
+	<div class="center">
+	
+		<div>グループ名を表示</div>
+		
+		<input type="button" onclick="location.href='./select-group'" value="グループ選択に戻る">
+		
+		<div>あなたは管理者です</div>
+		
+		<form method="post">
+			<input type="submit" value="利用者一覧を表示する">
+		</form>
+		
+		<form method="post">
+			<input type="submit" value="アルバムを使用する">
+		</form>
+		
+		<form method="post">
+			<input type="submit" value="掲示板を使用する">
+		</form>
+		
+		<form method="post" th:action="@{/delete-group}">
+			<input type="submit" value="グループを削除する">
+		</form>
+	
+	</div>
+	
 </body>
 </html>
