@@ -55,9 +55,6 @@ public class EntryGroupController {
 		
 		
 		groups.setAccountId(loginUserDetails.getUserId());
-		
-		/*@Slf4j
-		log.info(groups.toString());*/
 
 		groupService.insertEntryGroup(groups);
 		

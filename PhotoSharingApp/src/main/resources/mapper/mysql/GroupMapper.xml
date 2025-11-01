@@ -22,7 +22,7 @@
 	</insert>
 	
 	<select id="selectGroupName" resultMap="GroupsTable">
-		select group_name
+		select id,group_name
 		from `groups`
 	</select>
 	
