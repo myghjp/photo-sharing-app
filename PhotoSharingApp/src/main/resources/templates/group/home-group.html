@@ -21,6 +21,12 @@
 			<div th:text="#{adminAlert}"></div>		
 		</th:block>
 		
+		<!--formを使ったほうがいい？-->
+		<!--↓全てグループのID-->
+		
+		<!--getでIDを送る-->
+		
+		
 		<form method="post">
 			<input type="submit" value="利用者一覧を表示する">
 		</form>
@@ -33,10 +39,15 @@
 			<input type="submit" value="掲示板を使用する">
 		</form>
 		
+		<!--ーーーーーーーーーーーーーーー-->
 		<form method="post" th:action="@{/delete-group}">
+			<input type="hidden" name="accountId" th:value="${groups.accountId}">
 			<input type="submit" value="グループを削除する">
 		</form>
-	
+		
+		<a th:href="@{'/delete-group/' + ${groups.id}}">削除</a>
+		
+		<!--ーーーーーーーーーーーーーーー-->
 	</div>
 	
 </body>

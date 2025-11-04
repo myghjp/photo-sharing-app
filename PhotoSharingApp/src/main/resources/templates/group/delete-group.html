@@ -18,7 +18,8 @@
 		
 			<div th:text="#{deleteGroupAlert}"></div>
 			
-			<div>グループ名を表示(hidden)</div>
+			<div>グループ名を表示</div>
+			<div th:text="${id}"></div>
 			
 			<input type="button" value="キャンセル" onclick="history.back();">
 		    <input type="submit" value="削除">
