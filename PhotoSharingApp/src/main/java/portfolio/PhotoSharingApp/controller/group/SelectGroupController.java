@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Groups;
@@ -36,17 +36,14 @@ public class SelectGroupController {
 	
 	@PostMapping("/select-group")
 	public String postSelectGroup(Model model
-			,@RequestParam("ggg") String ggg
+			,@ModelAttribute SelectGroupForm selectGroupForm
 			,RedirectAttributes redirectAttributes) {
 		
-		/*※グループテーブルのIDが重要*/
-	
-		/*@PathVariableに変更*/
-		/*getに*/
 		
-		/*グループのID(id)
-		管理者のID(account_id)*/
-		redirectAttributes.addFlashAttribute("ggg",ggg );
+		
+		
+		
+		redirectAttributes.addFlashAttribute("selectGroupForm",selectGroupForm);
 		
 		return "redirect:home-group";
 	}

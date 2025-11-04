@@ -26,5 +26,10 @@ public class GroupServiceImpl implements GroupService{
 		return groupMapper.selectGroupName();
 	}
 	
+	@Override
+	public Groups getGroupsInfo(Groups groups){
+		return groupMapper.selectGroupsInfo(groups);
+	}
+	
 	
 }

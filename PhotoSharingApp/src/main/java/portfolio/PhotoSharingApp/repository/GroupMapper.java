@@ -13,5 +13,7 @@ public interface GroupMapper {
 	public void insertGroupName(@Param("groups") Groups groups);
 	
 	public List<Groups> selectGroupName();
+	
+	public Groups selectGroupsInfo(@Param("groups") Groups groups);
 
 }

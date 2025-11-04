@@ -26,4 +26,10 @@
 		from `groups`
 	</select>
 	
+	<select id="selectGroupsInfo" resultMap="GroupsTable">
+		select *
+		from `groups`
+		where id = #{groups.id}
+	</select>
+	
 </mapper>

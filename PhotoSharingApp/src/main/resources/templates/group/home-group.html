@@ -13,11 +13,13 @@
 	
 	<div class="center">
 	
-		<div th:text="${ggg}"></div>
+		<div th:text="${groups.groupName}"></div>
 		
 		<input type="button" onclick="location.href='./select-group'" value="グループ選択に戻る">
 		
-		<div>あなたは管理者です</div>
+		<th:block th:if="${userId == groups.accountId}">
+			<div th:text="#{adminAlert}"></div>		
+		</th:block>
 		
 		<form method="post">
 			<input type="submit" value="利用者一覧を表示する">

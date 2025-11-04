@@ -17,25 +17,21 @@
 				
 		<div th:text="#{selectGroupAlert}"></div>
 				
-		<form method="post" th:action="@{/select-group}">
+		<form method="post" th:action="@{/select-group}" th:object="${selectGroupForm}">
 			
-				<tr th:each="list: ${groupList}" >
+				<div th:each="list:${groupList}" >
 					
-					<input type="radio" name="ggg" th:text="${list.groupName}" th:value="*{list.groupName}">
+					<input type="radio" th:text="${list.groupName}" th:value="${list.id}" th:field="*{id}">
 					
-					<!--<td><input type="hidden" th:field="${list.groupName}" th:text="${list.groupName}"> </td>-->
-					<!--※radio
-					th:fieldは「id」「name」の役割を果たします。
-					つまり、他2パターンのように「value」や「text」を補うことはできません。
-					th:valueとth:textは別途指定する必要があります。-->
+					
 					<br>
-				</tr>
+				</div>
 				
 			<br>
 			
-			<!--<th:block th:if="${ != null}">-->
+			
 			<input type="submit" value="グループを開く">
-			<!--</th:block>-->
+			
 			
 		</form>
 		

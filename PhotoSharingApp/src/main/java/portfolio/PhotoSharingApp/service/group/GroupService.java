@@ -9,8 +9,12 @@ public interface GroupService {
 	/*グループ名とログイン中のアカウントIDを追加*/
 	public void insertEntryGroup(Groups groups);
 	
-	/*グループ名一覧を取得*/
+	/*グループ名とそのグループIDの一覧を取得*/
 	public List<Groups> getGroupList();
+	
+	
+	/*グループ情報を取得*/
+	public Groups getGroupsInfo(Groups groups);
 	
 
 }
