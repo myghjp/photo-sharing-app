@@ -23,6 +23,12 @@ public class DeleteGroupController {
 		return "group/delete-group";
 	}
 	
+	/*Postが複数ならsession無し？*/
+	/*history.backが問題*/
+	/*get*/
+	/*アカウントidはsession済*/
+	
+	
 	@PostMapping("/delete-group")
 	public String postDeleteGroup(Model model
 			,@RequestParam("id")int id

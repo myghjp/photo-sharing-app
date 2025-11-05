@@ -15,6 +15,7 @@ import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
+/*@RequestMapping("/home-group")*/
 public class HomeGroupController {
 	
 	/*@Autowired
@@ -37,12 +38,30 @@ public class HomeGroupController {
 		return "group/home-group";
 	}
 	
-	@PostMapping("/home-group")
-		public String postHomeGroup(@RequestParam("id")int id
+	/*@PostMapping(value = "/home-group",params ="list")
+	public String postHomeGroupList() {
+		return "redirect:delete-group";
+	}
+	
+	@PostMapping(value = "/home-group",params ="album")
+	public String postHomeGroupAlbum() {
+		return "redirect:delete-group";
+	}
+	
+	@PostMapping(value = "/home-group",params ="comment")
+	public String postHomeGroupComment() {
+		return "redirect:delete-group";
+	}*/
+	
+	
+	@PostMapping("/home-group")/*(value = "/home-group",params ="delete")*/
+	public String postHomeGroup(@RequestParam("id")int id
 				,RedirectAttributes redirectAttributes) {
 			
-			redirectAttributes.addFlashAttribute("id",id);
-			
-			return "redirect:delete-group";
-		}
+		redirectAttributes.addFlashAttribute("id",id);
+		
+		return "redirect:delete-group";
+	}
+	
+	
 }
