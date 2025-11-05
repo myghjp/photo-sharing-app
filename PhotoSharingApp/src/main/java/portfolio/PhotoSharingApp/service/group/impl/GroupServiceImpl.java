@@ -27,8 +27,14 @@ public class GroupServiceImpl implements GroupService{
 	}
 	
 	@Override
-	public Groups getGroupsInfo(Groups groups){
-		return groupMapper.selectGroupsInfo(groups);
+	public Groups getGroupsInfo(int id){
+		return groupMapper.selectGroupsInfo(id);
+	}
+	
+	/*グループの削除*/
+	@Override
+	public void deleteGroup(int id) {
+		groupMapper.deleteGroup(id);
 	}
 	
 	

@@ -17,15 +17,11 @@
 		
 		<input type="button" onclick="location.href='./select-group'" value="グループ選択に戻る">
 		
+		<!--後にcontrollerで比較↓-->
+		<!--params属性も検討-->
 		<th:block th:if="${userId == groups.accountId}">
 			<div th:text="#{adminAlert}"></div>		
 		</th:block>
-		
-		<!--formを使ったほうがいい？-->
-		<!--↓全てグループのID-->
-		
-		<!--getでIDを送る-->
-		
 		
 		<form method="post">
 			<input type="submit" value="利用者一覧を表示する">
@@ -40,15 +36,12 @@
 		</form>
 		
 		<!--ーーーーーーーーーーーーーーー-->
-		<form method="post" th:action="@{/delete-group}">
-			<input type="hidden" name="accountId" th:value="${groups.accountId}">
+		<!--動的URLは使えない PRGで-->
+		
+		<form method="post" th:action="@{/home-group}">
+			<input type="hidden" name="id" th:value="${groups.id}">
 			<input type="submit" value="グループを削除する">
 		</form>
-		
-		<a th:href="@{'/delete-group/' + ${groups.id}}">削除</a>
-		
-		<!--ーーーーーーーーーーーーーーー-->
 	</div>
-	
 </body>
 </html>

@@ -29,7 +29,13 @@
 	<select id="selectGroupsInfo" resultMap="GroupsTable">
 		select *
 		from `groups`
-		where id = #{groups.id}
+		where id = #{id}
 	</select>
+	
+	<!-- アカウントを削除 -->
+	<delete id="deleteGroup">
+		delete from `groups`
+		where id = #{id}
+	</delete>
 	
 </mapper>

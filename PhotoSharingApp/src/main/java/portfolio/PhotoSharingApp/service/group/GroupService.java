@@ -14,7 +14,10 @@ public interface GroupService {
 	
 	
 	/*グループ情報を取得*/
-	public Groups getGroupsInfo(Groups groups);
+	public Groups getGroupsInfo(int id);
+	
+	/*グループの削除*/
+	public void deleteGroup(int id);
 	
 
 }

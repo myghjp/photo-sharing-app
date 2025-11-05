@@ -14,6 +14,8 @@ public interface GroupMapper {
 	
 	public List<Groups> selectGroupName();
 	
-	public Groups selectGroupsInfo(@Param("groups") Groups groups);
+	public Groups selectGroupsInfo(@Param("id") int id);
+	
+	public void deleteGroup(@Param("id")int id);
 
 }

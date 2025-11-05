@@ -17,25 +17,15 @@
 				
 		<div th:text="#{selectGroupAlert}"></div>
 				
-		<form method="post" th:action="@{/select-group}" th:object="${selectGroupForm}">
+		<form method="post" th:action="@{/select-group}"><!--th:object="${selectGroupForm}"-->
 			
-				<div th:each="list:${groupList}" >
-					
-					<input type="radio" th:text="${list.groupName}" th:value="${list.id}" th:field="*{id}">
-					
-					
+				<div th:each="list:${groupList}" ><!--th:field="*{id}"-->
+					<input type="radio" th:text="${list.groupName}" th:value="${list.id}" th:name="id">
 					<br>
 				</div>
-				
 			<br>
-			
-			
 			<input type="submit" value="グループを開く">
-			
-			
 		</form>
-		
 	</div>
-
 </body>
 </html>
