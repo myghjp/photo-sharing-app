@@ -14,35 +14,21 @@
 	
 	<div class="center">
 		
-		<form method="post" th:action="@{/delete-group2}"><!--th:object="${}"-->
+		<form method="post" th:action="@{/select-group}">
 		
 			<div th:text="#{deleteGroupAlert}"></div>
 			
 			<div>グループ名を表示</div>
 			<div th:text="${id}"></div>
 			<input type="hidden" name="id" th:value="${id}">
-			
-			<p>ーーーーーーーーーーーーー</p><br>
-			<a th:href="@{'/home-group/' + ${id}}">form内動的キャンセル</a>
-			<p>ーーーーーーーーーーーーー</p><br>
-			<input type="button" onclick="location.href='./home-group'" value="form内href遷移でキャンセル">
-			<p>ーーーーーーーーーーーーー</p><br>
-			<input type="button" value="form内ブラウザバックキャンセル" onclick="history.back();">
-			<p>ーーーーーーーーーーーーー</p><br>
-			
 		    <input type="submit" value="削除">
-		    
-		    
 		</form>
 		
-		<p>ーーーーーーーーーーーーー</p><br>
-		
-		<form method="post" th:action="@{/delete-group2}">
+		<form method="post" th:action="@{/select-group}">
 			<input type="hidden" name="id" th:value="${id}">
-			<input type="submit" value="form外もう一つのformでキャンセル">
+			<input type="submit" value="キャンセル">
 		</form>
 		
 	</div>
-
 </body>
 </html>

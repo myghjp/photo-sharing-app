@@ -17,9 +17,9 @@
 				
 		<div th:text="#{selectGroupAlert}"></div>
 				
-		<form method="post" th:action="@{/select-group}"><!--th:object="${selectGroupForm}"-->
+		<form method="post" th:action="@{/select-group}">
 			
-				<div th:each="list:${groupList}" ><!--th:field="*{id}"-->
+				<div th:each="list:${groupList}" >
 					<input type="radio" th:text="${list.groupName}" th:value="${list.id}" name="id">
 					<br>
 				</div>

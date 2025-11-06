@@ -17,8 +17,6 @@ import portfolio.PhotoSharingApp.service.group.GroupService;
 @Controller
 public class SelectGroupController {
 	
-	/*params属性も検討*/
-	
 	@Autowired
 	private GroupService groupService;
 
@@ -31,7 +29,7 @@ public class SelectGroupController {
 		List<Groups> groupList = groupService.getGroupList();
 		model.addAttribute("groupList", groupList);
 		
-		/*model.addAttribute("selectGroupForm", selectGroupForm);*/
+		
 		return "group/select-group";
 	}
 	
@@ -39,11 +37,9 @@ public class SelectGroupController {
 	public String postSelectGroup(
 			Model model
 			,@RequestParam("id")int id
-			/*,@ModelAttribute SelectGroupForm selectGroupForm*/
 			,RedirectAttributes redirectAttributes
 			) {
 		
-			/*redirectAttributes.addFlashAttribute("selectGroupForm",selectGroupForm);*/
 			redirectAttributes.addFlashAttribute("id",id);
 		
 		return "redirect:home-group";

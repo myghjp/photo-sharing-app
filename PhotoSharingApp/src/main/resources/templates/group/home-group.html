@@ -23,14 +23,17 @@
 		</th:block>
 		
 		<form method="post" th:action="@{/list-members}">
+			<input type="hidden" name="id" th:value="${groups.id}">
 			<input type="submit" value="利用者一覧を表示する">
 		</form>
 		
 		<form method="post" th:action="@{/select-album}">
+			<input type="hidden" name="id" th:value="${groups.id}">
 			<input type="submit" value="アルバムを使用する">
 		</form>
 		
 		<form method="post" th:action="@{/list-comment}">
+			<input type="hidden" name="id" th:value="${groups.id}">
 			<input type="submit" value="掲示板を使用する">
 		</form>
 		
