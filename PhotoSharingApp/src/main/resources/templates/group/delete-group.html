@@ -14,18 +14,17 @@
 	
 	<div class="center">
 		
-		<form method="post" th:action="@{/select-group}">
+		<form method="post" th:action="@{/delete-group2}">
 		
 			<div th:text="#{deleteGroupAlert}"></div>
 			
-			<div>グループ名を表示</div>
-			<div th:text="${id}"></div>
-			<input type="hidden" name="id" th:value="${id}">
+			<div th:text="${groups.groupName}"></div>
+			<input type="hidden" name="id" th:value="${groups.id}">
 		    <input type="submit" value="削除">
 		</form>
 		
 		<form method="post" th:action="@{/select-group}">
-			<input type="hidden" name="id" th:value="${id}">
+			<input type="hidden" name="id" th:value="${groups.id}">
 			<input type="submit" value="キャンセル">
 		</form>
 		

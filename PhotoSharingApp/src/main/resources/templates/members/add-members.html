@@ -12,11 +12,19 @@
 	<nav layout:replace="~{layout/menu::menu}"></nav>
 
 	<div class="center">
-		<h3>利用者追加画面</h3>
+		<p>追加したい利用者のメールアドレスを入力してください。</p>
 		
-		 <input type="button" onclick="location.href='./list-members'" value="戻る">
+		<p>エラーメッセージを表示</p>
+		
+			<form method="post" th:action="@{/add-members}" ><!--th:object="${addMembersForm}"-->
+			    <div class="form-group">
+			        <label for="user" >メールアドレス</label>
+			        <input type="email" ><!--th:field="*{}"-->
+			    </div>
+		    <input type="submit" value="追加">
+		    
+			</form>
+		 	<input type="button" onclick="location.href='./list-members'" value="戻る">
 	</div>
-	
-
 </body>
 </html>

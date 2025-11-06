@@ -22,9 +22,16 @@
 		<input type="button" onclick="location.href='./add-members'" value="利用者を追加する">
 		
 		<!--繰り返し削除-->
-		
-		
+		<form method="post" th:action="@{/delete-members}">
+			
+				<div th:each="list:${membersList}" >
+					<div th:text="${list.accountId}">
+						<input type="hidden" th:value="${list.accountId}" name="accountId">
+						<input type="submit" value="削除">
+					</div>
+					<br>
+				</div>
+		</form>
 	</div>
-
 </body>
 </html>

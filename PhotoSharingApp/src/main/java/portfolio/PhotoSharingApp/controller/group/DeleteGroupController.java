@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
@@ -24,10 +25,14 @@ public class DeleteGroupController {
 	}
 	
 	@PostMapping("/delete-group")
-	public String postHomeGroupDelete(@RequestParam("id")int id
-				,RedirectAttributes redirectAttributes) {
-			
-		redirectAttributes.addFlashAttribute("id",id);
+	public String postHomeGroupDelete(
+			@RequestParam("id")int id
+			,RedirectAttributes redirectAttributes
+			) {
+		
+		Groups groups = groupService.getGroupsInfo(id);
+		
+		redirectAttributes.addFlashAttribute("groups",groups);
 		
 		return "redirect:delete-group";
 	}
