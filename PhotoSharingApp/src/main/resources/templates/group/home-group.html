@@ -22,25 +22,19 @@
 			<div th:text="#{adminAlert}"></div>		
 		</th:block>
 		
-		<!--params属性-->
-		
-		
-		<form method="post">
+		<form method="post" th:action="@{/list-members}">
 			<input type="submit" value="利用者一覧を表示する">
 		</form>
 		
-		<form method="post">
+		<form method="post" th:action="@{/select-album}">
 			<input type="submit" value="アルバムを使用する">
 		</form>
 		
-		<form method="post">
+		<form method="post" th:action="@{/list-comment}">
 			<input type="submit" value="掲示板を使用する">
 		</form>
 		
-		<!--ーーーーーーーーーーーーーーー-->
-		<!--動的URLは使えない PRGで-->
-		
-		<form method="post" th:action="@{/home-group}"><!--←neme="delete"-->
+		<form method="post" th:action="@{/delete-group}">
 			<input type="hidden" name="id" th:value="${groups.id}">
 			<input type="submit" value="グループを削除する">
 		</form>

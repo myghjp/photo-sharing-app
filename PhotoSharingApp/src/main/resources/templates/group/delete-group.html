@@ -14,7 +14,7 @@
 	
 	<div class="center">
 		
-		<form method="post" th:action="@{/delete-group}"><!--th:object="${}"-->
+		<form method="post" th:action="@{/delete-group2}"><!--th:object="${}"-->
 		
 			<div th:text="#{deleteGroupAlert}"></div>
 			
@@ -32,12 +32,12 @@
 			
 		    <input type="submit" value="削除">
 		    
-		    <!--？？？-->
+		    
 		</form>
 		
 		<p>ーーーーーーーーーーーーー</p><br>
 		
-		<form method="post" th:action="@{/select-group}">
+		<form method="post" th:action="@{/delete-group2}">
 			<input type="hidden" name="id" th:value="${id}">
 			<input type="submit" value="form外もう一つのformでキャンセル">
 		</form>

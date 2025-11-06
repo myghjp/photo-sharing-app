@@ -30,6 +30,15 @@ public class DeleteGroupController {
 	
 	
 	@PostMapping("/delete-group")
+	public String postHomeGroupDelete(@RequestParam("id")int id
+				,RedirectAttributes redirectAttributes) {
+			
+		redirectAttributes.addFlashAttribute("id",id);
+		
+		return "redirect:delete-group";
+	}
+	
+	@PostMapping("/delete-group2")
 	public String postDeleteGroup(Model model
 			,@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes) {
