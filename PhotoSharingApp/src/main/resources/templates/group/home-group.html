@@ -37,10 +37,8 @@
 			<input type="submit" value="掲示板を使用する">
 		</form>
 		
-		<form method="post" th:action="@{/delete-group}">
-			<input type="hidden" name="id" th:value="${groups.id}">
-			<input type="submit" value="グループを削除する">
-		</form>
+		<a th:href="@{'/delete-group/' + ${groups.id}}">グループを削除する</a>
+		
 	</div>
 </body>
 </html>
