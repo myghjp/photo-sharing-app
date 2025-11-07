@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Members;
@@ -21,13 +22,15 @@ public class AddMembersController {
 	/*@Autowired
 	private UserService userService;*/
 	
-	@GetMapping("/add-members/{id}")
+	@GetMapping("/add-members")
 	public String getAddMembers(Model model
-			/*,@PathVariable("id")int id*/
+			,@RequestParam("id")int id
 			,AddMembersForm addMembersForm
 		) {
 		
+		model.addAttribute("id",id);
 		model.addAttribute("addMembersForm",addMembersForm);
+		
 		return "members/add-members";
 	}
 	
@@ -38,7 +41,6 @@ public class AddMembersController {
 		) {
 		
 		Members members = modelMapper.map(addMembersForm, Members.class);
-		
 		
 		
 		/*メールアドレスの変数↑*/

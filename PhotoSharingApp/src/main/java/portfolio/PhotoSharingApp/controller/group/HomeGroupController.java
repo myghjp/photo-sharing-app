@@ -18,7 +18,7 @@ public class HomeGroupController {
 	@Autowired
 	private GroupService groupService;
 	
-	@GetMapping("/home-group")
+	@GetMapping("/home-group") /*@RequestParam(defaultValue = "")*/
 	public String getHomeGroup(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,@ModelAttribute("id")int id

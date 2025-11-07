@@ -19,7 +19,9 @@
 			<input type="submit" value="戻る">
 		</form>
 		
-		<a th:href="@{'/add-members">利用者を追加する</a>
+		<a th:href="@{'/add-members}" name="id" th:value="${id}">利用者を追加する</a>
+		
+		
 		
 		<!--繰り返し削除-->
 		<!--<form method="post" th:action="@{/delete-members}">

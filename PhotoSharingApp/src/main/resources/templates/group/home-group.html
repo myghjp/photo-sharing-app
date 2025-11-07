@@ -14,6 +14,7 @@
 	<div class="center">
 	
 		<div th:text="${groups.groupName}"></div>
+		<!--↑IDとgroupNameをsessionにしたい-->
 		
 		<input type="button" onclick="location.href='./select-group'" value="グループ選択に戻る">
 		
@@ -21,6 +22,11 @@
 		<th:block th:if="${userId == groups.accountId}">
 			<div th:text="#{adminAlert}"></div>		
 		</th:block>
+		
+		
+		<!--グループを開いたときにsessionに格納？-->
+		<!--↑パスワード変更またはアカウント削除時にremove-->
+		
 		
 		<form method="post" th:action="@{/list-members}">
 			<input type="hidden" name="id" th:value="${groups.id}">
@@ -40,6 +46,8 @@
 			<input type="submit" value="掲示板を使用する">
 		</form>-->
 		
+		<a th:href="@{'/list-comment/' + ${groups.id}}">掲示板を使用する</a>
+		<br>
 		<a th:href="@{'/delete-group/' + ${groups.id}}">グループを削除する</a>
 		
 	</div>
