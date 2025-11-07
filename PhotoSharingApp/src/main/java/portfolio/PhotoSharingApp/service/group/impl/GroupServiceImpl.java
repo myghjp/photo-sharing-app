@@ -15,20 +15,21 @@ public class GroupServiceImpl implements GroupService{
 	@Autowired
 	private GroupMapper groupMapper;
 	
-	/*グループ名とログイン中のアカウントIDを追加*/
+	/*[グループ作成]グループ名とログイン中のアカウントIDを追加*/
 	public void insertEntryGroup(Groups groups) {
 		groupMapper.insertGroupName(groups);
 	}
 
-	/*グループ名一覧を取得*/
+	/*[グループ一覧表示]グループ名とそのグループIDの一覧を取得*/
 	@Override
 	public List<Groups> getGroupList() {
 		return groupMapper.selectGroupName();
 	}
 	
+	/*[groupsテーブルの情報を取得]*/
 	@Override
-	public Groups getGroupsInfo(int id){
-		return groupMapper.selectGroupsInfo(id);
+	public Groups getGroupsData(int id){
+		return groupMapper.selectGroups(id);
 	}
 	
 	/*グループの削除*/

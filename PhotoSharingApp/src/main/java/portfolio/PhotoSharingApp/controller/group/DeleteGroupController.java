@@ -23,7 +23,7 @@ public class DeleteGroupController {
 			,@PathVariable("id")int id
 			) {
 		
-		Groups groups = groupService.getGroupsInfo(id);
+		Groups groups = groupService.getGroupsData(id);
 		model.addAttribute("groups",groups);
 		
 		return "group/delete-group";

@@ -6,15 +6,14 @@ import portfolio.PhotoSharingApp.entity.Groups;
 
 public interface GroupService {
 	
-	/*グループ名とログイン中のアカウントIDを追加*/
+	/*[グループ作成]グループ名とログイン中のアカウントIDを追加*/
 	public void insertEntryGroup(Groups groups);
 	
-	/*グループ名とそのグループIDの一覧を取得*/
+	/*[グループ一覧表示]グループ名とそのグループIDの一覧を取得*/
 	public List<Groups> getGroupList();
-	
-	
-	/*グループ情報を取得*/
-	public Groups getGroupsInfo(int id);
+
+	/*[groupsテーブルの情報を取得]*/
+	public Groups getGroupsData(int id);
 	
 	/*グループの削除*/
 	public void deleteGroup(int id);

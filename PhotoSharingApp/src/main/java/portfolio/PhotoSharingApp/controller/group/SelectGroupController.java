@@ -29,16 +29,23 @@ public class SelectGroupController {
 		List<Groups> groupList = groupService.getGroupList();
 		model.addAttribute("groupList", groupList);
 		
-		
 		return "group/select-group";
 	}
 	
 	@PostMapping("/select-group")
 	public String postSelectGroup(
-			Model model
-			,@RequestParam("id")int id
+			@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
 		) {
+		
+		
+		/*Groups groups = groupService.getGroupsData(id);*/
+		
+		/*model.addAttribute("groups",groups);*/
+		
+		/*sessionscope系を使用する*/
+		/*@SessionAttributes？*/
+		
 		
 		redirectAttributes.addFlashAttribute("id",id);
 		
