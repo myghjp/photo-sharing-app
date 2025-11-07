@@ -26,16 +26,19 @@
 			<input type="hidden" name="id" th:value="${groups.id}">
 			<input type="submit" value="利用者一覧を表示する">
 		</form>
+		<!--
+		<a th:href="@{'/list-members/' + ${groups.id}}">利用者一覧を表示する</a>-->
+		<br>
 		
-		<form method="post" th:action="@{/select-album}">
+		<!--<form method="post" th:action="@{/select-album}">
 			<input type="hidden" name="id" th:value="${groups.id}">
 			<input type="submit" value="アルバムを使用する">
-		</form>
+		</form>-->
 		
-		<form method="post" th:action="@{/list-comment}">
+		<!--<form method="post" th:action="@{/list-comment}">
 			<input type="hidden" name="id" th:value="${groups.id}">
 			<input type="submit" value="掲示板を使用する">
-		</form>
+		</form>-->
 		
 		<a th:href="@{'/delete-group/' + ${groups.id}}">グループを削除する</a>
 		

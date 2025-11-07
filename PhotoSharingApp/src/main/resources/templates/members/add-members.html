@@ -12,20 +12,28 @@
 	<nav layout:replace="~{layout/menu::menu}"></nav>
 
 	<div class="center">
-		<p>追加したい利用者のメールアドレスを入力してください。</p>
+		<div th:text="#{addMembersAlert}"></div>	
 		
 		<p>エラーメッセージを表示</p>
 		
-		<!--バインドが必要form可、post作成-->
-			<form method="post" th:action="@{/add-members}" ><!--th:object="${addMembersForm}"-->
+			<form method="post" th:action="@{/add-members}" th:object="${addMembersForm}">
 			    <div class="form-group">
 			        <label for="user" >メールアドレス</label>
-			        <input type="email" ><!--th:field="*{}"-->
+			        <input type="email" th:field="*{emailAddress}">
 			    </div>
 		    <input type="submit" value="追加">
 		    
 			</form>
-		 	<input type="button" onclick="location.href='./list-members'" value="戻る">
+			
+		 	<!--
+			<input type="button" onclick="location.href='./list-members'" value="戻る">
+			-->
+		 	<a th:href="@{'/list-members'}">戻る</a>
+		 	
+		 	<form method="post" th:action="@{/list-members}">
+				<input type="hidden" name="id" th:value="${id}">
+				<input type="submit" value="戻る">
+			</form>
 	</div>
 </body>
 </html>

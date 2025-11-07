@@ -38,9 +38,9 @@ public class SelectGroupController {
 			Model model
 			,@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
-			) {
+		) {
 		
-			redirectAttributes.addFlashAttribute("id",id);
+		redirectAttributes.addFlashAttribute("id",id);
 		
 		return "redirect:home-group";
 	}

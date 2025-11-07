@@ -8,5 +8,9 @@ public class Members {
 	private int id;
 	private int groupId;/*グループテーブルのID*/
 	private int accountId;/*アカウントテーブルのID*/
+	
+	private Accounts accounts;
+	
+	
 
 }

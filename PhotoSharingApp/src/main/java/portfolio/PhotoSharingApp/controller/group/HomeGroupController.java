@@ -15,16 +15,13 @@ import portfolio.PhotoSharingApp.service.group.GroupService;
 @Controller
 public class HomeGroupController {
 	
-	/*@Autowired
-	private ModelMapper modelMapper;*/
-	
 	@Autowired
 	private GroupService groupService;
 	
 	@GetMapping("/home-group")
 	public String getHomeGroup(Model model
-			,@ModelAttribute("id")int id
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@ModelAttribute("id")int id
 			,RedirectAttributes redirectAttributes) {
 		
 		Groups groups = groupService.getGroupsInfo(id);
