@@ -22,8 +22,7 @@
 	         <input type="password" th:field="*{pass}" th:errorclass="is-invalid">
 	        <div class="invalid-feedback" th:errors="*{pass}"></div>
 	    </div>
-	    
-	    <input type="button" onclick="location.href='./select-group'" value="グループ選択に戻る">
+	    <a th:href="@{'/select-group'}">グループ選択に戻る</a><br>
 	    <input type="submit" value="変更">
     </form>
     

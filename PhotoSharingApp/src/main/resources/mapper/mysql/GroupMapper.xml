@@ -10,6 +10,13 @@
 		<result column="account_id" property="accountId" />
 	</resultMap>
 	
+	<!-- 重複確認 -->
+	<select id="selectGroupData" resultMap="GroupsTable">
+		select group_name
+		from `groups`
+		where group_name = #{groups.groupName}
+	</select>
+	
 	<!-- アカウント登録 -->
 	<insert id="insertGroupName">
 		insert into `groups`(

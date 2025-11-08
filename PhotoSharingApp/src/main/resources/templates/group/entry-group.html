@@ -19,8 +19,8 @@
 			
 			<div class="form-group">
 		        <label for="group_name" th:text="#{groupName}"></label>
-		        <input type="text" th:field="*{groupName}"><!--th:errorclass="is-invalid"-->
-	        <!--<div class="invalid-feedback" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>-->
+		        <input type="text" th:field="*{groupName}" th:errorclass="is-invalid">
+	        	<div class="invalid-feedback" th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}"></div>
 			</div>
 			
 			<a th:href="@{'/select-group'}">キャンセル</a>

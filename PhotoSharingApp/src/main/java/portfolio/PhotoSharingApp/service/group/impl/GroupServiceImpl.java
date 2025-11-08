@@ -15,6 +15,17 @@ public class GroupServiceImpl implements GroupService{
 	@Autowired
 	private GroupMapper groupMapper;
 	
+	
+	/*重複確認*/
+	@Override
+	public boolean isExistingGroupsData(Groups groups) {
+		if (groupMapper.selectGroupData(groups) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 	/*[グループ作成]グループ名とログイン中のアカウントIDを追加*/
 	public void insertEntryGroup(Groups groups) {
 		groupMapper.insertGroupName(groups);
