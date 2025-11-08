@@ -17,18 +17,12 @@
 		<form method="post" th:action="@{/delete-group}">
 		
 			<div th:text="#{deleteGroupAlert}"></div>
-			
 			<div th:text="${groups.groupName}"></div>
 			
-			
+			<a th:href="@{'/home-group'}">キャンセル</a>
 			
 			<input type="hidden" name="id" th:value="${groups.id}">
 		    <input type="submit" value="削除">
-		</form>
-		
-		<form method="post" th:action="@{/select-group}">
-			<input type="hidden" name="id" th:value="${groups.id}">
-			<input type="submit" value="キャンセル">
 		</form>
 		
 	</div>

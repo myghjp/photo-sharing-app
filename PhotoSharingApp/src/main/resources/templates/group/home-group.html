@@ -12,45 +12,27 @@
 	<nav layout:replace="~{layout/menu::menu}"></nav>
 	
 	<div class="center">
-	
-		<!--<div th:text="${session.groups.groupName}"></div>-->
 		
-		<div th:text="${groups.groupName}"></div>
+		<div th:text="${groups.groupName}"></div><br>
 		
-		<input type="button" onclick="location.href='./select-group'" value="グループ選択に戻る">
+		<a th:href="@{'/select-group'}">グループ選択に戻る</a><br>
 		
-		<!--後にcontrollerで比較↓-->
-		<!--<th:block th:if="${userId == groups.accountId}">
-			<div th:text="#{adminAlert}"></div>		
-		</th:block>-->
-		
-		
-		<!--グループを開いたときにsessionに格納？-->
-		<!--↑パスワード変更またはアカウント削除時にremove-->
-		
-		
-		<!--<form method="post" th:action="@{/list-members}">
-			<input type="hidden" name="id" th:value="${session.groups.id}">
-			<input type="submit" value="利用者一覧を表示する">
-		</form>-->
-		
+		<!--後にcontrollerで比較？↓-->
+		<div th:text="#{adminAlert}"></div><br>
 		<!--
-		<a th:href="@{'/list-members/' + ${groups.id}}">利用者一覧を表示する</a>-->
-		<br>
+		<th:block th:if="${}">
+			<div th:text="#{adminAlert}"></div>
+		</th:block>
+		-->
+		<!--<input type="button" onclick="location.href='./'" value="リンク名">-->
 		
-		<!--<form method="post" th:action="@{/select-album}">
-			<input type="hidden" name="id" th:value="${groups.id}">
-			<input type="submit" value="アルバムを使用する">
-		</form>-->
+		<a th:href="@{'/list-members'}">利用者一覧を表示する</a><br>
 		
-		<!--<form method="post" th:action="@{/list-comment}">
-			<input type="hidden" name="id" th:value="${groups.id}">
-			<input type="submit" value="掲示板を使用する">
-		</form>-->
+		<a th:href="@{'/select-album'}">アルバムを使用する</a><br>
 		
-		<!--<a th:href="@{'/list-comment/' + ${groups.id}}">掲示板を使用する</a>
-		<br>
-		<a th:href="@{'/delete-group/' + ${groups.id}}">グループを削除する</a>-->
+		<a th:href="@{'/list-comment'}">掲示板を使用する</a><br>
+		
+		<a th:href="@{'/delete-group'}">グループを削除する</a>
 		
 	</div>
 </body>

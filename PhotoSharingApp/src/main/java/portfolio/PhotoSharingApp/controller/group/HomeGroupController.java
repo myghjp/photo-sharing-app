@@ -14,15 +14,11 @@ import portfolio.PhotoSharingApp.security.LoginUserDetails;
 @SessionAttributes(value = { "groups"})
 public class HomeGroupController {
 	
-	/*@Autowired
-	private GroupService groupService;*/
-	
 	@GetMapping("/home-group")
 	public String getHomeGroup(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,Groups groups
 			,RedirectAttributes redirectAttributes) {
-		
 		
 		model.addAttribute("userId",loginUserDetails.getUserId());
 		

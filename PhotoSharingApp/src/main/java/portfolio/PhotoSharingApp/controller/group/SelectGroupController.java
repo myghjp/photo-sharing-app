@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Groups;
@@ -31,7 +32,11 @@ public class SelectGroupController {
 	@GetMapping("/select-group")
 	public String getSelectGroup(Model model
 			,SelectGroupForm selectGroupForm
+			,SessionStatus sessionStatus
+       
 		) {
+		
+		sessionStatus.setComplete();
 		
 		/*ログインしているユーザ が 参加しているグループを表示(未定)*/
 		List<Groups> groupList = groupService.getGroupList();
