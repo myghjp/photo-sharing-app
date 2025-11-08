@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Groups;
@@ -15,11 +17,17 @@ import portfolio.PhotoSharingApp.form.group.SelectGroupForm;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
+@SessionAttributes(value = { "groups"})
 public class SelectGroupController {
 	
 	@Autowired
 	private GroupService groupService;
-
+	
+	@ModelAttribute(value = "groups")
+	public Groups groups() {
+	    return new Groups();
+	}
+	
 	@GetMapping("/select-group")
 	public String getSelectGroup(Model model
 			,SelectGroupForm selectGroupForm
@@ -38,16 +46,9 @@ public class SelectGroupController {
 			,RedirectAttributes redirectAttributes
 		) {
 		
+		Groups groups = groupService.getGroupsData(id);
 		
-		/*Groups groups = groupService.getGroupsData(id);*/
-		
-		/*model.addAttribute("groups",groups);*/
-		
-		/*sessionscope系を使用する*/
-		/*@SessionAttributes？*/
-		
-		
-		redirectAttributes.addFlashAttribute("id",id);
+		redirectAttributes.addFlashAttribute("groups",groups);
 		
 		return "redirect:home-group";
 	}

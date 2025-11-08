@@ -13,8 +13,9 @@
 	
 	<div class="center">
 	
-		<div th:text="${session.groups.groupName}"></div>
-		<!--↑IDとgroupNameをsessionにしたい-->
+		<!--<div th:text="${session.groups.groupName}"></div>-->
+		
+		<div th:text="${groups.groupName}"></div>
 		
 		<input type="button" onclick="location.href='./select-group'" value="グループ選択に戻る">
 		
@@ -28,10 +29,11 @@
 		<!--↑パスワード変更またはアカウント削除時にremove-->
 		
 		
-		<form method="post" th:action="@{/list-members}">
+		<!--<form method="post" th:action="@{/list-members}">
 			<input type="hidden" name="id" th:value="${session.groups.id}">
 			<input type="submit" value="利用者一覧を表示する">
-		</form>
+		</form>-->
+		
 		<!--
 		<a th:href="@{'/list-members/' + ${groups.id}}">利用者一覧を表示する</a>-->
 		<br>
@@ -46,9 +48,9 @@
 			<input type="submit" value="掲示板を使用する">
 		</form>-->
 		
-		<a th:href="@{'/list-comment/' + ${session.groups.id}}">掲示板を使用する</a>
+		<!--<a th:href="@{'/list-comment/' + ${groups.id}}">掲示板を使用する</a>
 		<br>
-		<a th:href="@{'/delete-group/' + ${session.groups.id}}">グループを削除する</a>
+		<a th:href="@{'/delete-group/' + ${groups.id}}">グループを削除する</a>-->
 		
 	</div>
 </body>
