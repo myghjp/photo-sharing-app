@@ -7,12 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Members;
 import portfolio.PhotoSharingApp.form.members.AddMembersForm;
 
 @Controller
+@SessionAttributes(value = {"groups"})
 public class AddMembersController {
 	
 	@Autowired
@@ -30,11 +33,13 @@ public class AddMembersController {
 	
 	@PostMapping("/add-members")
 	public String postAddMembers(Model model
+			,Groups groups
 			,@ModelAttribute AddMembersForm addMembersForm
 			,RedirectAttributes redirectAttributes
 		) {
-		
+		/*※メールアドレスを登録するわけではない*/
 		Members members = modelMapper.map(addMembersForm, Members.class);
+		
 		
 		
 		/*メールアドレスの変数↑*/
