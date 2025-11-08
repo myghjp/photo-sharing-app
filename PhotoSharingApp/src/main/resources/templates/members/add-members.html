@@ -21,19 +21,11 @@
 			        <label for="user" >メールアドレス</label>
 			        <input type="email" th:field="*{emailAddress}">
 			    </div>
-		    <input type="submit" value="追加">
-		    
+			    
+			    <a th:href="@{'/list-members'}">戻る</a>
+		    	<input type="submit" value="追加">
 			</form>
 			
-		 	<!--
-			<input type="button" onclick="location.href='./list-members'" value="戻る">
-			-->
-		 	<a th:href="@{'/list-members'}">戻る</a>
-		 	
-		 	<form method="post" th:action="@{/list-members}">
-				<input type="hidden" name="id" th:value="${id}">
-				<input type="submit" value="戻る">
-			</form>
 	</div>
 </body>
 </html>

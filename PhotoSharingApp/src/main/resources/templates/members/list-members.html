@@ -14,13 +14,9 @@
 	<div class="center">
 		<h3>利用者一覧画面</h3>
 		
-		<form method="post" th:action="@{/select-group}">
-			<input type="hidden" name="id" th:value="${id}">
-			<input type="submit" value="戻る">
-		</form>
+		<a th:href="@{'/home-group'}">戻る</a><br>
 		
-		<a th:href="@{'/add-members}" name="id" th:value="${id}">利用者を追加する</a>
-		
+		<a th:href="@{'/add-members'}">利用者を追加する</a>
 		
 		
 		<!--繰り返し削除-->
@@ -34,6 +30,7 @@
 					<br>
 				</div>
 		</form>-->
+		
 	</div>
 </body>
 </html>

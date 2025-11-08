@@ -14,10 +14,9 @@
 	<div class="center">
 		<h3>アルバム一覧画面</h3>
 		
-		<form method="post" th:action="@{/select-group}">
-			<input type="hidden" name="id" th:value="${id}">
-			<input type="submit" value="戻る">
-		</form>
+		<a th:href="@{'/home-group'}">戻る</a>
+		
+		
 	</div>
 
 </body>

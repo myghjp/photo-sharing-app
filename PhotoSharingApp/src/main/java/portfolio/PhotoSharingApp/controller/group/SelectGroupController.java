@@ -18,7 +18,7 @@ import portfolio.PhotoSharingApp.form.group.SelectGroupForm;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
-@SessionAttributes(value = { "groups"})
+@SessionAttributes(value = {"groups"})
 public class SelectGroupController {
 	
 	@Autowired
