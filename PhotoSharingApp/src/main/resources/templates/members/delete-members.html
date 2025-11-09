@@ -6,25 +6,16 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{/css/header.css}">
 <link rel="stylesheet" th:href="@{/css/form.css}">
-<title th:text="#{deleteGroupPage}"></title>
+<title>利用者削除</title>
 </head>
 <body>
-	
 	<nav layout:replace="~{layout/menu::menu}"></nav>
-	
+
 	<div class="center">
+		<h3>利用者削除画面</h3>
 		
-		<form method="post" th:action="@{/delete-group}">
-		
-			<div th:text="#{deleteGroupAlert}"></div>
-			<div th:text="${groups.groupName}"></div>
-			
-			<a th:href="@{'/home-group'}">キャンセル</a>
-			
-			<input type="hidden" name="id" th:value="${groups.id}">
-		    <input type="submit" value="削除">
-		</form>
-		
+		<input type="button" onclick="location.href='./list-members'" value="戻る">
 	</div>
+	
 </body>
 </html>

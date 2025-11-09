@@ -10,6 +10,13 @@
 		<result column="account_id" property="accountId" />
 	</resultMap>
 	
+	<!-- 重複確認 -->
+	<select id="selectGroupData" resultMap="GroupsTable">
+		select group_name
+		from `groups`
+		where group_name = #{groups.groupName}
+	</select>
+	
 	<!-- アカウント登録 -->
 	<insert id="insertGroupName">
 		insert into `groups`(
@@ -25,5 +32,17 @@
 		select id,group_name
 		from `groups`
 	</select>
+	
+	<select id="selectGroups" resultMap="GroupsTable">
+		select *
+		from `groups`
+		where id = #{id}
+	</select>
+	
+	<!-- アカウントを削除 -->
+	<delete id="deleteGroup">
+		delete from `groups`
+		where id = #{id}
+	</delete>
 	
 </mapper>

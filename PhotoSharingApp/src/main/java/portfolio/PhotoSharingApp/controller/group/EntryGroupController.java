@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,22 +38,21 @@ public class EntryGroupController {
 	/*@Validated*/
 	@PostMapping("/entry-group")
 	public String postEntryAcount(Model model
-			,@ModelAttribute EntryGroupForm entryGroupForm
-			/*,BindingResult bindingResult*/
+			,@ModelAttribute @Validated EntryGroupForm entryGroupForm
+			,BindingResult bindingResult
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,RedirectAttributes redirectAttributes) {
 		
 		Groups groups = modelMapper.map(entryGroupForm, Groups.class);
 
+		/*登録済のグループ名と重複していない*/
+		if (groupService.isExistingGroupsData(groups)) {
+			bindingResult.rejectValue("groupName", "user.Alert");
+		}
 		
-		/*if (userService.isExistingAccountsData1(accounts)) {
-			bindingResult.rejectValue("user", "user.Alert");
-		}*/
-		
-		
-		/*if (bindingResult.hasErrors()) {
-			return getEntryAccount(model, entryAccountForm);
-		}*/
+		if (bindingResult.hasErrors()) {
+			return getEntryGroup(model, entryGroupForm);
+		}
 		
 		
 		groups.setAccountId(loginUserDetails.getUserId());

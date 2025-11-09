@@ -12,30 +12,28 @@
 	<nav layout:replace="~{layout/menu::menu}"></nav>
 	
 	<div class="center">
-	
-		<div th:text="${ggg}"></div>
 		
-		<input type="button" onclick="location.href='./select-group'" value="グループ選択に戻る">
+		<div th:text="${groups.groupName}"></div><br>
 		
-		<div>あなたは管理者です</div>
+		<a th:href="@{'/select-group'}">グループ選択に戻る</a><br>
 		
-		<form method="post">
-			<input type="submit" value="利用者一覧を表示する">
-		</form>
+		<!--後にcontrollerで比較？↓-->
+		<div th:text="#{adminAlert}"></div><br>
+		<!--
+		<th:block th:if="${}">
+			<div th:text="#{adminAlert}"></div>
+		</th:block>
+		-->
+		<!--<input type="button" onclick="location.href='./'" value="リンク名">-->
 		
-		<form method="post">
-			<input type="submit" value="アルバムを使用する">
-		</form>
+		<a th:href="@{'/list-members'}">利用者一覧を表示する</a><br>
 		
-		<form method="post">
-			<input type="submit" value="掲示板を使用する">
-		</form>
+		<a th:href="@{'/select-album'}">アルバムを使用する</a><br>
 		
-		<form method="post" th:action="@{/delete-group}">
-			<input type="submit" value="グループを削除する">
-		</form>
-	
+		<a th:href="@{'/list-comment'}">掲示板を使用する</a><br>
+		
+		<a th:href="@{'/delete-group'}">グループを削除する</a>
+		
 	</div>
-	
 </body>
 </html>
