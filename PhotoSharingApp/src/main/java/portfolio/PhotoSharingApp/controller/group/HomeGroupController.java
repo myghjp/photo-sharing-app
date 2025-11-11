@@ -21,7 +21,15 @@ public class HomeGroupController {
 			,RedirectAttributes redirectAttributes) {
 		
 		model.addAttribute("userId",loginUserDetails.getUserId());
-		
 		return "group/home-group";
 	}
+
+	/*
+	やること↓
+	・Dグループ系バインド/バリデーション
+	・E-1 利用者一覧の表示
+	・E-3利用者追加、まとめる
+	・Eグループメンバ系バインド/バリデーション
+	※html画面の作成
+	*/
 }
