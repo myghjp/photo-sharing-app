@@ -14,8 +14,13 @@
 	<div class="center">
 		<h3>アルバム一覧画面</h3>
 		
-		<a th:href="@{'/home-group'}">戻る</a>
+		<input type="button" onclick="location.href='./entry-album'" value="アルバム作成に遷移"><br>
 		
+		<input type="button" onclick="location.href='./delete-album'" value="アルバム削除に遷移"><br>
+		
+		<input type="button" onclick="location.href='./list-photo'" value="写真一覧に遷移"><br>
+		
+		<a th:href="@{'/home-group'}">戻る</a>
 		
 	</div>
 
