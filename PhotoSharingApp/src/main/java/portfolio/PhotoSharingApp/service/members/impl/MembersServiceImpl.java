@@ -15,31 +15,29 @@ public class MembersServiceImpl implements MembersService{
 	@Autowired
 	private MembersMapper membersMapper;
 	
-	
-	
-	
 	/*利用者を追加*/
 	public void insertMembers(Members members) {
 		membersMapper.insertMembers(members);
 	}
 	
-	
-	
 	/*重複確認*/
-	@Override
+	/*@Override
 	public boolean isExistingMembersData(String emailAddress) {
 		if (membersMapper.selectMembersData(emailAddress) == null) {
 			return false;
 		} else {
 			return true;
 		}
-	}
-	
+	}*/
 	
 	/*グループ内の利用者一覧を取得*/
 	@Override
-	public List<Members> getMembersList(int id){
-		return membersMapper.selectMembersList(id);
+	public List<Members> getMembersList(int groupId){
+		return membersMapper.selectMembersList(groupId);
 	}
-
+	
+	/*グループから利用者を削除*/
+	public void deleteMembers(int id) {
+		membersMapper.deleteMembers(id);
+	}
 }

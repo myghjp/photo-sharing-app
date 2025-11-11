@@ -7,7 +7,7 @@ import portfolio.PhotoSharingApp.entity.Members;
 public interface MembersService {
 	
 	/*重複確認*/
-	public boolean isExistingMembersData(String emailAddress);
+	/*public boolean isExistingMembersData(String emailAddress);*/
 	
 	
 	/*利用者を追加*/
@@ -16,9 +16,9 @@ public interface MembersService {
 	
 	
 	/*グループ内の利用者一覧を取得*/
-	public List<Members> getMembersList(int id);
+	public List<Members> getMembersList(int groupId);
 	
 	/*グループからメンバーを削除*/
-
+	public void deleteMembers(int id);
 	
 }

@@ -85,8 +85,6 @@ public class AddMembersController {
 		
 		membersService.insertMembers(members);
 		
-		
-		
 		/*ーーーーーーーーーーーーーーーーーー*/
 		return "redirect:list-members";
 	}

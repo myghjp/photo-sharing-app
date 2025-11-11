@@ -8,18 +8,51 @@
 		<id column="id" property="id" />
 		<result column="group_id" property="groupId" />
 		<result column="account_id" property="accountId" />
+		<association property="groups" resultMap="groupsTable" columnPrefix="groups_"/>
+		<collection property="accounts" resultMap="AccountsTable" columnPrefix="accounts_"/>
+		
 	</resultMap>
 	
-	<!-- emailAddress -->
-
-	<!-- <select id="selectMembersData" resultMap="MembersTable">
-		
+	<resultMap type="portfolio.PhotoSharingApp.entity.Groups" id="GroupsTable">
+		<id column="id" property="id" />
+		<result column="group_name" property="groupName" />
+		<result column="account_id" property="accountId" />
+	</resultMap>
+	
+	<resultMap type="portfolio.PhotoSharingApp.entity.Accounts" id="AccountsTable">
+		<id column="id" property="id" />
+		<result column="user" property="user" />
+		<result column="pass" property="pass" />
+		<result column="email_address" property="emailAddress" />
+	</resultMap>
+	
+	<!-- 利用者の追加 -->
+	<insert id="insertMembers">
+		insert into groups_members(
+			 group_id
+			,account_id
+		)VALUES(
+			 #{members.groupId}
+			,#{members.accountId}
+		)
+	</insert>
+	
+	<!-- グループ内の利用者一覧を取得 -->
+	<!-- <select id="selectMembersList" resultMap="MembersTable">
+		select accounts.user as accounts_user
+		from groups_members
+			left join `groups`
+			on group_id = groups.account_id as groups_account_id
+		left join account
+			on `groups`.account_id as groups_account_id = accounts.id as accounts_id
+			where id = #{id}
 	</select> -->
 	
-	<select id="selectMembersList" resultMap="MembersTable">
-		select *
-		from groups_members
+	<!-- 利用者の削除 -->
+	<delete id="deleteMembers">
+		delete from groups_members
 		where id = #{id}
-	</select>
+	</delete>
+	
 
 </mapper>

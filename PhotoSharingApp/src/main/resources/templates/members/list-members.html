@@ -19,17 +19,23 @@
 		<a th:href="@{'/add-members'}">利用者を追加する</a>
 		
 		
-		<!--繰り返し削除-->
 		<!--<form method="post" th:action="@{/delete-members}">
-			
 				<div th:each="list:${membersList}" >
-					<div th:text="${list.accountId}">
-						<input type="hidden" th:value="${list.accountId}" name="accountId">
+					<div th:text="${list.user}">
+						<input type="hidden" th:value="${list.user}" name="accountId">
 						<input type="submit" value="削除">
 					</div>
 					<br>
 				</div>
 		</form>-->
+		
+		<!--↓仮-->
+		<form method="post" th:action="@{/list-members}">
+				
+					<input type="hidden" th:value="${accountId}" name="accountId">
+					<input type="submit" value="削除">
+				
+		</form>
 		
 	</div>
 </body>

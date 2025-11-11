@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.service.members.MembersService;
@@ -22,20 +23,21 @@ public class DeleteMembersController {
 		return "members/delete-members";
 	}
 	
+	
 	@PostMapping("/delete-members")
-	public String postDeleteMembers () {
+	public String postDeleteMembers(Model model
+			,@RequestParam("accountId")int id
+			,RedirectAttributes redirectAttributes) {
+		/*グループから利用者を削除するPOST*/
 		
-		return "redirect:delete-members";
+	
+		membersService.deleteMembers(id);
+		
+		return "redirect:list-members";
 	}
 	
-	/*@PostMapping("/delete-members2")
-	public String postDeleteMembers2 (@RequestParam("accountId")int accountId
-			,RedirectAttributes redirectAttributes) {
 	
-		membersService.deleteMember(accountId);
-		
-		
-		return "redirect:delete-members";
-	}*/
+	
+
 
 }
