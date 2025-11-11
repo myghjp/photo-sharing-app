@@ -14,7 +14,7 @@
 	<select id="selectGroupData" resultMap="GroupsTable">
 		select group_name
 		from `groups`
-		where group_name = #{groupName}
+		where group_name = #{groups.groupName}
 	</select>
 	
 	<!-- アカウント登録 -->

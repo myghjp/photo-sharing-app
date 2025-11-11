@@ -31,29 +31,27 @@ public class EntryGroupController {
 			,EntryGroupForm entryGroupForm) {
 		
 		model.addAttribute("entryGroupForm", entryGroupForm);
-		
 		return "group/entry-group";
 	}
 
-	/*@Validated*/
 	@PostMapping("/entry-group")
 	public String postEntryAcount(Model model
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			/*,@RequestParam("groupName")String groupName*/
 			,@ModelAttribute @Validated EntryGroupForm entryGroupForm
 			,BindingResult bindingResult
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,RedirectAttributes redirectAttributes) {
 		
 		Groups groups = modelMapper.map(entryGroupForm, Groups.class);
 
 		/*登録済のグループ名と重複していない*/
-		if (groupService.isExistingGroupsData(groups.getGroupName())) {
-			bindingResult.rejectValue("groupName", "user.Alert");
+		if (groupService.isExistingGroupsData(groups)){
+			bindingResult.rejectValue("groupName", "email_address.Alert");
 		}
 		
 		if (bindingResult.hasErrors()) {
 			return getEntryGroup(model, entryGroupForm);
 		}
-		
 		
 		groups.setAccountId(loginUserDetails.getUserId());
 

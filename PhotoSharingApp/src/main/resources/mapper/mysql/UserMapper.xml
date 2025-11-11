@@ -57,5 +57,10 @@
 		where email_address = #{accounts.emailAddress}
 	</select>
 	<!-- ーーーーーーー -->
+	<select id="selectAccountData3">
+		select id
+		from accounts
+		where email_address = #{emailAddress}
+	</select>
 	
 </mapper>

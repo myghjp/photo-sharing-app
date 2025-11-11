@@ -19,4 +19,8 @@ public interface UserService {
 	/*アカウント名とデータベースがデータベースに存在するかを確認*/
 	public boolean isExistingAccountsData1(Accounts Accounts);
 	public boolean isExistingAccountsData2(Accounts Accounts);
+	
+	/*ーーーーーーーー*/
+	/*メールアドレスで一時的にIDを取得(後で修正)*/
+	public int selectAccountId(String emailAddress);
 }

@@ -12,7 +12,6 @@ public class EntryGroupForm {
 	@Length(max = 50)
 	private String groupName;
 	
-	
-	private int accountId;
+	/*private int accountId;*/
 
 }

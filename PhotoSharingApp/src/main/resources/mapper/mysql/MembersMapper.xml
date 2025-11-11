@@ -10,9 +10,11 @@
 		<result column="account_id" property="accountId" />
 	</resultMap>
 	
-	
-	
-	
+	<!-- emailAddress -->
+
+	<!-- <select id="selectMembersData" resultMap="MembersTable">
+		
+	</select> -->
 	
 	<select id="selectMembersList" resultMap="MembersTable">
 		select *

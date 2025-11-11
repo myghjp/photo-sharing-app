@@ -24,4 +24,7 @@ public interface UserMapper {
 	public String selectAccountsData1(@Param("accounts") Accounts accounts);
 	public String selectAccountsData2(@Param("accounts") Accounts accounts);
 	
+	
+	public int selectAccountData3(@Param("emailAddress") String emailAddress);
+	
 }

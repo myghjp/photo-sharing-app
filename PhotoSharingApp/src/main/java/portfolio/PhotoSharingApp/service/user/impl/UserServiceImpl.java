@@ -53,4 +53,11 @@ public class UserServiceImpl implements UserService  {
 			return true;
 		}
 	}
+	
+	/*ーーーーーーーー*/
+	/*メールアドレスで一時的にIDを取得(後で修正)*/
+	public int selectAccountId(String emailAddress) {
+		return userMapper.selectAccountData3(emailAddress);
+	}
+	
 }
