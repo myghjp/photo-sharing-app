@@ -26,13 +26,12 @@ public class HomeGroupController {
 
 	/*
 	やること↓
-	・D、Eバインド/バリデーション
-	------------------
-	・E-3利用者追加、まとめる
-	------------------
-	
-	※html画面の作成
-	------------------
-	※WARN user/passの修正
+	・D、E まとめる
+	・D、E バインド/バリデーション
+	・掲示板の作成
+	ーーーー
+	・html/bootstrapの調整
+	・user/passの調整(UserDetailsService)
+	・entryAccountController(Post)
 	*/
 }

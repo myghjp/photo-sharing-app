@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/form.css}">
 <title>アルバム作成</title>
 </head>
 <body>
-	<h3>ここはアルバム作成画面</h3>
-	
-	<a th:href="@{'/select-album'}">戻る</a>
+	<nav layout:replace="~{layout/menu::menu}"></nav>
 
+	<div class="center">
+		
+		<form method="post" th:action="@{/entry-album}" th:object="${entryAlbumForm}">
+			
+			<p>アルバム名を入力してください</p>
+			<!--<div th:text="#{entryAlbumAlert}"></div>-->
+			
+			<p>エラーメッセージを表示</p>
+			<div>アルバム名とテキストボックス</div><br>
+			<!--<div class="form-group">
+		        <label for="albumName" th:text="#{albumName}"></label>
+		        <input type="text" th:field="*{albumName}" th:errorclass="is-invalid">
+	        	<div class="invalid-feedback" th:if="${#fields.hasErrors('albumName')}" th:errors="*{albumName}"></div>
+			</div>-->
+			
+			<a th:href="@{'/select-album'}">キャンセル</a>
+		    <input type="submit" value="登録">
+		    
+		</form>
+	</div>
 </body>
 </html>

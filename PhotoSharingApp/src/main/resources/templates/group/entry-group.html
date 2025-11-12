@@ -23,8 +23,7 @@
 	        	<div class="invalid-feedback" th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}"></div>
 			</div>
 			
-			<input type="button" onclick="location.href='./select-group'" value="キャンセル">
-			<!--<a th:href="@{'/select-group'}">キャンセル</a>-->
+			<a th:href="@{'/select-group'}">キャンセル</a>
 		    <input type="submit" value="登録">
 		    
 		</form>

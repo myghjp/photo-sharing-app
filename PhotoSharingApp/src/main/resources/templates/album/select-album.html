@@ -12,15 +12,21 @@
 	<nav layout:replace="~{layout/menu::menu}"></nav>
 
 	<div class="center">
-		<h3>アルバム一覧画面</h3>
+		<h3>グループ名を表示</h3>
 		
-		<input type="button" onclick="location.href='./entry-album'" value="アルバム作成に遷移"><br>
+		<a th:href="@{'/home-group'}">戻る</a><br>
 		
-		<input type="button" onclick="location.href='./delete-album'" value="アルバム削除に遷移"><br>
+		<a th:href="@{'/entry-album'}">アルバムを作成する</a><br>
 		
-		<input type="button" onclick="location.href='./list-photo'" value="写真一覧に遷移"><br>
+		<h3>アルバムを選択してください</h3>
 		
-		<a th:href="@{'/home-group'}">戻る</a>
+		<p>～アルバム一覧表示～</p>
+		
+		<input type="button" onclick="location.href='./delete-album'" value="削除"><br>
+		
+		<input type="button" onclick="location.href='./list-photo'" value="アルバムを開く"><br>
+		
+		
 		
 	</div>
 

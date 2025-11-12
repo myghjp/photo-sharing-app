@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/form.css}">
 <title>アルバム削除</title>
 </head>
 <body>
-	<h3>ここはアルバム削除画面</h3>
 	
-	<a th:href="@{'/select-album'}">戻る</a>
+	<nav layout:replace="~{layout/menu::menu}"></nav>
+	
+	<div class="center">
+		
+		<form method="post" th:action="@{/delete-album}">
+		
+			<div>このアルバムを削除します、よろしいですか？</div>
+			<div>アルバム名を表示</div>
+			
+			<a th:href="@{'/select-album'}">キャンセル</a>
+			
+			<input type="hidden" name="id" th:value="${id}">
+		    <input type="submit" value="削除">
+		</form>
+		
+	</div>
 
 </body>
 </html>

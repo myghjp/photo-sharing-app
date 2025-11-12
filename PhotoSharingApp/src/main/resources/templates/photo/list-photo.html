@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/form.css}">
 <title>写真一覧</title>
 </head>
 <body>
-	<h3>ここは写真一覧画面</h3>
+	<nav layout:replace="~{layout/menu::menu}"></nav>
 	
-	<input type="button" onclick="location.href='./delete-photo'" value="写真削除画面に遷移する">
-
-	<input type="button" onclick="location.href='./select-album'" value="戻る">
-
+	<div class="center">
+	
+		<h3>グループ名を表示</h3>
+		<a th:href="@{'/select-album'}">戻る</a><br>
+		<h3>アルバム名を表示</h3>
+		<div>写真を追加するボタン</div>
+		
+		<div>ーーー以下Listーーー</div>
+		<div>アカウント名,画像,datetime</div>
+		<div>保存ボタン</div>
+		<input type="button" onclick="location.href='./delete-photo'" value="削除">
+		
+	</div>
 </body>
 </html>

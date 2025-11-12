@@ -12,11 +12,18 @@
 	<nav layout:replace="~{layout/menu::menu}"></nav>
 
 	<div class="center">
-		<h3>掲示板画面</h3>
-		
-		<input type="button" onclick="location.href='./delete-comment'" value="コメント削除画面に遷移する">
+		<h3>グループ名を表示</h3>
 		<a th:href="@{'/home-group'}">戻る</a>
+		<h3>掲示板</h3>
+		<p>ーーーーーーーーーーーーーーーーーー</p>
+		<div>赤色でエラーメッセージを表示</div>
+		<div>テキストボックス＋コメントボタン</div><br>
 		
+		
+		<div>ーーー以下Listーーー</div>
+		<div>id番号,アカウント名,datetime</div>
+		<input type="button" onclick="location.href='./delete-comment'" value="削除">
+		<div>入力されたテキストを表示</div>
 	</div>
 
 </body>
