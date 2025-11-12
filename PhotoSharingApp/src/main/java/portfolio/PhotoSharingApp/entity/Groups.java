@@ -7,5 +7,7 @@ public class Groups {
 	
 	private int id;
 	private String groupName;
-	private int accountId;
+	private int accountId;/*アカウントテーブルのID*/
+	
+	private Accounts accounts;
 }

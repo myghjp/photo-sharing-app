@@ -28,17 +28,7 @@ public class HomeGroupController {
 	やること↓
 	・Dグループ系バインド/バリデーション
 	------------------
-	・E-1 利用者一覧の表示
-	
-	(例
-	form=modelmapper.map(user←entity.フォーム.class);
-	form.setSalaryList(user.getSalaryList());
-	)
-	※setSalaryListはentityクラスのList
-	
-	一対多/JOINにas無し
-	collectionの正しい使い方
-	
+
 	------------------
 	・E-3利用者追加、まとめる
 	・Eグループメンバ系バインド/バリデーション
