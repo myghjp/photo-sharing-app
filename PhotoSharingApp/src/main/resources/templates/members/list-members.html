@@ -12,18 +12,20 @@
 	<nav layout:replace="~{layout/menu::menu}"></nav>
 
 	<div class="center">
-		<h3>利用者一覧画面</h3>
+		<div th:text="${groups.groupName}"></div>
 		
 		<a th:href="@{'/home-group'}">戻る</a><br>
 		
 		<a th:href="@{'/add-members'}">利用者を追加する</a>
 		
+		<div th:text="#{listMembersAlert}"></div>
+		
 		<form method="post" th:action="@{/delete-members}">
 				<div th:each="list:${membersList}" >
-					<div th:text="${list.Accounts.user}">
-						<input type="hidden" th:value="${list.Accounts.user}" name="accountId">
-						<input type="submit" value="削除">
-					</div>
+					
+					<input type="hidden" th:text="${list.Accounts.user}" th:value="${list.Accounts.user}" name="accountId">
+					<input type="submit" value="削除">
+					
 					<br>
 				</div>
 		</form>

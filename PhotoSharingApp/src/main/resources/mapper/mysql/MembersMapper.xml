@@ -39,6 +39,7 @@
 	<!-- グループ内の利用者一覧を取得 -->
 	<select id="selectMembersList" resultMap="GroupsTable">
 		select accounts.user as accounts_user
+				,groups.group_name as groups_group_name
 		from `groups`
 			left join groups_members
 				on groups.id = groups_members.group_id

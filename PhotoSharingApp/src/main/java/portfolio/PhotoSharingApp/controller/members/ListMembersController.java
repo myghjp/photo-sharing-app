@@ -31,6 +31,7 @@ public class ListMembersController {
 		List<Members> membersList = membersService.getMembersList(groupId);
 		model.addAttribute("membersList",membersList);
 		
+		
 		return "members/list-members";
 	}
 	
