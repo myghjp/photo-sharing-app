@@ -12,16 +12,21 @@
 	<nav layout:replace="~{layout/menu::menu}"></nav>
 
 	<div class="center">
-		<h3>利用者を削除します画面</h3>
+		<h3>このグループから削除します、よろしいですか？</h3>
+		
+		<div th:text="${user}"></div><br>
 		
 		<form method="post" th:action="@{/delete-members}">
+			
+				<a th:href="@{'/list-members'}">キャンセル</a>
+				<!--<input type="button" onclick="location.href='./list-members'" value="キャンセル">-->
+			
 				<div>
-					<input type="hidden" th:value="${accountId}" name="accountId">
+					<input type="hidden" th:value="${user}" name="user">
 					<input type="submit" value="削除">
 				</div>
 		</form>
 		
-		<input type="button" onclick="location.href='./list-members'" value="戻る">
 	</div>
 	
 </body>

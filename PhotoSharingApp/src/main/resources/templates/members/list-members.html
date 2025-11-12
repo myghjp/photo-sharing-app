@@ -20,15 +20,14 @@
 		
 		<div th:text="#{listMembersAlert}"></div>
 		
-		<form method="post" th:action="@{/delete-members}">
-				<div th:each="list:${membersList}" >
-					
-					<input type="hidden" th:text="${list.Accounts.user}" th:value="${list.Accounts.user}" name="accountId">
-					<input type="submit" value="削除">
-					
-					<br>
-				</div>
-		</form>
+		<div th:each="list:${membersList}" >
+			<form method="post" th:action="@{/list-members}">
+				<input type="hidden" th:text="${list.Accounts.user}" th:value="${list.Accounts.id}" name="user">
+				
+				<input type="submit" value="削除">
+				<br>
+			</form>
+		</div>
 		
 	</div>
 </body>

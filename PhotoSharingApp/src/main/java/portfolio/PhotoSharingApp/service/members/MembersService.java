@@ -19,6 +19,6 @@ public interface MembersService {
 	public List<Members> getMembersList(int groupId);
 	
 	/*グループからメンバーを削除*/
-	public void deleteMembers(int id);
+	public void deleteMembers(int user);
 	
 }

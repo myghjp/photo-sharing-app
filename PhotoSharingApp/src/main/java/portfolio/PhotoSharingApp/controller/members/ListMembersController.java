@@ -16,7 +16,7 @@ import portfolio.PhotoSharingApp.entity.Members;
 import portfolio.PhotoSharingApp.service.members.MembersService;
 
 @Controller
-@SessionAttributes(value = { "groups"})
+@SessionAttributes(value = {"groups"})
 public class ListMembersController {
 	
 	@Autowired
@@ -31,17 +31,16 @@ public class ListMembersController {
 		List<Members> membersList = membersService.getMembersList(groupId);
 		model.addAttribute("membersList",membersList);
 		
-		
 		return "members/list-members";
 	}
 	
 	@PostMapping("/list-members")
 	public String postListMembers(Model model
-			,@RequestParam("accountId") int accountId
+			,@RequestParam("user")int user
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		model.addAttribute("accountId",accountId);
+		redirectAttributes.addFlashAttribute("user",user);
 		
 		return "redirect:delete-members";
 	}

@@ -8,7 +8,7 @@
 		<id column="id" property="id" />
 		<result column="group_id" property="groupId" />
 		<result column="account_id" property="accountId" />
-		<collection property="groups" resultMap="GroupsTable" columnPrefix="groups__"/>
+		<collection property="groups" resultMap="GroupsTable" columnPrefix="groups_"/>
 	</resultMap>
 	
 	<resultMap type="portfolio.PhotoSharingApp.entity.Groups" id="GroupsTable">
@@ -16,6 +16,7 @@
 		<result column="group_name" property="groupName" />
 		<result column="account_id" property="accountId" />
 		<collection property="accounts" resultMap="AccountsTable" columnPrefix="accounts_"/>
+		<!-- <collection property="members" resultMap="MembersTable" columnPrefix="groups_members_"/> -->
 	</resultMap>
 	
 	<resultMap type="portfolio.PhotoSharingApp.entity.Accounts" id="AccountsTable">
@@ -39,7 +40,9 @@
 	<!-- グループ内の利用者一覧を取得 -->
 	<select id="selectMembersList" resultMap="GroupsTable">
 		select accounts.user as accounts_user
+				,accounts.id as accounts_id
 				,groups.group_name as groups_group_name
+				<!-- ,groups_members.id as groups_members_id -->
 		from `groups`
 			left join groups_members
 				on groups.id = groups_members.group_id
@@ -51,7 +54,9 @@
 	<!-- 利用者の削除 -->
 	<delete id="deleteMembers">
 		delete from groups_members
-		where id = #{id}
+				<!-- left join accounts
+				on groups_members.account_id = accounts.id -->
+			where account_id = #{user}
 	</delete>
 	
 </mapper>

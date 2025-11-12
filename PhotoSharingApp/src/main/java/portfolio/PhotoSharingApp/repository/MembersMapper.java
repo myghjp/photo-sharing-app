@@ -21,6 +21,6 @@ public interface MembersMapper {
 	public List<Members> selectMembersList(int groupId);
 	
 	/*利用者を削除*/
-	public void deleteMembers(int id);
+	public void deleteMembers(int user);
 	
 }
