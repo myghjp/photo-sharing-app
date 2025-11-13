@@ -15,16 +15,16 @@
 		
 		<form method="post" th:action="@{/entry-album}" th:object="${entryAlbumForm}">
 			
-			<p>アルバム名を入力してください</p>
-			<!--<div th:text="#{entryAlbumAlert}"></div>-->
+			<div th:text="#{entryAlbumAlert}"></div>
 			
 			<p>エラーメッセージを表示</p>
-			<div>アルバム名とテキストボックス</div><br>
-			<!--<div class="form-group">
+			
+			<div clss="form-group">
 		        <label for="albumName" th:text="#{albumName}"></label>
-		        <input type="text" th:field="*{albumName}" th:errorclass="is-invalid">
-	        	<div class="invalid-feedback" th:if="${#fields.hasErrors('albumName')}" th:errors="*{albumName}"></div>
-			</div>-->
+		        <input type="text" th:field="*{albumName}" ><!--th:errorclass="is-invalid"-->
+	        	<!--<div class="invalid-feedback" th:if="${#fields.hasErrors('albumName')}" th:errors="*{albumName}"></div>-->
+			</div>
+			
 			
 			<a th:href="@{'/select-album'}">キャンセル</a>
 		    <input type="submit" value="登録">

@@ -44,6 +44,8 @@ public class EntryGroupController {
 			,RedirectAttributes redirectAttributes) {
 		
 		Groups groups = modelMapper.map(entryGroupForm, Groups.class);
+		
+		/*※sessionが原因でrejectValueができない*/
 
 		/*登録済のグループ名と重複していない*/
 		if (groupService.isExistingGroupsData(groupName)){

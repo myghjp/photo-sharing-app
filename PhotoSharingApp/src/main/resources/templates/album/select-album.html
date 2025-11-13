@@ -12,23 +12,23 @@
 	<nav layout:replace="~{layout/menu::menu}"></nav>
 
 	<div class="center">
-		<h3>グループ名を表示</h3>
+		<div th:text="#{groupName}"></div>
 		
 		<a th:href="@{'/home-group'}">戻る</a><br>
 		
 		<a th:href="@{'/entry-album'}">アルバムを作成する</a><br>
 		
-		<h3>アルバムを選択してください</h3>
-		
-		<p>～アルバム一覧表示～</p>
-		
-		<input type="button" onclick="location.href='./delete-album'" value="削除"><br>
-		
-		<input type="button" onclick="location.href='./list-photo'" value="アルバムを開く"><br>
-		
-		
-		
+		<h3>↓アルバムを選択してください</h3>
+		<!--<form method="post" th:action="@{/list-photo}">
+			
+				<div th:each="list:${}" >
+					<input type="radio" th:text="${list.albumName}" th:value="${list.id}" name="id">
+					<a th:href="@{'/delete-album/' + ${list.id}}">削除</a>
+					<br>
+				</div>
+			<br>
+			<input type="submit" value="アルバムを開く">
+		</form>-->
 	</div>
-
 </body>
 </html>

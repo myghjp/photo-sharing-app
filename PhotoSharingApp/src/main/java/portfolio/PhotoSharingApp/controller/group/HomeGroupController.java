@@ -25,17 +25,12 @@ public class HomeGroupController {
 	}
 
 	/*
-
+	ーーー
 	グループ作成時、重複エラー
-	
-
-
-	・D、E まとめる
+	※sessionが原因でrejectValue不可？
 	・D、E バインド/バリデーション
-	・掲示板の作成
-	ーーーー
+	ーーー
 	・html/bootstrapの調整
 	・user/passの調整(UserDetailsService)
-	・entryAccountController(Post)
 	*/
 }
