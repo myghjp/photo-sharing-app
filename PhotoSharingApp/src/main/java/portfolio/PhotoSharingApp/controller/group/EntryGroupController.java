@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Groups;
@@ -35,9 +36,9 @@ public class EntryGroupController {
 	}
 
 	@PostMapping("/entry-group")
-	public String postEntryAcount(Model model
+	public String postEntryGroup(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			/*,@RequestParam("groupName")String groupName*/
+			,@RequestParam("groupName")String groupName
 			,@ModelAttribute @Validated EntryGroupForm entryGroupForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes) {
@@ -45,8 +46,8 @@ public class EntryGroupController {
 		Groups groups = modelMapper.map(entryGroupForm, Groups.class);
 
 		/*登録済のグループ名と重複していない*/
-		if (groupService.isExistingGroupsData(groups)){
-			bindingResult.rejectValue("groupName", "email_address.Alert");
+		if (groupService.isExistingGroupsData(groupName)){
+			bindingResult.rejectValue("groupName","group.Alert");
 		}
 		
 		if (bindingResult.hasErrors()) {

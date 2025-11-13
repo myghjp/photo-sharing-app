@@ -8,13 +8,14 @@
 		<id column="id" property="id" />
 		<result column="group_name" property="groupName" />
 		<result column="account_id" property="accountId" />
+		
 	</resultMap>
 	
 	<!-- 重複確認 -->
 	<select id="selectGroupData" resultMap="GroupsTable">
 		select group_name
 		from `groups`
-		where group_name = #{groups.groupName}
+		where group_name = #{groupName}
 	</select>
 	
 	<!-- アカウント登録 -->

@@ -7,7 +7,7 @@ import portfolio.PhotoSharingApp.entity.Groups;
 public interface GroupService {
 	
 	/*重複確認*/
-	public boolean isExistingGroupsData(Groups groups);
+	public boolean isExistingGroupsData(String groupName);
 	
 	/*[グループ作成]グループ名とログイン中のアカウントIDを追加*/
 	public void insertEntryGroup(Groups groups);

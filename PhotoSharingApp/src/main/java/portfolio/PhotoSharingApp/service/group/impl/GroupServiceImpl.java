@@ -15,11 +15,10 @@ public class GroupServiceImpl implements GroupService{
 	@Autowired
 	private GroupMapper groupMapper;
 	
-	
 	/*重複確認*/
 	@Override
-	public boolean isExistingGroupsData(Groups groups) {
-		if (groupMapper.selectGroupData(groups) == null) {
+	public boolean isExistingGroupsData(String groupName) {
+		if (groupMapper.selectGroupData(groupName) == null) {
 			return false;
 		} else {
 			return true;

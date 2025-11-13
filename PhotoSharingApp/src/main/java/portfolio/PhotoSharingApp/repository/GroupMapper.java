@@ -11,8 +11,7 @@ import portfolio.PhotoSharingApp.entity.Groups;
 public interface GroupMapper {
 	
 	/*重複確認*/
-	public String selectGroupData(@Param("groups") Groups groups);
-	
+	public String selectGroupData(@Param("groupName") String groupName);
 	
 	public void insertGroupName(@Param("groups") Groups groups);
 	

@@ -32,8 +32,6 @@ public class DeleteAccountController {
 			,HttpSession session
 			,RedirectAttributes redirectAttributes) {
 		
-		/*CSRF対策(後で)*/
-		
 		/*ログインしているユーザーのID取得してセット*/
 		accounts.setId(loginUserDetails.getUserId());
 		

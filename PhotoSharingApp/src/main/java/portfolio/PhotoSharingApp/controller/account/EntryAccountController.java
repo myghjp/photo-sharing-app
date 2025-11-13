@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.form.account.EntryAccountForm;
 import portfolio.PhotoSharingApp.service.user.UserService;
@@ -28,21 +29,21 @@ public class EntryAccountController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	
 	@GetMapping("/entry-account")
 	public String getEntryAccount(Model model
+		,HttpSession session
 		,EntryAccountForm entryAccountForm
 	){
 		model.addAttribute("entryAccountForm", entryAccountForm);
 		
-		/*ログインエラーメッセージの破棄*/
-		/*session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");*/
+		session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 		
 		return "account/entry-account";
 	}
 	
 	@PostMapping("/entry-account")
 	public String postEntryAcount(Model model
+			,HttpSession session
 			,@ModelAttribute @Validated EntryAccountForm entryAccountForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes) {
@@ -58,7 +59,7 @@ public class EntryAccountController {
 		}
 		
 		if (bindingResult.hasErrors()) {
-			return getEntryAccount(model, entryAccountForm);
+			return getEntryAccount(model,session,entryAccountForm);
 		}
 		
 		accounts.setPass(passwordEncoder.encode(accounts.getPass()));

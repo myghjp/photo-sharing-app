@@ -25,7 +25,11 @@ public class HomeGroupController {
 	}
 
 	/*
-	やること↓
+
+	グループ作成時、重複エラー
+	
+
+
 	・D、E まとめる
 	・D、E バインド/バリデーション
 	・掲示板の作成
