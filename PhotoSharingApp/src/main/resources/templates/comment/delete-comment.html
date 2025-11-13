@@ -17,7 +17,8 @@
 		<form method="post" th:action="@{/delete-comment}">
 		
 			<div>このコメントを削除します、よろしいですか？</div>
-			<div>コメント内容を表示</div>
+			
+			<div th:text=${id}>←コメント内容を表示</div>
 			
 			<a th:href="@{'/list-comment'}">キャンセル</a>
 			

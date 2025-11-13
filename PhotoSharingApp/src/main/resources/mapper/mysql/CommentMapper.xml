@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="portfolio.PhotoSharingApp.repository.CommentMapper">
+
+	<resultMap type="portfolio.PhotoSharingApp.entity.Comments" id="CommentsTable">
+		<id column="id" property="id" />
+		<result column="group_id" property="groupId" />
+		<result column="comment" property="comment" />
+		<result column="account_id" property="accountId" />
+		<result column="create_date_time" property="createDateTime" />
+	</resultMap>
+	
+	<!-- グループID,アカウントID,テキスト入力情報 を追加 -->
+	<insert id="insertCommentData">
+		insert into comments(
+			 group_id
+			,comment
+			,account_id
+		)VALUES(
+			 #{comments.groupId}
+			,#{comments.comment}
+			,#{comments.accountId}
+		)
+	</insert>
+	
+	<!-- id番号,アカウント名,日時,コメント を取得 -->
+	<select id="selectCommentData" resultMap="CommentsTable">
+		select *
+		from comments
+	</select>
+	
+	<!-- コメントの削除 -->
+	<delete id="deleteComment">
+		delete from comments
+		where id = #{id}
+	</delete>
+
+</mapper>
