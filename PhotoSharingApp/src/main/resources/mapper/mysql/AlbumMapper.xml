@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="portfolio.PhotoSharingApp.repository.AlbumMapper">
+
+	<resultMap type="portfolio.PhotoSharingApp.entity.Albums" id="AlbumsTable">
+		<id column="id" property="id" />
+		<result column="group_id" property="groupId" />
+		<result column="album_name" property="albumName" />
+	</resultMap>
+	
+	<!-- アルバム名登録 -->
+	<insert id="insertAlbumData">
+		insert into albums(
+			 group_id
+			,album_name
+		)VALUES(
+			 #{albums.groupId}
+			,#{albums.albumName}
+		)
+	</insert>
+	
+	<select id="selectAlbumName" resultMap="AlbumsTable">
+		select id,album_name
+		from albums
+	</select>
+
+</mapper>

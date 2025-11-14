@@ -18,17 +18,18 @@
 		
 		<a th:href="@{'/entry-album'}">アルバムを作成する</a><br>
 		
-		<h3>↓アルバムを選択してください</h3>
-		<!--<form method="post" th:action="@{/list-photo}">
+		<div th:text="#{selectAlbumAlert}"></div>
+		
+		<form method="post" th:action="@{/list-photo}">
 			
-				<div th:each="list:${}" >
+				<div th:each="list:${albumList}" >
 					<input type="radio" th:text="${list.albumName}" th:value="${list.id}" name="id">
 					<a th:href="@{'/delete-album/' + ${list.id}}">削除</a>
 					<br>
 				</div>
 			<br>
 			<input type="submit" value="アルバムを開く">
-		</form>-->
+		</form>
 	</div>
 </body>
 </html>
