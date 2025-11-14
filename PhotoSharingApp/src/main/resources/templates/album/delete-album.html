@@ -14,14 +14,15 @@
 	
 	<div class="center">
 		
-		<form method="post" th:action="@{/delete-album}">
+		<form method="post" th:action="@{/delete-album}" th:object="${deleteAlbumForm}">
 		
-			<div>このアルバムを削除します、よろしいですか？</div>
-			<div>アルバム名を表示</div>
+			<div th:text="#{deleteAlbumAlert}"></div>
+			
+			<div th:text="${id}"></div>
 			
 			<a th:href="@{'/select-album'}">キャンセル</a>
 			
-			<input type="hidden" name="id" th:value="${id}">
+			<input type="hidden" th:value="${id}" name="id">
 		    <input type="submit" value="削除">
 		</form>
 		

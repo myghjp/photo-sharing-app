@@ -11,5 +11,8 @@ public interface AlbumService {
 	
 	/*アルバム一覧表示*/
 	public List<Albums> getAlbumList();
+	
+	/*アルバム削除*/
+	public void deleteAlbum(int id);
 
 }

@@ -25,5 +25,10 @@
 		select id,album_name
 		from albums
 	</select>
-
+	
+	<delete id="deleteAlbum">
+		delete from albums
+		where id = #{id}
+	</delete>
+	
 </mapper>

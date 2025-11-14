@@ -26,5 +26,10 @@ public class AlbumServiceImpl implements AlbumService{
 	public List<Albums> getAlbumList() {
 		return albumMapper.selectAlbumName();
 	}
-
+	
+	/*アルバム削除*/
+	@Override
+	public void deleteAlbum(int id) {
+		albumMapper.deleteAlbum(id);
+	}
 }

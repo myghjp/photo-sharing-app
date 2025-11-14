@@ -15,4 +15,8 @@ public interface AlbumMapper {
 	
 	/*アルバム一覧表示*/
 	public List<Albums> selectAlbumName();
+	
+	/*アルバム削除*/
+	public void deleteAlbum(@Param("id") int id);
+	
 }
