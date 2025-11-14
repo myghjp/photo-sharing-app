@@ -17,6 +17,7 @@ public class ErrorAspect {
             throwing = "ex")
     public void throwingNull(DataAccessException ex) {
         // 例外処理の内容（ログ出力）
+    	
         log.error("DataAccessExceptionが発生しました");
     }
 }

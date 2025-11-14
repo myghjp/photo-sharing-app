@@ -10,15 +10,16 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.form.group.EntryGroupForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
+@Slf4j
 public class EntryGroupController {
 	
 	@Autowired
@@ -38,17 +39,17 @@ public class EntryGroupController {
 	@PostMapping("/entry-group")
 	public String postEntryGroup(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@RequestParam("groupName")String groupName
 			,@ModelAttribute @Validated EntryGroupForm entryGroupForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes) {
 		
 		Groups groups = modelMapper.map(entryGroupForm, Groups.class);
-		
-		/*※sessionが原因でrejectValueができない*/
 
+		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		/*登録済のグループ名と重複していない*/
-		if (groupService.isExistingGroupsData(groupName)){
+		if (groupService.isExistingGroupsData(groups)){
+		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+			log.info(groups.toString());
 			bindingResult.rejectValue("groupName","group.Alert");
 		}
 		

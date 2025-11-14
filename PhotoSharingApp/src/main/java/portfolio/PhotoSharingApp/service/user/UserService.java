@@ -2,6 +2,7 @@ package portfolio.PhotoSharingApp.service.user;
 
 import portfolio.PhotoSharingApp.entity.Accounts;
 
+
 public interface UserService {
 
 	/*アカウント登録*/

@@ -8,7 +8,7 @@ import portfolio.PhotoSharingApp.repository.UserMapper;
 import portfolio.PhotoSharingApp.service.user.UserService;
 
 @Service
-public class UserServiceImpl implements UserService  {
+public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserMapper userMapper;
@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService  {
 			return true;
 		}
 	}
+	@Override
 	public boolean isExistingAccountsData2(Accounts accounts) {
 		if (userMapper.selectAccountsData2(accounts) == null) {
 			return false;
@@ -56,6 +57,7 @@ public class UserServiceImpl implements UserService  {
 	
 	/*ーーーーーーーー*/
 	/*メールアドレスで一時的にIDを取得(後で修正)*/
+	@Override
 	public int selectAccountId(String emailAddress) {
 		return userMapper.selectAccountData3(emailAddress);
 	}

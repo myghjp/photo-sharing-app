@@ -28,7 +28,7 @@
 	    </div>
 	    <p>ーーーーーーーーーーーーーーーーーーーー</p>
 	    <div class="form-group">
-	        <label for="pass" th:text="#{emailAddress}"></label>
+	        <label for="email" th:text="#{emailAddress}"></label>
 	        <input type="email" th:field="*{emailAddress}" th:errorclass="is-invalid">
 	        <div class="invalid-feedback" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
 	    </div>

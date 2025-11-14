@@ -19,6 +19,7 @@ import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
 @SessionAttributes(value = {"groups"})
+/*@SessionAttributes(types = Groups.class)*/
 public class SelectGroupController {
 	
 	@Autowired

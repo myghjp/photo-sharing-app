@@ -19,6 +19,8 @@ public class GlobalControllAdvice {
 		
 		session.invalidate();
 		
+		e.printStackTrace();
+		
 		return "error";
 	}
 }

@@ -17,8 +17,8 @@ public class GroupServiceImpl implements GroupService{
 	
 	/*重複確認*/
 	@Override
-	public boolean isExistingGroupsData(String groupName) {
-		if (groupMapper.selectGroupData(groupName) == null) {
+	public boolean isExistingGroupsData(Groups groups) {
+		if (groupMapper.selectGroupData(groups) == null) {
 			return false;
 		} else {
 			return true;
@@ -26,6 +26,7 @@ public class GroupServiceImpl implements GroupService{
 	}
 	
 	/*[グループ作成]グループ名とログイン中のアカウントIDを追加*/
+	@Override
 	public void insertEntryGroup(Groups groups) {
 		groupMapper.insertGroupName(groups);
 	}
