@@ -4,6 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,20 +37,22 @@ public class EntryAlbumController {
 	@PostMapping("/entry-album")
 	public String postEntryAlbum(Model model
 			,Groups groups
-			,@ModelAttribute EntryAlbumForm entryAlbumForm
+			,@ModelAttribute @Validated EntryAlbumForm entryAlbumForm
+			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) {
-		/*グループIDとアルバム名を登録する*/
+		
+		if (bindingResult.hasErrors()) {
+			return getEntryAlbum(model, entryAlbumForm);
+		}
 		
 		Albums albums = modelMapper.map(entryAlbumForm,Albums.class);
 		
 		albums.setGroupId(groups.getId());
 		
+		/*グループIDとアルバム名を登録する*/
 		albumService.insertEntryAlbum(albums);
 		
 		return "redirect:select-album";
 	}
-	
-	
-
 }
