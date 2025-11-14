@@ -18,8 +18,9 @@
 		
 			<form method="post" th:action="@{/add-members}" th:object="${addMembersForm}">
 			    <div class="form-group">
-			        <label for="user" >メールアドレス</label>
-			        <input type="email" th:field="*{emailAddress}">
+			        <label for="emailAddress" th:text=#{emailAddress}></label>
+			        <input type="email" th:field="*{emailAddress}" th:errorclass="is-invalid">
+			        <div class="invalid-feedback" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
 			    </div>
 			    
 			    <a th:href="@{'/list-members'}">戻る</a>

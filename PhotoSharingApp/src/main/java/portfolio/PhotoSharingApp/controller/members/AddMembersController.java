@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,11 +46,12 @@ public class AddMembersController {
 			,Groups groups
 			,@RequestParam("emailAddress") String emailAddress
 			,@ModelAttribute AddMembersForm addMembersForm
-			/*,BindingResult bindingResult*/
+			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 		) {
 		
 		/*変換*/
+		/*11/14↓Users も　変換して使用？*/
 		Members members = modelMapper.map(addMembersForm, Members.class);
 		
 		/*※メールアドレスを登録するわけではない*/
@@ -64,9 +66,9 @@ public class AddMembersController {
 		/*追加済の同じグループのメンバのアドレスと重複していないこと
 		 * (メンバリストのアカウントIDとアカウントテーブルIDの比較？？？)*/
 		/*ーーーーーーーーーーーーーーーーーー*/
-		/*if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 			return getAddMembers(model, addMembersForm);
-		}*/
+		}
 		/*入力されている*/
 		/*メールアドレスの形式である*/
 		/*ーーーーーーーーーーーーーーーーーー*/

@@ -25,9 +25,8 @@ public class HomeGroupController {
 	}
 
 	/*
-	ーーー
-	グループ作成時、重複エラー
-	※sessionが原因でrejectValue不可？
+	利用者追加のバリデーションを作成
+	
 	ーーー
 	・html/bootstrapの調整
 	・user/passの調整(UserDetailsService)
