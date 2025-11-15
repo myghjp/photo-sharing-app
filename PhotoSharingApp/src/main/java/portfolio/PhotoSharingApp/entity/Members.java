@@ -10,4 +10,5 @@ public class Members {
 	private int accountId;/*アカウントテーブルのID*/
 	
 	private Groups groups;
+	private Accounts accounts;
 }

@@ -60,11 +60,10 @@ public class AddMembersController {
 		}
 		/*ーーーーーーーーーーーーーーーーーー*/
 		
+		if (membersService.isExistingMembersId(accounts)) {
+			bindingResult.rejectValue("emailAddress", "testtesttest");
+		}
 		
-		
-		
-		/*追加済の同じグループのメンバのアドレスと重複していないこと
-		 * (メンバリストのアカウントIDとアカウントテーブルIDの比較？？？)*/
 		/*ーーーーーーーーーーーーーーーーーー*/
 		if (bindingResult.hasErrors()) {
 			return getAddMembers(model, addMembersForm);
