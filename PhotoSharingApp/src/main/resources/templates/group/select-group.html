@@ -10,22 +10,23 @@
 </head>
 <body>
 	<nav layout:replace="~{layout/menu::menu}"></nav>
-
 	<div class="center">
-		
 		<a th:href="@{'/entry-group'}">グループ作成</a>
 				
 		<div th:text="#{selectGroupAlert}"></div>
-				
+		
+		
 		<form method="post" th:action="@{/select-group}">
-			
 				<div th:each="list:${groupList}" >
-					<input type="radio" checked th:text="${list.groupName}" th:value="${list.id}" name="id">
+					<input type="radio" th:text="${list.groupName}" th:value="${list.id}" name="id">
 					<br><!--th:checked-->
 				</div>
-			<br>
-			<input type="submit" value="グループを開く">
+					<br>
+					
+				<input type="submit" value="グループを開く">
+					
 		</form>
+		
 	</div>
 </body>
 </html>

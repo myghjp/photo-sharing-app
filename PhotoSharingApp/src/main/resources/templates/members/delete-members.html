@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{/css/header.css}">
 <link rel="stylesheet" th:href="@{/css/form.css}">
-<title>利用者削除</title>
+<title th:text="#{deleteMembersPage}"></title>
 </head>
 <body>
 	<nav layout:replace="~{layout/menu::menu}"></nav>
 
 	<div class="center">
-		<h3>このグループから削除します、よろしいですか？</h3>
+		<div th:text="#{deleteMembersAlert}"></div>	
 		
 		<div th:text="${user}"></div><br>
 		

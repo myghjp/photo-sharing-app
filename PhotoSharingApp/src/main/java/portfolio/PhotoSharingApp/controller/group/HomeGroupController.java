@@ -25,6 +25,9 @@ public class HomeGroupController {
 	}
 
 	/*
+	グループが存在しないときのinput非表示
+	グループに管理者を追加させない
+	
 	
 	ーーー
 	・html/bootstrapの調整
