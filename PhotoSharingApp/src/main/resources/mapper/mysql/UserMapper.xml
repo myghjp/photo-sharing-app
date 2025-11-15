@@ -63,4 +63,10 @@
 		where email_address = #{emailAddress}
 	</select>
 	
+	<select id="selectByAccountsId" resultType="String">
+		select email_address
+		from accounts
+		where email_address = #{accounts.emailAddress}
+	</select>
+	
 </mapper>

@@ -27,4 +27,7 @@ public interface UserMapper {
 	
 	public int selectAccountData3(@Param("emailAddress") String emailAddress);
 	
+	
+	public String selectByAccountsId(@Param("accounts") Accounts accounts);
+	
 }

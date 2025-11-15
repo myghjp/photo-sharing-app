@@ -62,4 +62,15 @@ public class UserServiceImpl implements UserService{
 		return userMapper.selectAccountData3(emailAddress);
 	}
 	
+	/*ーーーーーーーー*/
+	/*メールアドレスを使用してアカウントIdが存在するかを確認*/
+	@Override
+	public boolean isExistingAccountId(Accounts accounts) {
+		if (userMapper.selectByAccountsId(accounts) != null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 }

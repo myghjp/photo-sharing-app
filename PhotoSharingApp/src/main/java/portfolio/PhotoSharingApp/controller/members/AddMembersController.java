@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Members;
 import portfolio.PhotoSharingApp.form.members.AddMembersForm;
@@ -31,7 +33,6 @@ public class AddMembersController {
 	@Autowired
 	private UserService userService;
 	
-	
 	@GetMapping("/add-members")
 	public String getAddMembers(Model model
 			,AddMembersForm addMembersForm
@@ -44,24 +45,23 @@ public class AddMembersController {
 	@PostMapping("/add-members")
 	public String postAddMembers(Model model
 			,Groups groups
+			,Members members
 			,@RequestParam("emailAddress") String emailAddress
-			,@ModelAttribute AddMembersForm addMembersForm
+			,@ModelAttribute @Validated AddMembersForm addMembersForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 		) {
 		
-		/*変換*/
-		/*11/14↓Users も　変換して使用？*/
-		Members members = modelMapper.map(addMembersForm, Members.class);
-		
-		/*※メールアドレスを登録するわけではない*/
+		Accounts accounts = modelMapper.map(addMembersForm, Accounts.class);
 		
 		/*ーーーーーーーーーーーーーーーーーー*/
-		/*if (membersService.isExistingMembersData(emailAddress)) {
-			bindingResult.rejectValue("email_address", "email_address.Alert");
-		}*/
-		/*追加するアドレスがアカウント登録されていること(アカウントIDが存在するか)*/
-		/*メールアドレスでIDが存在するか*/
+		if (userService.isExistingAccountId(accounts)) {
+			bindingResult.rejectValue("emailAddress", "unkownEmail.Alert");
+		}
+		/*ーーーーーーーーーーーーーーーーーー*/
+		
+		
+		
 		
 		/*追加済の同じグループのメンバのアドレスと重複していないこと
 		 * (メンバリストのアカウントIDとアカウントテーブルIDの比較？？？)*/
@@ -69,14 +69,10 @@ public class AddMembersController {
 		if (bindingResult.hasErrors()) {
 			return getAddMembers(model, addMembersForm);
 		}
-		/*入力されている*/
-		/*メールアドレスの形式である*/
 		/*ーーーーーーーーーーーーーーーーーー*/
 		/*バリデーションを終えると
-		メールアドレスを使用してアカウントIDを取得する(バインドとまとめる？)
-		*/
+		メールアドレスを使用してアカウントIDを取得する*/
 		int accountId = userService.selectAccountId(emailAddress);
-		
 		int groupId = groups.getId();
 		
 		members.setGroupId(groupId);
@@ -86,8 +82,6 @@ public class AddMembersController {
 		取得したアカウントのIDを追加する(仮)*/
 		
 		membersService.insertMembers(members);
-		
-		/*ーーーーーーーーーーーーーーーーーー*/
 		return "redirect:list-members";
 	}
 }
