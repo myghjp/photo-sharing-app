@@ -20,8 +20,8 @@
 		<form method="post" th:action="@{/select-group}">
 			
 				<div th:each="list:${groupList}" >
-					<input type="radio" th:text="${list.groupName}" th:value="${list.id}" name="id">
-					<br>
+					<input type="radio" checked th:text="${list.groupName}" th:value="${list.id}" name="id">
+					<br><!--th:checked-->
 				</div>
 			<br>
 			<input type="submit" value="グループを開く">

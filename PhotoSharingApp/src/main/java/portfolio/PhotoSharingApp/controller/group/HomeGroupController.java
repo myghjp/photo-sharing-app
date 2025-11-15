@@ -25,7 +25,6 @@ public class HomeGroupController {
 	}
 
 	/*
-	利用者追加のバリデーションを作成
 	
 	ーーー
 	・html/bootstrapの調整

@@ -21,14 +21,15 @@
 		<div th:text="#{listMembersAlert}"></div>
 		
 		<div th:each="list:${membersList}" >
-			<form method="post" th:action="@{/list-members}">
-				<input type="hidden" th:text="${list.Accounts.user}" th:value="${list.Accounts.id}" name="user">
-				
-				<input type="submit" value="削除">
-				<br>
-			</form>
+			<th:block th:if="${list != null}">
+				<form method="post" th:action="@{/list-members}">
+					<input type="hidden" th:text="${list.Accounts.user}" th:value="${list.Accounts.id}" name="user">
+					
+					<input type="submit" value="削除">
+					<br>
+				</form>
+			</th:block>
 		</div>
-		
 	</div>
 </body>
 </html>
