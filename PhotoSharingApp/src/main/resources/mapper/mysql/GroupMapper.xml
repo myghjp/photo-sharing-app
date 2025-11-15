@@ -28,9 +28,13 @@
 		)
 	</insert>
 	
+	<!-- 自身が参加してるグループを取得 -->
 	<select id="selectGroupName" resultMap="GroupsTable">
-		select id,group_name
+		select groups.id,group_name
 		from `groups`
+		left join accounts
+		on account_id = accounts.id
+		where groups.account_id = #{id}
 	</select>
 	
 	<select id="selectGroups" resultMap="GroupsTable">

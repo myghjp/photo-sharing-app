@@ -13,7 +13,7 @@ public interface GroupService {
 	public void insertEntryGroup(Groups groups);
 	
 	/*[グループ一覧表示]グループ名とそのグループIDの一覧を取得*/
-	public List<Groups> getGroupList();
+	public List<Groups> getGroupList(int id);
 
 	/*[groupsテーブルの情報を取得]*/
 	public Groups getGroupsData(int id);
