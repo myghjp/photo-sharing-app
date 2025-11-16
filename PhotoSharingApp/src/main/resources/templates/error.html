@@ -18,11 +18,10 @@
 	<!--ーーーーーーーーーーーーーーーーーーー-->
 	<div class="container">
 		<div class="row">
-			<span class="col text-center text-danger" th:text="${message}"
-				class="col text-center"></span>
+			<span th:text="${message}" class="col text-center text-danger"></span>
 
 			<!-- ↓？ -->
-			<form th:action="@{/postlogout}" method="post">
+			<form th:action="@{/postlogout}" method="post" class="col text-center">
 				<input type="button" onclick="location.href='/login'" th:value="ログイン画面に戻る">
 			</form>
 		</div>

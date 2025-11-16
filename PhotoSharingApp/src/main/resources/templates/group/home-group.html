@@ -1,37 +1,52 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" th:href="@{/css/header.css}">
-<link rel="stylesheet" th:href="@{/css/form.css}">
-<title th:text="#{homeGroupPage}"></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/form.css}">
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<title th:text="#{homeGroupPage}"></title>
 </head>
 <body>
-	<nav layout:replace="~{layout/menu::menu}"></nav>
+	<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+		<a class="navbar-brand" th:text="#{photoSharingApp}"></a>
+		<div class="ml-auto">
+			<input type="button" onclick="location.href='./edit-account'" value="パスワード変更" class="btn btn-secondary">
+			<input type="button" onclick="location.href='./delete-account'" value="アカウント削除" class="btn btn-secondary">
+			<span sec:authentication="principal.username" class="text-light"></span>
+			<form method="post" th:action="@{/postlogout}">
+				<input type="submit" value="ログアウト" class="btn btn-secondary">
+			</form>
+		</div>
+	</nav>
 	
-	<div class="center">
-		
-		<div th:text="${groups.groupName}"></div><br>
-		
-		<a th:href="@{'/select-group'}">グループ選択に戻る</a><br>
-		
-		<div th:text="#{adminAlert}"></div><br>
-		<!--
-		<th:block th:if="${}">
-			<div th:text="#{adminAlert}"></div>
-		</th:block>
-		-->
-		
-		<a th:href="@{'/list-members'}">利用者一覧を表示する</a><br>
-		
-		<a th:href="@{'/select-album'}">アルバムを使用する</a><br>
-		
-		<a th:href="@{'/list-comment'}">掲示板を使用する</a><br>
-		
-		<a th:href="@{'/delete-group'}">グループを削除する</a>
-		
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
+				<div th:text="${groups.groupName}"></div><br>
+				
+				<a th:href="@{'/select-group'}" class="btn btn-secondary">グループ選択に戻る</a><br>
+				
+				<div th:text="#{adminAlert}"></div><br>
+				<!--
+				<th:block th:if="${}">
+					<div th:text="#{adminAlert}"></div>
+				</th:block>
+				-->
+				
+				<a th:href="@{'/list-members'}" class="btn btn-secondary">利用者一覧を表示する</a><br>
+				
+				<a th:href="@{'/select-album'}" class="btn btn-secondary">アルバムを使用する</a><br>
+				
+				<a th:href="@{'/list-comment'}" class="btn btn-secondary">掲示板を使用する</a><br>
+				
+				<a th:href="@{'/delete-group'}" class="btn btn-secondary">グループを削除する</a>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
