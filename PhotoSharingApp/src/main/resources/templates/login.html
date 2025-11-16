@@ -1,47 +1,44 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    
-	<link rel="stylesheet" th:href="@{/css/header.css}">
-	<link rel="stylesheet" th:href="@{/css/form.css}">
-	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	
+	<link rel="stylesheet" th:href="@{/css/form.css}">
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	
 	<title th:text="#{loginPage}"></title>
-	</head>
+</head>
 <body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+	    <a class="navbar-brand" th:text="#{photoSharingApp}"></a>
+	</nav>
 	
-	<nav layout:replace="~{layout/header::header}"></nav>
-	
-	<div class="center">
-		<th:block th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
-			<span style="color:red" th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
-				th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
-			</span>    
-	    </th:block>
+	<div class="container">
+		<div class="row">
+			<th:block
+				th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+				<span th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+					th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+					class="col text-center text-danger">
+				</span>
+			</th:block>
+		</div>
 		
-		<form method="post" th:action="@{/postlogin}">
-		    <div class="form-group">
-		        <label for="user" th:text="#{user}"></label>
-		        <input type="text" id="user" name="user">
-		        
-		    </div>
-		    <div class="form-group">
-		        <label for="pass" th:text="#{pass}"></label>
-		        <input type="password" id="pass" name="pass">
-		        
-		    </div>
-		    <input type="submit" value="ログイン">
-		    <input type="button" onclick="location.href='./entry-account'" value="アカウント登録">
-		</form>
+		<div class="row">
+			<form method="post" th:action="@{/postlogin}" class="col text-center">
+				<div class="form-group">
+					<label for="user" th:text="#{user}"></label>
+					<input type="text"id="user" name="user">
+				</div>
+				<div class="form-group">
+					<label for="pass" th:text="#{pass}"></label>
+					<input type="password" id="pass" name="pass">
+				</div>
+				<input type="submit" value="ログイン" class="btn btn-secondary">
+				<a th:href="@{'/entry-account'}" class="btn btn-secondary">アカウント登録</a>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

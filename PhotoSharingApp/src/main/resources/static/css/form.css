@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-.center {
-	width: 1024px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.invalid-feedback{
-	color: #ff0000;
+form {
+	display: inline-block;
 }
