@@ -31,20 +31,19 @@
 				
 				<a th:href="@{'/select-group'}" class="btn btn-secondary">グループ選択に戻る</a><br>
 				
-				<div th:text="#{adminAlert}"></div><br>
-				<!--
-				<th:block th:if="${}">
-					<div th:text="#{adminAlert}"></div>
+				<th:block th:if="${admin}">
+					<div th:text="#{adminAlert}"></div><br>
 				</th:block>
-				-->
-				
+			
 				<a th:href="@{'/list-members'}" class="btn btn-secondary">利用者一覧を表示する</a><br>
 				
 				<a th:href="@{'/select-album'}" class="btn btn-secondary">アルバムを使用する</a><br>
 				
 				<a th:href="@{'/list-comment'}" class="btn btn-secondary">掲示板を使用する</a><br>
 				
-				<a th:href="@{'/delete-group'}" class="btn btn-secondary">グループを削除する</a>
+				<th:block th:if="${admin}">
+					<a th:href="@{'/delete-group'}" class="btn btn-secondary">グループを削除する</a>
+				</th:block>
 			</div>
 		</div>
 	</div>

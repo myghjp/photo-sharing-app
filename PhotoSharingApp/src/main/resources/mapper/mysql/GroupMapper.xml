@@ -39,9 +39,9 @@
 	<select id="selectGroupName" resultMap="GroupsTable">
 		select groups.id,group_name
 		from `groups`
-		left join accounts
-		on account_id = accounts.id
-		where groups.account_id = #{id}
+		left join groups_members
+		on groups.id = groups_members.group_id
+		where groups_members.account_id = #{id}
 	</select>
 	
 	<select id="selectGroups" resultMap="GroupsTable">

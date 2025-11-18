@@ -38,10 +38,14 @@ public class GroupServiceImpl implements GroupService{
 	}
 
 	/*[グループ一覧表示]グループ名とそのグループIDの一覧を取得*/
+	
+	
 	@Override
 	public List<Groups> getGroupList(int id) {
 		return groupMapper.selectGroupName(id);
 	}
+	
+	
 	
 	/*[groupsテーブルの情報を取得]*/
 	@Override

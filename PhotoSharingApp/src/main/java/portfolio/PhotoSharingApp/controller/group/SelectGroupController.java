@@ -41,24 +41,28 @@ public class SelectGroupController {
 		) {
 		
 		sessionStatus.setComplete();
-		
-		List<Groups> groupList = groupService.getGroupList(loginUserDetails.getUserId());
-		log.info(groupList.toString());
 
+		List<Groups> groupList = groupService.getGroupList(loginUserDetails.getUserId());
 		model.addAttribute("groupList", groupList);
 		
 		return "group/select-group";
 	}
 	
 	@PostMapping("/select-group")
-	public String postSelectGroup(
-			@RequestParam("id")int id
+	public String postSelectGroup(Model model
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
 		) {
 		
 		Groups groups = groupService.getGroupsData(id);
-		
 		redirectAttributes.addFlashAttribute("groups",groups);
+		
+		
+		/*もしグループ内のアカウントIDとユーザ自身のIDが一致すれば管理者である*/
+		if (groups.getAccountId() == loginUserDetails.getUserId()) {
+			redirectAttributes.addFlashAttribute("admin",true);
+		}
 		
 		return "redirect:home-group";
 	}
