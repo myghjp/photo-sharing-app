@@ -12,6 +12,9 @@ public interface GroupService {
 	/*[グループ作成]グループ名とログイン中のアカウントIDを追加*/
 	public void insertEntryGroup(Groups groups);
 	
+	/*ユーザIDからグループIDを取得*/
+	public int selectByGroupId(int id);
+	
 	/*[グループ一覧表示]グループ名とそのグループIDの一覧を取得*/
 	public List<Groups> getGroupList(int id);
 

@@ -79,7 +79,6 @@ public class AddMembersController {
 		/*membersのテーブルに
 		sessionのグループのIDと
 		取得したアカウントのIDを追加する(仮)*/
-		
 		membersService.insertMembers(members);
 		return "redirect:list-members";
 	}

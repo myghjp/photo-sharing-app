@@ -13,17 +13,20 @@
 	<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
 		<a class="navbar-brand" th:text="#{photoSharingApp}"></a>
 	</nav>
-	<!--ーーーーーーーー※仮ーーーーーーーーー-->
-	<p th:text="${status} + ' ' + ${error}"></p>
-	<!--ーーーーーーーーーーーーーーーーーーー-->
+	
 	<div class="container">
+	<!--ーーーーーーーー※仮ーーーーーーーーー-->
+	<div th:text="${status} + ' ' + ${error}"></div>
+	<!--ーーーーーーーーーーーーーーーーーーー-->
 		<div class="row">
-			<span th:text="${message}" class="col text-center text-danger"></span>
-
-			<!-- ↓？ -->
-			<form th:action="@{/postlogout}" method="post" class="col text-center">
-				<input type="button" onclick="location.href='/login'" th:value="ログイン画面に戻る">
-			</form>
+			<div class="col text-center">
+				<span th:text="${message}" class="text-danger"></span>
+	
+				<form th:action="@{/postlogout}" method="post">
+					<input type="button" onclick="location.href='/login'"
+					th:value="ログイン画面に戻る" class="btn btn-secondary">
+				</form>
+			</div>
 		</div>
 	</div>
 </body>

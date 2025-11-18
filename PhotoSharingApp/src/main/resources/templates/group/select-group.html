@@ -30,14 +30,16 @@
 				<a th:href="@{'/entry-group'}" class="btn btn-secondary">グループ作成</a>
 		
 				<div th:text="#{selectGroupAlert}"></div>
-		
+				
 				<form method="post" th:action="@{/select-group}">
 					<div th:each="list:${groupList}">
 						<input type="radio" th:text="${list.groupName}" th:value="${list.id}" name="id">
 						<br>
 						<!--th:checked-->
 					</div>
-					<input type="submit" value="グループを開く" class="btn btn-secondary">
+						<th:block th:unless="${groupList.isEmpty()}">
+						<input type="submit" value="グループを開く" class="btn btn-secondary">
+						</th:block>
 				</form>
 			</div>
 		</div>

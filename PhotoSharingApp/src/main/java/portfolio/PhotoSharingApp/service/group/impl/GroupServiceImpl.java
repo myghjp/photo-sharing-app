@@ -30,6 +30,12 @@ public class GroupServiceImpl implements GroupService{
 	public void insertEntryGroup(Groups groups) {
 		groupMapper.insertGroupName(groups);
 	}
+	
+	/*ユーザIDからグループIDを取得*/
+	@Override
+	public int selectByGroupId(int id) {
+		return groupMapper.selectByGroupId(id);
+	}
 
 	/*[グループ一覧表示]グループ名とそのグループIDの一覧を取得*/
 	@Override

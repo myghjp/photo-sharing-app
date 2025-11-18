@@ -14,9 +14,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Groups;
+import portfolio.PhotoSharingApp.entity.Members;
 import portfolio.PhotoSharingApp.form.group.EntryGroupForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
+import portfolio.PhotoSharingApp.service.members.MembersService;
 
 @Controller
 @Slf4j
@@ -28,6 +30,9 @@ public class EntryGroupController {
 	@Autowired
 	private GroupService groupService;
 	
+	@Autowired
+	private MembersService membersService;
+	
 	@GetMapping("/entry-group")
 	public String getEntryGroup(Model model
 			,EntryGroupForm entryGroupForm) {
@@ -38,6 +43,7 @@ public class EntryGroupController {
 
 	@PostMapping("/entry-group")
 	public String postEntryGroup(Model model
+			,Members members
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,@ModelAttribute @Validated EntryGroupForm entryGroupForm
 			,BindingResult bindingResult
@@ -45,11 +51,7 @@ public class EntryGroupController {
 		
 		Groups groups = modelMapper.map(entryGroupForm, Groups.class);
 
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
-		/*登録済のグループ名と重複していない*/
 		if (groupService.isExistingGroupsData(groups)){
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
-			log.info(groups.toString());
 			bindingResult.rejectValue("groupName","group.Alert");
 		}
 		
@@ -58,8 +60,19 @@ public class EntryGroupController {
 		}
 		
 		groups.setAccountId(loginUserDetails.getUserId());
+		
+		log.info(groups.toString());
 
+		/*ーーーーーーーーーーーーーーー*/
+		/*グループを登録*/
 		groupService.insertEntryGroup(groups);
+		/*ユーザIDからグループIDを取得*/
+		int groupId = groupService.selectByGroupId(loginUserDetails.getUserId());
+		
+		/*ユーザIDとグループIDをメンバに登録*/
+		members.setGroupId(groupId);
+		members.setAccountId(loginUserDetails.getUserId());
+		membersService.insertMembers(members);
 		
 		return "redirect:select-group";
 	}

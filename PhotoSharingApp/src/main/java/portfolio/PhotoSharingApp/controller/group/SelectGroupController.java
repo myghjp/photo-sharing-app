@@ -38,19 +38,13 @@ public class SelectGroupController {
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,SelectGroupForm selectGroupForm
 			,SessionStatus sessionStatus
-       
 		) {
 		
 		sessionStatus.setComplete();
 		
-		/*ログインしているユーザ が 参加しているグループを表示(11月15日)*/
-		/*ユーザ自身のidを使用して
-		 * */
-		
 		List<Groups> groupList = groupService.getGroupList(loginUserDetails.getUserId());
-		
 		log.info(groupList.toString());
-		
+
 		model.addAttribute("groupList", groupList);
 		
 		return "group/select-group";
