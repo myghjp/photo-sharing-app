@@ -18,7 +18,7 @@ public interface MembersMapper {
 	public List<Members> selectMembersList(int groupId);
 	
 	/*利用者を削除*/
-	public void deleteMembers(int user);
+	public void deleteMembers(int id);
 	
 	/*重複確認*/
 	public String selectMembersId(@Param("accounts")Accounts accounts);

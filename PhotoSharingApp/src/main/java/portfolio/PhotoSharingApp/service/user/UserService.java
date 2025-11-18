@@ -28,4 +28,7 @@ public interface UserService {
 	/*ーーーーーーーー*/
 	/*メールアドレスを使用してアカウントIdが存在するかを確認*/
 	public boolean isExistingAccountId(Accounts accounts);
+	
+	/*idからuserNameを取得*/
+	public Accounts selectByUserName(int id);
 }

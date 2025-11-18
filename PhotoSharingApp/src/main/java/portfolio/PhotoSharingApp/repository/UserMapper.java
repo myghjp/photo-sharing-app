@@ -30,4 +30,6 @@ public interface UserMapper {
 	
 	public String selectByAccountsId(@Param("accounts") Accounts accounts);
 	
+	/*idからuserNameを取得*/
+	public Accounts selectByUserName(@Param("id") int id);
 }

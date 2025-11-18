@@ -35,17 +35,18 @@
 				
 				<div th:text="#{listMembersAlert}"></div>
 				
-				<div th:each="list,status:${membersList}">
+				<div th:each="list:${membersList}">
 					
 					<form method="post" th:action="@{/list-members}">
 						
-						<th:block th:if="${status.index == 0}">
-							<th:block th:unless="${admin}">
-								<span class="text-primary">管理者:</span>
-							</th:block>
+						<!--自身が管理者の場合管理者情報を表示しない？-->
+						
+						<th:block th:unless="${admin}">
+							<span class="text-primary">管理者:</span>
 						</th:block>
-							<input type="hidden" th:text="${list.Accounts.user}" 
-							th:value="${list.Accounts.id}" name="user">
+						
+						<input type="hidden" th:text="${list.Accounts.user}" 
+						th:value="${list.Accounts.id}" name="id">
 						
 						<th:block th:if="${admin}">
 							<input type="submit" value="削除" class="btn btn-secondary">

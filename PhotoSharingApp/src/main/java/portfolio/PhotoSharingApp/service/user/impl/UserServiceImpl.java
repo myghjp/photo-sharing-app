@@ -73,4 +73,10 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 	
+	/*idからuserNameを取得*/
+	@Override
+	public Accounts selectByUserName(int id) {
+		return userMapper.selectByUserName(id);
+	}
+	
 }

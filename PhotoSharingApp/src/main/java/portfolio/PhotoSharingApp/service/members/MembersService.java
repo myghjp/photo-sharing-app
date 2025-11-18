@@ -14,7 +14,7 @@ public interface MembersService {
 	public List<Members> getMembersList(int groupId);
 	
 	/*グループからメンバーを削除*/
-	public void deleteMembers(int user);
+	public void deleteMembers(int id);
 	
 	/*重複確認*/
 	public boolean isExistingMembersId(Accounts accounts);

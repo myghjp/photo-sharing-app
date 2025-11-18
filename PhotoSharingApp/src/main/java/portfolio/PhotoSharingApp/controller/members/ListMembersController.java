@@ -12,17 +12,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import lombok.extern.slf4j.Slf4j;
+import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Members;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.members.MembersService;
+import portfolio.PhotoSharingApp.service.user.UserService;
 
 @Controller
 @SessionAttributes(value = {"groups"})
+@Slf4j
 public class ListMembersController {
 	
 	@Autowired
 	private MembersService membersService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@GetMapping("/list-members")
 	public String getListMembers(Model model
@@ -31,6 +38,10 @@ public class ListMembersController {
 			) {
 		
 		List<Members> membersList = membersService.getMembersList(groups.getId());
+		
+		log.info(membersList.toString());
+		
+		/*自身が管理者の場合管理者情報を表示しない？*/
 		model.addAttribute("membersList",membersList);
 		
 		/*もしグループ内のアカウントIDとユーザ自身のIDが一致すれば管理者である*/
@@ -43,11 +54,14 @@ public class ListMembersController {
 	
 	@PostMapping("/list-members")
 	public String postListMembers(Model model
-			,@RequestParam("user")int user
+			,@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		redirectAttributes.addFlashAttribute("user",user);
+		/*idからuserNameを取得*/
+		Accounts accounts = userService.selectByUserName(id);
+		
+		redirectAttributes.addFlashAttribute("accounts",accounts);
 		
 		return "redirect:delete-members";
 	}

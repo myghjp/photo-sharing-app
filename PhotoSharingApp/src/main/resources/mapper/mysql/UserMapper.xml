@@ -69,4 +69,12 @@
 		where email_address = #{accounts.emailAddress}
 	</select>
 	
+	<!-- idからuserNameを取得 -->
+	<select id="selectByUserName">
+		select id,user
+		from accounts
+		where id = #{id}
+	</select>
+	
+	
 </mapper>

@@ -29,11 +29,11 @@ public class DeleteMembersController {
 	@PostMapping("/delete-members")
 	public String postDeleteMembers(Model model
 			,Groups groups
-			,@RequestParam("user")int user
+			,@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes) {
 		/*グループから利用者を削除するPOST*/
 		
-		membersService.deleteMembers(user);
+		membersService.deleteMembers(id);
 		
 		return "redirect:list-members";
 	}

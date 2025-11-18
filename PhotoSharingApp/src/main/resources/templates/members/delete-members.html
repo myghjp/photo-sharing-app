@@ -30,15 +30,14 @@
 	
 				<div th:text="#{deleteMembersAlert}"></div>	
 				
-				<div th:text="${user}"></div><br>
+				<div th:text="${accounts.user}"></div><br>
 				
 				<form method="post" th:action="@{/delete-members}">
 					
 						<a th:href="@{'/list-members'}" class="btn btn-secondary">キャンセル</a>
-						<!--<input type="button" onclick="location.href='./list-members'" value="キャンセル">-->
 					
 						<div>
-							<input type="hidden" th:value="${user}" name="user">
+							<input type="hidden" th:value="${accounts.id}" name="id">
 							<input type="submit" value="削除" class="btn btn-secondary">
 						</div>
 				</form>

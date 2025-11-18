@@ -14,55 +14,47 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.form.group.SelectGroupForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
-@SessionAttributes(value = {"groups"})
-@Slf4j
+@SessionAttributes(value = { "groups" })
 public class SelectGroupController {
-	
+
 	@Autowired
 	private GroupService groupService;
-	
+
 	@ModelAttribute(value = "groups")
 	public Groups groups() {
-	    return new Groups();
+		return new Groups();
 	}
-	
+
 	@GetMapping("/select-group")
-	public String getSelectGroup(Model model
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,SelectGroupForm selectGroupForm
-			,SessionStatus sessionStatus
-		) {
-		
+	public String getSelectGroup(Model model, @AuthenticationPrincipal LoginUserDetails loginUserDetails,
+			SelectGroupForm selectGroupForm, SessionStatus sessionStatus) {
+
 		sessionStatus.setComplete();
 
 		List<Groups> groupList = groupService.getGroupList(loginUserDetails.getUserId());
 		model.addAttribute("groupList", groupList);
-		
+
 		return "group/select-group";
 	}
-	
+
 	@PostMapping("/select-group")
-	public String postSelectGroup(Model model
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@RequestParam("id")int id
-			,RedirectAttributes redirectAttributes
-		) {
-		
+	public String postSelectGroup(Model model, @AuthenticationPrincipal LoginUserDetails loginUserDetails,
+			@RequestParam("id") int id, RedirectAttributes redirectAttributes) {
+
 		Groups groups = groupService.getGroupsData(id);
-		redirectAttributes.addFlashAttribute("groups",groups);
-		
-		/*もしグループ内のアカウントIDとユーザ自身のIDが一致すれば管理者である*/
+		redirectAttributes.addFlashAttribute("groups", groups);
+
+		/*もしグループ内のアカウントIDとユーザ自身のIDが一致すれば管理者である
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			redirectAttributes.addFlashAttribute("admin",true);
-		}
-		
+		}*/
+
 		return "redirect:home-group";
 	}
 }

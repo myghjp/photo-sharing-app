@@ -28,8 +28,8 @@ public class MembersServiceImpl implements MembersService{
 	}
 	
 	/*グループから利用者を削除*/
-	public void deleteMembers(int user) {
-		membersMapper.deleteMembers(user);
+	public void deleteMembers(int id) {
+		membersMapper.deleteMembers(id);
 	}
 	
 	/*重複確認*/

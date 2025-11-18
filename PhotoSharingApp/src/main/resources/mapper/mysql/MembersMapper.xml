@@ -53,7 +53,7 @@
 	<!-- 利用者の削除 -->
 	<delete id="deleteMembers">
 		delete from groups_members
-			where account_id = #{user}
+			where account_id = #{id}
 	</delete>
 	
 	<select id="selectMembersId">
