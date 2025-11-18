@@ -12,19 +12,15 @@ import portfolio.PhotoSharingApp.entity.Groups;
 public class HomeGroupController {
 	
 	@GetMapping("/home-group")
-	public String getHomeGroup(/*Model model
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails*/
-			Groups groups
+	public String getHomeGroup(Groups groups
 			,RedirectAttributes redirectAttributes) {
 		
-		/*model.addAttribute("userId",loginUserDetails.getUserId());*/
 		return "group/home-group";
 	}
 
 	/*
 	ーー※A-1からE-4までがセットーー
 	
-	E-2 削除ボタンを表示させない/管理者が誰かを表示させる
 	E-4 利用者削除時のアカウント名を表示させる
 	
 	↓最後

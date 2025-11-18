@@ -3,6 +3,7 @@ package portfolio.PhotoSharingApp.controller.members;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Members;
+import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.members.MembersService;
 
 @Controller
@@ -24,12 +26,17 @@ public class ListMembersController {
 	
 	@GetMapping("/list-members")
 	public String getListMembers(Model model
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,Groups groups
 			) {
 		
-		int groupId = groups.getId();
-		List<Members> membersList = membersService.getMembersList(groupId);
+		List<Members> membersList = membersService.getMembersList(groups.getId());
 		model.addAttribute("membersList",membersList);
+		
+		/*もしグループ内のアカウントIDとユーザ自身のIDが一致すれば管理者である*/
+		if (groups.getAccountId() == loginUserDetails.getUserId()) {
+			model.addAttribute("admin",true);
+		}
 		
 		return "members/list-members";
 	}

@@ -58,7 +58,6 @@ public class SelectGroupController {
 		Groups groups = groupService.getGroupsData(id);
 		redirectAttributes.addFlashAttribute("groups",groups);
 		
-		
 		/*もしグループ内のアカウントIDとユーザ自身のIDが一致すれば管理者である*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			redirectAttributes.addFlashAttribute("admin",true);
