@@ -76,5 +76,14 @@
 		where id = #{id}
 	</select>
 	
+	<!-- グループのIDからアカウントIDを紐づけて管理者名を取得 -->
+	<select id="selectByUserName2">
+		select user
+		from accounts
+		left join `groups`
+		on accounts.id = groups.account_id
+		where groups.id = #{id}
+	</select>
+	
 	
 </mapper>

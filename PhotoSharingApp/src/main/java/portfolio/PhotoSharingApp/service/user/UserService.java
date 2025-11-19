@@ -31,4 +31,9 @@ public interface UserService {
 	
 	/*idからuserNameを取得*/
 	public Accounts selectByUserName(int id);
+	
+	/*グループのIDからアカウントIDを紐づけて管理者名を取得*/
+	public String getAdminName(int id);
+	
+	
 }

@@ -79,4 +79,10 @@ public class UserServiceImpl implements UserService{
 		return userMapper.selectByUserName(id);
 	}
 	
+	/*グループのIDからアカウントIDを紐づけて管理者名を取得*/
+	@Override
+	public String getAdminName(int id) {
+		return userMapper.selectByUserName2(id);
+	}
+	
 }

@@ -20,21 +20,19 @@ public class HomeGroupController {
 			,Groups groups
 			,RedirectAttributes redirectAttributes) {
 		
-		
 		/*管理者はここで*/
 		/*もしグループ内のアカウントIDとユーザ自身のIDが一致すれば管理者である*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("admin",true);
 		}
 		
-		/*model.addAttribute("userId",loginUserDetails.getUserId());*/
+		model.addAttribute("userId",loginUserDetails.getUserId());
 		return "group/home-group";
 	}
 
 	/*
 	ーー※A-1からE-4までがセットーー
 	E-1,E-2
-	自身が管理者の場合管理者情報を表示しない？
 	利用者のアカウント情報がNullの場合アカウント名をunknownと表示する
 	
 	↓最後

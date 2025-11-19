@@ -16,7 +16,7 @@ public interface GroupMapper {
 	public void insertGroupName(@Param("groups") Groups groups);
 	
 	/*ユーザ自身が所属しているグループリストを取得*/
-	public List<Groups> selectGroupName(@Param("id") int id);
+	public List<Groups> selectGroupList(@Param("id") int id);
 	
 	
 	public int selectByGroupId(@Param("id") int id);

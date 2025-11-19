@@ -10,4 +10,5 @@ public class Groups{
 	private Integer accountId;/*アカウントテーブルのID*/
 	
 	private Accounts accounts;
+
 }

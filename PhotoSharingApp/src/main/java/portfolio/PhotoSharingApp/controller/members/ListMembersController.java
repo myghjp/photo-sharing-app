@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Members;
@@ -22,7 +21,7 @@ import portfolio.PhotoSharingApp.service.user.UserService;
 
 @Controller
 @SessionAttributes(value = {"groups"})
-@Slf4j
+/*@Slf4j*/
 public class ListMembersController {
 	
 	@Autowired
@@ -39,14 +38,17 @@ public class ListMembersController {
 		
 		List<Members> membersList = membersService.getMembersList(groups.getId());
 		
-		log.info(membersList.toString());
+		/*log.info(membersList.toString());*/
 		
-		/*自身が管理者の場合管理者情報を表示しない？*/
 		model.addAttribute("membersList",membersList);
 		
 		/*もしグループ内のアカウントIDとユーザ自身のIDが一致すれば管理者である*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
-			model.addAttribute("admin",true);
+			model.addAttribute("isAdmin",true);
+		}else {
+			/*グループのIDからアカウントIDを紐づけて管理者名を取得*/
+			String adminName = userService.getAdminName(groups.getId());
+			model.addAttribute("adminName",adminName);
 		}
 		
 		return "members/list-members";
