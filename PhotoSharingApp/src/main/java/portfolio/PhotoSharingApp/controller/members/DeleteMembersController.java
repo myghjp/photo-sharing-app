@@ -20,7 +20,8 @@ public class DeleteMembersController {
 	private MembersService membersService;
 	
 	@GetMapping("/delete-members")
-	public String getDeleteMembers(RedirectAttributes redirectAttributes) {
+	public String getDeleteMembers(
+			RedirectAttributes redirectAttributes) {
 		
 		return "members/delete-members";
 	}
@@ -28,8 +29,8 @@ public class DeleteMembersController {
 	
 	@PostMapping("/delete-members")
 	public String postDeleteMembers(Model model
-			,Groups groups
 			,@RequestParam("id")int id
+			,Groups groups
 			,RedirectAttributes redirectAttributes) {
 		/*グループから利用者を削除するPOST*/
 		

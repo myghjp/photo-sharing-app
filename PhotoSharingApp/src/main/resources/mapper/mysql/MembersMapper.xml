@@ -45,6 +45,8 @@
 		from `groups`
 			left join groups_members
 				on groups.id = groups_members.group_id
+				<!-- and (groups.account_id != groups_members.account_id
+					or  [[[nullも比較する]]]    ) -->
 			left join accounts
 				on groups_members.account_id = accounts.id
 			where groups.id = #{id}

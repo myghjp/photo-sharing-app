@@ -34,6 +34,7 @@ public class ListMembersController {
 	public String getListMembers(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,Groups groups
+			,RedirectAttributes redirectAttributes
 			) {
 		
 		List<Members> membersList = membersService.getMembersList(groups.getId());

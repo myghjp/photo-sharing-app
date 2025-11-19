@@ -31,33 +31,32 @@
 				
 				<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a><br>
 				
-				<a th:href="@{'/add-members'}" class="btn btn-secondary">利用者を追加する</a>
+				<th:block th:if="${isAdmin}">
+					<a th:href="@{'/add-members'}" class="btn btn-secondary">利用者を追加する</a>
+				</th:block>
 				
 				<div th:text="#{listMembersAlert}"></div>
 				
 				<th:block th:unless="${isAdmin}">
-					管理者:
-					<span th:text=${adminName} class="text-primary"></span><br>
+					<span th:text="${adminName}" class="text-primary"></span><br>
 				</th:block>
 				
-				<tr th:each="list,status:${membersList}">
-					<th:block th:if="${list}">
-							<td th:if="${not status.first}">
-								<form method="post" th:action="@{/list-members}">
+				<div th:each="list:${membersList}">
+						
+					<form method="post" th:action="@{/list-members}">
+				
+							<!--hiddenとtextを分ける-->
+						 <input type="hidden" th:text="${list.Accounts.user}" 
+						th:value="${list.Accounts.id}" name="id"><!--Elvis演算子-->
+						
+						<th:block th:if="${isAdmin}">
+							<input type="submit" value="削除" class="btn btn-secondary">
+						</th:block>
+						
+					</form>
+					<br>
 							
-									 <input type="hidden" th:text="${list.Accounts.user}" 
-									th:value="${list.Accounts.id}" name="id">
-        							
-									<th:block th:if="${isAdmin}">
-										<input type="submit" value="削除" class="btn btn-secondary">
-									</th:block>
-									
-									<br>
-									
-								</form>
-							</td>
-					</th:block>	
-				</tr>
+				</div>
 			</div>
 		</div>
 	</div>

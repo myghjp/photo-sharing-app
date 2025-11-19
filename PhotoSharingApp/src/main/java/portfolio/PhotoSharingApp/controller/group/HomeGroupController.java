@@ -20,7 +20,7 @@ public class HomeGroupController {
 			,Groups groups
 			,RedirectAttributes redirectAttributes) {
 		
-		/*管理者はここで*/
+		/*管理者*/
 		/*もしグループ内のアカウントIDとユーザ自身のIDが一致すれば管理者である*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("admin",true);
@@ -31,7 +31,7 @@ public class HomeGroupController {
 	}
 
 	/*
-	ーー※A-1からE-4までがセットーー
+	ーー※A-1からE-4までーー
 	E-1,E-2
 	利用者のアカウント情報がNullの場合アカウント名をunknownと表示する
 	
