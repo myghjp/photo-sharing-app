@@ -56,4 +56,5 @@
 		delete from `groups`
 		where id = #{id}
 	</delete>
+	
 </mapper>

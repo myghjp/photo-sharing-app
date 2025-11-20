@@ -28,5 +28,12 @@ public class HomeGroupController {
 		
 		model.addAttribute("userId",loginUserDetails.getUserId());
 		return "group/home-group";
+		
+		
+		/*ーー↓AからEまでーーーーーーーーーーーー*/
+		/* C-3,アカウント削除のバインド*/
+		
+		
+		/*ーーーーーーーーーーーーーーーーーーーー*/
 	}
 }

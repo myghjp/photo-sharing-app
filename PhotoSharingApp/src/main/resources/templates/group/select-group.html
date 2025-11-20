@@ -33,7 +33,7 @@
 				
 				<form method="post" th:action="@{/select-group}">
 					<div th:each="list:${groupList}">
-						<input type="radio" th:text="${list.groupName}" th:value="${list.id}" name="id">
+						<input type="radio" th:text="${list.groupName}" th:value="${list.id}" name="id" checked>
 						<br>
 						<!--th:checked-->
 					</div>

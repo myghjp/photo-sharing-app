@@ -43,4 +43,13 @@ public class DeleteAccountController {
 		
 		return "redirect:login";
 	}
+	
+	/*ユーザ自身が作成したグループを削除しないとアカウントの削除を実行できない*/
+	/*if (groupService.isExistingGGG(id)){
+		bindingResult.rejectValue("id","GGG");
+	}
+	
+	if (bindingResult.hasErrors()) {
+		return getDeleteGroup(model, deleteGroupForm);
+	}*/
 }

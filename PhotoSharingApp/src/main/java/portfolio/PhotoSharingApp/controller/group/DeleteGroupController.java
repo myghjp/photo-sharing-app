@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
@@ -21,8 +20,9 @@ public class DeleteGroupController {
 	
 	@GetMapping("/delete-group")
 	public String getDeleteGroup(Model model
-			,Groups groups
+			/*,Groups groups*/
 			) {
+		
 		return "group/delete-group";
 	}
 	

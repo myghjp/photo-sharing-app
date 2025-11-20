@@ -43,8 +43,6 @@ public class GroupServiceImpl implements GroupService{
 		return groupMapper.selectGroupList(id);
 	}
 	
-	
-	
 	/*[groupsテーブルの情報を取得]*/
 	@Override
 	public Groups getGroupsData(int id){
@@ -56,6 +54,5 @@ public class GroupServiceImpl implements GroupService{
 	public void deleteGroup(int id) {
 		groupMapper.deleteGroup(id);
 	}
-	
 	
 }

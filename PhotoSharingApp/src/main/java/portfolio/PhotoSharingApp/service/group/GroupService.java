@@ -23,6 +23,4 @@ public interface GroupService {
 	
 	/*グループの削除*/
 	public void deleteGroup(int id);
-	
-
 }
