@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.service.members.MembersService;
 
 @Controller
@@ -21,20 +20,19 @@ public class DeleteMembersController {
 	
 	@GetMapping("/delete-members")
 	public String getDeleteMembers(
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes
+			) {
 		
 		return "members/delete-members";
 	}
 	
-	
 	@PostMapping("/delete-members")
 	public String postDeleteMembers(Model model
 			,@RequestParam("id")int id
-			,Groups groups
-			,RedirectAttributes redirectAttributes) {
-		/*グループから利用者を削除するPOST*/
+			,RedirectAttributes redirectAttributes
+			) {
 		
-		membersService.deleteMembers(id);
+		membersService.deleteMember(id);
 		
 		return "redirect:list-members";
 	}

@@ -71,9 +71,13 @@
 	
 	<!-- idからuserNameを取得 -->
 	<select id="selectByUserName">
-		select id,user
+		select 
+			accounts.id
+			,user
 		from accounts
-		where id = #{id}
+			left join groups_members
+			on accounts.id = account_id
+		where groups_members.id = #{id}
 	</select>
 	
 	<!-- グループのIDからアカウントIDを紐づけて管理者名を取得 -->

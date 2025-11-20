@@ -13,10 +13,13 @@ public interface MembersService {
 	/*グループ内の利用者一覧を取得*/
 	public List<Members> getMembersList(int groupId);
 	
-	/*グループからメンバーを削除*/
-	public void deleteMembers(int id);
-	
 	/*重複確認*/
 	public boolean isExistingMembersId(Accounts accounts);
+	
+	/*グループメンバの名前を取得*/
+	public Members getMemberName(int id);
+	
+	/*グループからメンバーを削除*/
+	public void deleteMember(int id);
 	
 }

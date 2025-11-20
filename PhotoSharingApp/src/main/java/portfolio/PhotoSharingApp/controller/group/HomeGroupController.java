@@ -29,16 +29,4 @@ public class HomeGroupController {
 		model.addAttribute("userId",loginUserDetails.getUserId());
 		return "group/home-group";
 	}
-
-	/*
-	ーー※A-1からE-4までーー
-	E-1,E-2
-	利用者のアカウント情報がNullの場合アカウント名をunknownと表示する
-	
-	↓最後
-	C-3 ユーザ自身が作成したグループを削除しないとアカウントの削除を実行できない
-	
-	・user/passの調整(UserDetailsService)
-	ーーーーーーーーーーーーーーーー
-	*/
 }

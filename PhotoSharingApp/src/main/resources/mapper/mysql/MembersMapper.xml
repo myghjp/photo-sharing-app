@@ -38,25 +38,19 @@
 	</insert>
 	
 	<!-- グループ内の利用者一覧を取得 -->
-	<select id="selectMembersList" resultMap="GroupsTable">
-		select accounts.user as accounts_user
-				,accounts.id as accounts_id
+	<select id="selectMembersList" resultMap="MembersTable">
+		select groups_members.id
 				,groups.group_name as groups_group_name
-		from `groups`
-			left join groups_members
-				on groups.id = groups_members.group_id
-				<!-- and (groups.account_id != groups_members.account_id
-					or  [[[nullも比較する]]]    ) -->
+				,accounts.user as accounts_user
+		from groups_members
+			left join `groups`
+				on groups_members.group_id = groups.id
+				and (groups_members.account_id != groups.account_id
+				or groups_members.account_id is null)
 			left join accounts
 				on groups_members.account_id = accounts.id
 			where groups.id = #{id}
 	</select>
-	
-	<!-- 利用者の削除 -->
-	<delete id="deleteMembers">
-		delete from groups_members
-			where account_id = #{id}
-	</delete>
 	
 	<select id="selectMembersId">
 		select groups_members.id
@@ -65,5 +59,21 @@
 				on groups_members.account_id = accounts.id
 			where accounts.email_address = #{accounts.emailAddress}
 	</select>
+	
+	<!-- グループメンバの名前を取得 -->
+	<select id="selectMembersName" resultMap="MembersTable">
+		select groups_members.id
+				,accounts.user as accounts_user
+		from groups_members
+			left join accounts
+			on groups_members.account_id = accounts.id
+		where groups_members.id = #{id}
+	</select>
+	
+	<!-- 利用者の削除 -->
+	<delete id="deleteMembersId">
+		delete from groups_members
+			where id = #{id}
+	</delete>
 	
 </mapper>

@@ -45,9 +45,8 @@
 						
 					<form method="post" th:action="@{/list-members}">
 				
-							<!--hiddenとtextを分ける-->
-						 <input type="hidden" th:text="${list.Accounts.user}" 
-						th:value="${list.Accounts.id}" name="id"><!--Elvis演算子-->
+						<div th:text="${list.accounts?.user?: 'unknown'}" ></div>
+						<input type="hidden" th:value="${list.id}" name="id">
 						
 						<th:block th:if="${isAdmin}">
 							<input type="submit" value="削除" class="btn btn-secondary">

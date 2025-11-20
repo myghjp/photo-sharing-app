@@ -35,5 +35,4 @@ public interface UserService {
 	/*グループのIDからアカウントIDを紐づけて管理者名を取得*/
 	public String getAdminName(int id);
 	
-	
 }

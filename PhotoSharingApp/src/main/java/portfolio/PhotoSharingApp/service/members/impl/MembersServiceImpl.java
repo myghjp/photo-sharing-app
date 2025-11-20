@@ -27,11 +27,6 @@ public class MembersServiceImpl implements MembersService{
 		return membersMapper.selectMembersList(groupId);
 	}
 	
-	/*グループから利用者を削除*/
-	public void deleteMembers(int id) {
-		membersMapper.deleteMembers(id);
-	}
-	
 	/*重複確認*/
 	@Override
 	public boolean isExistingMembersId(Accounts accounts) {
@@ -40,5 +35,16 @@ public class MembersServiceImpl implements MembersService{
 		} else {
 			return true;
 		}
+	}
+	
+	/*グループメンバの名前を取得*/
+	@Override
+	public Members getMemberName(int id) {
+		return membersMapper.selectMembersName(id);
+	}
+	
+	/*グループから利用者を削除*/
+	public void deleteMember(int id) {
+		membersMapper.deleteMembersId(id);
 	}
 }

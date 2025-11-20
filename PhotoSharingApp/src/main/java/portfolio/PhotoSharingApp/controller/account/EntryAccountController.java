@@ -50,7 +50,7 @@ public class EntryAccountController {
 		
 		Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);
 
-		/*冗長*/
+		
 		if (userService.isExistingAccountsData1(accounts)) {
 			bindingResult.rejectValue("user", "user.Alert");
 		}

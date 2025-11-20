@@ -17,10 +17,13 @@ public interface MembersMapper {
 	/*利用者一覧を表示*/
 	public List<Members> selectMembersList(int groupId);
 	
-	/*利用者を削除*/
-	public void deleteMembers(int id);
-	
 	/*重複確認*/
 	public String selectMembersId(@Param("accounts")Accounts accounts);
+	
+	/*グループメンバの名前を取得*/
+	public Members selectMembersName(@Param("id")int id);
+	
+	/*利用者を削除*/
+	public void deleteMembersId(int id);
 	
 }

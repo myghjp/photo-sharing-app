@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Accounts;
+import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Members;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
@@ -21,7 +21,7 @@ import portfolio.PhotoSharingApp.service.user.UserService;
 
 @Controller
 @SessionAttributes(value = {"groups"})
-/*@Slf4j*/
+@Slf4j
 public class ListMembersController {
 	
 	@Autowired
@@ -39,7 +39,7 @@ public class ListMembersController {
 		
 		List<Members> membersList = membersService.getMembersList(groups.getId());
 		
-		/*log.info(membersList.toString());*/
+		log.info(membersList.toString());
 		
 		model.addAttribute("membersList",membersList);
 		
@@ -61,10 +61,10 @@ public class ListMembersController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		/*idからuserNameを取得*/
-		Accounts accounts = userService.selectByUserName(id);
+		/*membersIDからuser名を取得して両方使用*/
+		Members members = membersService.getMemberName(id);
 		
-		redirectAttributes.addFlashAttribute("accounts",accounts);
+		redirectAttributes.addFlashAttribute("members",members);
 		
 		return "redirect:delete-members";
 	}
