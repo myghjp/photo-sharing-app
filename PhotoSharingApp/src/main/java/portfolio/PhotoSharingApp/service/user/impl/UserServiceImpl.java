@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService{
 	
 	/*idを使用してアカウントを削除*/
 	@Override
-	public void deleteAccount(Accounts accounts){
-		userMapper.deleteAccount(accounts);
+	public void deleteAccount(int id){
+		userMapper.deleteAccount(id);
 	};
 	
 	/*アカウント名とデータベースがデータベースに存在するかを確認*/

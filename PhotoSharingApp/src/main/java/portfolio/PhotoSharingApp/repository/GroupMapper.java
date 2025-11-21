@@ -17,12 +17,12 @@ public interface GroupMapper {
 	
 	/*ユーザ自身が所属しているグループリストを取得*/
 	public List<Groups> selectGroupList(@Param("id") int id);
-	
-	
+
 	public int selectByGroupId(@Param("id") int id);
 	
 	public Groups selectGroups(@Param("id") int id);
 	
 	public void deleteGroup(@Param("id")int id);
 
+	public int groupAdmin(@Param("id")int id);
 }

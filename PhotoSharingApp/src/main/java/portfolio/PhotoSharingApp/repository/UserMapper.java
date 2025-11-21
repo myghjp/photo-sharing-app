@@ -18,7 +18,7 @@ public interface UserMapper {
 	public void updateAccount(@Param("accounts") Accounts accounts);
 	
 	/*idを使用してアカウントを削除*/
-	public void deleteAccount(@Param("accounts") Accounts accounts);
+	public void deleteAccount(@Param("id") int id);
 	
 	/*アカウント名とデータベースがデータベースに存在するかを確認*/
 	public String selectAccountsData1(@Param("accounts") Accounts accounts);
@@ -35,4 +35,5 @@ public interface UserMapper {
 	
 	/*idからuserNameを取得*/
 	public String selectByUserName2(@Param("id") int id);
+	
 }

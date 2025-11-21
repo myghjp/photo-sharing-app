@@ -55,4 +55,9 @@ public class GroupServiceImpl implements GroupService{
 		groupMapper.deleteGroup(id);
 	}
 	
+	@Override
+	public int groupAdmin(int id) {
+		return groupMapper.groupAdmin(id);
+	}
+	
 }

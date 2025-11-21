@@ -57,4 +57,10 @@
 		where id = #{id}
 	</delete>
 	
+	<select id="groupAdmin" resultType="Integer">
+		select account_id
+		from `groups`
+		where account_id = #{id}
+	</select>
+	
 </mapper>

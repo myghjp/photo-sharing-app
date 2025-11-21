@@ -15,7 +15,7 @@ public interface UserService {
 	public void updateEditAccount(Accounts accounts);
 	
 	/*idを使用してアカウントを削除*/
-	public void deleteAccount(Accounts accounts);
+	public void deleteAccount(int id);
 	
 	/*アカウント名とがデータベースに存在するかを確認*/
 	public boolean isExistingAccountsData1(Accounts Accounts);
@@ -34,5 +34,7 @@ public interface UserService {
 	
 	/*グループのIDからアカウントIDを紐づけて管理者名を取得*/
 	public String getAdminName(int id);
+
 	
+
 }

@@ -32,8 +32,11 @@
 				<div th:text="#{deleteAccountAlert1}"></div>
 				<div th:text="#{deleteAccountAlert2}"></div>
 				
-				<span class="text-danger">エラーメッセージを赤色で表示</span><br>
-				
+				<th:block th:if="${bool}">
+					<span class="text-danger">エラーメッセージを赤色で表示</span><br>
+				</th:block>	
+					
+					
 				<a th:href="@{'/select-group'}" class="btn btn-secondary">グループ選択に戻る</a>
 		    	<input type="submit" value="削除" class="btn btn-secondary">
 			</form>

@@ -41,7 +41,7 @@
 	<!-- アカウントを削除 -->
 	<delete id="deleteAccount">
 		delete from accounts
-		where id = #{accounts.id}
+		where id = #{id}
 	</delete>
 	
 	<!-- 重複確認 -->
@@ -88,6 +88,5 @@
 		on accounts.id = groups.account_id
 		where groups.id = #{id}
 	</select>
-	
 	
 </mapper>
