@@ -24,5 +24,5 @@ public interface GroupMapper {
 	
 	public void deleteGroup(@Param("id")int id);
 
-	public int groupAdmin(@Param("id")int id);
+	public Integer groupAdmin(@Param("id")Integer id);
 }

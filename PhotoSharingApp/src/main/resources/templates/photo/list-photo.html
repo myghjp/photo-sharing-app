@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" th:href="@{/css/header.css}">
-<link rel="stylesheet" th:href="@{/css/form.css}">
-<title>写真一覧</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/form.css}">
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<title>写真一覧</title>
 </head>
 <body>
-	<nav layout:replace="~{layout/menu::menu}"></nav>
 	
-	<div class="center">
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
 	
-		<h3>グループ名を表示</h3>
-		<a th:href="@{'/select-album'}">戻る</a><br>
-		<h3>アルバム名を表示</h3>
-		<div>写真を追加するボタン</div>
-		
-		<div>ーーー以下Listーーー</div>
-		<div>アカウント名,画像,datetime</div>
-		<div>保存ボタン</div>
-		<input type="button" onclick="location.href='./delete-photo'" value="削除">
-		
+				<h3>グループ名を表示</h3>
+				<a th:href="@{'/select-album'}"  class="btn btn-secondary">戻る</a><br>
+				<h3>アルバム名を表示</h3>
+				<div>写真を追加するボタン</div>
+				
+				<div>ーーー以下Listーーー</div>
+				<div>アカウント名,画像,datetime</div>
+				<div>保存ボタン</div>
+				<input type="button" onclick="location.href='./delete-photo'" value="削除" class="btn btn-secondary">
+			</div>
+		</div>
 	</div>
 </body>
 </html>

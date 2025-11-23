@@ -24,5 +24,5 @@ public interface GroupService {
 	/*グループの削除*/
 	public void deleteGroup(int id);
 	
-	public int groupAdmin(int id);
+	public boolean groupAdmin(int id);
 }

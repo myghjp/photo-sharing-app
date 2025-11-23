@@ -56,8 +56,12 @@ public class GroupServiceImpl implements GroupService{
 	}
 	
 	@Override
-	public int groupAdmin(int id) {
-		return groupMapper.groupAdmin(id);
+	public boolean groupAdmin(int id) {
+		if (groupMapper.groupAdmin(id) == null) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 }

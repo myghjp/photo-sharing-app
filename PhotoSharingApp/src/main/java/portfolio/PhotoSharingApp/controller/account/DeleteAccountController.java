@@ -1,5 +1,7 @@
 package portfolio.PhotoSharingApp.controller.account;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
@@ -45,17 +46,7 @@ public class DeleteAccountController {
 	
 		accounts.setId(loginUserDetails.getUserId());
 		
-		/*帰ってくる値が0で削除ができない*/
-		
-		/*アカウントクラスが問題*/
-		/*※バインドではないし
-		 * 二択ではない
-		 * ここで比較
-		 * 
-		 * booleanが間違い
-		 * */
-		
-		if (groupService.groupAdmin(accounts.getId()) == 0) {
+		if (groupService.groupAdmin(accounts.getId())) {
 			return getDeleteAccount(model,true);
 		} 
 		
