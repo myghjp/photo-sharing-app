@@ -1,5 +1,7 @@
 package portfolio.PhotoSharingApp.controller.account;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.form.account.EditAccountForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
@@ -34,8 +35,10 @@ public class EditAccountController {
 	@GetMapping("/edit-account")
 	public String getEditAccount(Model model
 			,EditAccountForm editAccountForm
-	){
+			){
+		
 		model.addAttribute("editAccountForm", editAccountForm);
+		
 		return "account/edit-account";
 	}
 	
@@ -45,7 +48,8 @@ public class EditAccountController {
 			,BindingResult bindingResult
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,HttpSession session
-			,RedirectAttributes redirectAttributes) {
+			,RedirectAttributes redirectAttributes
+			) {
 		
 		Accounts accounts = modelMapper.map(editAccountForm, Accounts.class);
 		
@@ -57,9 +61,8 @@ public class EditAccountController {
 		
 		accounts.setPass(passwordEncoder.encode(accounts.getPass()));
 
-		userService.updateEditAccount(accounts);
+		userService.editAccount(accounts);
 		
-		/*※パスワードを変更すると、ログアウトする(session破棄)*/
 		session.invalidate();
 		
 		return "redirect:login";

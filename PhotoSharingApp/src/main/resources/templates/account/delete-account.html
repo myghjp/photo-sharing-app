@@ -32,15 +32,13 @@
 				<div th:text="#{deleteAccountAlert1}"></div>
 				<div th:text="#{deleteAccountAlert2}"></div>
 				
-				<th:block th:if="${bool}">
+				<th:block th:if="${isBool}">
 					<span class="text-danger">エラーメッセージを赤色で表示</span><br>
 				</th:block>	
-					
 					
 				<a th:href="@{'/select-group'}" class="btn btn-secondary">グループ選択に戻る</a>
 		    	<input type="submit" value="削除" class="btn btn-secondary">
 			</form>
-			<h3>※未定(ユーザ自身が作成したグループを削除しないとアカウントの削除を実行できない)</h3>
 		</div>
 	</div>
 </body>

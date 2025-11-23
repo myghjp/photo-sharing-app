@@ -1,5 +1,7 @@
 package portfolio.PhotoSharingApp.controller.account;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.form.account.EntryAccountForm;
 import portfolio.PhotoSharingApp.service.user.UserService;
@@ -31,9 +32,10 @@ public class EntryAccountController {
 	
 	@GetMapping("/entry-account")
 	public String getEntryAccount(Model model
-		,HttpSession session
-		,EntryAccountForm entryAccountForm
-	){
+			,HttpSession session
+			,EntryAccountForm entryAccountForm
+			){
+		
 		model.addAttribute("entryAccountForm", entryAccountForm);
 		
 		session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
@@ -46,15 +48,15 @@ public class EntryAccountController {
 			,HttpSession session
 			,@ModelAttribute @Validated EntryAccountForm entryAccountForm
 			,BindingResult bindingResult
-			,RedirectAttributes redirectAttributes) {
+			,RedirectAttributes redirectAttributes
+			) {
 		
 		Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);
 
-		
-		if (userService.isExistingAccountsData1(accounts)) {
+		if (userService.isNameExisting(accounts)) {
 			bindingResult.rejectValue("user", "user.Alert");
 		}
-		if (userService.isExistingAccountsData2(accounts)) {
+		if (userService.isAddressExisting(accounts)) {
 			bindingResult.rejectValue("email_address", "email_address.Alert");
 		}
 		
@@ -64,7 +66,7 @@ public class EntryAccountController {
 		
 		accounts.setPass(passwordEncoder.encode(accounts.getPass()));
 
-		userService.insertEntryAccount(accounts);
+		userService.createAccount(accounts);
 		
 		return "redirect:login";
 	}

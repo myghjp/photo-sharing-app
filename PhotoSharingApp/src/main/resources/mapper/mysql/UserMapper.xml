@@ -11,6 +11,15 @@
 		<result column="email_address" property="emailAddress" />
 	</resultMap>
 	
+	<!-- ログイン(アカウント名が存在するかを確認) -->
+	<select id="getSelectUser" resultMap="accountsTable">
+		select *
+		from accounts 
+		where user = #{user}
+	</select>
+	
+	<!-- ※EntryAccountーーーーーーーーーーーーーーーーー -->
+	
 	<!-- アカウント登録 -->
 	<insert id="insertAccount">
 		insert into accounts(
@@ -24,19 +33,30 @@
 		)
 	</insert>
 	
-	<!-- ログイン(アカウント名が存在するか確認) -->
-	<select id="getSelectUser" resultMap="accountsTable">
-		select *
-		from accounts 
-		where user = #{user}
+	<!-- アカウント名がデータベースに存在するかを確認 -->
+	<select id="selectByUser">
+		select user
+		from accounts
+		where user = #{accounts.user}
 	</select>
 	
+	<!-- メールアドレスがデータベースに存在するかを確認 -->
+	<select id="selectByEmailAddress">
+		select email_address
+		from accounts
+		where email_address = #{accounts.emailAddress}
+	</select>
+	
+	<!-- ーーーーーーーーーーーーーーーーーー -->
+	
 	<!-- パスワード変更 -->
-	<update id="updateAccount">
+	<update id="updatePass">
 		update accounts
 		set pass = #{accounts.pass}
 		where id = #{accounts.id}
 	</update>
+	
+	<!-- ーーーーーーーーーーーーーーーーーー -->
 	
 	<!-- アカウントを削除 -->
 	<delete id="deleteAccount">
@@ -44,19 +64,8 @@
 		where id = #{id}
 	</delete>
 	
-	<!-- 重複確認 -->
-	<select id="selectAccountsData1">
-		select user
-		from accounts
-		where user = #{accounts.user}
-	</select>
+	<!-- ーーーーーーーーーーーーーーーーーー -->
 	
-	<select id="selectAccountsData2">
-		select email_address
-		from accounts
-		where email_address = #{accounts.emailAddress}
-	</select>
-	<!-- ーーーーーーー -->
 	<select id="selectAccountData3">
 		select id
 		from accounts

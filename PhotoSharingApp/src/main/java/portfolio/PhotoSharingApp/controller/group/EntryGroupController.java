@@ -33,7 +33,8 @@ public class EntryGroupController {
 	
 	@GetMapping("/entry-group")
 	public String getEntryGroup(Model model
-			,EntryGroupForm entryGroupForm) {
+			,EntryGroupForm entryGroupForm
+			) {
 		
 		model.addAttribute("entryGroupForm", entryGroupForm);
 		return "group/entry-group";
@@ -45,7 +46,8 @@ public class EntryGroupController {
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,@ModelAttribute @Validated EntryGroupForm entryGroupForm
 			,BindingResult bindingResult
-			,RedirectAttributes redirectAttributes) {
+			,RedirectAttributes redirectAttributes
+			) {
 		
 		Groups groups = modelMapper.map(entryGroupForm, Groups.class);
 

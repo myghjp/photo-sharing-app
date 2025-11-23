@@ -10,14 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 import portfolio.PhotoSharingApp.service.user.UserService;
 
 @Controller
-@Slf4j
 public class DeleteAccountController {
 	
 	@Autowired
@@ -29,10 +27,9 @@ public class DeleteAccountController {
 	@GetMapping("/delete-account")
 	public String getDeleteAccount(Model model
 			,boolean bool
-			
 			) {
 		
-		model.addAttribute("bool",bool);
+		model.addAttribute("isBool",bool);
 
 		return "account/delete-account";
 	}
@@ -40,9 +37,10 @@ public class DeleteAccountController {
 	@PostMapping("/delete-account")
 	public String postDeleteAccount(Model model
 			,Accounts accounts
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,HttpSession session
-			,RedirectAttributes redirectAttributes) {
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,RedirectAttributes redirectAttributes
+			) {
 	
 		accounts.setId(loginUserDetails.getUserId());
 		
@@ -50,21 +48,10 @@ public class DeleteAccountController {
 			return getDeleteAccount(model,true);
 		} 
 		
-		/*ユーザ自身が作成したグループを削除しないとアカウントの削除を実行できない*/
-		/*accounts.setId(loginUserDetails.getUserId());*/
+		userService.removeAccount(accounts.getId());
 		
-		log.info(accounts.toString());
-
-		/*ログインユーザIDからAccountを削除する*/
-		userService.deleteAccount(accounts.getId());
-		
-		/*※パスワードを変更すると、ログアウトする(session破棄)*/
 		session.invalidate();
 		
 		return "redirect:login";
-		
-		
 	}
-	
-	
 }

@@ -35,9 +35,10 @@ public class SelectGroupController {
 
 	@GetMapping("/select-group")
 	public String getSelectGroup(Model model
+			,SessionStatus sessionStatus
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,SelectGroupForm selectGroupForm
-			,SessionStatus sessionStatus) {
+			) {
 
 		sessionStatus.setComplete();
 
@@ -52,7 +53,8 @@ public class SelectGroupController {
 	public String postSelectGroup(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,@RequestParam("id") int id
-			,RedirectAttributes redirectAttributes) {
+			,RedirectAttributes redirectAttributes
+			) {
 
 		Groups groups = groupService.getGroupsData(id);
 		redirectAttributes.addFlashAttribute("groups", groups);

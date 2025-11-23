@@ -13,49 +13,59 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserMapper userMapper;
 	
-	/*アカウント登録*/
-	@Override
-	public void insertEntryAccount(Accounts accounts){
-		userMapper.insertAccount(accounts);
-	}
-	
-	/*アカウント名を取得する*/
+	/*ログイン(アカウント名が存在するかを確認)*/
 	@Override
 	public Accounts getLoginAccount(String user) {
 		return userMapper.getSelectUser(user);
 	}
 	
-	/*idを使用してパスワードを変更*/
+	/*ーEntryAccountーーーーーーーーーーーーーーーーー*/
+	
+	/*アカウント登録*/
 	@Override
-	public void updateEditAccount(Accounts accounts) {
-		userMapper.updateAccount(accounts);
+	public void createAccount(Accounts accounts){
+		userMapper.insertAccount(accounts);
+	}
+	
+	/*アカウント名がデータベースに存在するかを確認*/
+	@Override
+	public boolean isNameExisting(Accounts accounts) {
+		if (userMapper.selectByUser(accounts) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	/*メールアドレスがデータベースに存在するかを確認*/
+	@Override
+	public boolean isAddressExisting(Accounts accounts) {
+		if (userMapper.selectByEmailAddress(accounts) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
+	
+	/*パスワード変更*/
+	@Override
+	public void editAccount(Accounts accounts) {
+		userMapper.updatePass(accounts);
 	};
 	
-	/*idを使用してアカウントを削除*/
+	/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
+	
+	/*アカウント削除*/
 	@Override
-	public void deleteAccount(int id){
+	public void removeAccount(int id){
 		userMapper.deleteAccount(id);
 	};
 	
-	/*アカウント名とデータベースがデータベースに存在するかを確認*/
-	@Override
-	public boolean isExistingAccountsData1(Accounts accounts) {
-		if (userMapper.selectAccountsData1(accounts) == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	@Override
-	public boolean isExistingAccountsData2(Accounts accounts) {
-		if (userMapper.selectAccountsData2(accounts) == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
+	/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
 	
-	/*ーーーーーーーー*/
+	
 	/*メールアドレスで一時的にIDを取得(後で修正)*/
 	@Override
 	public int selectAccountId(String emailAddress) {

@@ -2,30 +2,39 @@ package portfolio.PhotoSharingApp.service.user;
 
 import portfolio.PhotoSharingApp.entity.Accounts;
 
-
 public interface UserService {
-
-	/*アカウント登録*/
-	public void insertEntryAccount(Accounts accounts);
 	
-	/*アカウント名を取得*/
+	/*ーLoginーーーーーーーーーーーーーーーーー*/
+
+	/*ログイン(アカウント名が存在するかを確認)*/
 	public Accounts getLoginAccount(String user);
 	
-	/*idを使用してパスワードを変更*/
-	public void updateEditAccount(Accounts accounts);
+	/*ーEntryAccountーーーーーーーーーーーーーーーーー*/
+
+	/*アカウント登録*/
+	public void createAccount(Accounts accounts);
+	
+	/*アカウント名がデータベースに存在するかを確認*/
+	public boolean isNameExisting(Accounts Accounts);
+	
+	/*メールアドレスがデータベースに存在するかを確認*/
+	public boolean isAddressExisting(Accounts Accounts);
+	
+	/*ーEditAccountーーーーーーーーーーーーーーーーー*/
+	
+	/*パスワード変更*/
+	public void editAccount(Accounts accounts);
+	
+	/*ーDeleteAccountーーーーーーーーーーーーーーーー*/
 	
 	/*idを使用してアカウントを削除*/
-	public void deleteAccount(int id);
+	public void removeAccount(int id);
 	
-	/*アカウント名とがデータベースに存在するかを確認*/
-	public boolean isExistingAccountsData1(Accounts Accounts);
-	public boolean isExistingAccountsData2(Accounts Accounts);
+	/*ーーーーーーーーーーーーーーーーーーーーーーー*/
 	
-	/*ーーーーーーーー*/
 	/*メールアドレスで一時的にIDを取得(後で修正)*/
 	public int selectAccountId(String emailAddress);
 	
-	/*ーーーーーーーー*/
 	/*メールアドレスを使用してアカウントIdが存在するかを確認*/
 	public boolean isExistingAccountId(Accounts accounts);
 	
