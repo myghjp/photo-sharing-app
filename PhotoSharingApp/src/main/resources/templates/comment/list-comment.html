@@ -31,13 +31,13 @@
 					<div th:text=${groupName}></div>
 					<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a>
 					<div th:text=#{ccc}></div>
-					<p>ーーーーーーーーーーーーーーーーーー</p>
-					<div class="text-danger">赤色でエラーメッセージを表示</div><br>
+					<p>ーーーーーーーーーーー</p>
 					
 					<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
 					    <div class="form-group">
-					        <label for="comment"></label>
-					         <input type="text" th:field="*{comment}">
+					        <label for="comment" ></label>
+					         <input type="text" th:field="*{comment}" th:errorclass="is-invalid">
+					         <div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
 					    <input type="submit" value="コメント" class="btn btn-secondary">
 					    </div>
 			    	</form>

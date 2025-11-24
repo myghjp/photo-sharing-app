@@ -20,8 +20,6 @@ public class HomeGroupController {
 			,Groups groups
 			,RedirectAttributes redirectAttributes) {
 		
-		/*管理者*/
-		/*もしグループ内のアカウントIDとユーザ自身のIDが一致すれば管理者である*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("admin",true);
 		}
@@ -29,11 +27,5 @@ public class HomeGroupController {
 		model.addAttribute("userId",loginUserDetails.getUserId());
 		return "group/home-group";
 		
-		
-		/*ーー↓AからEまでーーーーーーーーーーーー*/
-		/* C-3,アカウント削除のバインド*/
-		
-		
-		/*ーーーーーーーーーーーーーーーーーーーー*/
 	}
 }
