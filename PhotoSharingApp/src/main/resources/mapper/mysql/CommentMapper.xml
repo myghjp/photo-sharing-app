@@ -10,6 +10,12 @@
 		<result column="comment" property="comment" />
 		<result column="account_id" property="accountId" />
 		<result column="create_date_time" property="createDateTime" />
+		<association property="accounts" resultMap="accountsTable" columnPrefix="accounts_"/>
+	</resultMap>
+	
+	<resultMap type="portfolio.PhotoSharingApp.entity.Accounts" id="accountsTable">
+		<id column="id" property="id" />
+		<result column="user" property="user" />
 	</resultMap>
 	
 	<!-- コメント情報を追加 -->
@@ -26,9 +32,15 @@
 	</insert>
 	
 	<!-- コメント情報を取得 -->
+	<!-- id番号,アカウント名,コメントした日時,入力されたテキストを取得 -->
 	<select id="selectComment" resultMap="CommentsTable">
-		select *
+		select comments.id
+				,accounts.user as accounts_user
+				,comments.create_date_time
+				,comments.comment
 		from comments
+			left join accounts
+			on comments.account_id = accounts.id
 	</select>
 	
 	<select id="select" resultMap="CommentsTable">

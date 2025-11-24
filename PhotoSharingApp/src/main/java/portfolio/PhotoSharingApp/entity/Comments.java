@@ -12,5 +12,7 @@ public class Comments {
 	private String comment;
 	private Integer accountId;/*アカウントテーブルのID*/
 	private Date createDateTime;
+	
+	private Accounts accounts;
 
 }

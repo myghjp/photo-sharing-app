@@ -45,10 +45,9 @@
 					<div>ーーー以下Listーーー</div>
 					
 					<div th:each="list:${commentList}">
-						<div th:text="${list.id}"></div>
-						<div th:text="${list.accountId}"></div>
-						<div th:text="${list.createDateTime}"></div>
-						
+						<div th:text="${list.id} + '.'"></div>
+						<div th:text="'▼' + ${list.Accounts.user}"></div>
+						<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}"></div>
 						
 						<a th:href="@{'/delete-comment/' + ${list.id}}" class="btn btn-secondary">削除</a>
 						<br>
