@@ -9,7 +9,7 @@
 	<link rel="stylesheet" th:href="@{/css/form.css}">
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	<title>アルバム作成</title>
+	<title th:text=#{entryAlbumPage}></title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
@@ -30,8 +30,6 @@
 				<form method="post" th:action="@{/entry-album}" th:object="${entryAlbumForm}">
 					
 					<div th:text="#{entryAlbumAlert}"></div>
-					
-					<p>エラーメッセージを表示</p>
 					
 					<div class="form-group">
 				        <label for="albumName" th:text="#{albumName}"></label>

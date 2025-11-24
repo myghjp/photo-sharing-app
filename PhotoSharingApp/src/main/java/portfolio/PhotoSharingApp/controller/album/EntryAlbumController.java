@@ -51,7 +51,7 @@ public class EntryAlbumController {
 		albums.setGroupId(groups.getId());
 		
 		/*グループIDとアルバム名を登録する*/
-		albumService.insertEntryAlbum(albums);
+		albumService.addAlbum(albums);
 		
 		return "redirect:select-album";
 	}

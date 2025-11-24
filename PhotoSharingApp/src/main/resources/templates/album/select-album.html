@@ -9,7 +9,7 @@
 	<link rel="stylesheet" th:href="@{/css/form.css}">
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	<title>アルバム一覧</title>
+	<title th:text=#{selectAlbumPage}></title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
@@ -27,7 +27,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col text-center">
-				<div th:text="#{groupName}"></div>
+				<div th:text="${groupName}"></div>
 				
 				<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a><br>
 				
@@ -39,11 +39,15 @@
 					
 						<div th:each="list:${albumList}" >
 							<input type="radio" th:text="${list.albumName}" th:value="${list.id}" name="id">
-							<a th:href="@{'/delete-album/' + ${list.id}}">削除</a>
+							<a th:href="@{'/delete-album/' + ${list.id}}" class="btn btn-secondary" >削除</a>
 							<br>
 						</div>
 					<br>
-					<input type="submit" value="アルバムを開く" class="btn btn-secondary">
+					
+					<th:block th:unless="${albumList.isEmpty()}">
+						<input type="submit" value="アルバムを開く" class="btn btn-secondary">
+					</th:block>
+					
 				</form>
 			</div>
 		</div>

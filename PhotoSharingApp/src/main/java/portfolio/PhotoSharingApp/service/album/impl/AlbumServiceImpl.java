@@ -17,14 +17,19 @@ public class AlbumServiceImpl implements AlbumService{
 	
 	/*グループID,アルバム名 を追加*/
 	@Override
-	public void insertEntryAlbum(Albums albums) {
-		albumMapper.insertAlbumData(albums);
+	public void addAlbum(Albums albums) {
+		albumMapper.insertAlbum(albums);
 	}
 	
 	/*アルバム一覧表示*/
 	@Override
 	public List<Albums> getAlbumList() {
 		return albumMapper.selectAlbumName();
+	}
+	
+	@Override
+	public Albums getAlbum(int id) {
+		return albumMapper.selectAlbum(id);
 	}
 	
 	/*アルバム削除*/

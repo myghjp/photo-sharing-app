@@ -11,12 +11,14 @@ import portfolio.PhotoSharingApp.entity.Albums;
 public interface AlbumMapper {
 	
 	/*グループID,アルバム名 を追加*/
-	public void insertAlbumData(@Param("albums") Albums albums);
+	public void insertAlbum(@Param("albums") Albums albums);
 	
 	/*アルバム一覧表示*/
 	public List<Albums> selectAlbumName();
 	
+	public Albums selectAlbum(@Param("id") Integer id);
+	
 	/*アルバム削除*/
-	public void deleteAlbum(@Param("id") int id);
+	public void deleteAlbum(@Param("id") Integer id);
 	
 }

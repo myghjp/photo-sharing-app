@@ -56,7 +56,6 @@ public class ListCommentController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		/*コメントバインドエラーの作成*/
 		if (bindingResult.hasErrors()) {
 			return getListComment(model,groups,listCommentForm);
 		}

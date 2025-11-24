@@ -11,7 +11,7 @@
 	</resultMap>
 	
 	<!-- アルバム名登録 -->
-	<insert id="insertAlbumData">
+	<insert id="insertAlbum">
 		insert into albums(
 			 group_id
 			,album_name
@@ -21,9 +21,16 @@
 		)
 	</insert>
 	
+	<!-- アルバム一覧を取得 -->
 	<select id="selectAlbumName" resultMap="AlbumsTable">
 		select id,album_name
 		from albums
+	</select>
+	
+	<select id="selectAlbum" resultMap="AlbumsTable">
+		select id,album_name
+		from albums
+		where id = #{id}
 	</select>
 	
 	<delete id="deleteAlbum">

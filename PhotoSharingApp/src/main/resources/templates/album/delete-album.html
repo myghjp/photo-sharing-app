@@ -9,7 +9,7 @@
 	<link rel="stylesheet" th:href="@{/css/form.css}">
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	<title>アルバム削除</title>
+	<title th:text=#{deleteAlbumPage}></title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
@@ -31,11 +31,11 @@
 				
 					<div th:text="#{deleteAlbumAlert}"></div>
 					
-					<div th:text="${id}"></div>
+					<div th:text="${albums.albumName}"></div>
 					
-					<a th:href="@{'/select-album'}"  class="btn btn-secondary">キャンセル</a>
+					<a th:href="@{'/select-album'}" class="btn btn-secondary">キャンセル</a>
 					
-					<input type="hidden" th:value="${id}" name="id" >
+					<input type="hidden" th:value="${albums.id}" name="id" >
 				    <input type="submit" value="削除" class="btn btn-secondary">
 				</form>
 			</div>

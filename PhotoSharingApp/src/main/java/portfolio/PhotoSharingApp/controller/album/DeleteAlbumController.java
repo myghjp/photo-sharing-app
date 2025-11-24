@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import portfolio.PhotoSharingApp.entity.Albums;
 import portfolio.PhotoSharingApp.form.album.DeleteAlbumForm;
 import portfolio.PhotoSharingApp.service.album.AlbumService;
 
@@ -20,11 +21,13 @@ public class DeleteAlbumController {
 	
 	@GetMapping("/delete-album/{id}")
 	public String getDeleteAlbum(Model model
-			,@PathVariable("id")int id
-			,DeleteAlbumForm deleteAlbumForm
-			) {
+		,@PathVariable("id")int id
+		,DeleteAlbumForm deleteAlbumForm
+		) {
 		
-		model.addAttribute("id",id);
+		Albums albums = albumService.getAlbum(id);
+		model.addAttribute("albums", albums);
+		
 		model.addAttribute("deleteAlbumForm",deleteAlbumForm);
 		
 		return "album/delete-album";
