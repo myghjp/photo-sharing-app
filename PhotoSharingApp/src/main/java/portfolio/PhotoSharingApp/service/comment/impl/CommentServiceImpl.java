@@ -15,16 +15,21 @@ public class CommentServiceImpl implements CommentService{
 	@Autowired
 	private CommentMapper commentMapper;
 	
-	/*グループID,アカウントID,テキスト入力情報 を追加*/
+	/*コメント情報を追加*/
 	@Override
-	public void insertCommentData(Comments comments) {
-		commentMapper.insertCommentData(comments);
+	public void addComment(Comments comments) {
+		commentMapper.insertComment(comments);
 	}
 	
-	/*id番号,アカウント名,日時,コメント を取得*/
+	/*コメント情報を取得*/
 	@Override
-	public List<Comments> commentDataList(){
-		return commentMapper.selectCommentData();
+	public List<Comments> commentList(){
+		return commentMapper.selectComment();
+	}
+	
+	/*コメントを取得*/
+	public Comments getComment(int id) {
+		return commentMapper.select(id);
 	}
 	
 	/*コメントの削除*/

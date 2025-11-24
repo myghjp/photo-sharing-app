@@ -6,11 +6,14 @@ import portfolio.PhotoSharingApp.entity.Comments;
 
 public interface CommentService {
 
-	/*グループID,アカウントID,テキスト入力情報 を追加*/
-	public void insertCommentData(Comments comments);
+	/*コメント情報を追加*/
+	public void addComment(Comments comments);
 	
-	/*id番号,アカウント名,日時,コメント を取得*/
-	public List<Comments> commentDataList();
+	/*コメント情報を取得*/
+	public List<Comments> commentList();
+	
+	/*コメントを取得*/
+	public Comments getComment(int id);
 	
 	/*コメントの削除*/
 	public void deleteComment(int id);

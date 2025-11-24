@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import portfolio.PhotoSharingApp.entity.Comments;
 import portfolio.PhotoSharingApp.service.comment.CommentService;
 
 @Controller
@@ -19,22 +20,21 @@ public class DeleteCommentController {
 	
 	@GetMapping("/delete-comment/{id}")
 	public String getDeleteComment(Model model
-			/*,DeleteCommentForm deleteCommentForm*/
-			,@PathVariable("id") int id) {
+		,@PathVariable("id")int id
+		) {
 
-				
-				/*TodoItems todoItems = todoService.getTodoItems(id);
-				model.addAttribute("todoItems", todoItems);*/
+			Comments comments = commentService.getComment(id);
+			model.addAttribute("comments", comments);
 		
-		model.addAttribute("id", id);
+			/*model.addAttribute("id", id);*/
 
 		return "comment/delete-comment";
 	}
 	
 	@PostMapping("/delete-comment")
 	public String getDeleteComment(Model model
-			,@RequestParam("id") int id
-			,RedirectAttributes redirectAttributes
+		,@RequestParam("id") int id
+		,RedirectAttributes redirectAttributes
 		) {
 	
 		/*コメントの削除*/

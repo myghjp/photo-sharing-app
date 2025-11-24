@@ -12,8 +12,8 @@
 		<result column="create_date_time" property="createDateTime" />
 	</resultMap>
 	
-	<!-- グループID,アカウントID,テキスト入力情報 を追加 -->
-	<insert id="insertCommentData">
+	<!-- コメント情報を追加 -->
+	<insert id="insertComment">
 		insert into comments(
 			 group_id
 			,comment
@@ -25,10 +25,16 @@
 		)
 	</insert>
 	
-	<!-- id番号,アカウント名,日時,コメント を取得 -->
-	<select id="selectCommentData" resultMap="CommentsTable">
+	<!-- コメント情報を取得 -->
+	<select id="selectComment" resultMap="CommentsTable">
 		select *
 		from comments
+	</select>
+	
+	<select id="select" resultMap="CommentsTable">
+		select id,comment
+		from comments
+		where id = #{id}
 	</select>
 	
 	<!-- コメントの削除 -->

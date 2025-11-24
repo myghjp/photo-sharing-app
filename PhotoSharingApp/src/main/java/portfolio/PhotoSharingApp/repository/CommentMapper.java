@@ -10,13 +10,15 @@ import portfolio.PhotoSharingApp.entity.Comments;
 @Mapper
 public interface CommentMapper {
 	
-	/*グループID,アカウントID,テキスト入力情報 を追加*/
-	public void insertCommentData(@Param("comments") Comments comments);
+	/*コメント情報を追加*/
+	public void insertComment(@Param("comments") Comments comments);
 
-	/*id番号,アカウント名,日時,コメント を取得*/
-	public List<Comments> selectCommentData();
+	/*コメント情報を取得*/
+	public List<Comments> selectComment();
+	
+	public Comments select(@Param("id")Integer id);
 
 	/*コメントの削除*/
-	public void deleteComment(@Param("id")int id);
+	public void deleteComment(@Param("id")Integer id);
 	
 }

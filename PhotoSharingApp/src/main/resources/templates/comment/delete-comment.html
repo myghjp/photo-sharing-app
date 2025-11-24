@@ -9,7 +9,7 @@
 	<link rel="stylesheet" th:href="@{/css/form.css}">
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	<title>コメント削除</title>
+	<title th:text=#{DeleteCommentPage}></title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
@@ -30,13 +30,13 @@
 		
 				<form method="post" th:action="@{/delete-comment}">
 				
-					<div>このコメントを削除します、よろしいですか？</div>
+					<div th:text=#{deleteCommentAlert}></div>
 					
-					<div th:text=${id}>←コメント内容を表示</div>
+					<div th:text=${comments.comment}></div>
 					
 					<a th:href="@{'/list-comment'}" class="btn btn-secondary">キャンセル</a>
 					
-					<input type="hidden" name="id" th:value="${id}">
+					<input type="hidden" name="id" th:value="${comments.id}">
 				    <input type="submit" value="削除" class="btn btn-secondary">
 				</form>
 			</div>

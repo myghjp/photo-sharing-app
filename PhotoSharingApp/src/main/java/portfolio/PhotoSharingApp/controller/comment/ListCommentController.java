@@ -32,22 +32,23 @@ public class ListCommentController {
 	@GetMapping("/list-comment")
 	public String getListComment(Model model
 			,Groups groups
-			,ListCommentForm listCommentForm) {
+			,ListCommentForm listCommentForm
+			) {
 		
 		model.addAttribute("listCommentForm",listCommentForm);
 		model.addAttribute("groupName",groups.getGroupName());
 		
 		/*id番号,アカウント名,コメントした日時,入力されたテキストを取得*/
-		List<Comments> commentDataList = commentService.commentDataList();
-		model.addAttribute("commentDataList", commentDataList);
+		List<Comments> commentList = commentService.commentList();
+		model.addAttribute("commentList", commentList);
 		
 		return "comment/list-comment";
 	}
 	
 	@PostMapping("/list-comment")
 	public String postListComment(Model model
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,Groups groups
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,@ModelAttribute ListCommentForm listCommentForm
 			,RedirectAttributes redirectAttributes
 			) {
@@ -58,7 +59,7 @@ public class ListCommentController {
 		comments.setGroupId(groups.getId());
 		comments.setAccountId(loginUserDetails.getUserId());
 		
-		commentService.insertCommentData(comments);
+		commentService.addComment(comments);
 	
 		return "redirect:list-comment";
 	}

@@ -9,7 +9,7 @@
 	<link rel="stylesheet" th:href="@{/css/form.css}">
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	<title>掲示板</title>
+	<title th:text=#{listCommentPage}></title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
@@ -32,7 +32,7 @@
 					<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a>
 					<div th:text=#{ccc}></div>
 					<p>ーーーーーーーーーーーーーーーーーー</p>
-					<div>赤色でエラーメッセージを表示</div><br>
+					<div class="text-danger">赤色でエラーメッセージを表示</div><br>
 					
 					<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
 					    <div class="form-group">
@@ -44,10 +44,12 @@
 					
 					<div>ーーー以下Listーーー</div>
 					
-					<div th:each="list:${commentDataList}">
+					<div th:each="list:${commentList}">
 						<div th:text="${list.id}"></div>
 						<div th:text="${list.accountId}"></div>
 						<div th:text="${list.createDateTime}"></div>
+						
+						
 						<a th:href="@{'/delete-comment/' + ${list.id}}" class="btn btn-secondary">削除</a>
 						<br>
 						<div th:text="${list.comment}"></div>
