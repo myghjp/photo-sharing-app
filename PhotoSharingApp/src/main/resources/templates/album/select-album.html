@@ -35,7 +35,7 @@
 				
 				<div th:text="#{selectAlbumAlert}"></div>
 				
-				<form method="post" th:action="@{/list-photo}">
+				<form method="post" th:action="@{/select-album}">
 					
 						<div th:each="list:${albumList}" >
 							<input type="radio" th:text="${list.albumName}" th:value="${list.id}" name="id">
