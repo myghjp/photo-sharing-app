@@ -41,27 +41,13 @@ public class SelectAlbumController {
 			,Groups groups
 			,@RequestParam("id")int albumId
 			,RedirectAttributes redirectAttributes) {
-		
-		int groupId = groups.getId();
-		
-		
-		
-		/*アルバムもセッション？*/
+		/*～アルバムを開く*/
+		/*アルバムをセッションに格納？*/
 		
 		/*取得したアルバムIDと
 		使用しているグループIDを使い
 		写真一覧を取得する*/
 		
-		
-		/*※ここは表示*/
-		/*グループ名*/
-		/*アルバム名*/
-		
-		
-		
-		
-		
-		/*model.addAttribute("groupName",groups.getGroupName());*/
 		
 		/*	List<Albums> albumList = albumService.getAlbumList();*/
 		/*model.addAttribute("albumList", albumList);*/

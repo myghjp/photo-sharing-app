@@ -10,5 +10,17 @@
 		<result column="photo" property="photo"/>
 		<result column="account_id" property="accountId"/>
 	</resultMap>
+	
+	<insert id="insertPhoto">
+		insert into photos(
+			 album_id
+			,photo
+			,account_id
+		)VALUES(
+			 #{photos.albumId}
+			,#{photos.photo}
+			,#{photos.accountId}
+		)
+	</insert>
 
 </mapper>

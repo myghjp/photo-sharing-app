@@ -6,8 +6,8 @@ import lombok.Data;
 public class Photos {
 	
 	private Integer id;
-	private Integer album_id;/*アルバムテーブルのid*/
+	private Integer albumId;/*アルバムテーブルのid*/
 	private String photo; /*写真のパス情報？*/
-	private Integer account_id;/*アカウントテーブルのid*/
+	private Integer accountId;/*アカウントテーブルのid*/
 
 }
