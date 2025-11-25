@@ -9,7 +9,7 @@
 	<link rel="stylesheet" th:href="@{/css/form.css}">
 	
 	<!--画像を表示してみる？-->
-	<link rel="stylesheet" th:href="@{/static/img}">
+	<!--<link rel="stylesheet" th:href="@{/static/img}">-->
 	
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
@@ -21,25 +21,31 @@
 		<div class="row">
 			<div class="col text-center">
 	
-				<h3>●グループ名を表示</h3>
+				<p>●グループ名を表示</p>
 				
 				<a th:href="@{'/select-album'}" class="btn btn-secondary">戻る</a><br>
 				
-				<h3>●アルバム名を表示</h3>
+				<p>●アルバム名を表示</p>
 				
-				<div>△写真を追加するボタン？？？</div>
+				<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data">
+				    <input type="file" name="photo" accept=".jpg, .jpeg, .png">
+				    <input type="submit" value="写真を追加する">
+				</form>
 				
 				
 				<div>ーーー以下登録されたListを表示するだけーーー</div>
 				
-				<!--？-->
-				<img src="https://localhost:8080/static/img">
+				<!-- パス情報を繰り返す-->
+				 <!--<img th:src="@{${繰り返し}}" alt="画像名" >-->
+				 <!--width=-->
+				 
+				 <img th:src="@{/img/フリー素材1.jpg}" ><!--alt="フリー素材1"-->
 				
+				<p>●アカウント名,△画像？,●datetime</p>
 				
-				
-				<h3>●アカウント名,△画像？,●datetime</h3>
-				
-				<h3>△保存ボタン？？？</h3>
+				<!--<a th:href="画像パス" download="画像名?alt?">
+  					<img src="your-image.jpg" alt="保存">
+				</a>-->
 				<input type="button" onclick="location.href='./delete-photo'" value="●削除" class="btn btn-secondary">
 			</div>
 		</div>
