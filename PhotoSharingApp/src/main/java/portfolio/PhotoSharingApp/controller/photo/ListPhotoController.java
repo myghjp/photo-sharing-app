@@ -3,6 +3,7 @@ package portfolio.PhotoSharingApp.controller.photo;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -32,6 +33,12 @@ public class ListPhotoController {
 			/*先にformで渡す？*/
 			) {
 		
+			/*↓このアルバムIDのListを表示(後に編集)*/
+			
+		
+			List<Photos> photoList = photoService.getphotoList();
+			model.addAttribute("photoList", photoList);
+		
 		return "photo/list-photo";
 	}
 	
@@ -53,7 +60,6 @@ public class ListPhotoController {
 		/*ーー↓データベースにパス情報を登録するーーーーー*/
 		
 		/*このアルバムのID*/
-		int x = 4;
 		photos.setAlbumId(4);
 		
 		/*自身のアカウントID*/

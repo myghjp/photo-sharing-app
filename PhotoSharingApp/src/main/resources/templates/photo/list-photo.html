@@ -35,18 +35,21 @@
 				
 				<div>ーーー以下登録されたListを表示するだけーーー</div>
 				
-				<!-- パス情報を繰り返す-->
-				 <!--<img th:src="@{${繰り返し}}" alt="画像名" >-->
-				 <!--width=-->
-				 
-				 <img th:src="@{/img/フリー素材1.jpg}" ><!--alt="フリー素材1"-->
 				
-				<p>●アカウント名,△画像？,●datetime</p>
 				
-				<!--<a th:href="画像パス" download="画像名?alt?">
-  					<img src="your-image.jpg" alt="保存">
-				</a>-->
-				<input type="button" onclick="location.href='./delete-photo'" value="●削除" class="btn btn-secondary">
+					<div th:each="list:${photoList}">
+						<div th:text="'▼' + ${list.Accounts.user}"></div>
+						<img th:src="@{${list.photo}}" alt=""><!--width=-->
+						<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}"></div>
+					</div>
+				
+				
+					<!--<a th:href="画像パス" download="画像名?alt?">
+	  					<img src="your-image.jpg" alt="保存">
+					</a>-->
+					<input type="button" onclick="location.href='./delete-photo'" value="削除" class="btn btn-secondary">
+				
+				
 			</div>
 		</div>
 	</div>

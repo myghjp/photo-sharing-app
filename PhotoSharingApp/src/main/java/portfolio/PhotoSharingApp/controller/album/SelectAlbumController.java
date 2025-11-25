@@ -49,7 +49,7 @@ public class SelectAlbumController {
 		写真一覧を取得する*/
 		
 		
-		/*	List<Albums> albumList = albumService.getAlbumList();*/
+		/*List<Albums> albumList = albumService.getAlbumList();*/
 		/*model.addAttribute("albumList", albumList);*/
 		
 		return "redirect:list-photo";

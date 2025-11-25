@@ -9,6 +9,13 @@
 		<result column="album_id" property="albumId"/>
 		<result column="photo" property="photo"/>
 		<result column="account_id" property="accountId"/>
+		<result column="create_date_time" property="createDateTime"/>
+		<association property="accounts" resultMap="accountsTable" columnPrefix="accounts_"/>
+	</resultMap>
+	
+	<resultMap type="portfolio.PhotoSharingApp.entity.Accounts" id="accountsTable">
+		<id column="id" property="id" />
+		<result column="user" property="user"/>
 	</resultMap>
 	
 	<insert id="insertPhoto">
@@ -22,5 +29,19 @@
 			,#{photos.accountId}
 		)
 	</insert>
+	
+	<select id="selectPhotoList" resultMap="PhotosTable">
+		select 
+		<!-- アカウント名 Accountsテーブル
+		photo(パス)
+		DateTime -->
+		accounts.user as accounts_user
+		,photo
+		,photos.create_date_time
+		from photos
+			left join accounts
+			on photos.account_id = accounts.id
+		<!-- where album_id = #{albumId} -->
+	</select>
 
 </mapper>
