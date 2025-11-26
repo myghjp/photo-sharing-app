@@ -6,26 +6,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Albums;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.service.album.AlbumService;
 
 @Controller
-@SessionAttributes(value = {"groups"})
+@SessionAttributes(value = {"groups","albums"})
 public class SelectAlbumController {
 	
 	@Autowired
 	private AlbumService albumService;
 	
+	@ModelAttribute(value = "albums")
+	public Albums albums() {
+		return new Albums();
+	}
+	
 	@GetMapping("/select-album")
 	public String getSelectAlbum(Model model
+			,HttpSession httpSession
 			,Groups groups
 			,RedirectAttributes redirectAttributes) {
+		
+		/*album情報の破棄*/
+		httpSession.removeAttribute("albums");
 		
 		/*ここでアルバム一覧を取得*/
 		model.addAttribute("groupName",groups.getGroupName());
@@ -38,19 +49,16 @@ public class SelectAlbumController {
 	
 	@PostMapping("/select-album")
 	public String postSelectAlbum(Model model
-			,Groups groups
+			,Albums albums
 			,@RequestParam("id")int albumId
 			,RedirectAttributes redirectAttributes) {
 		/*～アルバムを開く*/
-		/*アルバムをセッションに格納？*/
+		/*アルバムcontroller内でsessionに格納したい*/
 		
-		/*取得したアルバムIDと
-		使用しているグループIDを使い
-		写真一覧を取得する*/
+		Albums albumData = albumService.getAlbum(albumId);
 		
-		
-		/*List<Albums> albumList = albumService.getAlbumList();*/
-		/*model.addAttribute("albumList", albumList);*/
+		albums.setId(albumData.getId());
+		albums.setAlbumName(albumData.getAlbumName());
 		
 		return "redirect:list-photo";
 	}

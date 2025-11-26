@@ -21,11 +21,11 @@
 		<div class="row">
 			<div class="col text-center">
 	
-				<p>●グループ名を表示</p>
+				<div th:text="${groupName}"></div>
 				
 				<a th:href="@{'/select-album'}" class="btn btn-secondary">戻る</a><br>
 				
-				<p>●アルバム名を表示</p>
+				<div th:text="${albumName}"></div>
 				
 				<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data">
 				    <input type="file" name="photo" accept=".jpg, .jpeg, .png">
@@ -33,23 +33,26 @@
 				</form>
 				
 				
-				<div>ーーー以下登録されたListを表示するだけーーー</div>
+				<div>ーー以下登録されたListを表示するだけーー</div>
 				
+				<!--
+				<div th:each="list:${photoList}">
+					<div th:text="'▼' + ${list.Accounts.user}"></div>
+					
+					<img th:src="@{/static/img}" alt="${list.photo}">←間違い
+					<img th:src="@{/static/img + ${list.photo}}" alt="">←？
+					
+					<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}"></div>
+				</div>
+				-->
+			
+				<!--
+				<a th:href="画像パス" download="画像名?alt?">
+  					<img src="your-image.jpg" alt="保存">
+				</a>
+				-->
 				
-				
-					<div th:each="list:${photoList}">
-						<div th:text="'▼' + ${list.Accounts.user}"></div>
-						<img th:src="@{${list.photo}}" alt=""><!--width=-->
-						<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}"></div>
-					</div>
-				
-				
-					<!--<a th:href="画像パス" download="画像名?alt?">
-	  					<img src="your-image.jpg" alt="保存">
-					</a>-->
-					<input type="button" onclick="location.href='./delete-photo'" value="削除" class="btn btn-secondary">
-				
-				
+				<input type="button" onclick="location.href='./delete-photo'" value="削除" class="btn btn-secondary">
 			</div>
 		</div>
 	</div>

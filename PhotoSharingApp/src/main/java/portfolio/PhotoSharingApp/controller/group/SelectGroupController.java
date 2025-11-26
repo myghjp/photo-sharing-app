@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.form.group.SelectGroupForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
@@ -22,7 +21,6 @@ import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
 @SessionAttributes(value = {"groups"})
-@Slf4j
 public class SelectGroupController {
 
 	@Autowired
