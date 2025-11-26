@@ -5,11 +5,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{/css/form.css}">
-	
-	<!--画像を表示してみる？-->
-	<!--<link rel="stylesheet" th:href="@{/static/img}">-->
 	
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
@@ -33,18 +32,17 @@
 				</form>
 				
 				
-				<div>ーー以下登録されたListを表示するだけーー</div>
+				<h4>ーー以下登録されたListを表示するだけーー</h4>
 				
-				<!--
+				
 				<div th:each="list:${photoList}">
 					<div th:text="'▼' + ${list.Accounts.user}"></div>
 					
-					<img th:src="@{/static/img}" alt="${list.photo}">←間違い
-					<img th:src="@{/static/img + ${list.photo}}" alt="">←？
+					<img th:src="@{'static/img/' + ${list.photo}}"><!--←全角文字化け？-->
 					
 					<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}"></div>
 				</div>
-				-->
+				
 			
 				<!--
 				<a th:href="画像パス" download="画像名?alt?">

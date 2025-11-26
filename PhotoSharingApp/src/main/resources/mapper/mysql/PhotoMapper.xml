@@ -36,7 +36,7 @@
 		photo(パス)
 		DateTime -->
 		accounts.user as accounts_user
-		,photo
+		,photos.photo
 		,photos.create_date_time
 		from photos
 			left join accounts
