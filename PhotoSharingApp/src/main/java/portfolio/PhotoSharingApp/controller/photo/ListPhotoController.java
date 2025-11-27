@@ -68,7 +68,7 @@ public class ListPhotoController {
 			return "redirect:list-photo";
 		}
 		
-		/*※パス情報直書き×*/
+		/*※パス情報直書き×(でもそのまま提出11月27日)*/
 		Path path = Path.of("src/main/resources/static/img/" + photo.getOriginalFilename());
 		Files.copy(photo.getInputStream(), path);
 		

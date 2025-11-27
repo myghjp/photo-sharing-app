@@ -32,16 +32,25 @@
 	
 	<select id="selectPhotoList" resultMap="PhotosTable">
 		select 
-		<!-- アカウント名 Accountsテーブル
-		photo(パス)
-		DateTime -->
-		accounts.user as accounts_user
-		,photos.photo
+		photos.id
+		,accounts.user as accounts_user
+		,photo
 		,photos.create_date_time
 		from photos
 			left join accounts
 			on photos.account_id = accounts.id
 		<!-- where album_id = #{albumId} -->
 	</select>
-
+	
+	<select id="selectPhoto" resultMap="PhotosTable">
+		select id,photo
+		from photos
+		where id = #{id}
+	</select>
+	
+	<delete id="deleteMembersId">
+		delete from photos
+			where id = #{id}
+	</delete>
+	
 </mapper>

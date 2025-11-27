@@ -5,14 +5,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{/css/form.css}">
 	
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	<title>写真一覧</title>
+	<title th:text="#{listPhotoPage}"></title>
 </head>
 <body>
 	
@@ -32,25 +30,19 @@
 				</form>
 				
 				
-				<h4>ーー以下登録されたListを表示するだけーー</h4>
-				
-				
 				<div th:each="list:${photoList}">
 					<div th:text="'▼' + ${list.Accounts.user}"></div>
 					
-					<img th:src="@{'static/img/' + ${list.photo}}"><!--←全角文字化け？-->
+					<img th:src="@{'/img/' + ${list.photo}}">
 					
 					<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}"></div>
+					
+	  				<a th:href="@{'/img/' + ${list.photo}}" download="" class="btn btn-secondary">保存</a>
+					
+					<a th:href="@{'/delete-photo/' + ${list.id}}" class="btn btn-secondary">削除</a>
+					
 				</div>
 				
-			
-				<!--
-				<a th:href="画像パス" download="画像名?alt?">
-  					<img src="your-image.jpg" alt="保存">
-				</a>
-				-->
-				
-				<input type="button" onclick="location.href='./delete-photo'" value="削除" class="btn btn-secondary">
 			</div>
 		</div>
 	</div>

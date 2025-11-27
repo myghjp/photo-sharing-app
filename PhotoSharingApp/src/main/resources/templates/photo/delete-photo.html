@@ -9,10 +9,9 @@
 	<link rel="stylesheet" th:href="@{/css/form.css}">
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	<title>写真削除</title>
+	<title th:text="#{deletePhotoPage}"></title>
 </head>
 <body>
-	
 	
 	<div class="container">
 		<div class="row">
@@ -20,14 +19,16 @@
 	
 				<form method="post" th:action="@{/delete-photo}">
 				
-					<div>この写真を削除します、よろしいですか？</div>
-					<div>写真を表示</div>
+					<div th:text="#{deletePhotoAlert}"></div>
+					
+					<img th:src="@{'/img/' + ${photoData.photo}}">
 					
 					<a th:href="@{'/list-photo'}" class="btn btn-secondary">キャンセル</a><br>
 					
-					<input type="hidden" name="id" th:value="${id}">
+					<input type="hidden" name="id" th:value="${photoData.id}">
 				    <input type="submit" value="削除" class="btn btn-secondary">
 				</form>
+			
 			</div>
 		</div>
 	</div>
