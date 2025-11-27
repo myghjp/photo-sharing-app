@@ -15,6 +15,12 @@ public class GroupServiceImpl implements GroupService{
 	@Autowired
 	private GroupMapper groupMapper;
 	
+	/*[グループ作成]グループ名とログイン中のアカウントIDを追加*/
+	@Override
+	public void entryGroup(Groups groups) {
+		groupMapper.insertGroup(groups);
+	}
+	
 	/*重複確認*/
 	@Override
 	public boolean isExistingGroupsData(Groups groups) {
@@ -25,15 +31,9 @@ public class GroupServiceImpl implements GroupService{
 		}
 	}
 	
-	/*[グループ作成]グループ名とログイン中のアカウントIDを追加*/
-	@Override
-	public void insertEntryGroup(Groups groups) {
-		groupMapper.insertGroupName(groups);
-	}
-	
 	/*ユーザIDからグループIDを取得*/
 	@Override
-	public int selectByGroupId(int id) {
+	public int getByGroupId(int id) {
 		return groupMapper.selectByGroupId(id);
 	}
 

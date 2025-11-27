@@ -8,18 +8,10 @@
 		<id column="id" property="id" />
 		<result column="group_name" property="groupName" />
 		<result column="account_id" property="accountId" />
-		
 	</resultMap>
 	
-	<!-- 重複確認 -->
-	<select id="selectGroupData" resultType="String">
-		select group_name
-		from `groups`
-		where group_name = #{groups.groupName}
-	</select>
-	
 	<!-- グループ名登録 -->
-	<insert id="insertGroupName">
+	<insert id="insertGroup">
 		insert into `groups`(
 			 group_name
 			,account_id
@@ -28,6 +20,13 @@
 			,#{groups.accountId}
 		)
 	</insert>
+	
+	<!-- 重複確認 -->
+	<select id="selectGroupData" resultType="String">
+		select group_name
+		from `groups`
+		where group_name = #{groups.groupName}
+	</select>
 	
 	<!-- ユーザIDからグループIDを取得 -->
 	<select id="selectByGroupId" resultType="Integer">
@@ -40,8 +39,8 @@
 	<select id="selectGroupList" resultMap="GroupsTable">
 		select groups.id,groups.group_name
 		from `groups`
-		left join groups_members
-		on groups.id = groups_members.group_id
+			left join groups_members
+			on groups.id = groups_members.group_id
 		where groups_members.account_id = #{id}
 	</select>
 	

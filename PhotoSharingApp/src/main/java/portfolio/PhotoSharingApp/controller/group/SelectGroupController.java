@@ -15,7 +15,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Groups;
-import portfolio.PhotoSharingApp.form.group.SelectGroupForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
@@ -35,13 +34,13 @@ public class SelectGroupController {
 	public String getSelectGroup(Model model
 			,SessionStatus sessionStatus
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,SelectGroupForm selectGroupForm
+			/*,SelectGroupForm selectGroupForm*/
+			/*,RedirectAttributes redirectAttributes*/
 			) {
 
-		sessionStatus.setComplete();
+			sessionStatus.setComplete();
 
 		List<Groups> groupList = groupService.getGroupList(loginUserDetails.getUserId());
-		
 		model.addAttribute("groupList", groupList);
 
 		return "group/select-group";
@@ -50,12 +49,12 @@ public class SelectGroupController {
 	@PostMapping("/select-group")
 	public String postSelectGroup(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@RequestParam("id") int id
+			,@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
 			) {
 
 		Groups groups = groupService.getGroupsData(id);
-		redirectAttributes.addFlashAttribute("groups", groups);
+		redirectAttributes.addFlashAttribute("groups",groups);
 
 		return "redirect:home-group";
 	}

@@ -10,19 +10,19 @@ import portfolio.PhotoSharingApp.entity.Groups;
 @Mapper
 public interface GroupMapper {
 	
-	/*重複確認*/
-	public String selectGroupData(@Param("groups") Groups groups);
+	public void insertGroup(@Param("groups")Groups groups);
 	
-	public void insertGroupName(@Param("groups") Groups groups);
+	/*重複確認*/
+	public String selectGroupData(@Param("groups")Groups groups);
 	
 	/*ユーザ自身が所属しているグループリストを取得*/
-	public List<Groups> selectGroupList(@Param("id") int id);
+	public List<Groups> selectGroupList(@Param("id")Integer id);
 
-	public int selectByGroupId(@Param("id") int id);
+	public Integer selectByGroupId(@Param("id")Integer id);
 	
-	public Groups selectGroups(@Param("id") int id);
+	public Groups selectGroups(@Param("id")Integer id);
 	
-	public void deleteGroup(@Param("id")int id);
+	public void deleteGroup(@Param("id")Integer id);
 
 	public Integer groupAdmin(@Param("id")Integer id);
 }

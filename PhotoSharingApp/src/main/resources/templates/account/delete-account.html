@@ -29,13 +29,14 @@
 		<div class="row">
 			<form method="post" th:action="@{/delete-account}" class="col text-center">
 				
-				<div th:text="#{deleteAccountAlert1}"></div>
-				<div th:text="#{deleteAccountAlert2}"></div>
+				<div th:text="#{deleteAccountMessage1}"></div>
+				<div th:text="#{deleteAccountMessage2}"></div>
 				
 				<th:block th:if="${isBool}">
-					<span class="text-danger">エラーメッセージを赤色で表示</span><br>
+					<span th:text="#{deleteAccountAlert}" class="text-danger">
 				</th:block>	
-					
+				
+				<br>	
 				<a th:href="@{'/select-group'}" class="btn btn-secondary">グループ選択に戻る</a>
 		    	<input type="submit" value="削除" class="btn btn-secondary">
 			</form>

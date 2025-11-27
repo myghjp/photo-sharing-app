@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Members;
 import portfolio.PhotoSharingApp.form.group.EntryGroupForm;
@@ -20,6 +21,7 @@ import portfolio.PhotoSharingApp.service.group.GroupService;
 import portfolio.PhotoSharingApp.service.members.MembersService;
 
 @Controller
+@Slf4j
 public class EntryGroupController {
 	
 	@Autowired
@@ -42,7 +44,6 @@ public class EntryGroupController {
 
 	@PostMapping("/entry-group")
 	public String postEntryGroup(Model model
-			,Members members
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,@ModelAttribute @Validated EntryGroupForm entryGroupForm
 			,BindingResult bindingResult
@@ -51,6 +52,7 @@ public class EntryGroupController {
 		
 		Groups groups = modelMapper.map(entryGroupForm, Groups.class);
 
+		/*重複グループ名*/
 		if (groupService.isExistingGroupsData(groups)){
 			bindingResult.rejectValue("groupName","group.Alert");
 		}
@@ -59,17 +61,25 @@ public class EntryGroupController {
 			return getEntryGroup(model, entryGroupForm);
 		}
 		
-		groups.setAccountId(loginUserDetails.getUserId());
-
 		/*ーーーーーーーーーーーーーーー*/
 		/*グループを登録*/
-		groupService.insertEntryGroup(groups);
-		/*ユーザIDからグループIDを取得*/
-		int groupId = groupService.selectByGroupId(loginUserDetails.getUserId());
+		groups.setAccountId(loginUserDetails.getUserId());
+		groupService.entryGroup(groups);
 		
-		/*ユーザIDとグループIDをメンバに登録*/
+		
+		/*ーーー[そもそも管理者を利用者に追加しない]※以下作り直しーーー*/
+		
+		/*ユーザIDからグループIDを取得*/
+		
+		/*※二件以上返却しているエラー↓*/
+		int groupId = groupService.getByGroupId(loginUserDetails.getUserId());
+		
+		/*グループIDとアカウントIDをメンバに登録*/
+		Members members = new Members();
 		members.setGroupId(groupId);
 		members.setAccountId(loginUserDetails.getUserId());
+		log.info(members.toString());
+		
 		membersService.insertMembers(members);
 		
 		return "redirect:select-group";
