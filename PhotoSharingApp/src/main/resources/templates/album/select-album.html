@@ -27,6 +27,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col text-center">
+				
 				<div th:text="${groupName}"></div>
 				
 				<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a><br>
@@ -38,7 +39,7 @@
 				<form method="post" th:action="@{/select-album}">
 					
 						<div th:each="list:${albumList}" >
-							<input type="radio" th:text="${list.albumName}" th:value="${list.id}" name="id">
+							<input type="radio" th:text="${list.albumName}" th:value="${list.id}" name="id" checked>
 							<a th:href="@{'/delete-album/' + ${list.id}}" class="btn btn-secondary" >削除</a>
 							<br>
 						</div>

@@ -27,8 +27,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col text-center">
-				<div th:text="#{addMembersAlert}"></div>	
-				<span class="text-secondary">エラーメッセージを表示</span>
+				<div th:text="#{addMembersAlert}"></div>
 				
 				<form method="post" th:action="@{/add-members}" th:object="${addMembersForm}">
 				    <div class="form-group">
@@ -37,7 +36,7 @@
 				        <div class="invalid-feedback" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
 				    </div>
 				    
-				    <a th:href="@{'/list-members'}" class="btn btn-secondary">戻る</a>
+				    <a th:href="@{'/list-members'}" class="btn btn-secondary">キャンセル</a>
 			    	<input type="submit" value="追加" class="btn btn-secondary">
 				</form>
 			</div>

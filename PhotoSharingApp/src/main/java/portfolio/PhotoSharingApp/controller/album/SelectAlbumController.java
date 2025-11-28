@@ -19,6 +19,7 @@ import portfolio.PhotoSharingApp.service.album.AlbumService;
 
 @Controller
 @SessionAttributes(value = {"groups","albums"})
+/*@Slf4j*/
 public class SelectAlbumController {
 	
 	@Autowired
@@ -37,6 +38,8 @@ public class SelectAlbumController {
 		
 		/*album情報の破棄*/
 		httpSession.removeAttribute("albums");
+		
+		/*log.info(groups.getGroupName().toString());*/
 		
 		/*ここでアルバム一覧を取得*/
 		model.addAttribute("groupName",groups.getGroupName());

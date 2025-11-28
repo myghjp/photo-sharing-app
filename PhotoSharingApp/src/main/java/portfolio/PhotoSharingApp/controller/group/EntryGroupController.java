@@ -14,11 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Groups;
-import portfolio.PhotoSharingApp.entity.Members;
 import portfolio.PhotoSharingApp.form.group.EntryGroupForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
-import portfolio.PhotoSharingApp.service.members.MembersService;
 
 @Controller
 @Slf4j
@@ -30,8 +28,8 @@ public class EntryGroupController {
 	@Autowired
 	private GroupService groupService;
 	
-	@Autowired
-	private MembersService membersService;
+	/*@Autowired
+	private MembersService membersService;*/
 	
 	@GetMapping("/entry-group")
 	public String getEntryGroup(Model model
@@ -72,15 +70,15 @@ public class EntryGroupController {
 		/*ユーザIDからグループIDを取得*/
 		
 		/*※二件以上返却しているエラー↓*/
-		int groupId = groupService.getByGroupId(loginUserDetails.getUserId());
+		/*int groupId = groupService.getByGroupId(loginUserDetails.getUserId());*/
 		
 		/*グループIDとアカウントIDをメンバに登録*/
-		Members members = new Members();
+		/*Members members = new Members();
 		members.setGroupId(groupId);
 		members.setAccountId(loginUserDetails.getUserId());
-		log.info(members.toString());
+		log.info(members.toString());*/
 		
-		membersService.insertMembers(members);
+		/*membersService.insertMembers(members);*/
 		
 		return "redirect:select-group";
 	}

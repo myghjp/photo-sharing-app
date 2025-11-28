@@ -33,20 +33,13 @@
 				
 				<form method="post" th:action="@{/select-group}">
 					<div th:each="list:${groupList}">
-						<input type="radio" th:text="${list.groupName}" th:value="${list.id}" name="id">
+						<input type="radio" th:text="${list.groupName}" th:value="${list.id}" name="id" checked>
 						<br>
-						<!--th:checked-->
-						
-						<th:block th:unless="${groupList.isEmpty()}">
-							<input type="submit" value="グループを開く" class="btn btn-secondary">
-						</th:block>
-						
 					</div>
-						<!--<th:block th:unless="${groupList.isEmpty()}">
+					<th:block th:unless="${groupList.isEmpty()}">
 							<input type="submit" value="グループを開く" class="btn btn-secondary">
-						</th:block>-->
+					</th:block>
 				</form>
-				
 			</div>
 		</div>
 	</div>

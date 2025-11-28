@@ -16,15 +16,8 @@ public interface GroupService {
 	public int getByGroupId(int id);
 	
 	
-	
-	
-	
 	/*[グループ一覧表示]グループ名とそのグループIDの一覧を取得*/
 	public List<Groups> getGroupList(int id);
-	
-	
-	
-	
 
 	/*[groupsテーブルの情報を取得]*/
 	public Groups getGroupsData(int id);
@@ -32,5 +25,5 @@ public interface GroupService {
 	/*グループの削除*/
 	public void deleteGroup(int id);
 	
-	public boolean groupAdmin(int id);
+	public boolean isAddGroupExisting(int id);
 }

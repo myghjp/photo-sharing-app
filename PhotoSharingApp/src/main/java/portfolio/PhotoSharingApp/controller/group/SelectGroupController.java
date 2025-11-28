@@ -40,6 +40,7 @@ public class SelectGroupController {
 
 			sessionStatus.setComplete();
 
+			/*メンバ要素のxmlを消す*/
 		List<Groups> groupList = groupService.getGroupList(loginUserDetails.getUserId());
 		model.addAttribute("groupList", groupList);
 
