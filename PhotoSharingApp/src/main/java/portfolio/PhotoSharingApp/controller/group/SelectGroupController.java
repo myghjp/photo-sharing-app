@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
 @SessionAttributes(value = {"groups"})
+@Slf4j
 public class SelectGroupController {
 
 	@Autowired
@@ -40,8 +42,13 @@ public class SelectGroupController {
 
 			sessionStatus.setComplete();
 
-			/*メンバ要素のxmlを消す*/
+			/*ここで、管理者情報を引数に渡すしかない？*/
+			
+			
 		List<Groups> groupList = groupService.getGroupList(loginUserDetails.getUserId());
+		
+		log.info(groupList.toString());
+		
 		model.addAttribute("groupList", groupList);
 
 		return "group/select-group";

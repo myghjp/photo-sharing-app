@@ -65,10 +65,11 @@ public class EntryGroupController {
 		groupService.entryGroup(groups);
 		
 		
-		/*ーーー[そもそも管理者を利用者に追加しない]※以下作り直しーーー*/
+		/*ーーー[管理者を利用者に追加しない]以下作り直しーーー*/
 		
 		/*ユーザIDからグループIDを取得*/
 		
+		/*↓完全に間違い*/
 		/*※二件以上返却しているエラー↓*/
 		/*int groupId = groupService.getByGroupId(loginUserDetails.getUserId());*/
 		

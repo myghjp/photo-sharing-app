@@ -37,11 +37,11 @@
 	
 	<!-- 自身が参加してるグループを取得 -->
 	<select id="selectGroupList" resultMap="GroupsTable">
-		select id,group_name
+		select groups.id,group_name
 		from `groups`
-			<!-- left join groups_members -->
-			<!-- on groups.id = groups_members.group_id -->
-		where groups.account_id = #{id}
+			left join groups_members
+			on groups.id = groups_members.group_id
+		where groups_members.account_id = #{id}
 	</select>
 	
 	<select id="selectGroups" resultMap="GroupsTable">
