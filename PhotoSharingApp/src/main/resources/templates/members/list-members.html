@@ -38,7 +38,8 @@
 				<div th:text="#{listMembersAlert}"></div>
 				
 				<th:block th:unless="${isAdmin}">
-					<span th:text="${adminName}" class="text-primary"></span><br>
+					<span th:text="#{admin}" class="text-primary"></span>
+					<span th:text="${adminName}" ></span><br>
 				</th:block>
 				
 				<div th:each="list:${membersList}">

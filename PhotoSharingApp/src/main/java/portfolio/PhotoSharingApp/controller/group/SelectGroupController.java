@@ -42,7 +42,7 @@ public class SelectGroupController {
 
 			sessionStatus.setComplete();
 
-			/*ここで、管理者情報を引数に渡すしかない？*/
+		
 			
 			
 		List<Groups> groupList = groupService.getGroupList(loginUserDetails.getUserId());
