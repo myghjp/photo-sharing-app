@@ -34,11 +34,15 @@ public class ListCommentController {
 	@GetMapping("/list-comment")
 	public String getListComment(Model model
 			,Groups groups
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,ListCommentForm listCommentForm
 			) {
 		
 		model.addAttribute("listCommentForm",listCommentForm);
 		model.addAttribute("groupName",groups.getGroupName());
+		
+		model.addAttribute("myUsername",loginUserDetails.getUsername());
+		
 		
 		/*id番号,アカウント名,コメントした日時,入力されたテキストを取得*/
 		List<Comments> commentList = commentService.commentList();
@@ -57,7 +61,7 @@ public class ListCommentController {
 			) {
 		
 		if (bindingResult.hasErrors()) {
-			return getListComment(model,groups,listCommentForm);
+			return getListComment(model,groups,loginUserDetails,listCommentForm);
 		}
 		
 		Comments comments = modelMapper.map(listCommentForm, Comments.class);

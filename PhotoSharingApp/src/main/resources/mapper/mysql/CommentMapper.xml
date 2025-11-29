@@ -35,12 +35,13 @@
 	<!-- id番号,アカウント名,コメントした日時,入力されたテキストを取得 -->
 	<select id="selectComment" resultMap="CommentsTable">
 		select comments.id
-				,accounts.user as accounts_user
-				,comments.create_date_time
-				,comments.comment
+			,accounts.user as accounts_user
+			,comments.create_date_time
+			,comments.comment
 		from comments
 			left join accounts
 			on comments.account_id = accounts.id
+			order by comments.id desc
 	</select>
 	
 	<select id="select" resultMap="CommentsTable">

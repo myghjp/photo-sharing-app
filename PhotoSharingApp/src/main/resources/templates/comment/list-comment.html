@@ -50,7 +50,10 @@
 						
 						<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}"></div>
 						
-						<a th:href="@{'/delete-comment/' + ${list.id}}" class="btn btn-secondary">削除</a>
+						<th:block th:if="${list.Accounts?.user != null and list.Accounts.user == myUsername}">
+							<a th:href="@{'/delete-comment/' + ${list.id}}" class="btn btn-secondary">削除</a>
+						</th:block>
+						
 						<br>
 						<div th:text="${list.comment}"></div>
 					</div>
