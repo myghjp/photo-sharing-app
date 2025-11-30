@@ -35,7 +35,7 @@ public class EditAccountController {
 	@GetMapping("/edit-account")
 	public String getEditAccount(Model model
 			,EditAccountForm editAccountForm
-			){
+			) {
 		
 		model.addAttribute("editAccountForm", editAccountForm);
 		
@@ -44,10 +44,10 @@ public class EditAccountController {
 	
 	@PostMapping("/edit-account")
 	public String postEditAccount (Model model
+			,HttpSession session
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,@ModelAttribute @Validated EditAccountForm editAccountForm
 			,BindingResult bindingResult
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,HttpSession session
 			,RedirectAttributes redirectAttributes
 			) {
 		

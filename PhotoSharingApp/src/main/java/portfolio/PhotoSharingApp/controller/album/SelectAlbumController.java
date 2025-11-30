@@ -2,7 +2,10 @@ package portfolio.PhotoSharingApp.controller.album;
 
 import java.util.List;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Albums;
 import portfolio.PhotoSharingApp.entity.Groups;
+import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.album.AlbumService;
 
 @Controller
@@ -32,8 +35,9 @@ public class SelectAlbumController {
 	
 	@GetMapping("/select-album")
 	public String getSelectAlbum(Model model
-			,HttpSession httpSession
 			,Groups groups
+			,HttpSession httpSession
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,RedirectAttributes redirectAttributes) {
 		
 		/*album情報の破棄*/
@@ -46,6 +50,10 @@ public class SelectAlbumController {
 		
 		List<Albums> albumList = albumService.getAlbumList();
 		model.addAttribute("albumList", albumList);
+		
+		if (groups.getAccountId() == loginUserDetails.getUserId()) {
+			model.addAttribute("admin",true);
+		}
 		
 		return "album/select-album";
 	}

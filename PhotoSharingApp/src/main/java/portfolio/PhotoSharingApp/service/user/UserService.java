@@ -14,11 +14,11 @@ public interface UserService {
 	/*アカウント登録*/
 	public void createAccount(Accounts accounts);
 	
-	/*アカウント名がデータベースに存在するかを確認*/
-	public boolean isNameExisting(Accounts Accounts);
+	/*登録済のアカウント名と重複していないか確認*/
+	public boolean isUserExisting(Accounts Accounts);
 	
-	/*メールアドレスがデータベースに存在するかを確認*/
-	public boolean isAddressExisting(Accounts Accounts);
+	/*登録済のメールアドレスと重複していないか確認*/
+	public boolean isEmailAddressExisting(Accounts Accounts);
 	
 	/*ーEditAccountーーーーーーーーーーーーーーーーー*/
 	

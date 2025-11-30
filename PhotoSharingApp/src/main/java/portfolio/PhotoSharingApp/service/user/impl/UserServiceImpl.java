@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService{
 	
 	/*アカウント名がデータベースに存在するかを確認*/
 	@Override
-	public boolean isNameExisting(Accounts accounts) {
+	public boolean isUserExisting(Accounts accounts) {
 		if (userMapper.selectByUser(accounts) == null) {
 			return false;
 		} else {
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService{
 	
 	/*メールアドレスがデータベースに存在するかを確認*/
 	@Override
-	public boolean isAddressExisting(Accounts accounts) {
+	public boolean isEmailAddressExisting(Accounts accounts) {
 		if (userMapper.selectByEmailAddress(accounts) == null) {
 			return false;
 		} else {

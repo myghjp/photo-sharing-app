@@ -55,8 +55,10 @@ public class GroupServiceImpl implements GroupService{
 		groupMapper.deleteGroup(id);
 	}
 	
+	/*※使用中*/
+	/*自身が作成したグループが残っていないかを確認*/
 	@Override
-	public boolean isAddGroupExisting(int id) {
+	public boolean isCreateGroupExisting(int id) {
 		if (groupMapper.groupAdmin(id) == null) {
 			return false;
 		} else {

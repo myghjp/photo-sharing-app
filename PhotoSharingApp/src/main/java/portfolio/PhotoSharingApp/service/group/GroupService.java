@@ -25,5 +25,6 @@ public interface GroupService {
 	/*グループの削除*/
 	public void deleteGroup(int id);
 	
-	public boolean isAddGroupExisting(int id);
+	/*自身が作成したグループが残っていないかを確認*/
+	public boolean isCreateGroupExisting(int id);
 }

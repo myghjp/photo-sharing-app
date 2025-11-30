@@ -16,8 +16,8 @@ public class HomeGroupController {
 	
 	@GetMapping("/home-group")
 	public String getHomeGroup(Model model
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,Groups groups
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,RedirectAttributes redirectAttributes) {
 		
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
@@ -30,15 +30,10 @@ public class HomeGroupController {
 	}
 	
 	/*ーーー追加が必要な機能/エラーチェックーーー*/
-	/*F-1,掲示板 自身が追加したコメント以外は、削除ボタンを表示しない*/
 	
-	/*コメントの順番が逆*/
-	
-	/*ーーーーーーーーーーーーーーーーーーーーーーー*/
-	/*G-2 アルバム削ボタン無し*/
-	/*ーーーーーーーーーーーーーーーーーーーーーーー*/
 	/*H-2.写真一覧自身が追加した写真以外は削除ボタンを表示しない*/
 	/*↑H-1は全て表示*/
+	
 	/*ーーーーーーーーーーーーーーーーーーーーーーー*/
 	/*グループ別、アルバム別のリスト表示の追加と確認*/
 	

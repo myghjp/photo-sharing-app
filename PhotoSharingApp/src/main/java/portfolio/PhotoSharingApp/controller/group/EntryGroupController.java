@@ -59,15 +59,12 @@ public class EntryGroupController {
 			return getEntryGroup(model, entryGroupForm);
 		}
 		
-		/*ーーーーーーーーーーーーーーー*/
-		/*グループを登録*/
 		groups.setAccountId(loginUserDetails.getUserId());
+		
 		groupService.entryGroup(groups);
 		
 		
-		/*ーーー[管理者を利用者に追加しない]以下作り直しーーー*/
-		
-		/*ユーザIDからグループIDを取得*/
+		/*ーーー↓不要ーーー*/
 		
 		/*↓完全に間違い*/
 		/*※二件以上返却しているエラー↓*/

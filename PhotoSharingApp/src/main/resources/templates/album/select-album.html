@@ -40,7 +40,10 @@
 					
 						<div th:each="list:${albumList}" >
 							<input type="radio" th:text="${list.albumName}" th:value="${list.id}" name="id" checked>
-							<a th:href="@{'/delete-album/' + ${list.id}}" class="btn btn-secondary" >削除</a>
+							
+							<th:block th:if="${admin}">
+								<a th:href="@{'/delete-album/' + ${list.id}}" class="btn btn-secondary" >削除</a>
+							</th:block>
 							<br>
 						</div>
 					<br>
