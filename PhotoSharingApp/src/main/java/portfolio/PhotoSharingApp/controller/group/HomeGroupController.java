@@ -32,7 +32,11 @@ public class HomeGroupController {
 	
 	/*ーーー追加が必要な機能/エラーチェックーーー*/
 	
-	/*グループ別、アルバム別のリスト表示の追加と確認*/
+	/*selectAlbumController*/
+	/*グループ内だけのアルバムを表示するようにする*/
+	
+	/*listPhotoController*/
+	/*アルバム内だけの写真を表示するようにする*/
 	
 	/*ーーーーーーーーーーーーーーーーーーーーーーー*/
 }

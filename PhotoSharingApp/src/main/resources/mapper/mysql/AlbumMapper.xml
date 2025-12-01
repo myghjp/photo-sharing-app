@@ -22,9 +22,12 @@
 	</insert>
 	
 	<!-- アルバム一覧を取得 -->
-	<select id="selectAlbumName" resultMap="AlbumsTable">
-		select id,album_name
+	<select id="selectAlbumList" resultMap="AlbumsTable">
+		select albums.id,album_name
 		from albums
+		left join `groups`
+		on group_id = groups.id
+		where group_id = #{id}
 	</select>
 	
 	<select id="selectAlbum" resultMap="AlbumsTable">

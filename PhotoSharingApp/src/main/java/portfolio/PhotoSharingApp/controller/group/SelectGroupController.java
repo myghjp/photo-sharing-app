@@ -38,9 +38,9 @@ public class SelectGroupController {
 			) {
 
 		sessionStatus.setComplete();
-			
-		List<Groups> groupList = groupService.getGroupList(loginUserDetails.getUserId());
 		
+		
+		List<Groups> groupList = groupService.getGroupList(loginUserDetails.getUserId());
 		model.addAttribute("groupList", groupList);
 
 		return "group/select-group";

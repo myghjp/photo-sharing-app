@@ -14,7 +14,7 @@ public interface AlbumMapper {
 	public void insertAlbum(@Param("albums") Albums albums);
 	
 	/*アルバム一覧表示*/
-	public List<Albums> selectAlbumName();
+	public List<Albums> selectAlbumList(@Param("id") Integer id);
 	
 	public Albums selectAlbum(@Param("id") Integer id);
 	

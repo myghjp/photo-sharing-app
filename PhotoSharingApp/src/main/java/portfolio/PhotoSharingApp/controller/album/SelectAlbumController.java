@@ -2,8 +2,6 @@ package portfolio.PhotoSharingApp.controller.album;
 
 import java.util.List;
 
-import jakarta.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Albums;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
@@ -48,8 +47,11 @@ public class SelectAlbumController {
 		/*ここでアルバム一覧を取得*/
 		model.addAttribute("groupName",groups.getGroupName());
 		
-		List<Albums> albumList = albumService.getAlbumList();
+		
+		/*このグループ内のアルバム一覧を取得*/
+		List<Albums> albumList = albumService.getAlbumList(groups.getId());
 		model.addAttribute("albumList", albumList);
+		
 		
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("admin",true);

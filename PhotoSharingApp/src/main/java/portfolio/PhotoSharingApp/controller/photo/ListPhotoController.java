@@ -48,6 +48,9 @@ public class ListPhotoController {
 		}
 		model.addAttribute("username", loginUserDetails.getUsername());
 		
+		
+		/*アルバム内だけの写真を表示するようにする*/
+		
 		List<Photos> photoList = photoService.getphotoList();
 		log.info(photoList.toString());/*※*/
 		model.addAttribute("photoList", photoList);

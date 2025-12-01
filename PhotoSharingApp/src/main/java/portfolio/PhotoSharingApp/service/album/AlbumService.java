@@ -10,7 +10,7 @@ public interface AlbumService {
 	public void addAlbum(Albums albums);
 	
 	/*アルバム一覧表示*/
-	public List<Albums> getAlbumList();
+	public List<Albums> getAlbumList(int id);
 	
 	public Albums getAlbum(int id);
 	

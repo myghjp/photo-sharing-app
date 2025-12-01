@@ -23,8 +23,8 @@ public class AlbumServiceImpl implements AlbumService{
 	
 	/*アルバム一覧表示*/
 	@Override
-	public List<Albums> getAlbumList() {
-		return albumMapper.selectAlbumName();
+	public List<Albums> getAlbumList(int id) {
+		return albumMapper.selectAlbumList(id);
 	}
 	
 	@Override
