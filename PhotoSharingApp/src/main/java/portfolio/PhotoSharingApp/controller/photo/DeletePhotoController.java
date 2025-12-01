@@ -1,5 +1,9 @@
 package portfolio.PhotoSharingApp.controller.photo;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,21 +40,22 @@ public class DeletePhotoController {
 		return "photo/delete-photo";
 	}
 	
-	@PostMapping("/delete-photo/")
+	@PostMapping("/delete-photo")
 	public String postDeletePhoto(Model model
 			,@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
-			) {
+			)throws IOException {
 		
+		Photos photoData = photoService.getPhoto(id);
 		
-		/*static内の画像も削除する？？？*/
+		/*ファイルも削除したい*/
+		Path path = Path.of("src/main/resources/static/img/" + photoData.getPhoto());
+		Files.delete(path);
 		
+		/*データベースのパス情報を削除する*/
+		photoService.removePhoto(photoData.getId());
 		
-		/*画像を削除する*/
-		photoService.removePhoto(id);
-		
-		
-		return "redirecr:list-photo";
+		return "redirect:list-photo";
 	}
 
 }

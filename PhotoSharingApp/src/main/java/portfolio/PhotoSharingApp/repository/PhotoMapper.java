@@ -14,7 +14,7 @@ public interface PhotoMapper {
 	
 	public List<Photos> selectPhotoList();
 	
-	public Photos selectPhoto(@Param("albumId")Integer albumId);
+	public Photos selectPhoto(@Param("id")Integer id);
 	
-	public void deletePhoto(@Param("albumId")Integer albumId);
+	public void deletePhoto(@Param("id")Integer id);
 }

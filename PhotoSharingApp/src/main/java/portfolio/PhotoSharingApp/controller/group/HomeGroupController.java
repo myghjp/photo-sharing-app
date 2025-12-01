@@ -18,7 +18,8 @@ public class HomeGroupController {
 	public String getHomeGroup(Model model
 			,Groups groups
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,RedirectAttributes redirectAttributes) {
+			,RedirectAttributes redirectAttributes
+			) {
 		
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("admin",true);
@@ -34,5 +35,4 @@ public class HomeGroupController {
 	/*グループ別、アルバム別のリスト表示の追加と確認*/
 	
 	/*ーーーーーーーーーーーーーーーーーーーーーーー*/
-	
 }

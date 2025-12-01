@@ -48,9 +48,9 @@
 		where id = #{id}
 	</select>
 	
-	<delete id="deleteMembersId">
+	<delete id="deletePhoto">
 		delete from photos
-			where id = #{id}
+		where id = #{id}
 	</delete>
 	
 </mapper>
