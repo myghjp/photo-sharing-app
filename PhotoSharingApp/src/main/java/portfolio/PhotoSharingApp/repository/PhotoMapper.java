@@ -12,7 +12,7 @@ public interface PhotoMapper {
 	
 	public void insertPhoto(@Param("photos")Photos photos);
 	
-	public List<Photos> selectPhotoList();
+	public List<Photos> selectPhotoList(@Param("id")Integer id);
 	
 	public Photos selectPhoto(@Param("id")Integer id);
 	

@@ -38,8 +38,10 @@
 		,photos.create_date_time
 		from photos
 			left join accounts
-			on photos.account_id = accounts.id
-		<!-- where album_id = #{albumId} -->
+				on photos.account_id = accounts.id
+			left join albums
+				on album_id = photos.id
+		    where album_id = #{id}
 	</select>
 	
 	<select id="selectPhoto" resultMap="PhotosTable">

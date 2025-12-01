@@ -52,6 +52,7 @@
 			where groups.id = #{id}
 	</select>
 	
+	<!-- こいつ -->
 	<select id="selectMembersId">
 		select groups_members.id
 		from groups_members

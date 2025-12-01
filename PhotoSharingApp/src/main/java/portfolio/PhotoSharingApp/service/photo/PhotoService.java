@@ -8,7 +8,7 @@ public interface PhotoService {
 	
 	public void addPhoto(Photos photos);
 
-	public List<Photos> getphotoList();
+	public List<Photos> getphotoList(int id);
 	
 	public Photos getPhoto(int id);
 	

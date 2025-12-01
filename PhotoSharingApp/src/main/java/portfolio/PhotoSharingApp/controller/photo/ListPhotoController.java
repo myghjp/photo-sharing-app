@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Albums;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Photos;
@@ -25,7 +24,7 @@ import portfolio.PhotoSharingApp.service.photo.PhotoService;
 
 @Controller
 @SessionAttributes(value = {"groups","albums"})
-@Slf4j
+/*@Slf4j*/
 public class ListPhotoController { 
 	
 	@Autowired
@@ -51,9 +50,12 @@ public class ListPhotoController {
 		
 		/*アルバム内だけの写真を表示するようにする*/
 		
-		List<Photos> photoList = photoService.getphotoList();
-		log.info(photoList.toString());/*※*/
+		List<Photos> photoList = photoService.getphotoList(albums.getId());
 		model.addAttribute("photoList", photoList);
+		
+		
+		
+		/*log.info(photoList.toString());*/
 		
 		return "photo/list-photo";
 	}
@@ -69,11 +71,9 @@ public class ListPhotoController {
 		if (photo.isEmpty()) {
 			return "redirect:list-photo";
 		}
-		
 		/*※パス情報直書き×(でもそのまま提出11月27日)*/
 		Path path = Path.of("src/main/resources/static/img/" + photo.getOriginalFilename());
 		Files.copy(photo.getInputStream(), path);
-		
 		
 		/*ーー↓データベースにパス情報を登録するーーーーー*/
 		Photos photos = new Photos();

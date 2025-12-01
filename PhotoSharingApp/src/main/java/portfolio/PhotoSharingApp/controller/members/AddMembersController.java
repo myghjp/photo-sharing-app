@@ -45,8 +45,8 @@ public class AddMembersController {
 	@PostMapping("/add-members")
 	public String postAddMembers(Model model
 			,Groups groups
-			,Members members
 			,@RequestParam("emailAddress") String emailAddress
+			
 			,@ModelAttribute @Validated AddMembersForm addMembersForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
@@ -54,17 +54,23 @@ public class AddMembersController {
 		
 		Accounts accounts = modelMapper.map(addMembersForm, Accounts.class);
 		
-		/*ーーーーーーーーーーーーーーーーーー*/
+		/*アカウント登録されているメールアドレスか*/
 		if (userService.isExistingAccountId(accounts)) {
 			bindingResult.rejectValue("emailAddress", "unkownEmail.Alert");
 		}
-		/*ーーーーーーーーーーーーーーーーーー*/
 		
+		
+		/*ーーーデータベースにあるアドレスと重複していないかになっているーーー*/
+		
+		/*このグループID内のアドレスが追加されていないかに変更するには？*/
+		
+		/*既にメールアドレスが追加されているか*/
 		if (membersService.isExistingMembersId(accounts)) {
 			bindingResult.rejectValue("emailAddress", "testtesttest");
 		}
 		
-		/*ーーーーーーーーーーーーーーーーーー*/
+		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+		
 		if (bindingResult.hasErrors()) {
 			return getAddMembers(model, addMembersForm);
 		}
@@ -74,6 +80,7 @@ public class AddMembersController {
 		int accountId = userService.selectAccountId(emailAddress);
 		int groupId = groups.getId();
 		
+		Members members = new Members();
 		members.setGroupId(groupId);
 		members.setAccountId(accountId);
 		/*membersのテーブルに

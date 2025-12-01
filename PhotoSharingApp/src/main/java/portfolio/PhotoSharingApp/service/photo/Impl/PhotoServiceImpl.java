@@ -21,8 +21,8 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	/*画像一覧取得*/
-	public List<Photos> getphotoList(){
-		return photoMapper.selectPhotoList();
+	public List<Photos> getphotoList(int id){
+		return photoMapper.selectPhotoList(id);
 	}
 	
 	public Photos getPhoto(int id) {

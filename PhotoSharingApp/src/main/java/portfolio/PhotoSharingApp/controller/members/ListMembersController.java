@@ -37,10 +37,10 @@ public class ListMembersController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
+		
+		/*このグループ内のリスト表示のみ*/
 		List<Members> membersList = membersService.getMembersList(groups.getId());
-		
 		log.info(membersList.toString());
-		
 		model.addAttribute("membersList",membersList);
 		
 		/*もしグループ内のアカウントIDとユーザ自身のIDが一致すれば管理者である*/
