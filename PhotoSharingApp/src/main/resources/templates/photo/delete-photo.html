@@ -7,11 +7,23 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{/css/form.css}">
+	
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 	<title th:text="#{deletePhotoPage}"></title>
 </head>
 <body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+		<a class="navbar-brand" th:text="#{photoSharingApp}"></a>
+		<div class="ml-auto">
+			<input type="button" onclick="location.href='./edit-account'" value="パスワード変更" class="btn btn-secondary">
+			<input type="button" onclick="location.href='./delete-account'" value="アカウント削除" class="btn btn-secondary">
+			<span sec:authentication="principal.username" class="text-light"></span>
+			<form method="post" th:action="@{/postlogout}">
+				<input type="submit" value="ログアウト" class="btn btn-secondary">
+			</form>
+		</div>
+	</nav>
 	
 	<div class="container">
 		<div class="row">

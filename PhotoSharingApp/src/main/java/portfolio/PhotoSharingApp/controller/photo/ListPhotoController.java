@@ -35,22 +35,21 @@ public class ListPhotoController {
 	public String getListPhoto(Model model
 			,Groups groups
 			,Albums albums
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		model.addAttribute("groupName",groups.getGroupName());
+		model.addAttribute("groupName",groups);
 		model.addAttribute("albumName",albums.getAlbumName());
 		
-		/*albums.getAlbumName()↓*/
-		/*↓このアルバムIDのListを表示*/
 		
-		/*先にid無しでListを表示確認する*/
-		
+		if (groups.getAccountId() == loginUserDetails.getUserId()) {
+			model.addAttribute("isAdmin",true);
+		}
+		model.addAttribute("username", loginUserDetails.getUsername());
 		
 		List<Photos> photoList = photoService.getphotoList();
-		
-		log.info(photoList.toString());
-		
+		log.info(photoList.toString());/*※*/
 		model.addAttribute("photoList", photoList);
 		
 		return "photo/list-photo";
@@ -74,7 +73,6 @@ public class ListPhotoController {
 		
 		
 		/*ーー↓データベースにパス情報を登録するーーーーー*/
-		
 		Photos photos = new Photos();
 		
 		/*このアルバムのID*/
