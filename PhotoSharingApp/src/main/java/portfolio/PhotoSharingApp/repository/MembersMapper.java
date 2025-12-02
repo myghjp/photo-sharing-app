@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import portfolio.PhotoSharingApp.entity.Accounts;
+import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Members;
 
 @Mapper
@@ -18,7 +19,7 @@ public interface MembersMapper {
 	public List<Members> selectMembersList(int groupId);
 	
 	/*重複確認*/
-	public String selectMembersId(@Param("accounts")Accounts accounts);
+	public Integer selectMembersId(@Param("accounts")Accounts accounts,@Param("groups")Groups groups);
 	
 	/*グループメンバの名前を取得*/
 	public Members selectMembersName(@Param("id")int id);

@@ -53,12 +53,14 @@
 	</select>
 	
 	<!-- こいつ -->
-	<select id="selectMembersId">
+	<select id="selectMembersId" resultType="Integer">
 		select groups_members.id
 		from groups_members
 			left join accounts
 				on groups_members.account_id = accounts.id
 			where accounts.email_address = #{accounts.emailAddress}
+			and (groups_members.group_id = #{groups.id}
+				or groups_members.account_id = #{groups.accountId})
 	</select>
 	
 	<!-- グループメンバの名前を取得 -->

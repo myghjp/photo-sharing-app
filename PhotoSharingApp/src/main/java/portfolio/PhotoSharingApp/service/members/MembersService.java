@@ -3,6 +3,7 @@ package portfolio.PhotoSharingApp.service.members;
 import java.util.List;
 
 import portfolio.PhotoSharingApp.entity.Accounts;
+import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Members;
 
 public interface MembersService {
@@ -14,7 +15,7 @@ public interface MembersService {
 	public List<Members> getMembersList(int groupId);
 	
 	/*重複確認*/
-	public boolean isExistingMembersId(Accounts accounts);
+	public boolean isExistingMembersId(Accounts accounts,Groups groups);
 	
 	/*グループメンバの名前を取得*/
 	public Members getMemberName(int id);

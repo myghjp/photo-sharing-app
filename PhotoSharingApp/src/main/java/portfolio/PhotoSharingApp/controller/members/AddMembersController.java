@@ -46,7 +46,6 @@ public class AddMembersController {
 	public String postAddMembers(Model model
 			,Groups groups
 			,@RequestParam("emailAddress") String emailAddress
-			
 			,@ModelAttribute @Validated AddMembersForm addMembersForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
@@ -60,16 +59,13 @@ public class AddMembersController {
 		}
 		
 		
-		/*ーーーデータベースにあるアドレスと重複していないかになっているーーー*/
+		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
-		/*このグループID内のアドレスが追加されていないかに変更するには？*/
-		
-		/*既にメールアドレスが追加されているか*/
-		if (membersService.isExistingMembersId(accounts)) {
+		if (membersService.isExistingMembersId(accounts,groups)) {
 			bindingResult.rejectValue("emailAddress", "testtesttest");
 		}
 		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
 		if (bindingResult.hasErrors()) {
 			return getAddMembers(model, addMembersForm);

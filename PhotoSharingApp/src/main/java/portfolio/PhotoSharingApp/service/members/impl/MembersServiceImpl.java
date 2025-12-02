@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import portfolio.PhotoSharingApp.entity.Accounts;
+import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Members;
 import portfolio.PhotoSharingApp.repository.MembersMapper;
 import portfolio.PhotoSharingApp.service.members.MembersService;
@@ -29,8 +30,8 @@ public class MembersServiceImpl implements MembersService{
 	
 	/*重複確認*/
 	@Override
-	public boolean isExistingMembersId(Accounts accounts) {
-		if (membersMapper.selectMembersId(accounts) == null) {
+	public boolean isExistingMembersId(Accounts accounts,Groups groups) {
+		if (membersMapper.selectMembersId(accounts,groups) == null) {
 			return false;
 		} else {
 			return true;
