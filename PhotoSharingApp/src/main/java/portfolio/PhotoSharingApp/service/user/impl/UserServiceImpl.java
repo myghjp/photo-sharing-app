@@ -64,35 +64,13 @@ public class UserServiceImpl implements UserService{
 	};
 	
 	/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
+
 	
-	
-	/*メールアドレスで一時的にIDを取得(後で修正)*/
-	@Override
-	public int selectAccountId(String emailAddress) {
-		return userMapper.selectAccountData3(emailAddress);
-	}
-	
-	/*ーーーーーーーー*/
-	/*メールアドレスを使用してアカウントIdが存在するかを確認*/
-	@Override
-	public boolean isExistingAccountId(Accounts accounts) {
-		if (userMapper.selectByAccountsId(accounts) != null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
 	
 	/*idからuserNameを取得*/
 	@Override
 	public Accounts selectByUserName(int id) {
 		return userMapper.selectByUserName(id);
-	}
-	
-	/*グループのIDからアカウントIDを紐づけて管理者名を取得*/
-	@Override
-	public String getAdminName(int id) {
-		return userMapper.selectByUserName2(id);
 	}
 	
 }

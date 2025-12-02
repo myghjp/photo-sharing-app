@@ -18,7 +18,6 @@ import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Members;
 import portfolio.PhotoSharingApp.form.members.AddMembersForm;
 import portfolio.PhotoSharingApp.service.members.MembersService;
-import portfolio.PhotoSharingApp.service.user.UserService;
 
 @Controller
 @SessionAttributes(value = {"groups"})
@@ -29,9 +28,6 @@ public class AddMembersController {
 	
 	@Autowired
 	private MembersService membersService;
-	
-	@Autowired
-	private UserService userService;
 	
 	@GetMapping("/add-members")
 	public String getAddMembers(Model model
@@ -53,35 +49,30 @@ public class AddMembersController {
 		
 		Accounts accounts = modelMapper.map(addMembersForm, Accounts.class);
 		
-		/*アカウント登録されているメールアドレスか*/
-		if (userService.isExistingAccountId(accounts)) {
+		/*メールアドレスを使用してアカウントIdが存在するかを確認*/
+		if (membersService.isExistingAccountId(accounts)) {
 			bindingResult.rejectValue("emailAddress", "unkownEmail.Alert");
 		}
 		
-		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
-		
+		/*このメールアドレスは、このグループ内にいるメンバや管理者のアドレスが
+		 * データベースで重複していないかを確認*/
 		if (membersService.isExistingMembersId(accounts,groups)) {
 			bindingResult.rejectValue("emailAddress", "testtesttest");
 		}
 		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
-		
 		if (bindingResult.hasErrors()) {
 			return getAddMembers(model, addMembersForm);
 		}
-		/*ーーーーーーーーーーーーーーーーーー*/
-		/*バリデーションを終えると
-		メールアドレスを使用してアカウントIDを取得する*/
-		int accountId = userService.selectAccountId(emailAddress);
+		
+		/*メールアドレスを使用してアカウントIDを取得する*/
+		int accountId = membersService.selectAccountId(emailAddress);
 		int groupId = groups.getId();
 		
 		Members members = new Members();
 		members.setGroupId(groupId);
 		members.setAccountId(accountId);
-		/*membersのテーブルに
-		sessionのグループのIDと
-		取得したアカウントのIDを追加する(仮)*/
+		
+		/*グループのIDとアカウントのIDを追加する*/
 		membersService.insertMembers(members);
 		return "redirect:list-members";
 	}

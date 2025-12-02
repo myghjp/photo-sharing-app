@@ -23,15 +23,17 @@ public class DeleteGroupController {
 			/*,Groups groups*/
 			) {
 		
+			/*sessionについて考え直す*/
+		
 		return "group/delete-group";
 	}
 	
 	@PostMapping("/delete-group")
 	public String postDeleteGroup(Model model
 			,@RequestParam("id")int id
-			,RedirectAttributes redirectAttributes) {
+			,RedirectAttributes redirectAttributes
+			) {
 		
-		/*グループの削除*/
 		groupService.deleteGroup(id);
 		
 		return "redirect:select-group";

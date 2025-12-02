@@ -39,10 +39,10 @@ public class ListCommentController {
 			) {
 		
 		model.addAttribute("listCommentForm",listCommentForm);
+		
 		model.addAttribute("groupName",groups.getGroupName());
 		
 		model.addAttribute("myUsername",loginUserDetails.getUsername());
-		
 		
 		/*id番号,アカウント名,コメントした日時,入力されたテキストを取得*/
 		List<Comments> commentList = commentService.commentList();

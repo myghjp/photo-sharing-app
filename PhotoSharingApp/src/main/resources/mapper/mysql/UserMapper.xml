@@ -65,18 +65,7 @@
 	</delete>
 	
 	<!-- ーーーーーーーーーーーーーーーーーー -->
-	
-	<select id="selectAccountData3">
-		select id
-		from accounts
-		where email_address = #{emailAddress}
-	</select>
-	
-	<select id="selectByAccountsId" resultType="String">
-		select email_address
-		from accounts
-		where email_address = #{accounts.emailAddress}
-	</select>
+
 	
 	<!-- idからuserNameを取得 -->
 	<select id="selectByUserName">
@@ -87,15 +76,6 @@
 			left join groups_members
 			on accounts.id = account_id
 		where groups_members.id = #{id}
-	</select>
-	
-	<!-- グループのIDからアカウントIDを紐づけて管理者名を取得 -->
-	<select id="selectByUserName2">
-		select user
-		from accounts
-		left join `groups`
-		on accounts.id = groups.account_id
-		where groups.id = #{id}
 	</select>
 	
 </mapper>

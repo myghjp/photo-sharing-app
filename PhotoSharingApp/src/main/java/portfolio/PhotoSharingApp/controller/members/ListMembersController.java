@@ -12,23 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Members;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.members.MembersService;
-import portfolio.PhotoSharingApp.service.user.UserService;
 
 @Controller
 @SessionAttributes(value = {"groups"})
-@Slf4j
 public class ListMembersController {
 	
 	@Autowired
 	private MembersService membersService;
-	
-	@Autowired
-	private UserService userService;
 	
 	@GetMapping("/list-members")
 	public String getListMembers(Model model
@@ -37,18 +31,16 @@ public class ListMembersController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		
-		/*このグループ内のリスト表示のみ*/
+		/*このグループのメンバリストを取得する*/
 		List<Members> membersList = membersService.getMembersList(groups.getId());
-		log.info(membersList.toString());
 		model.addAttribute("membersList",membersList);
 		
-		/*もしグループ内のアカウントIDとユーザ自身のIDが一致すれば管理者である*/
+		/*グループ内のアカウントIDが一致すれば自身は管理者である*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}else {
-			/*グループのIDからアカウントIDを紐づけて管理者名を取得*/
-			String adminName = userService.getAdminName(groups.getId());
+			/*管理者名を取得*/
+			String adminName = membersService.getAdminName(groups.getId());
 			model.addAttribute("adminName",adminName);
 		}
 		
@@ -61,7 +53,7 @@ public class ListMembersController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		/*membersIDからuser名を取得して両方使用*/
+		/*グループ利用者IDとその名前を取得*/
 		Members members = membersService.getMemberName(id);
 		
 		redirectAttributes.addFlashAttribute("members",members);

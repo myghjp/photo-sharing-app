@@ -18,6 +18,8 @@
 		<result column="user" property="user" />
 	</resultMap>
 	
+	<!-- ーListCommentーーーーーーーーーーーーーーーーー -->
+	
 	<!-- コメント情報を追加 -->
 	<insert id="insertComment">
 		insert into comments(
@@ -43,6 +45,8 @@
 			on comments.account_id = accounts.id
 			order by comments.id desc
 	</select>
+	
+	<!-- ーDeleteCommentーーーーーーーーーーーーーーーーー -->
 	
 	<select id="select" resultMap="CommentsTable">
 		select id,comment

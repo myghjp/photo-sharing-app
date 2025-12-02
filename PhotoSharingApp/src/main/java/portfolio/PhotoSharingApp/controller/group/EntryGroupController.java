@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import lombok.extern.slf4j.Slf4j;
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.form.group.EntryGroupForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
-@Slf4j
 public class EntryGroupController {
 	
 	@Autowired
@@ -27,9 +25,6 @@ public class EntryGroupController {
 	
 	@Autowired
 	private GroupService groupService;
-	
-	/*@Autowired
-	private MembersService membersService;*/
 	
 	@GetMapping("/entry-group")
 	public String getEntryGroup(Model model
@@ -50,7 +45,7 @@ public class EntryGroupController {
 		
 		Groups groups = modelMapper.map(entryGroupForm, Groups.class);
 
-		/*重複グループ名*/
+		/*データベースに登録済のグループ名と重複していないか確認*/
 		if (groupService.isExistingGroupsData(groups)){
 			bindingResult.rejectValue("groupName","group.Alert");
 		}
@@ -61,22 +56,8 @@ public class EntryGroupController {
 		
 		groups.setAccountId(loginUserDetails.getUserId());
 		
+		/*グループ名とログイン中のアカウントIDを追加*/
 		groupService.entryGroup(groups);
-		
-		
-		/*ーーー↓不要ーーー*/
-		
-		/*↓完全に間違い*/
-		/*※二件以上返却しているエラー↓*/
-		/*int groupId = groupService.getByGroupId(loginUserDetails.getUserId());*/
-		
-		/*グループIDとアカウントIDをメンバに登録*/
-		/*Members members = new Members();
-		members.setGroupId(groupId);
-		members.setAccountId(loginUserDetails.getUserId());
-		log.info(members.toString());*/
-		
-		/*membersService.insertMembers(members);*/
 		
 		return "redirect:select-group";
 	}

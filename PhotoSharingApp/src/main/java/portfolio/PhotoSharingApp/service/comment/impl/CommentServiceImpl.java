@@ -15,6 +15,8 @@ public class CommentServiceImpl implements CommentService{
 	@Autowired
 	private CommentMapper commentMapper;
 	
+	/*ーListCommentーーーーーーーーーーーーーーーーー*/
+	
 	/*コメント情報を追加*/
 	@Override
 	public void addComment(Comments comments) {
@@ -26,6 +28,8 @@ public class CommentServiceImpl implements CommentService{
 	public List<Comments> commentList(){
 		return commentMapper.selectComment();
 	}
+	
+	/*ーDeleteCommentーーーーーーーーーーーーーーーーー*/
 	
 	/*コメントを取得*/
 	public Comments getComment(int id) {

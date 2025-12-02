@@ -26,7 +26,35 @@
 		<result column="email_address" property="emailAddress"/>
 	</resultMap>
 	
-	<!-- 利用者の追加 -->
+	<!-- ーAddMembersーーーーーーーーーーーーーーーーー -->
+	
+	<!-- メールアドレスを使用してアカウントIdが存在するかを確認 -->
+	<select id="selectByAccountsId" resultType="String">
+		select email_address
+		from accounts
+		where email_address = #{accounts.emailAddress}
+	</select>
+	
+	<!-- このメールアドレスは、このグループ内にいるメンバや管理者のアドレスが
+	データベースで重複していないかを確認 -->
+	<select id="selectMembersId" resultType="Integer">
+		select groups_members.id
+		from groups_members
+			left join accounts
+				on groups_members.account_id = accounts.id
+			where accounts.email_address = #{accounts.emailAddress}
+			and (groups_members.group_id = #{groups.id}
+				or groups_members.account_id = #{groups.accountId})
+	</select>
+	
+	<!-- メールアドレスを使用してアカウントIDを取得する -->
+	<select id="selectAccountData3">
+		select id
+		from accounts
+		where email_address = #{emailAddress}
+	</select>
+	
+	<!-- グループのIDとアカウントのIDを追加する -->
 	<insert id="insertMembers">
 		insert into groups_members(
 			 group_id
@@ -37,7 +65,9 @@
 		)
 	</insert>
 	
-	<!-- グループ内の利用者一覧を取得 -->
+	<!-- ーListMembersーーーーーーーーーーーーーーーーー -->
+	
+	<!-- このグループのメンバリストを取得する -->
 	<select id="selectMembersList" resultMap="MembersTable">
 		select groups_members.id
 				,groups.group_name as groups_group_name
@@ -52,18 +82,16 @@
 			where groups.id = #{id}
 	</select>
 	
-	<!-- こいつ -->
-	<select id="selectMembersId" resultType="Integer">
-		select groups_members.id
-		from groups_members
-			left join accounts
-				on groups_members.account_id = accounts.id
-			where accounts.email_address = #{accounts.emailAddress}
-			and (groups_members.group_id = #{groups.id}
-				or groups_members.account_id = #{groups.accountId})
+	<!-- 管理者名を取得 -->
+	<select id="selectByUserName2">
+		select user
+		from accounts
+		left join `groups`
+		on accounts.id = groups.account_id
+		where groups.id = #{id}
 	</select>
 	
-	<!-- グループメンバの名前を取得 -->
+	<!-- グループ利用者IDとその名前を取得 -->
 	<select id="selectMembersName" resultMap="MembersTable">
 		select groups_members.id
 				,accounts.user as accounts_user
@@ -73,7 +101,9 @@
 		where groups_members.id = #{id}
 	</select>
 	
-	<!-- 利用者の削除 -->
+	<!-- ーDeleteMembersーーーーーーーーーーーーーーーーー -->
+	
+	<!-- グループから利用者を削除 -->
 	<delete id="deleteMembersId">
 		delete from groups_members
 			where id = #{id}

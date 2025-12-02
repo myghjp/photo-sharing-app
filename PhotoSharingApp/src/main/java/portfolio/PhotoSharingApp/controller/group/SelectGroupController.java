@@ -34,12 +34,11 @@ public class SelectGroupController {
 	public String getSelectGroup(Model model
 			,SessionStatus sessionStatus
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			/*,RedirectAttributes redirectAttributes*/
 			) {
 
 		sessionStatus.setComplete();
 		
-		
+		/*自身が所属しているグループのIDとグループ名の一覧を取得*/
 		List<Groups> groupList = groupService.getGroupList(loginUserDetails.getUserId());
 		model.addAttribute("groupList", groupList);
 
@@ -53,6 +52,7 @@ public class SelectGroupController {
 			,RedirectAttributes redirectAttributes
 			) {
 
+		/*groupsテーブルの情報を取得*/
 		Groups groups = groupService.getGroupsData(id);
 		redirectAttributes.addFlashAttribute("groups",groups);
 

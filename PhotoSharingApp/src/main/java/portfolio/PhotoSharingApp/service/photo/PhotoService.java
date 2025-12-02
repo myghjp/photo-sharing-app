@@ -13,4 +13,6 @@ public interface PhotoService {
 	public Photos getPhoto(int id);
 	
 	public void removePhoto(int id);
+	
+	public boolean isPathExisting(String photo);
 }

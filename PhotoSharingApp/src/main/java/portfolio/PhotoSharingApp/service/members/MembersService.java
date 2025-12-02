@@ -8,19 +8,35 @@ import portfolio.PhotoSharingApp.entity.Members;
 
 public interface MembersService {
 	
-	/*利用者を追加*/
-	public void insertMembers(Members members);
+	/*ーAddMembersーーーーーーーーーーーーーーーーー*/
 	
-	/*グループ内の利用者一覧を取得*/
-	public List<Members> getMembersList(int groupId);
+	/*メールアドレスを使用してアカウントIdが存在するかを確認*/
+	public boolean isExistingAccountId(Accounts accounts);
 	
-	/*重複確認*/
+	/*このメールアドレスは、このグループ内にいるメンバや管理者のアドレスが
+	 * データベースで重複していないかを確認*/
 	public boolean isExistingMembersId(Accounts accounts,Groups groups);
 	
-	/*グループメンバの名前を取得*/
+	/*メールアドレスを使用してアカウントIDを取得する*/
+	public int selectAccountId(String emailAddress);
+	
+	/*グループのIDとアカウントのIDを追加する*/
+	public void insertMembers(Members members);
+	
+	/*ーListMembersーーーーーーーーーーーーーーーーー*/
+	
+	/*このグループのメンバリストを取得する*/
+	public List<Members> getMembersList(int groupId);
+	
+	/*管理者名を取得*/
+	public String getAdminName(int id);
+	
+	/*グループ利用者IDとその名前を取得*/
 	public Members getMemberName(int id);
 	
-	/*グループからメンバーを削除*/
+	/*ーDeleteMembersーーーーーーーーーーーーーーーーー*/
+	
+	/*グループから利用者を削除*/
 	public void deleteMember(int id);
 	
 }

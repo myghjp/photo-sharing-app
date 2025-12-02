@@ -32,17 +32,12 @@ public interface UserService {
 	
 	/*ーーーーーーーーーーーーーーーーーーーーーーー*/
 	
-	/*メールアドレスで一時的にIDを取得(後で修正)*/
-	public int selectAccountId(String emailAddress);
 	
-	/*メールアドレスを使用してアカウントIdが存在するかを確認*/
-	public boolean isExistingAccountId(Accounts accounts);
+	
 	
 	/*idからuserNameを取得*/
 	public Accounts selectByUserName(int id);
 	
-	/*グループのIDからアカウントIDを紐づけて管理者名を取得*/
-	public String getAdminName(int id);
 
 	
 

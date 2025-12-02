@@ -10,7 +10,9 @@
 		<result column="account_id" property="accountId" />
 	</resultMap>
 	
-	<!-- グループ名登録 -->
+	<!-- EntryGroupーーーーーーーーーーーーーーーーー -->
+	
+	<!-- グループ名とログイン中のアカウントIDを追加 -->
 	<insert id="insertGroup">
 		insert into `groups`(
 			 group_name
@@ -21,21 +23,16 @@
 		)
 	</insert>
 	
-	<!-- 重複確認 -->
+	<!-- データベースに登録済のグループ名と重複していないか確認 -->
 	<select id="selectGroupData" resultType="String">
 		select group_name
 		from `groups`
 		where group_name = #{groups.groupName}
 	</select>
 	
-	<!-- ユーザIDからグループIDを取得 -->
-	<select id="selectByGroupId" resultType="Integer">
-		select id
-		from `groups`
-		where account_id = #{id}
-	</select>
+	<!-- SelectGroupーーーーーーーーーーーーーーーーー -->
 	
-	<!-- 自身が参加してるグループを取得 -->
+	<!-- 自身が所属しているグループのIDとグループ名の一覧を取得 -->
 	<select id="selectGroupList" resultMap="GroupsTable">
 		select distinct groups.id,group_name
 		from `groups`
@@ -45,17 +42,22 @@
 		or groups_members.account_id = #{id}
 	</select>
 	
+	<!-- groupsテーブルの情報を取得 -->
 	<select id="selectGroups" resultMap="GroupsTable">
 		select *
 		from `groups`
 		where id = #{id}
 	</select>
 	
-	<!-- 削除 -->
+	<!-- DeleteGroupーーーーーーーーーーーーーーーーー -->
+	
+	<!-- グループの削除 -->
 	<delete id="deleteGroup">
 		delete from `groups`
 		where id = #{id}
 	</delete>
+	
+	<!-- ？？？ーーーーーーーーーーーーーーーーー -->
 	
 	<select id="groupAdmin" resultType="Integer">
 		select account_id

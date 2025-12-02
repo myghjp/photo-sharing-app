@@ -71,6 +71,20 @@ public class ListPhotoController {
 		if (photo.isEmpty()) {
 			return "redirect:list-photo";
 		}
+		
+		/*ーーーーーーーーーーーーーーーー*/
+		
+		/*またSQLを考える必要がある(albumsを使用)*/
+		/*アルバムの情報を使用してもFiles.copy(static)でエラーがある？*/
+		/*Files.copyに到達する前にデータベースでエラー管理をする*/
+		
+		/*パス情報が同じ名前ならリダイレクト*/
+		/*if (photoService.isPathExisting(photo.getOriginalFilename())) {
+			return "redirect:list-photo";
+		}*/
+		
+		/*ーーーーーーーーーーーーーーーー*/
+		
 		/*※パス情報直書き×(でもそのまま提出11月27日)*/
 		Path path = Path.of("src/main/resources/static/img/" + photo.getOriginalFilename());
 		Files.copy(photo.getInputStream(), path);

@@ -17,4 +17,6 @@ public interface PhotoMapper {
 	public Photos selectPhoto(@Param("id")Integer id);
 	
 	public void deletePhoto(@Param("id")Integer id);
+	
+	public String selectByPhoto(@Param("photo")String photo);
 }

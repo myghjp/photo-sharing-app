@@ -21,6 +21,7 @@ public class HomeGroupController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
+		/*アカウントIDが一致すると自身は管理者である*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("admin",true);
 		}
@@ -29,12 +30,4 @@ public class HomeGroupController {
 		return "group/home-group";
 		
 	}
-	
-	/*ーーー追加が必要な機能/エラーチェックーーー*/
-	
-	/*写真追加時のみエラー*/
-	/*別グループのメールアドレスで追加できない(重複してしまう)*/
-	
-	
-	/*ーーーーーーーーーーーーーーーーーーーーーーー*/
 }

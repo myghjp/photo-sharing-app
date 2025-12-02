@@ -55,4 +55,11 @@
 		where id = #{id}
 	</delete>
 	
+	<!-- 重複確認 -->
+	<select id="selectByPhoto" resultType="String">
+		select photo
+		from photos
+		where photo = #{photo}
+	</select>
+	
 </mapper>
