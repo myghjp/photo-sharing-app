@@ -5,11 +5,11 @@
 <mapper namespace="portfolio.PhotoSharingApp.repository.CommentMapper">
 
 	<resultMap type="portfolio.PhotoSharingApp.entity.Comments" id="CommentsTable">
-		<id column="id" property="id" />
-		<result column="group_id" property="groupId" />
-		<result column="comment" property="comment" />
-		<result column="account_id" property="accountId" />
-		<result column="create_date_time" property="createDateTime" />
+		<id column="id" property="id"/>
+		<result column="group_id" property="groupId"/>
+		<result column="comment" property="comment"/>
+		<result column="account_id" property="accountId"/>
+		<result column="create_date_time" property="createDateTime"/>
 		<association property="accounts" resultMap="accountsTable" columnPrefix="accounts_"/>
 	</resultMap>
 	
@@ -20,7 +20,7 @@
 	
 	<!-- ーListCommentーーーーーーーーーーーーーーーーー -->
 	
-	<!-- commentsテーブルの情報とアカウント名を取得 -->
+	<!-- このグループのcommentsテーブルの情報とアカウント名を取得 -->
 	<select id="selectCommentList" resultMap="CommentsTable">
 		select comments.id
 			,accounts.user as accounts_user
@@ -29,7 +29,9 @@
 		from comments
 			left join accounts
 			on comments.account_id = accounts.id
+			where comments.group_id = #{id}
 			order by comments.id desc
+			
 	</select>
 	
 	<!-- コメント情報を追加 -->

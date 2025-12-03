@@ -48,13 +48,6 @@
 		)
 	</insert>
 	
-	<!-- 重複確認 -->
-	<select id="selectByPhoto" resultType="String">
-		select photo
-		from photos
-		where photo = #{photo}
-	</select>
-	
 	<!-- ーDeletePhotoーーーーーーーーーーーーーーーーー -->
 	
 	<!-- このidと画像パス情報を取得 -->

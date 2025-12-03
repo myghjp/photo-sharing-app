@@ -18,8 +18,6 @@ public interface PhotoMapper {
 	/*photosテーブル情報を追加*/
 	public void insertPhoto(@Param("photos")Photos photos);
 	
-	public String selectByPhoto(@Param("photo")String photo);
-	
 	/*ーDeletePhotoーーーーーーーーーーーーーーーーー*/
 	
 	/*このidと画像パス情報を取得*/
@@ -27,8 +25,5 @@ public interface PhotoMapper {
 	
 	/*データベースのパス情報を削除する*/
 	public void deletePhoto(@Param("id")Integer id);
-	
-	
-	
 	
 }

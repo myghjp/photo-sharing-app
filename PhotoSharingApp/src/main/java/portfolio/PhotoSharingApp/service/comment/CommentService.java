@@ -8,8 +8,8 @@ public interface CommentService {
 	
 	/*ーListCommentーーーーーーーーーーーーーーーーー*/
 	
-	/*commentsテーブルの情報とアカウント名を取得*/
-	public List<Comments> getCommentList();
+	/*このグループのcommentsテーブルの情報とアカウント名を取得*/
+	public List<Comments> getCommentList(int id);
 	
 	/*コメント情報を追加*/
 	public void addComment(Comments comments);

@@ -38,10 +38,12 @@
 				<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data">
 				    <input type="file" name="photo" accept=".jpg, .jpeg, .png">
 				    <input type="submit" value="写真を追加する">
+				    <th:block th:if="${isError}">
+						<div th:text="#{errorMessage}" class="text-danger"></div>
+					</th:block>
 				</form>
 				
-				
-				<div th:each="list:${photoList}">
+				<div th:each="list:${photosList}">
 					<div th:text="'▼' + ${list.Accounts.user}"></div>
 					
 					<img th:src="@{'/img/' + ${list.photo}}" th:alt="${list.photo}">
@@ -59,7 +61,6 @@
 							<a th:href="@{'/delete-photo/' + ${list.id}}" class="btn btn-secondary">削除</a>
 						</th:block>
 					</th:block>
-					
 				</div>
 			</div>
 		</div>

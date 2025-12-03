@@ -1,6 +1,7 @@
 package portfolio.PhotoSharingApp.controller.photo;
 
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -24,7 +25,6 @@ import portfolio.PhotoSharingApp.service.photo.PhotoService;
 
 @Controller
 @SessionAttributes(value = {"groups","albums"})
-/*@Slf4j*/
 public class ListPhotoController { 
 	
 	@Autowired
@@ -41,21 +41,16 @@ public class ListPhotoController {
 		model.addAttribute("groupName",groups.getGroupName());
 		model.addAttribute("albumName",albums.getAlbumName());
 		
-		
+		/*一致すると自身は管理者である*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		
 		model.addAttribute("username", loginUserDetails.getUsername());
 		
-		
-		/*アルバム内だけの写真を表示するようにする*/
-		
 		/*photosテーブルの情報とアカウント名を取得*/
-		List<Photos> photoList = photoService.getphotoList(albums.getId());
-		model.addAttribute("photoList", photoList);
-		
-		/*log.info(photoList.toString());*/
+		List<Photos> photosList = photoService.getphotoList(albums.getId());
+		model.addAttribute("photosList", photosList);
 		
 		return "photo/list-photo";
 	}
@@ -72,38 +67,23 @@ public class ListPhotoController {
 			return "redirect:list-photo";
 		}
 		
-		/*ーーーーーーーーーーーーーーーー*/
-		
-		/*またSQLを考える必要がある(albumsを使用)*/
-		/*アルバムの情報を使用してもFiles.copy(static)でエラーがある？*/
-		/*Files.copyに到達する前にデータベースでエラー管理をする*/
-		
-		/*パス情報が同じ名前ならリダイレクト*/
-		/*if (photoService.isPathExisting(photo.getOriginalFilename())) {
+		try {
+			Path path = Path.of("src/main/resources/static/img/" + photo.getOriginalFilename());
+			Files.copy(photo.getInputStream(), path);
+		}catch(FileAlreadyExistsException e) {
+			e.printStackTrace();
+			redirectAttributes.addFlashAttribute("isError",true);
 			return "redirect:list-photo";
-		}*/
+		}
 		
-		/*ーーーーーーーーーーーーーーーー*/
-		
-		Path path = Path.of("src/main/resources/static/img/" + photo.getOriginalFilename());
-		Files.copy(photo.getInputStream(), path);
-		
-		/*ーー↓データベースにパス情報を登録するーーーーー*/
 		Photos photos = new Photos();
 		
-		/*このアルバムのID*/
 		photos.setAlbumId(albums.getId());
-
-		/*自身のアカウントID*/
 		photos.setAccountId(loginUserDetails.getUserId());
-	
-		/*画像パス情報(String)*/
 		photos.setPhoto(photo.getOriginalFilename());
 		
 		photoService.addPhoto(photos);
 	
-		/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
-
 		return "redirect:list-photo";
 	}
 }

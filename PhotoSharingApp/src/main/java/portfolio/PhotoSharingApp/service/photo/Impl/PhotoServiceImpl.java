@@ -29,15 +29,6 @@ public class PhotoServiceImpl implements PhotoService{
 		photoMapper.insertPhoto(photos);
 	}
 	
-	@Override
-	public boolean isPathExisting(String photo) {
-		if (photoMapper.selectByPhoto(photo) == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
 	/*ーDeletePhotoーーーーーーーーーーーーーーーーー*/
 	
 	/*このidと画像パス情報を取得*/

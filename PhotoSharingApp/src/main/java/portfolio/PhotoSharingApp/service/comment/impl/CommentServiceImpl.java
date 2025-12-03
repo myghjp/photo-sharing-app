@@ -17,10 +17,10 @@ public class CommentServiceImpl implements CommentService{
 	
 	/*ーListCommentーーーーーーーーーーーーーーーーー*/
 	
-	/*commentsテーブルの情報とアカウント名を取得*/
+	/*このグループのcommentsテーブルの情報とアカウント名を取得*/
 	@Override
-	public List<Comments> getCommentList(){
-		return commentMapper.selectCommentList();
+	public List<Comments> getCommentList(int id){
+		return commentMapper.selectCommentList(id);
 	}
 	
 	/*コメント情報を追加*/

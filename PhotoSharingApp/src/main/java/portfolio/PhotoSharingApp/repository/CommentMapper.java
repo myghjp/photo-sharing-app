@@ -12,8 +12,8 @@ public interface CommentMapper {
 	
 	/*ーListCommentーーーーーーーーーーーーーーーーー*/
 
-	/*commentsテーブルの情報とアカウント名を取得*/
-	public List<Comments> selectCommentList();
+	/*このグループのcommentsテーブルの情報とアカウント名を取得*/
+	public List<Comments> selectCommentList(@Param("id")Integer id);
 	
 	/*コメント情報を追加*/
 	public void insertComment(@Param("comments") Comments comments);

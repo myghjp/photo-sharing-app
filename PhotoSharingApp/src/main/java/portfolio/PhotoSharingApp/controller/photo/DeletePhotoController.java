@@ -30,9 +30,6 @@ public class DeletePhotoController {
 		/*このidと画像パス情報を取得*/
 		Photos photosData = photoService.getPhoto(id);
 		
-		/*ここで管理者情報も取得(未定)*/
-		
-		
 		model.addAttribute("photosData",photosData);
 		
 		return "photo/delete-photo";

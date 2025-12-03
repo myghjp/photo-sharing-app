@@ -13,8 +13,6 @@ public interface PhotoService {
 	
 	/*photosテーブル情報を追加*/
 	public void addPhoto(Photos photos);
-	
-	public boolean isPathExisting(String photo);
 
 	/*ーDeletePhotoーーーーーーーーーーーーーーーーー*/
 	
@@ -23,7 +21,5 @@ public interface PhotoService {
 	
 	/*データベースのパス情報を削除する*/
 	public void removePhoto(int id);
-	
-	
 	
 }
