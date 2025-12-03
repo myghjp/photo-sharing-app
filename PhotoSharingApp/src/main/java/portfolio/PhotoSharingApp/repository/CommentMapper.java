@@ -11,15 +11,16 @@ import portfolio.PhotoSharingApp.entity.Comments;
 public interface CommentMapper {
 	
 	/*ーListCommentーーーーーーーーーーーーーーーーー*/
+
+	/*commentsテーブルの情報とアカウント名を取得*/
+	public List<Comments> selectCommentList();
 	
 	/*コメント情報を追加*/
 	public void insertComment(@Param("comments") Comments comments);
-
-	/*コメント情報を取得*/
-	public List<Comments> selectComment();
 	
 	/*ーDeleteCommentーーーーーーーーーーーーーーーーー*/
 	
+	/*このidとコメントを取得*/
 	public Comments select(@Param("id")Integer id);
 
 	/*コメントの削除*/

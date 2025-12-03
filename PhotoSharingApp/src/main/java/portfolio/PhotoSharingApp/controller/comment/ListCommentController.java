@@ -44,9 +44,9 @@ public class ListCommentController {
 		
 		model.addAttribute("myUsername",loginUserDetails.getUsername());
 		
-		/*id番号,アカウント名,コメントした日時,入力されたテキストを取得*/
-		List<Comments> commentList = commentService.commentList();
-		model.addAttribute("commentList", commentList);
+		/*commentsテーブルの情報とアカウント名を取得*/
+		List<Comments> commentsList = commentService.getCommentList();
+		model.addAttribute("commentsList", commentsList);
 		
 		return "comment/list-comment";
 	}

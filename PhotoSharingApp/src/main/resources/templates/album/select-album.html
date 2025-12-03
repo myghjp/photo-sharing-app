@@ -38,17 +38,17 @@
 				
 				<form method="post" th:action="@{/select-album}">
 					
-						<div th:each="list:${albumList}" >
+						<div th:each="list:${albumsList}" >
 							<input type="radio" th:text="${list.albumName}" th:value="${list.id}" name="id" checked>
 							
-							<th:block th:if="${admin}">
+							<th:block th:if="${isAdmin}">
 								<a th:href="@{'/delete-album/' + ${list.id}}" class="btn btn-secondary" >削除</a>
 							</th:block>
 							<br>
 						</div>
 					<br>
 					
-					<th:block th:unless="${albumList.isEmpty()}">
+					<th:block th:unless="${albumsList.isEmpty()}">
 						<input type="submit" value="アルバムを開く" class="btn btn-secondary">
 					</th:block>
 					

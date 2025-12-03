@@ -21,7 +21,6 @@ import portfolio.PhotoSharingApp.service.album.AlbumService;
 
 @Controller
 @SessionAttributes(value = {"groups","albums"})
-/*@Slf4j*/
 public class SelectAlbumController {
 	
 	@Autowired
@@ -37,24 +36,20 @@ public class SelectAlbumController {
 			,Groups groups
 			,HttpSession httpSession
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,RedirectAttributes redirectAttributes) {
+			,RedirectAttributes redirectAttributes
+			) {
 		
-		/*album情報の破棄*/
 		httpSession.removeAttribute("albums");
 		
-		/*log.info(groups.getGroupName().toString());*/
-		
-		/*ここでアルバム一覧を取得*/
 		model.addAttribute("groupName",groups.getGroupName());
 		
+		/*このグループ内のアルバムIDとアルバム名を取得*/
+		List<Albums> albumsList = albumService.getAlbumList(groups.getId());
+		model.addAttribute("albumsList", albumsList);
 		
-		/*このグループ内のアルバム一覧を取得*/
-		List<Albums> albumList = albumService.getAlbumList(groups.getId());
-		model.addAttribute("albumList", albumList);
-		
-		
+		/*アカウントIDが一致すると自身は管理者である*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
-			model.addAttribute("admin",true);
+			model.addAttribute("isAdmin",true);
 		}
 		
 		return "album/select-album";
@@ -64,14 +59,14 @@ public class SelectAlbumController {
 	public String postSelectAlbum(Model model
 			,Albums albums
 			,@RequestParam("id")int albumId
-			,RedirectAttributes redirectAttributes) {
-		/*～アルバムを開く*/
-		/*アルバムcontroller内でsessionに格納したい*/
+			,RedirectAttributes redirectAttributes
+			) {
 		
-		Albums albumData = albumService.getAlbum(albumId);
+		/*アルバムIDとアルバム名を取得*/
+		Albums albumsData = albumService.getAlbum(albumId);
 		
-		albums.setId(albumData.getId());
-		albums.setAlbumName(albumData.getAlbumName());
+		albums.setId(albumsData.getId());
+		albums.setAlbumName(albumsData.getAlbumName());
 		
 		return "redirect:list-photo";
 	}

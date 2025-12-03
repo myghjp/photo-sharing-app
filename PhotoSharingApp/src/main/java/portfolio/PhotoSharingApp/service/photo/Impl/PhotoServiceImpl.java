@@ -15,26 +15,18 @@ public class PhotoServiceImpl implements PhotoService{
 	@Autowired
 	private PhotoMapper photoMapper;
 	
-	/*画像データ追加*/
-	@Override
-	public void addPhoto(Photos photos) {
-		photoMapper.insertPhoto(photos);
-	}
+	/*ーListPhotoーーーーーーーーーーーーーーーーー*/
 	
-	/*画像一覧取得*/
+	/*photosテーブルの情報とアカウント名を取得*/
 	@Override
 	public List<Photos> getphotoList(int id){
 		return photoMapper.selectPhotoList(id);
 	}
 	
+	/*photosテーブル情報を追加*/
 	@Override
-	public Photos getPhoto(int id) {
-		return photoMapper.selectPhoto(id);
-	}
-	
-	@Override
-	public void removePhoto(int id) {
-		photoMapper.deletePhoto(id);
+	public void addPhoto(Photos photos) {
+		photoMapper.insertPhoto(photos);
 	}
 	
 	@Override
@@ -46,4 +38,17 @@ public class PhotoServiceImpl implements PhotoService{
 		}
 	}
 	
+	/*ーDeletePhotoーーーーーーーーーーーーーーーーー*/
+	
+	/*このidと画像パス情報を取得*/
+	@Override
+	public Photos getPhoto(int id) {
+		return photoMapper.selectPhoto(id);
+	}
+	
+	/*データベースのパス情報を削除する*/
+	@Override
+	public void removePhoto(int id) {
+		photoMapper.deletePhoto(id);
+	}
 }

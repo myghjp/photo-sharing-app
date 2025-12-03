@@ -15,24 +15,31 @@ public class AlbumServiceImpl implements AlbumService{
 	@Autowired
 	private AlbumMapper albumMapper;
 	
-	/*グループID,アルバム名 を追加*/
+	/*ーEntryAlbumーーーーーーーーーーーーーーーーー*/
+	
+	/*グループIDとアルバム名を追加*/
 	@Override
 	public void addAlbum(Albums albums) {
 		albumMapper.insertAlbum(albums);
 	}
 	
-	/*アルバム一覧表示*/
+	/*ーSelectAlbumーーーーーーーーーーーーーーーーー*/
+	
+	/*このグループ内のアルバムIDとアルバム名を取得*/
 	@Override
 	public List<Albums> getAlbumList(int id) {
 		return albumMapper.selectAlbumList(id);
 	}
 	
+	/*アルバムIDとアルバム名を取得*/
 	@Override
 	public Albums getAlbum(int id) {
 		return albumMapper.selectAlbum(id);
 	}
 	
-	/*アルバム削除*/
+	/*ーDeleteAlbumーーーーーーーーーーーーーーーーー*/
+	
+	/*アルバムの削除*/
 	@Override
 	public void deleteAlbum(int id) {
 		albumMapper.deleteAlbum(id);

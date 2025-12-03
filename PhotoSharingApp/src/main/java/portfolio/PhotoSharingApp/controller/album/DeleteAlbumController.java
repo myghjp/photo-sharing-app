@@ -21,12 +21,13 @@ public class DeleteAlbumController {
 	
 	@GetMapping("/delete-album/{id}")
 	public String getDeleteAlbum(Model model
-		,@PathVariable("id")int id
-		,DeleteAlbumForm deleteAlbumForm
-		) {
+			,@PathVariable("id")int id
+			,DeleteAlbumForm deleteAlbumForm
+			) {
 		
-		Albums albums = albumService.getAlbum(id);
-		model.addAttribute("albums", albums);
+		/*アルバムIDとアルバム名を取得*/
+		Albums albumsData = albumService.getAlbum(id);
+		model.addAttribute("albumsData", albumsData);
 		
 		model.addAttribute("deleteAlbumForm",deleteAlbumForm);
 		
@@ -39,7 +40,6 @@ public class DeleteAlbumController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		/*アルバムの削除*/
 		albumService.deleteAlbum(id);
 		
 		return "redirect:select-album";

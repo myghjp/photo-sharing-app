@@ -64,7 +64,6 @@ public class AddMembersController {
 			return getAddMembers(model, addMembersForm);
 		}
 		
-		/*メールアドレスを使用してアカウントIDを取得する*/
 		int accountId = membersService.selectAccountId(emailAddress);
 		int groupId = groups.getId();
 		
@@ -72,8 +71,8 @@ public class AddMembersController {
 		members.setGroupId(groupId);
 		members.setAccountId(accountId);
 		
-		/*グループのIDとアカウントのIDを追加する*/
 		membersService.insertMembers(members);
+		
 		return "redirect:list-members";
 	}
 }

@@ -23,11 +23,10 @@ public class DeleteCommentController {
 		,@PathVariable("id")int id
 		) {
 
-			Comments comments = commentService.getComment(id);
-			model.addAttribute("comments", comments);
+		/*このidとコメントを取得*/
+		Comments commentsData = commentService.getComment(id);
+		model.addAttribute("commentsData", commentsData);
 		
-			/*model.addAttribute("id", id);*/
-
 		return "comment/delete-comment";
 	}
 	
@@ -37,7 +36,6 @@ public class DeleteCommentController {
 		,RedirectAttributes redirectAttributes
 		) {
 	
-		/*コメントの削除*/
 		commentService.deleteComment(id);
 	
 		return "redirect:list-comment";

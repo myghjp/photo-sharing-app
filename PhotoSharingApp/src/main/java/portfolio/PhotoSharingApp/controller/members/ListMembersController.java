@@ -54,9 +54,9 @@ public class ListMembersController {
 			) {
 		
 		/*グループ利用者IDとその名前を取得*/
-		Members members = membersService.getMemberName(id);
+		Members membersData = membersService.getMemberName(id);
 		
-		redirectAttributes.addFlashAttribute("members",members);
+		redirectAttributes.addFlashAttribute("membersData",membersData);
 		
 		return "redirect:delete-members";
 	}

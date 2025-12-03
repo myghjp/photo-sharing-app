@@ -23,7 +23,7 @@ public class HomeGroupController {
 		
 		/*アカウントIDが一致すると自身は管理者である*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
-			model.addAttribute("admin",true);
+			model.addAttribute("isAdmin",true);
 		}
 		
 		model.addAttribute("userId",loginUserDetails.getUserId());

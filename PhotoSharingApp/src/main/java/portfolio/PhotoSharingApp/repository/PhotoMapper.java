@@ -10,13 +10,25 @@ import portfolio.PhotoSharingApp.entity.Photos;
 @Mapper
 public interface PhotoMapper {
 	
-	public void insertPhoto(@Param("photos")Photos photos);
+	/*ーListPhotoーーーーーーーーーーーーーーーーー*/
 	
+	/*photosテーブルの情報とアカウント名を取得*/
 	public List<Photos> selectPhotoList(@Param("id")Integer id);
 	
-	public Photos selectPhoto(@Param("id")Integer id);
-	
-	public void deletePhoto(@Param("id")Integer id);
+	/*photosテーブル情報を追加*/
+	public void insertPhoto(@Param("photos")Photos photos);
 	
 	public String selectByPhoto(@Param("photo")String photo);
+	
+	/*ーDeletePhotoーーーーーーーーーーーーーーーーー*/
+	
+	/*このidと画像パス情報を取得*/
+	public Photos selectPhoto(@Param("id")Integer id);
+	
+	/*データベースのパス情報を削除する*/
+	public void deletePhoto(@Param("id")Integer id);
+	
+	
+	
+	
 }

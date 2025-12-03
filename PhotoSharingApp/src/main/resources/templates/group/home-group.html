@@ -31,7 +31,7 @@
 				
 				<a th:href="@{'/select-group'}" class="btn btn-secondary">グループ選択に戻る</a><br>
 				
-				<th:block th:if="${admin}">
+				<th:block th:if="${isAdmin}">
 					<div th:text="#{adminAlert}"></div><br>
 				</th:block>
 			
@@ -41,7 +41,7 @@
 				
 				<a th:href="@{'/list-comment'}" class="btn btn-secondary">掲示板を使用する</a><br>
 				
-				<th:block th:if="${admin}">
+				<th:block th:if="${isAdmin}">
 					<a th:href="@{'/delete-group'}" class="btn btn-secondary">グループを削除する</a>
 				</th:block>
 			</div>

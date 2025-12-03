@@ -18,18 +18,9 @@
 		<result column="user" property="user"/>
 	</resultMap>
 	
-	<insert id="insertPhoto">
-		insert into photos(
-			 album_id
-			,photo
-			,account_id
-		)VALUES(
-			 #{photos.albumId}
-			,#{photos.photo}
-			,#{photos.accountId}
-		)
-	</insert>
+	<!-- ーListPhotoーーーーーーーーーーーーーーーーー -->
 	
+	<!-- photosテーブルの情報とアカウント名を取得 -->
 	<select id="selectPhotoList" resultMap="PhotosTable">
 		select 
 		photos.id
@@ -44,16 +35,18 @@
 		    where album_id = #{id}
 	</select>
 	
-	<select id="selectPhoto" resultMap="PhotosTable">
-		select id,photo
-		from photos
-		where id = #{id}
-	</select>
-	
-	<delete id="deletePhoto">
-		delete from photos
-		where id = #{id}
-	</delete>
+	<!-- photosテーブル情報を追加 -->
+	<insert id="insertPhoto">
+		insert into photos(
+			 album_id
+			,photo
+			,account_id
+		)VALUES(
+			 #{photos.albumId}
+			,#{photos.photo}
+			,#{photos.accountId}
+		)
+	</insert>
 	
 	<!-- 重複確認 -->
 	<select id="selectByPhoto" resultType="String">
@@ -61,5 +54,20 @@
 		from photos
 		where photo = #{photo}
 	</select>
+	
+	<!-- ーDeletePhotoーーーーーーーーーーーーーーーーー -->
+	
+	<!-- このidと画像パス情報を取得 -->
+	<select id="selectPhoto" resultMap="PhotosTable">
+		select id,photo
+		from photos
+		where id = #{id}
+	</select>
+	
+	<!-- データベースのパス情報を削除する -->
+	<delete id="deletePhoto">
+		delete from photos
+		where id = #{id}
+	</delete>
 	
 </mapper>

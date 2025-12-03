@@ -29,7 +29,8 @@ public class EntryAlbumController {
 	
 	@GetMapping("/entry-album")
 	public String getEntryAlbum(Model model
-			,EntryAlbumForm entryAlbumForm) {
+			,EntryAlbumForm entryAlbumForm
+			) {
 		
 		return "album/entry-album";
 	}
@@ -50,7 +51,6 @@ public class EntryAlbumController {
 		
 		albums.setGroupId(groups.getId());
 		
-		/*グループIDとアルバム名を登録する*/
 		albumService.addAlbum(albums);
 		
 		return "redirect:select-album";

@@ -32,11 +32,11 @@
 				
 					<div th:text=#{deleteCommentAlert}></div>
 					
-					<div th:text=${comments.comment}></div>
+					<div th:text=${commentsData.comment}></div>
 					
 					<a th:href="@{'/list-comment'}" class="btn btn-secondary">キャンセル</a>
 					
-					<input type="hidden" name="id" th:value="${comments.id}">
+					<input type="hidden" name="id" th:value="${commentsData.id}">
 				    <input type="submit" value="削除" class="btn btn-secondary">
 				</form>
 			</div>

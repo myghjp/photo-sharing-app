@@ -17,21 +17,23 @@ public class CommentServiceImpl implements CommentService{
 	
 	/*ーListCommentーーーーーーーーーーーーーーーーー*/
 	
+	/*commentsテーブルの情報とアカウント名を取得*/
+	@Override
+	public List<Comments> getCommentList(){
+		return commentMapper.selectCommentList();
+	}
+	
 	/*コメント情報を追加*/
 	@Override
 	public void addComment(Comments comments) {
 		commentMapper.insertComment(comments);
 	}
 	
-	/*コメント情報を取得*/
-	@Override
-	public List<Comments> commentList(){
-		return commentMapper.selectComment();
-	}
 	
 	/*ーDeleteCommentーーーーーーーーーーーーーーーーー*/
 	
-	/*コメントを取得*/
+	/*このidとコメントを取得*/
+	@Override
 	public Comments getComment(int id) {
 		return commentMapper.select(id);
 	}

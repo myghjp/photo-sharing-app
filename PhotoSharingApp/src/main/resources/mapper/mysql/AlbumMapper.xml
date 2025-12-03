@@ -10,7 +10,9 @@
 		<result column="album_name" property="albumName" />
 	</resultMap>
 	
-	<!-- アルバム名登録 -->
+	<!-- ーEntryAlbumーーーーーーーーーーーーーーーーー -->
+	
+	<!-- グループIDとアルバム名を追加 -->
 	<insert id="insertAlbum">
 		insert into albums(
 			 group_id
@@ -21,7 +23,9 @@
 		)
 	</insert>
 	
-	<!-- アルバム一覧を取得 -->
+	<!-- ーSelectAlbumーーーーーーーーーーーーーーーーー -->
+	
+	<!-- このグループ内のアルバムIDとアルバム名を取得 -->
 	<select id="selectAlbumList" resultMap="AlbumsTable">
 		select albums.id,album_name
 		from albums
@@ -30,12 +34,17 @@
 		where group_id = #{id}
 	</select>
 	
+	<!-- アルバムIDとアルバム名を取得 -->
+	<!-- ※deleteAlbumでも使用中 -->
 	<select id="selectAlbum" resultMap="AlbumsTable">
 		select id,album_name
 		from albums
 		where id = #{id}
 	</select>
 	
+	<!-- ーDeleteAlbumーーーーーーーーーーーーーーーーー -->
+	
+	<!-- アルバムの削除 -->
 	<delete id="deleteAlbum">
 		delete from albums
 		where id = #{id}

@@ -6,15 +6,22 @@ import portfolio.PhotoSharingApp.entity.Albums;
 
 public interface AlbumService {
 	
-	/*グループID,アルバム名 を追加*/
+	/*ーEntryAlbumーーーーーーーーーーーーーーーーー*/
+	
+	/*グループIDとアルバム名を追加*/
 	public void addAlbum(Albums albums);
 	
-	/*アルバム一覧表示*/
+	/*ーSelectAlbumーーーーーーーーーーーーーーーーー*/
+	
+	/*このグループ内のアルバムIDとアルバム名を取得*/
 	public List<Albums> getAlbumList(int id);
 	
+	/*アルバムIDとアルバム名を取得*/
 	public Albums getAlbum(int id);
 	
-	/*アルバム削除*/
+	/*ーDeleteAlbumーーーーーーーーーーーーーーーーー*/
+	
+	/*アルバムの削除*/
 	public void deleteAlbum(int id);
 
 }

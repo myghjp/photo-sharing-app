@@ -27,15 +27,13 @@ public class DeletePhotoController {
 			,@PathVariable("id")int id
 			) {
 		
-		/*idと画像パス情報をまとめて取得*/
-		Photos photoData = photoService.getPhoto(id);
-		/*idと画像path*/
-		
+		/*このidと画像パス情報を取得*/
+		Photos photosData = photoService.getPhoto(id);
 		
 		/*ここで管理者情報も取得(未定)*/
 		
 		
-		model.addAttribute("photoData",photoData);
+		model.addAttribute("photosData",photosData);
 		
 		return "photo/delete-photo";
 	}
@@ -46,14 +44,12 @@ public class DeletePhotoController {
 			,RedirectAttributes redirectAttributes
 			)throws IOException {
 		
-		Photos photoData = photoService.getPhoto(id);
+		Photos photosData = photoService.getPhoto(id);
 		
-		/*ファイルも削除したい*/
-		Path path = Path.of("src/main/resources/static/img/" + photoData.getPhoto());
+		Path path = Path.of("src/main/resources/static/img/" + photosData.getPhoto());
 		Files.delete(path);
 		
-		/*データベースのパス情報を削除する*/
-		photoService.removePhoto(photoData.getId());
+		photoService.removePhoto(photosData.getId());
 		
 		return "redirect:list-photo";
 	}

@@ -20,6 +20,18 @@
 	
 	<!-- ーListCommentーーーーーーーーーーーーーーーーー -->
 	
+	<!-- commentsテーブルの情報とアカウント名を取得 -->
+	<select id="selectCommentList" resultMap="CommentsTable">
+		select comments.id
+			,accounts.user as accounts_user
+			,comments.create_date_time
+			,comments.comment
+		from comments
+			left join accounts
+			on comments.account_id = accounts.id
+			order by comments.id desc
+	</select>
+	
 	<!-- コメント情報を追加 -->
 	<insert id="insertComment">
 		insert into comments(
@@ -33,21 +45,9 @@
 		)
 	</insert>
 	
-	<!-- コメント情報を取得 -->
-	<!-- id番号,アカウント名,コメントした日時,入力されたテキストを取得 -->
-	<select id="selectComment" resultMap="CommentsTable">
-		select comments.id
-			,accounts.user as accounts_user
-			,comments.create_date_time
-			,comments.comment
-		from comments
-			left join accounts
-			on comments.account_id = accounts.id
-			order by comments.id desc
-	</select>
-	
 	<!-- ーDeleteCommentーーーーーーーーーーーーーーーーー -->
 	
+	<!-- このidとコメントを取得 -->
 	<select id="select" resultMap="CommentsTable">
 		select id,comment
 		from comments

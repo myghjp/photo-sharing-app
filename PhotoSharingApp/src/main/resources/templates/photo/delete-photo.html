@@ -33,11 +33,11 @@
 				
 					<div th:text="#{deletePhotoAlert}"></div>
 					
-					<img th:src="@{'/img/' + ${photoData.photo}}">
+					<img th:src="@{'/img/' + ${photosData.photo}}">
 					
 					<a th:href="@{'/list-photo'}" class="btn btn-secondary">キャンセル</a><br>
 					
-					<input type="hidden" name="id" th:value="${photoData.id}">
+					<input type="hidden" name="id" th:value="${photosData.id}">
 				    <input type="submit" value="削除" class="btn btn-secondary">
 				</form>
 			

@@ -31,11 +31,11 @@
 				
 					<div th:text="#{deleteAlbumAlert}"></div>
 					
-					<div th:text="${albums.albumName}"></div>
+					<div th:text="${albumsData.albumName}"></div>
 					
 					<a th:href="@{'/select-album'}" class="btn btn-secondary">キャンセル</a>
 					
-					<input type="hidden" th:value="${albums.id}" name="id" >
+					<input type="hidden" th:value="${albumsData.id}" name="id" >
 				    <input type="submit" value="削除" class="btn btn-secondary">
 				</form>
 			</div>

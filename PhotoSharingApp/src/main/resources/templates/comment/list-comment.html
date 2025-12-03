@@ -44,7 +44,7 @@
 					
 					<div>ーーー以下Listーーー</div>
 					
-					<div th:each="list:${commentList}">
+					<div th:each="list:${commentsList}">
 						<div th:text="${list.id} + '.'"></div>
 						<div th:text="'▼' + ${list.Accounts?.user?: 'unknown'}"></div>
 						

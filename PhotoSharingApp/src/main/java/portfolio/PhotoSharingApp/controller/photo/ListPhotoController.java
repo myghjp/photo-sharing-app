@@ -38,22 +38,22 @@ public class ListPhotoController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		model.addAttribute("groupName",groups);
+		model.addAttribute("groupName",groups.getGroupName());
 		model.addAttribute("albumName",albums.getAlbumName());
 		
 		
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}
+		
 		model.addAttribute("username", loginUserDetails.getUsername());
 		
 		
 		/*アルバム内だけの写真を表示するようにする*/
 		
+		/*photosテーブルの情報とアカウント名を取得*/
 		List<Photos> photoList = photoService.getphotoList(albums.getId());
 		model.addAttribute("photoList", photoList);
-		
-		
 		
 		/*log.info(photoList.toString());*/
 		
@@ -85,7 +85,6 @@ public class ListPhotoController {
 		
 		/*ーーーーーーーーーーーーーーーー*/
 		
-		/*※パス情報直書き×(でもそのまま提出11月27日)*/
 		Path path = Path.of("src/main/resources/static/img/" + photo.getOriginalFilename());
 		Files.copy(photo.getInputStream(), path);
 		
@@ -98,7 +97,7 @@ public class ListPhotoController {
 		/*自身のアカウントID*/
 		photos.setAccountId(loginUserDetails.getUserId());
 	
-		/*画像パス情報？(String)*/
+		/*画像パス情報(String)*/
 		photos.setPhoto(photo.getOriginalFilename());
 		
 		photoService.addPhoto(photos);

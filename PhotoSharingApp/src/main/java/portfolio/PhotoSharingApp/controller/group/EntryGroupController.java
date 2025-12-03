@@ -56,7 +56,6 @@ public class EntryGroupController {
 		
 		groups.setAccountId(loginUserDetails.getUserId());
 		
-		/*グループ名とログイン中のアカウントIDを追加*/
 		groupService.entryGroup(groups);
 		
 		return "redirect:select-group";
