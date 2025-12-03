@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/css/form.css}">
+	<!--<link rel="stylesheet" th:href="@{/css/form.css}">-->
 	
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
@@ -43,24 +43,30 @@
 					</th:block>
 				</form>
 				
-				<div th:each="list:${photosList}">
-					<div th:text="'▼' + ${list.Accounts.user}"></div>
+				<div th:each="list:${photosList}" class="card" style="width: 18rem;">
 					
-					<img th:src="@{'/img/' + ${list.photo}}" th:alt="${list.photo}">
+					 <div class="card-body">
 					
-					<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}"></div>
-					
-	  				<a th:href="@{'/img/' + ${list.photo}}" download="" class="btn btn-secondary">保存</a>
-					
-					<th:block th:if="${isAdmin}">
-						<a th:href="@{'/delete-photo/' + ${list.id}}" class="btn btn-secondary">削除</a>
-					</th:block>
-					
-					<th:block th:unless="${isAdmin}">
-						<th:block th:if="${list.Accounts.user == username}">
+						<div th:text="'▼' + ${list.Accounts.user}"></div>
+						
+						<img th:src="@{'/img/' + ${list.photo}}" th:alt="${list.photo}" class="card-img-top">
+						
+						<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}"></div>
+						
+		  				<a th:href="@{'/img/' + ${list.photo}}" download="" class="btn btn-secondary">保存</a>
+						
+						<th:block th:if="${isAdmin}">
 							<a th:href="@{'/delete-photo/' + ${list.id}}" class="btn btn-secondary">削除</a>
 						</th:block>
-					</th:block>
+						
+						<th:block th:unless="${isAdmin}">
+							<th:block th:if="${list.Accounts.user == username}">
+								<a th:href="@{'/delete-photo/' + ${list.id}}" class="btn btn-secondary">削除</a>
+							</th:block>
+						</th:block>
+						
+					 </div>
+						
 				</div>
 			</div>
 		</div>

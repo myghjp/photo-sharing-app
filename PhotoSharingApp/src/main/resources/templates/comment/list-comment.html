@@ -28,38 +28,37 @@
 		<div class="row">
 			<div class="col text-center">
 		
-					<div th:text=${groupName}></div>
-					<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a>
-					<div th:text=#{commentAlert}></div>
-					<p>ーーーーーーーーーーー</p>
+				<div th:text=${groupName}></div>
+				<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a>
+				<div th:text=#{commentAlert}></div>
+				<p>ーーーーーーーーーーー</p>
+				
+				<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
+				    <div class="form-group">
+				        <label for="comment" ></label>
+				         <input type="text" th:field="*{comment}" th:errorclass="is-invalid">
+				         <div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
+				    <input type="submit" value="コメント" class="btn btn-secondary">
+				    </div>
+		    	</form>
+				
+				<div>ーーー以下Listーーー</div>
+				
+				<div th:each="list:${commentsList}">
+					<div th:text="${list.id} + '.'"></div>
+					<div th:text="'▼' + ${list.Accounts?.user?: 'unknown'}"></div>
 					
-					<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
-					    <div class="form-group">
-					        <label for="comment" ></label>
-					         <input type="text" th:field="*{comment}" th:errorclass="is-invalid">
-					         <div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
-					    <input type="submit" value="コメント" class="btn btn-secondary">
-					    </div>
-			    	</form>
+					<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}"></div>
 					
-					<div>ーーー以下Listーーー</div>
+					<th:block th:if="${list.Accounts?.user != null and list.Accounts.user == myUsername}">
+						<a th:href="@{'/delete-comment/' + ${list.id}}" class="btn btn-secondary">削除</a>
+					</th:block>
 					
-					<div th:each="list:${commentsList}">
-						<div th:text="${list.id} + '.'"></div>
-						<div th:text="'▼' + ${list.Accounts?.user?: 'unknown'}"></div>
-						
-						<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}"></div>
-						
-						<th:block th:if="${list.Accounts?.user != null and list.Accounts.user == myUsername}">
-							<a th:href="@{'/delete-comment/' + ${list.id}}" class="btn btn-secondary">削除</a>
-						</th:block>
-						
-						<br>
-						<div th:text="${list.comment}"></div>
-					</div>
+					<br>
+					<div th:text="${list.comment}"></div>
+				</div>
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
