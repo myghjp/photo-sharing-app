@@ -6,7 +6,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<!--<link rel="stylesheet" th:href="@{/css/form.css}">-->
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 	<title th:text="#{loginPage}"></title>
@@ -17,31 +16,31 @@
 	</nav>
 	
 	<div class="container">
-		<div class="row">
-			<th:block
-				th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
-				<span th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
-					th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
-					class="col text-center text-danger">
-				</span>
+		<div class="row d-flex justify-content-center align-items-center vh-100">
+			
+			<th:block th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+				<div class="col-sm-6 alert alert-danger alert-dismissble fade show">
+					<span th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+						th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" 
+						class="text-danger">
+					</span>
+				</div>
 			</th:block>
-		</div>
-		
-		<div class="row">
-			<form method="post" th:action="@{/postlogin}" class="col text-center">
-				<div class="form-group">
-					<label for="user" th:text="#{user}"></label>
+			
+			<form method="post" th:action="@{/postlogin}">
+				<div class="form-group row">
+					<label for="user" th:text="#{user}" class="col col-form-label"></label>
 					<input type="text"id="user" name="user">
 				</div>
-				<div class="form-group">
-					<label for="pass" th:text="#{pass}"></label>
+				<div class="form-group row">
+					<label for="pass" th:text="#{pass}" class="col col-form-label"></label>
 					<input type="password" id="pass" name="pass">
 				</div>
-				<input type="submit" value="ログイン" class="btn btn-secondary">
-				<a th:href="@{'/entry-account'}" class="btn btn-secondary">アカウント登録</a>
+			
+				<input type="submit" value="ログイン" class="btn btn-secondary m-3">
+				<a th:href="@{'/entry-account'}" class="btn btn-secondary m-3">アカウント登録</a>
 			</form>
 		</div>
 	</div>
-	
 </body>
 </html>
