@@ -42,7 +42,7 @@
 			<div class="col text-center">
 				<a th:href="@{'/entry-group'}" class="btn btn-secondary">グループ作成</a>
 		
-				<div th:text="#{selectGroupAlert}"></div>
+				<h5 th:text="#{selectGroupAlert}"></h5>
 				
 				<form method="post" th:action="@{/select-group}">
 					<div th:each="list:${groupsList}">

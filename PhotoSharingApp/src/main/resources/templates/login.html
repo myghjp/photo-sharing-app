@@ -18,16 +18,17 @@
 	<div class="container">
 		<div class="row d-flex justify-content-center align-items-center vh-100">
 			
-			<th:block th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
-				<div class="col-sm-6 alert alert-danger alert-dismissble fade show">
-					<span th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
-						th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" 
-						class="text-danger">
-					</span>
-				</div>
-			</th:block>
-
 			<form method="post" th:action="@{/postlogin}">
+				
+				<th:block th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+					<div class="col-sm-6 alert alert-danger alert-dismissble fade show">
+						<span th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+							th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" 
+							class="text-danger">
+						</span>
+					</div>
+				</th:block>
+				
 				<div class="form-group row">
 					<label for="user" th:text="#{user}" class="col col-form-label"></label>
 					<input type="text"id="user" name="user">

@@ -42,8 +42,8 @@
 		<div class="row">
 			<form method="post" th:action="@{/delete-account}" class="col text-center">
 				
-				<div th:text="#{deleteAccountMessage1}"></div>
-				<div th:text="#{deleteAccountMessage2}"></div>
+				<h5 th:text="#{deleteAccountMessage1}"></h5>
+				<h5 th:text="#{deleteAccountMessage2}"></h5>
 				
 				<th:block th:if="${isError}">
 					<span th:text="#{deleteAccountAlert}" class="text-danger">
