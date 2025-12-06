@@ -19,7 +19,6 @@
 		<div class="row d-flex justify-content-center align-items-center vh-100">
 			
 			<form method="post" th:action="@{/postlogin}">
-				
 				<th:block th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
 					<div class="col-sm-6 alert alert-danger alert-dismissble fade show">
 						<span th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
@@ -38,8 +37,10 @@
 					<input type="password" id="pass" name="pass">
 				</div>
 			
-				<input type="submit" value="ログイン" class="btn btn-secondary m-3">
-				<a th:href="@{'/entry-account'}" class="btn btn-secondary m-3">アカウント登録</a>
+				<div class="form-group text-center">
+					<input type="submit" value="ログイン" class="btn btn-secondary m-3">
+					<a th:href="@{'/entry-account'}" class="btn btn-secondary m-3">アカウント登録</a>
+				</div>
 			</form>
 			
 		</div>
