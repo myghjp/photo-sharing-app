@@ -12,7 +12,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
-	    <a class="navbar-brand" th:text="#{photoSharingApp}"></a>
+	    <span class="navbar-brand" th:text="#{photoSharingApp}"></span>
 	</nav>
 	
 	<div class="container">
@@ -26,7 +26,7 @@
 					</span>
 				</div>
 			</th:block>
-			
+
 			<form method="post" th:action="@{/postlogin}">
 				<div class="form-group row">
 					<label for="user" th:text="#{user}" class="col col-form-label"></label>
@@ -40,6 +40,7 @@
 				<input type="submit" value="ログイン" class="btn btn-secondary m-3">
 				<a th:href="@{'/entry-account'}" class="btn btn-secondary m-3">アカウント登録</a>
 			</form>
+			
 		</div>
 	</div>
 </body>
