@@ -4,44 +4,57 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/css/form.css}">
-	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 	<title th:text="#{entryAccountPage}"></title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+	<nav class="navbar navbar-expand-md navbar-dark bg-secondary px-3">
 	    <span class="navbar-brand" th:text="#{photoSharingApp}"></span>
 	</nav>
 	
 	<div class="container">
 		<div class="row d-flex justify-content-center align-items-center vh-100">
-			<form method="post" th:action="@{/entry-account}" th:object="${entryAccountForm}">
+		
+			<div class="col-md-4 mx-auto">
+			
+				<form method="post" th:action="@{/entry-account}" th:object="${entryAccountForm}">
 				
-			    <div class="form-group row">
-			        <label for="user" th:text="#{user}" class="col col-form-label"></label>
-			        <input type="text" th:field="*{user}" th:errorclass="is-invalid">
-			        <div class="invalid-feedback" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
-			    </div>
-			    
-			    <div class="form-group row">
-			        <label for="pass" th:text="#{pass}" class="col col-form-label"></label>
-			        <input type="password" th:field="*{pass}" th:errorclass="is-invalid">
-			        <div class="invalid-feedback" th:errors="*{pass}"></div>
-			    </div>
-			    
-			    <div class="form-group row">
-			        <label for="email" th:text="#{emailAddress}" class="col col-form-label"></label>
-			        <input type="email" th:field="*{emailAddress}" th:errorclass="is-invalid">
-			        <div class="invalid-feedback" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
-			    </div>
-			    
-			    <div class="form-group text-center">
-				    <a th:href="@{'/login'}" class="btn btn-secondary m-3">キャンセル</a>
-				    <input type="submit" value="登録" class="btn btn-secondary m-3">
-			    </div>
-			    
-			</form>
+				
+				    <div class="row mb-3">
+				        <label for="user" th:text="#{user}" class="col-sm-4 col-form-label"></label>
+				        <div class="col-sm-8">
+					        <input type="text" th:field="*{user}" th:errorclass="is-invalid" class="form-control">
+					        <div class="invalid-feedback" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
+					    </div>
+				    </div>
+				    
+				    <div class="row mb-3">
+				        <label for="pass" th:text="#{pass}" class="col-sm-4 col-form-label"></label>
+				        
+				        <div class="col-sm-8">
+					        <input type="password" th:field="*{pass}" th:errorclass="is-invalid" class="form-control">
+					        <div class="invalid-feedback" th:errors="*{pass}"></div>
+					    </div>
+				    </div>
+				    
+				    <div class="row mb-3">
+				        <label for="email" th:text="#{emailAddress}" class="col-sm-4 col-form-label"></label>
+				        
+				         <div class="col-sm-8">
+					        <input type="email" th:field="*{emailAddress}" th:errorclass="is-invalid" class="form-control">
+					        <div class="invalid-feedback" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
+					     </div>
+				    </div>
+				    
+				    <div class="text-center">
+					    <a th:href="@{'/login'}" class="btn btn-secondary m-3">キャンセル</a>
+					    <input type="submit" value="登録" class="btn btn-secondary m-3">
+				    </div>
+				    
+				</form>
+				
+			</div>
+				
 		</div>
 	</div>
 </body>
