@@ -10,7 +10,7 @@
 	<title th:text="#{selectGroupPage}"></title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-secondary px-3">
+	<nav class="navbar navbar-expand-md navbar-dark bg-secondary px-3 mb-3">
 		<span class="navbar-brand" th:text="#{photoSharingApp}"></span>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,19 +38,24 @@
 	</nav>
 
 	<div class="container">
-		<div class="row">
-			<div class="col text-center">
-				<a th:href="@{'/entry-group'}" class="btn btn-secondary">グループ作成</a>
-		
-				<h5 th:text="#{selectGroupAlert}"></h5>
-				
-				<form method="post" th:action="@{/select-group}">
-					<div th:each="list:${groupsList}">
-						<input type="radio" th:text="${list.groupName}" th:value="${list.id}" name="id" checked>
-						<br>
-					</div>
+		<div class="row d-flex justify-content-center align-items-center">
+			<div class="col-md-4 mx-auto">
+				<form method="post" th:action="@{/select-group}" class="text-center">
+					
+					<a th:href="@{'/entry-group'}" class="btn btn-secondary mb-3">グループ作成</a>
+					<h5 th:text="#{selectGroupAlert}" class="mb-3"></h5>
+					
+						<div th:each="list:${groupsList}">
+							<div class="d-flex justify-content-center"> 
+								<div class="form-check mb-3">
+									<input type="radio" th:value="${list.id}" name="id" class="form-check-input" checked>
+									<label th:text="${list.groupName}" class="form-check-label"></label>
+								</div>
+							</div>
+						</div>
+					
 					<th:block th:unless="${groupsList.isEmpty()}">
-							<input type="submit" value="グループを開く" class="btn btn-secondary">
+							<input type="submit" value="グループを開く" class="btn btn-secondary mb-3" >
 					</th:block>
 				</form>
 			</div>
