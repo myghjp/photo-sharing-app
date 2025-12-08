@@ -6,33 +6,34 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/css/form.css}">
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 	<title th:text="#{deleteGroupPage}"></title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+	<nav class="navbar navbar-expand-md navbar-dark bg-secondary px-3">
 		<span class="navbar-brand" th:text="#{photoSharingApp}"></span>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<input type="button" onclick="location.href='./edit-account'" value="パスワード変更" class="btn btn-secondary">
+			<ul class="navbar-nav ms-auto d-flex align-items-center">
+				<li class="nav-link">
+					<a th:href="@{'/edit-account'}" class="btn btn-secondary">パスワード変更</a>
+				</li>
+				<li class="nav-link">
+					<a th:href="@{'/delete-account'}" class="btn btn-secondary">アカウント削除</a>
+				</li>
+				<li class="navbar-text px-3">
+					<span sec:authentication="principal.username"></span>
 				</li>
 				<li class="nav-item">
-					<input type="button" onclick="location.href='./delete-account'" value="アカウント削除" class="btn btn-secondary">
-				</li>
-				<li class="navbar-text">
-					<span sec:authentication="principal.username" class="text-light"></span>
+					<form method="post" th:action="@{/postlogout}">
+						<input type="submit" value="ログアウト" class="btn btn-secondary">
+					</form>
 				</li>
 			</ul>
-			<form method="post" th:action="@{/postlogout}" class="form-inline">
-				<input type="submit" value="ログアウト" class="btn btn-secondary">
-			</form>
 		</div>
 	</nav>
 	
