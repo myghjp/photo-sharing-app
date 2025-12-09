@@ -38,18 +38,20 @@
 	</nav>
 	
 	<div class="container">
-		<div class="row">
-			<div class="col text-center">
-				<form method="post" th:action="@{/delete-album}" th:object="${deleteAlbumForm}">
+		<div class="row d-flex justify-content-center align-items-center vh-100">
+			<div class="col-md-4 mx-auto">
+				<form method="post" th:action="@{/delete-album}" th:object="${deleteAlbumForm}" class="text-center">
 				
-					<div th:text="#{deleteAlbumAlert}"></div>
+					<h5 th:text="#{deleteAlbumAlert}"></h5>
 					
-					<div th:text="${albumsData.albumName}"></div>
+					<div class="row my-5">
+						<h5 th:text="${albumsData.albumName}"></h5>
+					</div>
 					
-					<a th:href="@{'/select-album'}" class="btn btn-secondary">キャンセル</a>
-					
+					<a th:href="@{'/select-album'}" class="btn btn-secondary mx-3">キャンセル</a>
 					<input type="hidden" th:value="${albumsData.id}" name="id" >
-				    <input type="submit" value="削除" class="btn btn-secondary">
+				    <input type="submit" value="削除" class="btn btn-secondary mx-3">
+				    
 				</form>
 			</div>
 		</div>
