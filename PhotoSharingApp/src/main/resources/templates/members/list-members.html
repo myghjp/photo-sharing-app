@@ -10,7 +10,7 @@
 	<title th:text="#{listMembersPage}"></title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-secondary px-3">
+	<nav class="navbar navbar-expand-md navbar-dark bg-secondary px-3 mb-3">
 		<span class="navbar-brand" th:text="#{photoSharingApp}"></span>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,38 +38,56 @@
 	</nav>
 
 	<div class="container">
-		<div class="row">
-			<div class="col text-center">
-				<div th:text="${groups.groupName}"></div>
+		<div class="row d-flex justify-content-center align-items-center">
+			<div class="col-md-4 mx-auto">
 				
-				<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a><br>
-				
-				<th:block th:if="${isAdmin}">
-					<a th:href="@{'/add-members'}" class="btn btn-secondary">利用者を追加する</a>
-				</th:block>
-				
-				<div th:text="#{listMembersAlert}"></div>
-				
-				<th:block th:unless="${isAdmin}">
-					<span th:text="#{admin}" class="text-primary"></span>
-					<span th:text="${adminName}" ></span><br>
-				</th:block>
-				
-				<div th:each="list:${membersList}">
-						
-					<form method="post" th:action="@{/list-members}">
-				
-						<div th:text="${list.accounts?.user?: 'unknown'}" ></div>
-						<input type="hidden" th:value="${list.id}" name="id">
-						
+				<div class="text-center">
+					
+					<div class="row mb-3">
+						<h5 th:text="${groups.groupName}"></h5>
+					</div>
+					
+					<div class="row-cols-12 mb-3">
+						<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a>
+					</div>
+					
+					<div class="row-cols-12 mb-3">
 						<th:block th:if="${isAdmin}">
-							<input type="submit" value="削除" class="btn btn-secondary">
+							<a th:href="@{'/add-members'}" class="btn btn-secondary">利用者を追加する</a>
 						</th:block>
+					</div>
+					
+					<div class="row mb-3">
+						<h5 th:text="#{listMembersAlert}"></h5>
+					</div>
+					
+					<div class="row mb-3">
+						<div class="d-flex justify-content-center m-2"> 
+							<th:block th:unless="${isAdmin}">
+								<span th:text="#{admin}" class="text-primary"></span>
+								<span th:text="${adminName}"></span>
+							</th:block>
+						</div>
+					</div>
+					
+					<div th:each="list:${membersList}">
+						<div class="row mb-3">
+							<form method="post" th:action="@{/list-members}">
+								<div class="d-flex justify-content-center"> 
+									<div th:text="${list.accounts?.user?: 'unknown'}" class="m-2"></div>
+									<input type="hidden" th:value="${list.id}" name="id">
+									
+									<th:block th:if="${isAdmin}">
+										<input type="submit" value="削除" class="btn btn-secondary">
+									</th:block>
+								</div>
+							</form>
+						</div>
 						
-					</form>
-					<br>
-							
+					</div>
+					
 				</div>
+				
 			</div>
 		</div>
 	</div>
