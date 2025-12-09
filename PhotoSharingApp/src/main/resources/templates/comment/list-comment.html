@@ -10,7 +10,7 @@
 	<title th:text=#{listCommentPage}></title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-secondary px-3">
+	<nav class="navbar navbar-expand-md navbar-dark bg-secondary px-3 mb-3">
 		<span class="navbar-brand" th:text="#{photoSharingApp}"></span>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,37 +38,53 @@
 	</nav>
 
 	<div class="container">
-		<div class="row">
-			<div class="col text-center">
-		
-				<h5 th:text=${groupName}></h5>
-				<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a>
-				<h5 th:text=#{commentAlert}></h5>
-				
-				<div class="border border-dark"></div>
-				
-				<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
-				    <div class="form-group">
-				        <label for="comment" ></label>
-				         <input type="text" th:field="*{comment}" th:errorclass="is-invalid">
-				         <div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
-				    	<input type="submit" value="コメント" class="btn btn-secondary">
-				    </div>
-		    	</form>
-		    </div>
-		</div>
-		
 		<div class="row d-flex justify-content-center align-items-center">
-			<div th:each="list:${commentsList}" class="card col-12">
+			<div class="text-center">
+		
+				<div class="row mb-3">
+					<h5 th:text=${groupName}></h5>
+				</div>
+				
+				<div class="row-cols-12 mb-3">
+					<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a>
+				</div>
+				
+				<div class="row mb-3">
+					<h5 th:text=#{commentAlert}></h5>
+				</div>
+				
+				<div class="row mb-3">
+					<div class="border border-dark"></div>
+				</div>
+				
+				<div class="col-md-3 mx-auto">
+					<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
+					     <div class="row mb-3">
+					        <label for="comment"></label>
+					        <div class="col-sm-8">
+						        <input type="text" th:field="*{comment}" th:errorclass="is-invalid" class="form-control">
+						        <div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
+					        </div>
+					        <div class="col-sm-4">
+					    		<input type="submit" value="コメント" class="btn btn-secondary">
+					        </div>
+					    </div>
+			    	</form>
+				</div>
+		    </div>
+			
+		
+			<div th:each="list:${commentsList}" class="card mb-3">
 				<div class="card-body">
 					
 					<div class="d-flex justify-content-between align-items-center">
-						<div class="row py-2">
-							<div th:text="${list.id} + '.'"></div>
-							<div th:text="'▼' + ${list.Accounts?.user?: 'unknown'}"></div>
-							<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}"></div>
+						<div class="d-inline-flex my-2">
+							<!--ガター不明-->
+							<div th:text="${list.id} + '.'" class="me-3"></div>
+							<div th:text="'▼' + ${list.Accounts?.user?: 'unknown'}" class="me-3"></div>
+							<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}" class="me-3"></div>
 						</div>
-							<!--右詰め-->
+						
 						<div class="row">
 							<th:block th:if="${list.Accounts?.user != null and list.Accounts.user == myUsername}">
 								<a th:href="@{'/delete-comment/' + ${list.id}}" class="btn btn-secondary">削除</a>
@@ -76,7 +92,6 @@
 						</div>
 					</div>
 					
-					<!--改行グリット詰め-->
 					<div class="row">
 						<h5 th:text="${list.comment}" class="card-text"></h5>
 					</div>
