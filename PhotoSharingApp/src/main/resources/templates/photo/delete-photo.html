@@ -38,21 +38,20 @@
 	</nav>
 	
 	<div class="container">
-		<div class="row">
-			<div class="col text-center">
-	
-				<form method="post" th:action="@{/delete-photo}">
+		<div class="row d-flex justify-content-center align-items-center vh-100">
+			<div class="col-md-4 mx-auto">
+				<form method="post" th:action="@{/delete-photo}" class="text-center">
 				
-					<div th:text="#{deletePhotoAlert}"></div>
+					<h5 th:text="#{deletePhotoAlert}"></h5>
 					
-					<img th:src="@{'/img/' + ${photosData.photo}}">
+					<div class="row my-5">
+						<img th:src="@{'/img/' + ${photosData.photo}}">
+					</div>
 					
-					<a th:href="@{'/list-photo'}" class="btn btn-secondary">キャンセル</a><br>
-					
+					<a th:href="@{'/list-photo'}" class="btn btn-secondary mx-3">キャンセル</a>
 					<input type="hidden" name="id" th:value="${photosData.id}">
-				    <input type="submit" value="削除" class="btn btn-secondary">
+				    <input type="submit" value="削除" class="btn btn-secondary mx-3">
 				</form>
-			
 			</div>
 		</div>
 	</div>
