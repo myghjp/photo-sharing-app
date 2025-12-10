@@ -72,13 +72,15 @@
 	
 	<div class="container">
 		<div class="row row-cols-5 row-cols-md-5 g-3">
-		<!--ポップアップも考える-->
-			<div th:each="list:${photosList}" class="card col"><!--style="width: 18rem;"-->
+			<div th:each="list : ${photosList}" class="card col"><!--style="width: 18rem;"-->
 				<div class="card-body">
 					
 					<div class="text-center">
 						<div th:text="'▼' + ${list.Accounts.user}"></div>
-						<img th:src="@{'/img/' + ${list.photo}}" th:alt="${list.photo}" class="card-img" width="100" height="100">
+						
+						<img th:src="@{'/img/' + ${list.photo}}" th:alt="${list.photo}" width="100" height="100"
+						data-bs-toggle="modal" data-bs-target="#th"  class="card-img">
+						
 						<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}" ></div>
 					</div>
 					
@@ -95,6 +97,18 @@
 							</th:block>
 						</th:block>
 					</div>
+					
+					<!-- Modal -->
+					<div class="modal fade" id="th" tabindex="-1" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered">
+					    <div class="modal-content">
+					       <img th:src="@{'/img/' + ${list.photo}}" 
+					       data-bs-dismiss="modal" aria-label="Close" class="img-fluid"/>
+					    </div>
+					  </div>
+					</div>
+					<!-- /Modal -->
+					
 				</div>
 			</div>
 		</div>
