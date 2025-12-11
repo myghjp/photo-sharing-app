@@ -42,7 +42,7 @@
 			<div class="col-md-4 mx-auto">
 				<form method="post" th:action="@{/select-group}" class="text-center">
 					
-					<a th:href="@{'/entry-group'}" class="btn btn-secondary mb-3">グループ作成</a>
+					<a th:href="@{'/entry-group'}" class="btn btn-success mb-3">グループ作成</a>
 					<h5 th:text="#{selectGroupAlert}" class="mb-3"></h5>
 					
 						<div th:each="list:${groupsList}">
@@ -55,7 +55,7 @@
 						</div>
 					
 					<th:block th:unless="${groupsList.isEmpty()}">
-							<input type="submit" value="グループを開く" class="btn btn-secondary mb-3" >
+							<input type="submit" value="グループを開く" class="btn btn-primary mb-3" >
 					</th:block>
 				</form>
 			</div>

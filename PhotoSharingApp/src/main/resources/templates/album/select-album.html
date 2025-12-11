@@ -51,7 +51,7 @@
 					</div>
 					
 					<div class="row-cols-12 mb-3">
-						<a th:href="@{'/entry-album'}" class="btn btn-secondary">アルバムを作成する</a>
+						<a th:href="@{'/entry-album'}" class="btn btn-success">アルバムを作成する</a>
 					</div>
 					
 					<div class="row mb-3">
@@ -65,10 +65,10 @@
 								checked class="m-2">
 								
 								<!--※一番長い名前のレイアウトも考える-->
-								<!--radioボタン選択しにくい修正-->
+								<!--radioボタン選択しにくい修正(Bootstrap?)-->
 								
 								<th:block th:if="${isAdmin}">
-									<a th:href="@{'/delete-album/' + ${list.id}}" class="btn btn-secondary" >削除</a>
+									<a th:href="@{'/delete-album/' + ${list.id}}" class="btn btn-danger" >削除</a>
 								</th:block>
 								<br>
 							</div>
@@ -76,7 +76,7 @@
 						<div class="row-cols-12">
 							<th:block th:unless="${albumsList.isEmpty()}">
 							
-								<input type="submit" value="アルバムを開く" class="btn btn-secondary m-3">
+								<input type="submit" value="アルバムを開く" class="btn btn-primary m-3">
 							
 							</th:block>
 						</div>

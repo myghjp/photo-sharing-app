@@ -10,6 +10,20 @@
 	<title th:text="#{homeGroupPage}"></title>
 </head>
 
+<!--
+btn-primary: メインのアクションボタン（通常、青色）※完了
+btn-secondary: セカンダリのアクションボタン（通常、灰色）※修正
+btn-success: 成功を示すボタン（通常、緑色）
+btn-danger: エラーメッセージや警告を示すボタン（通常、赤色）※削除
+btn-warning: 警告を示すボタン（通常、黄色）
+btn-info: 情報を示すボタン（通常、水色）
+btn-light: 明るい背景色のボタン（通常、薄い色）
+btn-dark: ダークな色のボタン（通常、黒に近い色）
+btn-link: リンクのように表示されるボタン（通常、リンク色）
+
+btn-outline-色: キャンセル
+-->
+
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-secondary px-3 mb-3">
 		<span class="navbar-brand" th:text="#{photoSharingApp}"></span>
@@ -59,20 +73,20 @@
 					</div>
 				
 					<div class="row-cols-12 mb-3">
-						<a th:href="@{'/list-members'}" class="btn btn-secondary">利用者一覧を表示する</a>
+						<a th:href="@{'/list-members'}" class="btn btn-success">利用者一覧を表示する</a>
 					</div>
 					
 					<div class="row-cols-12 mb-3">
-						<a th:href="@{'/select-album'}" class="btn btn-secondary">アルバムを使用する</a>
+						<a th:href="@{'/select-album'}" class="btn btn-success">アルバムを使用する</a>
 					</div>
 					
 					<div class="row-cols-12 mb-3">
-						<a th:href="@{'/list-comment'}" class="btn btn-secondary">掲示板を使用する</a>
+						<a th:href="@{'/list-comment'}" class="btn btn-success">掲示板を使用する</a>
 					</div>
 					
 					<div class="row-cols-12 mb-3">
 						<th:block th:if="${isAdmin}">
-							<a th:href="@{'/delete-group'}" class="btn btn-secondary">グループを削除する</a>
+							<a th:href="@{'/delete-group'}" class="btn btn-danger">グループを削除する</a>
 						</th:block>
 					</div>
 					
