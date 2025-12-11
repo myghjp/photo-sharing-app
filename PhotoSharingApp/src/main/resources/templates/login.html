@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+<html lang="ja" 
+	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	>
 <head>
 	<meta charset="UTF-8">
@@ -10,17 +12,12 @@
 	<title th:text="#{loginPage}"></title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-secondary px-3">
-	    <span class="navbar-brand" th:text="#{photoSharingApp}"></span>
-	</nav>
+	<nav layout:replace="~{navbar/header::header}"></nav>
 	
 	<div class="container">
 		<div class="row d-flex justify-content-center align-items-center vh-100">
-			
 			<div class="col-md-4 mx-auto">
-			
 				<form method="post" th:action="@{/postlogin}">
-				
 					<div class="row">
 						<th:block th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
 							<div class="alert alert-danger alert-dismissble fade show">
@@ -53,10 +50,7 @@
 						<a th:href="@{'/entry-account'}" class="btn btn-success m-3">アカウント登録</a>
 					</div>
 				</form>
-				
 			</div>
-			
-			
 		</div>
 	</div>
 </body>

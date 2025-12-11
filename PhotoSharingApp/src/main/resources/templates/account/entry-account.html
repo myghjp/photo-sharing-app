@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +11,11 @@
 	<title th:text="#{entryAccountPage}"></title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-secondary px-3">
-	    <span class="navbar-brand" th:text="#{photoSharingApp}"></span>
-	</nav>
+	<nav layout:replace="~{navbar/header::header}"></nav>
 	
 	<div class="container">
 		<div class="row d-flex justify-content-center align-items-center vh-100">
-		
 			<div class="col-md-4 mx-auto">
-			
 				<form method="post" th:action="@{/entry-account}" th:object="${entryAccountForm}">
 				
 				    <div class="row mb-3">
@@ -51,9 +50,7 @@
 				    </div>
 				    
 				</form>
-				
 			</div>
-				
 		</div>
 	</div>
 </body>
