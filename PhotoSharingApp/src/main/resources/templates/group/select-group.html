@@ -26,8 +26,8 @@
 							<div class="d-flex justify-content-center">
 								
 								<div class="form-check mb-3">
-									<input type="radio" th:value="${list.id}" name="id" class="form-check-input" checked>
-									<label th:text="${list.groupName}" class="form-check-label"></label>
+									<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" class="form-check-input" checked>
+									<label th:for="${list.id}" th:text="${list.groupName}" class="form-check-label"></label>
 								</div>
 								
 							</div>

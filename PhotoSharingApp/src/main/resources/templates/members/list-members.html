@@ -51,11 +51,11 @@
 						<div class="row mb-3">
 							<form method="post" th:action="@{/list-members}">
 								<div class="d-flex justify-content-center"> 
-									<div th:text="${list.accounts?.user?: 'unknown'}" class="m-2"></div>
+									<label th:for="${list.id}" th:text="${list.accounts?.user?: 'unknown'}" class="m-2"></label>
 									<input type="hidden" th:value="${list.id}" name="id">
 									
 									<th:block th:if="${isAdmin}">
-										<input type="submit" value="削除" class="btn btn-danger">
+										<input type="submit" th:id="${list.id}" value="削除" class="btn btn-danger">
 									</th:block>
 								</div>
 							</form>

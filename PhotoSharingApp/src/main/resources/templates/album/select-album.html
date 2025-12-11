@@ -38,11 +38,9 @@
 					<form method="post" th:action="@{/select-album}">
 						<div class="row mb-3">
 							<div th:each="list:${albumsList}" >
-								<input type="radio" th:text="${list.albumName}" th:value="${list.id}" name="id" 
-								checked class="m-2">
-								
+								<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" checked class="m-2">
+								<label th:for="${list.id}" th:text="${list.albumName}"></label>
 								<!--※一番長い名前のレイアウトも考える-->
-								<!--radioボタン選択しにくい修正(Bootstrap?)-->
 								
 								<th:block th:if="${isAdmin}">
 									<a th:href="@{'/delete-album/' + ${list.id}}" class="btn btn-danger" >削除</a>
@@ -52,17 +50,13 @@
 						
 						<div class="row-cols-12">
 							<th:block th:unless="${albumsList.isEmpty()}">
-							
 								<input type="submit" value="アルバムを開く" class="btn btn-primary m-3">
-							
 							</th:block>
 						</div>
 					</form>
-					
 				</div>
 			</div>
 		</div>
 	</div>
-	
 </body>
 </html>
