@@ -16,22 +16,29 @@
 	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
 	
 	<div class="container">
-		<div class="row d-flex justify-content-center align-items-center vh-100">
+		<div class="row justify-content-center">
 			<div class="col-md-5 mx-auto">
-				<form method="post" th:action="@{/delete-account}" class="text-center">
+				<form method="post" th:action="@{/delete-account}">
 				
-					<h5 th:text="#{deleteAccountMessage1}"></h5>
-					<div class="row"></div>
-					<h5 th:text="#{deleteAccountMessage2}"></h5>
+					<div class="text-center">
+						<p th:text="#{deleteAccountMessage1}" class="fs-5"></p>
+						<p th:text="#{deleteAccountMessage2}" class="fs-5"></p>
+					</div>
 					
 					<th:block th:if="${isError}">
-						<span th:text="#{deleteAccountAlert}"></span>
+						<div class="alert alert-danger alert-dismissible fade show">
+							<span th:text="#{deleteAccountAlert}" class="text-danger"></span>
+							<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+						</div>
 					</th:block>	
 					
-					<a th:href="@{'/select-group'}" class="btn btn-secondary m-3">グループ選択に戻る</a>
-			    	<input type="submit" value="削除" class="btn btn-danger m-3">
+					<div class="text-center">
+						<a th:href="@{'/select-group'}" class="btn btn-secondary m-3">グループ選択に戻る</a>
+				    	<input type="submit" value="削除" class="btn btn-danger m-3">
+					</div>
 				   
 				</form>
+				
 			</div>
 		</div>
 	</div>

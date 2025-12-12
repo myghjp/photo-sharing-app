@@ -14,34 +14,28 @@
 	<nav layout:replace="~{navbar/header::header}"></nav>
 	
 	<div class="container">
-		<div class="row d-flex justify-content-center align-items-center vh-100">
-			<div class="col-md-4 mx-auto">
+		<div class="row justify-content-center">
+			<div class="col-md-5 mx-auto">
 				<form method="post" th:action="@{/entry-account}" th:object="${entryAccountForm}">
 				
-				    <div class="row mb-3">
+				    <div class="row">
 				        <label for="user" th:text="#{user}" class="col-sm-4 col-form-label"></label>
-				        <div class="col-sm-8">
+				        <div class="col-sm-8 mb-3">
 					        <input type="text" th:field="*{user}" th:errorclass="is-invalid" class="form-control">
 					        <div class="invalid-feedback" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
 					    </div>
-				    </div>
 				    
-				    <div class="row mb-3">
 				        <label for="pass" th:text="#{pass}" class="col-sm-4 col-form-label"></label>
-				        
-				        <div class="col-sm-8">
+				        <div class="col-sm-8 mb-3">
 					        <input type="password" th:field="*{pass}" th:errorclass="is-invalid" class="form-control">
 					        <div class="invalid-feedback" th:errors="*{pass}"></div>
 					    </div>
-				    </div>
-				    
-				    <div class="row mb-3">
+				   
 				        <label for="emailAddress" th:text="#{emailAddress}" class="col-sm-4 col-form-label"></label>
-				        
-				         <div class="col-sm-8">
+				        <div class="col-sm-8 mb-3">
 					        <input type="email" th:field="*{emailAddress}" th:errorclass="is-invalid" class="form-control">
 					        <div class="invalid-feedback" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
-					     </div>
+					    </div>
 				    </div>
 				    
 				    <div class="text-center">

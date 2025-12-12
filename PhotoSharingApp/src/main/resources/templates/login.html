@@ -15,32 +15,29 @@
 	<nav layout:replace="~{navbar/header::header}"></nav>
 	
 	<div class="container">
-		<div class="row d-flex justify-content-center align-items-center vh-100">
-			<div class="col-md-4 mx-auto">
+		<div class="row justify-content-center">
+			<div class="col-md-5 mx-auto">
 				<form method="post" th:action="@{/postlogin}">
+					
+					<th:block th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+						<div class="alert alert-danger alert-dismissible fade show">
+							<span th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+								th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" 
+								class="text-danger">
+							</span>
+							<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+							<!--↑sessionは破棄されない-->
+						</div>
+					</th:block>
+						
 					<div class="row">
-						<th:block th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
-							<div class="alert alert-danger alert-dismissble fade show">
-								<span th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
-									th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" 
-									class="text-danger">
-								</span>
-							</div>
-						</th:block>
-					</div>
-					
-					<div class="row mb-3">
 						<label for="user" th:text="#{user}" class="col-sm-4 col-form-label"></label>
-					
-						<div class="col-sm-8">
+						<div class="col-sm-8 mb-3">
 							<input type="text"id="user" name="user" class="form-control">
 						</div>
-					</div>
-				
-					<div class="row mb-3">
+					
 						<label for="pass" th:text="#{pass}" class="col-sm-4 col-form-label"></label>
-						
-						<div class="col-sm-8">
+						<div class="col-sm-8 mb-3">
 							<input type="password" id="pass" name="pass" class="form-control">
 						</div>
 					</div>
@@ -49,6 +46,7 @@
 						<input type="submit" value="ログイン" class="btn btn-primary m-3">
 						<a th:href="@{'/entry-account'}" class="btn btn-success m-3">アカウント登録</a>
 					</div>
+					
 				</form>
 			</div>
 		</div>
