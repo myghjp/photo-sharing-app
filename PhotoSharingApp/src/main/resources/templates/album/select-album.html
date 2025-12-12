@@ -15,12 +15,12 @@
 	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
 
 	<div class="container">
-		<div class="row d-flex justify-content-center align-items-center">
-			<div class="col-md-4 mx-auto">
+		<div class="row justify-content-center">
+			<div class="col-md-5 mx-auto">
 				<div class="text-center">
 				
 					<div class="row mb-3">
-						<h5 th:text="${groupName}"></h5>
+						<div th:text="${groupName}" class="fs-5"></div>
 					</div>
 					
 					<div class="row-cols-12 mb-3">
@@ -32,28 +32,32 @@
 					</div>
 					
 					<div class="row mb-3">
-						<h5 th:text="#{selectAlbumAlert}"></h5>
+						<div th:text="#{selectAlbumAlert}" class="fs-5"></div>
 					</div>
 					
-					<form method="post" th:action="@{/select-album}">
-						<div class="row mb-3">
+					<div class="row mb-3">
+						<form method="post" th:action="@{/select-album}">
 							<div th:each="list:${albumsList}" >
-								<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" checked class="m-2">
-								<label th:for="${list.id}" th:text="${list.albumName}"></label>
-								<!--※一番長い名前のレイアウトも考える-->
-								
-								<th:block th:if="${isAdmin}">
-									<a th:href="@{'/delete-album/' + ${list.id}}" class="btn btn-danger" >削除</a>
-								</th:block>
-								<br>
+								<div class="d-flex justify-content-center">
+									<div class="form-check mb-3">
+										<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" class="form-check-input m-2" checked>
+										<label th:for="${list.id}" th:text="${list.albumName}" class="form-check-label"></label>
+									
+										<th:block th:if="${isAdmin}">
+											<a th:href="@{'/delete-album/' + ${list.id}}" class="btn btn-danger" >削除</a>
+										</th:block>
+									</div>
+								</div>
 							</div>
 						
-						<div class="row-cols-12">
-							<th:block th:unless="${albumsList.isEmpty()}">
-								<input type="submit" value="アルバムを開く" class="btn btn-primary m-3">
-							</th:block>
-						</div>
-					</form>
+							<div class="row-cols-12">
+								<th:block th:unless="${albumsList.isEmpty()}">
+									<input type="submit" value="アルバムを開く" class="btn btn-primary">
+								</th:block>
+							</div>
+						</form>
+					</div>
+					
 				</div>
 			</div>
 		</div>
