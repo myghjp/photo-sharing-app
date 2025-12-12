@@ -15,12 +15,12 @@
 	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
 
 	<div class="container">
-		<div class="row d-flex justify-content-center align-items-center">
-			<div class="col-md-4 mx-auto">
+		<div class="row justify-content-center">
+			<div class="col-md-5 mx-auto">
 				<form method="post" th:action="@{/select-group}" class="text-center">
 					
 					<a th:href="@{'/entry-group'}" class="btn btn-success mb-3">グループ作成</a>
-					<h5 th:text="#{selectGroupAlert}" class="mb-3"></h5>
+					<div th:text="#{selectGroupAlert}" class="fs-5 mb-3"></div>
 					
 						<div th:each="list:${groupsList}">
 							<div class="d-flex justify-content-center">
@@ -36,6 +36,7 @@
 					<th:block th:unless="${groupsList.isEmpty()}">
 							<input type="submit" value="グループを開く" class="btn btn-primary mb-3" >
 					</th:block>
+					
 				</form>
 			</div>
 		</div>

@@ -15,14 +15,14 @@
 	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
 	
 	<div class="container">
-		<div class="row d-flex justify-content-center align-items-center vh-100">
+		<div class="row justify-content-center">
 			<div class="col-md-4 mx-auto">
 				<form method="post" th:action="@{/delete-group}" class="text-center">
 				
-					<h5 th:text="#{deleteGroupAlert}"></h5>
+					<div th:text="#{deleteGroupAlert}" class="fs-5"></div>
 					
-					<div class="row my-5">
-						<h5 th:text="${groups.groupName}"></h5>
+					<div class="row my-3">
+						<div th:text="${groups.groupName}" class="fs-5"></div>
 					</div>
 					
 					<a th:href="@{'/home-group'}" class="btn btn-secondary mx-3">キャンセル</a>
