@@ -15,11 +15,11 @@
 	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
 	
 	<div class="container">
-		<div class="row d-flex justify-content-center align-items-center">
-			<div class="col-md-4 mx-auto">
+		<div class="row justify-content-center">
+			<div class="col-md-5 mx-auto">
 				<div class="text-center">
 					<div class="row mb-3">
-						<h5 th:text="${groupName}"></h5>
+						<div th:text="${groupName}" class="fs-5"></div>
 					</div>
 					
 					<div class="row-cols-12 mb-3">
@@ -27,7 +27,7 @@
 					</div>
 					
 					<div class="row mb-3">
-						<h5 th:text="${albumName}"></h5>
+						<div th:text="${albumName}"  class="fs-5"></div>
 					</div>
 					
 					<div class="row">
