@@ -15,14 +15,14 @@
 	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
 	
 	<div class="container">
-		<div class="row d-flex justify-content-center align-items-center vh-100">
+		<div class="row justify-content-center">
 			<div class="col-md-5 mx-auto">
 				
 				<form method="post" th:action="@{/add-members}" th:object="${addMembersForm}" class="text-center">
 					
-				<h5 th:text="#{addMembersAlert}"></h5>
+				<div th:text="#{addMembersAlert}" class="fs-5"></div>
 					
-				   <div class="row my-5">
+				   <div class="row my-3">
 				        <label for="emailAddress" th:text=#{emailAddress}  class="col-sm-4 col-form-label"></label>
 				        <div class="col-sm-8">
 					        <input type="email" th:field="*{emailAddress}" th:errorclass="is-invalid" class="form-control">

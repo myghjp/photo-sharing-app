@@ -15,14 +15,14 @@
 	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
 	
 	<div class="container">
-		<div class="row d-flex justify-content-center align-items-center vh-100">
-			<div class="col-md-4 mx-auto">
+		<div class="row justify-content-center">
+			<div class="col-md-5 mx-auto">
 				<div class="text-center">
 				
-					<h5 th:text="#{deleteMembersAlert}"></h5>	
+					<div th:text="#{deleteMembersAlert}" class="fs-5"></div>	
 					
-					<div class="row my-5">
-						<h5 th:text="${membersData.Accounts?.user?: 'unknown'}"></h5>
+					<div class="row my-3">
+						<div th:text="${membersData.Accounts?.user?: 'unknown'}" class="fs-5"></div>
 					</div>
 					
 					<form method="post" th:action="@{/delete-members}">
