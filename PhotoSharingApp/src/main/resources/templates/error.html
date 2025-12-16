@@ -21,13 +21,13 @@
 					<p th:text="${status} + ' ' + ${error}" class="fs-3"></p>
 						
 					<div class="row">
-						<div class="col-xs-6 col-lg-4"></div>
-						<div class="col-xs-2 col-lg-4">
+						<div class="col-4"></div>
+						<div class="col-4">
 							<div class="alert alert-danger alert-dismissible fade show">
 								<span th:text="${message}" class="text-danger fs-4"></span>
 							</div>
 						</div>
-						<div class="col-xs-6 col-lg-4"></div>
+						<div class="col-4"></div>
 					</div>
 					
 					<form th:action="@{/postlogout}" method="post">
