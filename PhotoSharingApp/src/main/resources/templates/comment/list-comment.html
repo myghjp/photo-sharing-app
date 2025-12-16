@@ -23,7 +23,7 @@
 				</div>
 				
 				<div class="row-cols-12 mb-3">
-					<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a>
+					<a th:href="@{'/home-group'}" class="btn btn-secondary" th:text="#{cancelBtn1}"></a>
 				</div>
 				
 				<div class="row mb-3">
@@ -43,7 +43,7 @@
 						        <div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
 					        </div>
 					        <div class="col-4">
-					    		<input type="submit" value="コメント" class="btn btn-primary">
+					    		<input type="submit"  th:value="#{commentBtn}" class="btn btn-primary">
 					        </div>
 					    </div>
 			    	</form>
@@ -62,7 +62,7 @@
 							
 							<div class="row me-1">
 								<th:block th:if="${list.Accounts?.user != null and list.Accounts.user == myUsername}">
-									<a th:href="@{'/delete-comment/' + ${list.id}}" class="btn btn-danger">削除</a>
+									<a th:href="@{'/delete-comment/' + ${list.id}}" class="btn btn-danger" th:text="#{deleteBtn}"></a>
 								</th:block>
 							</div>
 						</div>

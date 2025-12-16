@@ -56,8 +56,8 @@ public class SelectAlbumController {
 	}
 	
 	@PostMapping("/select-album")
-	public String postSelectAlbum(Model model
-			,Albums albums
+	public String postSelectAlbum(/*Model model*/
+			Albums albums
 			,@RequestParam("id")int albumId
 			,RedirectAttributes redirectAttributes
 			) {

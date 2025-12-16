@@ -27,16 +27,16 @@ public class DeleteAlbumController {
 		
 		/*アルバムIDとアルバム名を取得*/
 		Albums albumsData = albumService.getAlbum(id);
-		model.addAttribute("albumsData", albumsData);
 		
+		model.addAttribute("albumsData", albumsData);
 		model.addAttribute("deleteAlbumForm",deleteAlbumForm);
 		
 		return "album/delete-album";
 	}
 	
 	@PostMapping("/delete-album")
-	public String postDeleteAlbum(Model model
-			,@RequestParam("id")int id
+	public String postDeleteAlbum(/*Model model*/
+			@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
 			) {
 		

@@ -1,7 +1,5 @@
 package portfolio.PhotoSharingApp.controller.account;
 
-import jakarta.servlet.http.HttpSession;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.form.account.EditAccountForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;

@@ -2,7 +2,6 @@ package portfolio.PhotoSharingApp.controller.group;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,18 +18,16 @@ public class DeleteGroupController {
 	private GroupService groupService;
 	
 	@GetMapping("/delete-group")
-	public String getDeleteGroup(Model model
+	public String getDeleteGroup(/*Model model*/
 			/*,Groups groups*/
 			) {
-		
-			/*sessionについて考え直す*/
 		
 		return "group/delete-group";
 	}
 	
 	@PostMapping("/delete-group")
-	public String postDeleteGroup(Model model
-			,@RequestParam("id")int id
+	public String postDeleteGroup(/*Model model*/
+			@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
 			) {
 		

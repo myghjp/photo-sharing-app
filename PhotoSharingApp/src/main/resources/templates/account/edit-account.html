@@ -29,8 +29,8 @@
 					     </div>
 				    </div>
 			    
-				    <a th:href="@{'/select-group'}" class="btn btn-secondary mx-3 my-2">グループ選択に戻る</a>
-				    <input type="submit" value="変更" class="btn btn-primary mx-3 my-2">
+				    <a th:href="@{'/select-group'}" class="btn btn-secondary mx-3 my-2" th:text="#{cancelGroupBtn}"></a>
+				    <input type="submit" th:value="#{editBtn}" class="btn btn-primary mx-3 my-2">
 			    	
 			    </form>
 			 </div>

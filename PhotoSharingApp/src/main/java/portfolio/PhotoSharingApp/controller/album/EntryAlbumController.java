@@ -3,7 +3,6 @@ package portfolio.PhotoSharingApp.controller.album;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,23 +27,23 @@ public class EntryAlbumController {
 	private AlbumService albumService;
 	
 	@GetMapping("/entry-album")
-	public String getEntryAlbum(Model model
-			,EntryAlbumForm entryAlbumForm
+	public String getEntryAlbum(/*Model model*/
+			EntryAlbumForm entryAlbumForm
 			) {
 		
 		return "album/entry-album";
 	}
 	
 	@PostMapping("/entry-album")
-	public String postEntryAlbum(Model model
-			,Groups groups
+	public String postEntryAlbum(/*Model model*/
+			Groups groups
 			,@ModelAttribute @Validated EntryAlbumForm entryAlbumForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) {
 		
 		if (bindingResult.hasErrors()) {
-			return getEntryAlbum(model, entryAlbumForm);
+			return getEntryAlbum(entryAlbumForm);
 		}
 		
 		Albums albums = modelMapper.map(entryAlbumForm,Albums.class);

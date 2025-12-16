@@ -64,10 +64,11 @@ public class AddMembersController {
 			return getAddMembers(model, addMembersForm);
 		}
 		
-		int accountId = membersService.selectAccountId(emailAddress);
 		int groupId = groups.getId();
+		int accountId = membersService.selectAccountId(emailAddress);
 		
 		Members members = new Members();
+		
 		members.setGroupId(groupId);
 		members.setAccountId(accountId);
 		

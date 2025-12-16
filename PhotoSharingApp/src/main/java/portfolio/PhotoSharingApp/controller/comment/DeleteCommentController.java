@@ -31,8 +31,8 @@ public class DeleteCommentController {
 	}
 	
 	@PostMapping("/delete-comment")
-	public String getDeleteComment(Model model
-		,@RequestParam("id") int id
+	public String getDeleteComment(/*Model model*/
+		@RequestParam("id") int id
 		,RedirectAttributes redirectAttributes
 		) {
 	
@@ -40,6 +40,4 @@ public class DeleteCommentController {
 	
 		return "redirect:list-comment";
 	}
-	
-
 }

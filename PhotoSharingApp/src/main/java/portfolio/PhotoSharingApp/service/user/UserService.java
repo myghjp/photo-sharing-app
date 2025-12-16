@@ -32,13 +32,7 @@ public interface UserService {
 	
 	/*ーーーーーーーーーーーーーーーーーーーーーーー*/
 	
-	
-	
-	
 	/*idからuserNameを取得*/
 	public Accounts selectByUserName(int id);
 	
-
-	
-
 }

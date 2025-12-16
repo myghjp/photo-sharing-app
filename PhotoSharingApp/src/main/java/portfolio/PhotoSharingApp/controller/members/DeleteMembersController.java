@@ -36,6 +36,4 @@ public class DeleteMembersController {
 		
 		return "redirect:list-members";
 	}
-
-
 }
