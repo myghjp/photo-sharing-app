@@ -45,7 +45,7 @@ public class EntryGroupController {
 		
 		Groups groups = modelMapper.map(entryGroupForm, Groups.class);
 
-		/*データベースに登録済のグループ名と重複していないか確認*/
+		/*登録済のグループ名の重複確認*/
 		if (groupService.isExistingGroupsData(groups)){
 			bindingResult.rejectValue("groupName","group.Alert");
 		}

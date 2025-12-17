@@ -11,28 +11,23 @@
 	<title th:text="#{errorPage}"></title>
 </head>
 <body>
-	<nav layout:replace="~{navbar/header::header}"></nav>
+	<nav layout:replace="~{common/header::header}"></nav>
 	
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-xs mx-auto">
-	
+			<div class="col-md mx-auto">
 				<div class="text-center">
 					<p th:text="${status} + ' ' + ${error}" class="fs-3"></p>
 						
-					<div class="row">
-						<div class="col-4"></div>
-						<div class="col-4">
-							<div class="alert alert-danger alert-dismissible fade show">
-								<span th:text="${message}" class="text-danger fs-4"></span>
-							</div>
+					<div class="col-6">
+						<div class="alert alert-danger alert-dismissible fade show">
+							<span th:text="${message}" class="text-danger fs-4"></span>
 						</div>
-						<div class="col-4"></div>
 					</div>
 					
 					<form th:action="@{/postlogout}" method="post">
 						<input type="button" onclick="location.href='/login'"
-						th:value="ログイン画面に戻る" class="btn btn-secondary">
+						th:value="#{cancelLoginBtn}" class="btn btn-secondary">
 					</form>
 				</div>
 				

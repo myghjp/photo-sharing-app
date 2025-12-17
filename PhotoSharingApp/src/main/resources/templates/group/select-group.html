@@ -12,14 +12,14 @@
 	<title th:text="#{selectGroupPage}"></title>
 </head>
 <body>
-	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
+	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
 
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col mx-auto">
 				<form method="post" th:action="@{/select-group}" class="text-center">
 					
-					<a th:href="@{'/entry-group'}" class="btn btn-success mb-3">グループ作成</a>
+					<a th:href="@{'/entry-group'}" class="btn btn-success mb-3" th:text="#{entryGroupBtn}"></a>
 					<div th:text="#{selectGroupAlert}" class="fs-5 mb-3"></div>
 					
 						<div th:each="list:${groupsList}">
@@ -34,7 +34,7 @@
 						</div>
 					
 					<th:block th:unless="${groupsList.isEmpty()}">
-							<input type="submit" value="グループを開く" class="btn btn-primary" >
+							<input type="submit" th:value="#{openGroup}" class="btn btn-primary" >
 					</th:block>
 					
 				</form>

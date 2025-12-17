@@ -33,7 +33,8 @@ public class SecurityConfig {
 				/*↓複数の画面を許可*/
 				.requestMatchers(mvc.pattern("/login")).permitAll()
 				.requestMatchers(mvc.pattern("/entry-account")).permitAll()
-				.anyRequest().authenticated()/*※それ以外は認証必要*/
+				/*↓それ以外は認証必要*/
+				.anyRequest().authenticated()
 			);
 
 		http.formLogin(login -> login

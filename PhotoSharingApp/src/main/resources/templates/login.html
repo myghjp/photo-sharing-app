@@ -12,7 +12,7 @@
 	<title th:text="#{loginPage}"></title>
 </head>
 <body>
-	<nav layout:replace="~{navbar/header::header}"></nav>
+	<nav layout:replace="~{common/header::header}"></nav>
 	
 	<div class="container">
 		<div class="row row-cols-md-auto justify-content-center">
@@ -42,8 +42,8 @@
 						</div>
 					</div>
 				
-					<input type="submit" value="ログイン" class="btn btn-primary mx-3 my-2">
-					<a th:href="@{'/entry-account'}" class="btn btn-success mx-3 my-2">アカウント登録</a>
+					<input type="submit" th:value="#{loginBtn}" class="btn btn-primary mx-3 my-2">
+					<a th:href="@{'/entry-account'}" class="btn btn-success mx-3 my-2" th:text="#{entryAccountBtn}"></a>
 					
 				</form>
 			</div>

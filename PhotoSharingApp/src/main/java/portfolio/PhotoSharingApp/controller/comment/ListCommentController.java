@@ -44,7 +44,7 @@ public class ListCommentController {
 		
 		model.addAttribute("myUsername",loginUserDetails.getUsername());
 		
-		/*このグループのcommentsテーブルの情報とアカウント名を取得*/
+		/*このグループのcommentsテーブル情報とアカウント名を取得*/
 		List<Comments> commentsList = commentService.getCommentList(groups.getId());
 		model.addAttribute("commentsList", commentsList);
 		

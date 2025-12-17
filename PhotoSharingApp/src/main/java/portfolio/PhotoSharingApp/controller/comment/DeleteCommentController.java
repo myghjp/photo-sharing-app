@@ -20,10 +20,10 @@ public class DeleteCommentController {
 	
 	@GetMapping("/delete-comment/{id}")
 	public String getDeleteComment(Model model
-		,@PathVariable("id")int id
-		) {
+			,@PathVariable("id")int id
+			) {
 
-		/*このidとコメントを取得*/
+		/*idとコメントを取得*/
 		Comments commentsData = commentService.getComment(id);
 		model.addAttribute("commentsData", commentsData);
 		
@@ -31,10 +31,10 @@ public class DeleteCommentController {
 	}
 	
 	@PostMapping("/delete-comment")
-	public String getDeleteComment(/*Model model*/
-		@RequestParam("id") int id
-		,RedirectAttributes redirectAttributes
-		) {
+	public String getDeleteComment(
+			@RequestParam("id") int id
+			,RedirectAttributes redirectAttributes
+			) {
 	
 		commentService.deleteComment(id);
 	

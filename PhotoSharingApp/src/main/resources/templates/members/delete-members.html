@@ -12,7 +12,7 @@
 	<title th:text="#{deleteMembersPage}"></title>
 </head>
 <body>
-	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
+	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
 	
 	<div class="container">
 		<div class="row justify-content-center">
@@ -27,9 +27,9 @@
 					
 					<form method="post" th:action="@{/delete-members}">
 						
-						<a th:href="@{'/list-members'}" class="btn btn-secondary mx-3">キャンセル</a>
+						<a th:href="@{'/list-members'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn2}"></a>
 						<input type="hidden" th:value="${membersData.id}" name="id">
-						<input type="submit" value="削除" class="btn btn-danger mx-3">
+						<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3">
 							
 					</form>
 					

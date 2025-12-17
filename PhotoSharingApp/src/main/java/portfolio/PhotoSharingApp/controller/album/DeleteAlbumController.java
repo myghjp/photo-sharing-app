@@ -35,7 +35,7 @@ public class DeleteAlbumController {
 	}
 	
 	@PostMapping("/delete-album")
-	public String postDeleteAlbum(/*Model model*/
+	public String postDeleteAlbum(
 			@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
 			) {

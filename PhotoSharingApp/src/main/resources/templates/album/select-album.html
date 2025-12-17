@@ -12,7 +12,7 @@
 	<title th:text=#{selectAlbumPage}></title>
 </head>
 <body>
-	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
+	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
 
 	<div class="container">
 		<div class="row justify-content-center">
@@ -53,7 +53,7 @@
 						
 							<div class="row-cols">
 								<th:block th:unless="${albumsList.isEmpty()}">
-									<input type="submit" th:value="#{bbb}" class="btn btn-primary">
+									<input type="submit" th:value="#{openAlbum}" class="btn btn-primary">
 								</th:block>
 							</div>
 						</form>

@@ -18,15 +18,14 @@ public class DeleteGroupController {
 	private GroupService groupService;
 	
 	@GetMapping("/delete-group")
-	public String getDeleteGroup(/*Model model*/
-			/*,Groups groups*/
+	public String getDeleteGroup(
 			) {
 		
 		return "group/delete-group";
 	}
 	
 	@PostMapping("/delete-group")
-	public String postDeleteGroup(/*Model model*/
+	public String postDeleteGroup(
 			@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
 			) {

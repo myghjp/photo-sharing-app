@@ -43,7 +43,7 @@ public class DeleteAccountController {
 		Accounts accounts = new Accounts();
 		accounts.setId(loginUserDetails.getUserId());
 		
-		/*自身が作成したグループが残っていないかを確認*/
+		/*自身が作成したグループが存在するか確認*/
 		if (groupService.isCreateGroupExisting(accounts.getId())) {
 			return getDeleteAccount(model,true);
 		} 

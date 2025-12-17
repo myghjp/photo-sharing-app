@@ -19,17 +19,17 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ms-auto align-items-center">
 				<li class="nav-link">
-					<a th:href="@{'/edit-account'}" class="btn btn-outline-success">パスワード変更</a>
+					<a th:href="@{'/edit-account'}" class="btn btn-outline-success" th:text="#{editPassBtn}"></a>
 				</li>
 				<li class="nav-link">
-					<a th:href="@{'/delete-account'}" class="btn btn-outline-danger">アカウント削除</a>
+					<a th:href="@{'/delete-account'}" class="btn btn-outline-danger" th:text="#{deleteAccountBtn}"></a>
 				</li>
 				<li class="navbar-text mx-3">
 					<span sec:authentication="principal.username"></span>
 				</li>
 				<li class="nav-item">
 					<form method="post" th:action="@{/postlogout}">
-						<input type="submit" value="ログアウト" class="btn btn-outline-secondary m-2">
+						<input type="submit" th:value="#{logoutBtn}" class="btn btn-outline-secondary m-2">
 					</form>
 				</li>
 			</ul>

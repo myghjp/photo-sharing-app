@@ -31,15 +31,13 @@ public class ListMembersController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		/*このグループのメンバリストを取得する*/
 		List<Members> membersList = membersService.getMembersList(groups.getId());
 		model.addAttribute("membersList",membersList);
 		
-		/*グループ内のアカウントIDが一致すれば自身は管理者である*/
+		/*自身は管理者*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}else {
-			/*管理者名を取得*/
 			String adminName = membersService.getAdminName(groups.getId());
 			model.addAttribute("adminName",adminName);
 		}

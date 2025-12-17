@@ -32,8 +32,8 @@ public class AddMembersController {
 	@GetMapping("/add-members")
 	public String getAddMembers(Model model
 			,AddMembersForm addMembersForm
-		) {
-		
+			) {
+			
 		model.addAttribute("addMembersForm",addMembersForm);
 		return "members/add-members";
 	}
@@ -45,7 +45,7 @@ public class AddMembersController {
 			,@ModelAttribute @Validated AddMembersForm addMembersForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
-		) {
+			) {
 		
 		Accounts accounts = modelMapper.map(addMembersForm, Accounts.class);
 		
@@ -54,23 +54,20 @@ public class AddMembersController {
 			bindingResult.rejectValue("emailAddress", "unkownEmail.Alert");
 		}
 		
-		/*このメールアドレスは、このグループ内にいるメンバや管理者のアドレスが
-		 * データベースで重複していないかを確認*/
+		/*このメールアドレスは、このグループ内にいる
+		 * 利用者や管理者のアドレスが重複していないかを確認*/
 		if (membersService.isExistingMembersId(accounts,groups)) {
-			bindingResult.rejectValue("emailAddress", "testtesttest");
+			bindingResult.rejectValue("emailAddress", "email_address.Alert2");
 		}
 		
 		if (bindingResult.hasErrors()) {
 			return getAddMembers(model, addMembersForm);
 		}
 		
-		int groupId = groups.getId();
-		int accountId = membersService.selectAccountId(emailAddress);
-		
 		Members members = new Members();
 		
-		members.setGroupId(groupId);
-		members.setAccountId(accountId);
+		members.setGroupId(groups.getId());
+		members.setAccountId(membersService.selectAccountId(emailAddress));
 		
 		membersService.insertMembers(members);
 		

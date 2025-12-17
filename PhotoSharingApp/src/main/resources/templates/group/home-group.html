@@ -12,7 +12,7 @@
 	<title th:text="#{homeGroupPage}"></title>
 </head>
 <body>
-	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
+	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
 	
 	<div class="container">
 		<div class="row justify-content-center">
@@ -25,7 +25,7 @@
 					</div>
 					
 					<div class="row-cols-12 mb-3">
-						<a th:href="@{'/select-group'}" class="btn btn-secondary" th:text="#{}">グループ選択に戻る</a>
+						<a th:href="@{'/select-group'}" class="btn btn-secondary" th:text="#{cancelGroupBtn}"></a>
 					</div>
 					
 					<div class="row mb-3">
@@ -35,20 +35,20 @@
 					</div>
 				
 					<div class="row-cols-12 mb-3">
-						<a th:href="@{'/list-members'}" class="btn btn-success" th:text="#{}">利用者一覧を表示する</a>
+						<a th:href="@{'/list-members'}" class="btn btn-success" th:text="#{membersDisplay}"></a>
 					</div>
 					
 					<div class="row-cols-12 mb-3">
-						<a th:href="@{'/select-album'}" class="btn btn-success" th:text="#{}">アルバムを使用する</a>
+						<a th:href="@{'/select-album'}" class="btn btn-success" th:text="#{useAlbum}"></a>
 					</div>
 					
 					<div class="row-cols-12 mb-3">
-						<a th:href="@{'/list-comment'}" class="btn btn-success" th:text="#{}">掲示板を使用する</a>
+						<a th:href="@{'/list-comment'}" class="btn btn-success" th:text="#{useBulletinBoard}"></a>
 					</div>
 					
 					<div class="row-cols-12 mb-3">
 						<th:block th:if="${isAdmin}">
-							<a th:href="@{'/delete-group'}" class="btn btn-danger" th:text="#{}">グループを削除する</a>
+							<a th:href="@{'/delete-group'}" class="btn btn-danger" th:text="#{deleteGroupBtn}"></a>
 						</th:block>
 					</div>
 					

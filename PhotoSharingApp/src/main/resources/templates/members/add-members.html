@@ -12,7 +12,7 @@
 	<title th:text="#{addMembersPage}"></title>
 </head>
 <body>
-	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
+	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
 	
 	<div class="container">
 		<div class="row justify-content-center">
@@ -30,8 +30,8 @@
 				        </div>
 				    </div>
 				    
-				    <a th:href="@{'/list-members'}" class="btn btn-secondary mx-3">キャンセル</a>
-			    	<input type="submit" value="追加" class="btn btn-primary mx-3">
+				    <a th:href="@{'/list-members'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn2}"></a>
+			    	<input type="submit" th:value="#{addBtn}" class="btn btn-primary mx-3">
 				</form>
 			</div>
 		</div>	
