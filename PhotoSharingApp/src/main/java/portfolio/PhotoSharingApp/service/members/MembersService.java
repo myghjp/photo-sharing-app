@@ -8,7 +8,7 @@ import portfolio.PhotoSharingApp.entity.Members;
 
 public interface MembersService {
 	
-	/*ーAddMembersーーーーーーーーーーーーーーーーー*/
+	/*ーーーAddMembersーーー*/
 	
 	/*メールアドレスを使用してアカウントIdが存在するかを確認*/
 	public boolean isExistingAccountId(Accounts accounts);
@@ -23,20 +23,18 @@ public interface MembersService {
 	/*グループのIDとアカウントのIDを追加する*/
 	public void insertMembers(Members members);
 	
-	/*ーListMembersーーーーーーーーーーーーーーーーー*/
+	/*ーーーListMembersーーー*/
 	
 	/*このグループのメンバリストを取得する*/
 	public List<Members> getMembersList(int groupId);
 	
-	/*管理者名を取得*/
 	public String getAdminName(int id);
 	
 	/*グループ利用者IDとその名前を取得*/
 	public Members getMemberName(int id);
 	
-	/*ーDeleteMembersーーーーーーーーーーーーーーーーー*/
+	/*ーーーDeleteMembersーーー*/
 	
-	/*グループから利用者を削除*/
 	public void deleteMember(int id);
 	
 }

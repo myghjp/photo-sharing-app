@@ -38,7 +38,7 @@ public class SecurityConfig {
 			);
 
 		http.formLogin(login -> login
-				.loginProcessingUrl("/postlogin")/*postlogin*/
+				.loginProcessingUrl("/postlogin")
 				.loginPage("/login")
 				.failureUrl("/login")
 				.usernameParameter("user")

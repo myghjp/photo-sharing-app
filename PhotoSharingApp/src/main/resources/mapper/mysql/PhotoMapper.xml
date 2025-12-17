@@ -18,7 +18,7 @@
 		<result column="user" property="user"/>
 	</resultMap>
 	
-	<!-- ーListPhotoーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーListPhotoーーー -->
 	
 	<!-- photosテーブルの情報とアカウント名を取得 -->
 	<select id="selectPhotoList" resultMap="PhotosTable">
@@ -48,7 +48,7 @@
 		)
 	</insert>
 	
-	<!-- ーDeletePhotoーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーDeletePhotoーーー -->
 	
 	<!-- このidと画像パス情報を取得 -->
 	<select id="selectPhoto" resultMap="PhotosTable">

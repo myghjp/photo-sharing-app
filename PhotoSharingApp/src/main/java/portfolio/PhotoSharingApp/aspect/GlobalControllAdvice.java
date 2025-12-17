@@ -12,7 +12,6 @@ public class GlobalControllAdvice {
 
 	@ExceptionHandler(Exception.class)
 	public String exceptionHandler(Exception e, Model model,HttpSession session) {
-		/*※HttpSession*/
 
 		model.addAttribute("error", "");
 		model.addAttribute("message", "エラーが発生しました。");

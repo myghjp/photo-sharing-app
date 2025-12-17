@@ -27,7 +27,6 @@ public class LoginUserDetails implements UserDetails{
 
 	public Accounts getAccounts() {return accounts;}
 	
-	/*ログインユーザID取得のためカスタム*/
 	public int getUserId() {return accounts.getId();}
 
 	@Override

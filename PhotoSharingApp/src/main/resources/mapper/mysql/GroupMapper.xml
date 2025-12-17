@@ -10,7 +10,7 @@
 		<result column="account_id" property="accountId" />
 	</resultMap>
 	
-	<!-- EntryGroupーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーEntryGroupーーー -->
 	
 	<!-- グループ名とログイン中のアカウントIDを追加 -->
 	<insert id="insertGroup">
@@ -30,7 +30,7 @@
 		where group_name = #{groups.groupName}
 	</select>
 	
-	<!-- SelectGroupーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーSelectGroupーーー -->
 	
 	<!-- 自身が所属しているグループのIDとグループ名の一覧を取得 -->
 	<select id="selectGroupList" resultMap="GroupsTable">
@@ -49,7 +49,7 @@
 		where id = #{id}
 	</select>
 	
-	<!-- DeleteGroupーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーDeleteGroupーーー -->
 	
 	<!-- グループの削除 -->
 	<delete id="deleteGroup">

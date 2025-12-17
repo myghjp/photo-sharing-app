@@ -13,15 +13,15 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserMapper userMapper;
 	
-	/*ログイン(アカウント名が存在するかを確認)*/
+	/*ーーーLoginーーー*/
+	
 	@Override
 	public Accounts getLoginAccount(String user) {
 		return userMapper.getSelectUser(user);
 	}
 	
-	/*ーEntryAccountーーーーーーーーーーーーーーーーー*/
+	/*ーーーEntryAccountーーー*/
 	
-	/*アカウント登録*/
 	@Override
 	public void createAccount(Accounts accounts){
 		userMapper.insertAccount(accounts);
@@ -47,30 +47,25 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 	
-	/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
+	/*ーーーEditAccountーーー*/
 	
-	/*パスワード変更*/
 	@Override
 	public void editAccount(Accounts accounts) {
 		userMapper.updatePass(accounts);
 	};
 	
-	/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
+	/*ーーーDeleteAccountーーー*/
 	
-	/*アカウント削除*/
 	@Override
 	public void removeAccount(int id){
 		userMapper.deleteAccount(id);
 	};
 	
 	/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
-
-	
-	
 	/*idからuserNameを取得*/
-	@Override
+	/*@Override
 	public Accounts selectByUserName(int id) {
 		return userMapper.selectByUserName(id);
-	}
+	}*/
 	
 }

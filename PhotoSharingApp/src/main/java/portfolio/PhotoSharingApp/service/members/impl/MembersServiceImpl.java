@@ -17,7 +17,7 @@ public class MembersServiceImpl implements MembersService{
 	@Autowired
 	private MembersMapper membersMapper;
 	
-	/*ーAddMembersーーーーーーーーーーーーーーーーー*/
+	/*ーーーAddMembersーーー*/
 	
 	/*メールアドレスを使用してアカウントIdが存在するかを確認*/
 	@Override
@@ -52,7 +52,7 @@ public class MembersServiceImpl implements MembersService{
 		membersMapper.insertMembers(members);
 	}
 	
-	/*ーListMembersーーーーーーーーーーーーーーーーー*/
+	/*ーーーListMembersーーー*/
 	
 	/*このグループのメンバリストを取得する*/
 	@Override
@@ -60,7 +60,6 @@ public class MembersServiceImpl implements MembersService{
 		return membersMapper.selectMembersList(groupId);
 	}
 	
-	/*管理者名を取得*/
 	@Override
 	public String getAdminName(int id) {
 		return membersMapper.selectByUserName2(id);
@@ -72,9 +71,8 @@ public class MembersServiceImpl implements MembersService{
 		return membersMapper.selectMembersName(id);
 	}
 	
-	/*ーDeleteMembersーーーーーーーーーーーーーーーーー*/
+	/*ーーーDeleteMembersーーー*/
 	
-	/*グループから利用者を削除*/
 	@Override
 	public void deleteMember(int id) {
 		membersMapper.deleteMembersId(id);

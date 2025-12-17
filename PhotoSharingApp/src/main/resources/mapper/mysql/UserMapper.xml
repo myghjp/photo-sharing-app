@@ -18,7 +18,7 @@
 		where user = #{user}
 	</select>
 	
-	<!-- ※EntryAccountーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーEntryAccountーーー-->
 	
 	<!-- アカウント登録 -->
 	<insert id="insertAccount">
@@ -47,27 +47,25 @@
 		where email_address = #{accounts.emailAddress}
 	</select>
 	
-	<!-- ーーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーEditAccountーーー -->
 	
-	<!-- パスワード変更 -->
 	<update id="updatePass">
 		update accounts
 		set pass = #{accounts.pass}
 		where id = #{accounts.id}
 	</update>
 	
-	<!-- ーーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーDeleteAccountーーー -->
 	
-	<!-- アカウントを削除 -->
 	<delete id="deleteAccount">
 		delete from accounts
 		where id = #{id}
 	</delete>
 	
-	<!-- ーーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーアカウント削除ーーーーーーー -->
 
 	
-	<!-- idからuserNameを取得 -->
+	<!-- idからuserNameを取得 名前変更-->
 	<select id="selectByUserName">
 		select 
 			accounts.id

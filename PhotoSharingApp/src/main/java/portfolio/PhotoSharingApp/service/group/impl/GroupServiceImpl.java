@@ -15,7 +15,7 @@ public class GroupServiceImpl implements GroupService{
 	@Autowired
 	private GroupMapper groupMapper;
 	
-	/*ーEntryGroupーーーーーーーーーーーーーーーーー*/
+	/*ーーーEntryGroupーーー*/
 	
 	/*グループ名とログイン中のアカウントIDを追加*/
 	@Override
@@ -33,7 +33,7 @@ public class GroupServiceImpl implements GroupService{
 		}
 	}
 	
-	/*ーSelectGroupーーーーーーーーーーーーーーーーー*/
+	/*ーーーSelectGroupーーー*/
 
 	/*自身が所属しているグループのIDとグループ名の一覧を取得*/
 	@Override
@@ -47,7 +47,7 @@ public class GroupServiceImpl implements GroupService{
 		return groupMapper.selectGroups(id);
 	}
 	
-	/*ーDeleteGroupーーーーーーーーーーーーーーーーー*/
+	/*ーーーDeleteGroupーーー*/
 
 	/*グループの削除*/
 	@Override
@@ -55,9 +55,8 @@ public class GroupServiceImpl implements GroupService{
 		groupMapper.deleteGroup(id);
 	}
 	
-	/*ー？？？ーーーーーーーーーーーーーーーーー*/
+	/*ーーーアカウント削除ーーー*/
 	
-	/*※使用中*/
 	/*自身が作成したグループが残っていないかを確認*/
 	@Override
 	public boolean isCreateGroupExisting(int id) {
@@ -67,5 +66,4 @@ public class GroupServiceImpl implements GroupService{
 			return true;
 		}
 	}
-	
 }

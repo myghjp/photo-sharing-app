@@ -26,7 +26,7 @@
 		<result column="email_address" property="emailAddress"/>
 	</resultMap>
 	
-	<!-- ーAddMembersーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーAddMembersーーー -->
 	
 	<!-- メールアドレスを使用してアカウントIdが存在するかを確認 -->
 	<select id="selectByAccountsId" resultType="String">
@@ -65,7 +65,7 @@
 		)
 	</insert>
 	
-	<!-- ーListMembersーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーListMembersーーー -->
 	
 	<!-- このグループのメンバリストを取得する -->
 	<select id="selectMembersList" resultMap="MembersTable">
@@ -101,7 +101,7 @@
 		where groups_members.id = #{id}
 	</select>
 	
-	<!-- ーDeleteMembersーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーDeleteMembersーーー -->
 	
 	<!-- グループから利用者を削除 -->
 	<delete id="deleteMembersId">
