@@ -20,23 +20,19 @@
 				
 				<div class="text-center">
 					
-					<div class="row mb-3">
-						<div th:text="${groups.groupName}" class="fs-5"></div>
-					</div>
+					<div th:text="${groups.groupName}" class="col mb-3 fs-5"></div>
 					
-					<div class="row-cols-12 mb-3">
+					<div class="col mb-3">
 						<a th:href="@{'/home-group'}" class="btn btn-secondary" th:text="#{cancelBtn1}"></a>
 					</div>
 					
-					<div class="row-cols-12 mb-3">
+					<div class="col mb-3">
 						<th:block th:if="${isAdmin}">
 							<a th:href="@{'/add-members'}" class="btn btn-success" th:text="#{addMembersBtn}"></a>
 						</th:block>
 					</div>
 					
-					<div class="row mb-3">
-						<div th:text="#{listMembersAlert}" class="fs-5"></div>
-					</div>
+					<div th:text="#{listMembersAlert}" class="col mb-3 fs-5"></div>
 					
 					<th:block th:unless="${isAdmin}">
 						<div class="row mb-3">
