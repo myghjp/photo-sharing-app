@@ -11,7 +11,9 @@
 		<result column="email_address" property="emailAddress" />
 	</resultMap>
 	
-	<!-- ログイン(アカウント名が存在するかを確認) -->
+	<!-- ーーーloginーーー-->
+	
+	<!-- アカウント名が存在するかを確認● -->
 	<select id="getSelectUser" resultMap="accountsTable">
 		select *
 		from accounts 
@@ -20,8 +22,7 @@
 	
 	<!-- ーーーEntryAccountーーー-->
 	
-	<!-- アカウント登録 -->
-	<insert id="insertAccount">
+	<insert id="insert">
 		insert into accounts(
 			 user
 			,pass
@@ -33,15 +34,15 @@
 		)
 	</insert>
 	
-	<!-- アカウント名がデータベースに存在するかを確認 -->
-	<select id="selectByUser">
+	<!-- アカウント名がデータベースに存在するかを確認● -->
+	<select id="selectByUser"><!-- getSelectUser(Name) -->
 		select user
 		from accounts
 		where user = #{accounts.user}
 	</select>
 	
 	<!-- メールアドレスがデータベースに存在するかを確認 -->
-	<select id="selectByEmailAddress">
+	<select id="getSelectEmailAddress">
 		select email_address
 		from accounts
 		where email_address = #{accounts.emailAddress}
@@ -49,7 +50,7 @@
 	
 	<!-- ーーーEditAccountーーー -->
 	
-	<update id="updatePass">
+	<update id="update">
 		update accounts
 		set pass = #{accounts.pass}
 		where id = #{accounts.id}
@@ -57,23 +58,9 @@
 	
 	<!-- ーーーDeleteAccountーーー -->
 	
-	<delete id="deleteAccount">
+	<delete id="delete">
 		delete from accounts
 		where id = #{id}
 	</delete>
-	
-	<!-- ーーーアカウント削除ーーーーーーー -->
-
-	
-	<!-- idからuserNameを取得 名前変更-->
-	<select id="selectByUserName">
-		select 
-			accounts.id
-			,user
-		from accounts
-			left join groups_members
-			on accounts.id = account_id
-		where groups_members.id = #{id}
-	</select>
 	
 </mapper>

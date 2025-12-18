@@ -20,9 +20,9 @@
 				
 				<form method="post" th:action="@{/add-members}" th:object="${addMembersForm}" class="text-center">
 					
-				<div th:text="#{addMembersAlert}" class="fs-5"></div>
+				<div th:text="#{addMembersAlert}" class="mb-3 fs-5"></div>
 					
-				   <div class="row my-3">
+				   <div class="row mb-3">
 				        <label for="emailAddress" th:text=#{emailAddress}  class="col-sm-4 col-form-label"></label>
 				        <div class="col-sm-8">
 					        <input type="email" th:field="*{emailAddress}" th:errorclass="is-invalid" class="form-control">

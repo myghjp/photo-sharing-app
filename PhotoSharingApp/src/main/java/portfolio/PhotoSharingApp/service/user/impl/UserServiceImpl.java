@@ -24,10 +24,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public void createAccount(Accounts accounts){
-		userMapper.insertAccount(accounts);
+		userMapper.insert(accounts);
 	}
 	
-	/*アカウント名がデータベースに存在するかを確認*/
 	@Override
 	public boolean isUserExisting(Accounts accounts) {
 		if (userMapper.selectByUser(accounts) == null) {
@@ -37,10 +36,9 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 	
-	/*メールアドレスがデータベースに存在するかを確認*/
 	@Override
 	public boolean isEmailAddressExisting(Accounts accounts) {
-		if (userMapper.selectByEmailAddress(accounts) == null) {
+		if (userMapper.getSelectEmailAddress(accounts) == null) {
 			return false;
 		} else {
 			return true;
@@ -51,21 +49,13 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public void editAccount(Accounts accounts) {
-		userMapper.updatePass(accounts);
+		userMapper.update(accounts);
 	};
 	
 	/*ーーーDeleteAccountーーー*/
 	
 	@Override
 	public void removeAccount(int id){
-		userMapper.deleteAccount(id);
+		userMapper.delete(id);
 	};
-	
-	/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
-	/*idからuserNameを取得*/
-	/*@Override
-	public Accounts selectByUserName(int id) {
-		return userMapper.selectByUserName(id);
-	}*/
-	
 }

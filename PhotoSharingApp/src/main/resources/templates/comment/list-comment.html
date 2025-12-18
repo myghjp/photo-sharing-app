@@ -18,19 +18,15 @@
 		<div class="row justify-content-center">
 			<div class="text-center">
 		
-				
 				<div th:text=${groupName} class="col mb-3 fs-5"></div>
-				
 				
 				<div class="col mb-3">
 					<a th:href="@{'/home-group'}" class="btn btn-secondary" th:text="#{cancelBtn1}"></a>
 				</div>
 				
-				<div class="col mb-3">
-					<div th:text=#{bulletinBoard} class="fs-5"></div>
-				</div>
+				<div th:text=#{bulletinBoard} class="col mb-3 fs-5"></div>
 				
-				<div class="col-lg mx-auto mb-3">
+				<div class="col mx-auto mb-3">
 					<div class="border border-dark"></div>
 				</div>
 				
@@ -50,7 +46,7 @@
 				</div>
 		    </div>
 			
-			<div class="col-lg mx-auto">
+			<div class="col mx-auto">
 				<div th:each="list:${commentsList}" class="card mb-3">
 					<div class="card-body">
 						<div class="d-flex justify-content-between align-items-center">
@@ -58,7 +54,7 @@
 								<div th:text="${list.id} + '.'" class="me-3"></div>
 								<div th:text="'▼' + ${list.Accounts?.user?: 'unknown'}" class="me-3"></div>
 								<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}" class="me-3"></div>
-							</div><!--classの無駄が多い-->
+							</div>
 							
 							<div class="row me-1">
 								<th:block th:if="${list.Accounts?.user != null and list.Accounts.user == myUsername}">

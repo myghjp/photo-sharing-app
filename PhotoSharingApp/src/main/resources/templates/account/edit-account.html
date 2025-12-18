@@ -19,7 +19,7 @@
 			<div class="col-md-5 mx-auto">
 				<form method="post" th:action="@{/edit-account}" th:object="${editAccountForm}" class="text-center">
 			    	 
-			    	<p th:text="#{editAccountAlert}" class="fs-5"></p>
+			    	<div th:text="#{editAccountAlert}" class="fs-5"></div>
 			    	
 				    <div class="row mb-3">
 				        <label for="pass" th:text="#{pass}" class="col-sm-4 col-form-label"></label>

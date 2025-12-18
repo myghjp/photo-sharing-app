@@ -16,41 +16,38 @@
 	
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-md-5 mx-auto">
+			<div class="col-md-5 mx-auto text-center">
 				
-				<div class="text-center">
+				<div th:text="${groups.groupName}" class="fs-5 mb-3"></div>
 				
-					<div th:text="${groups.groupName}" class="fs-5 mb-3"></div>
-					
-					<div class="col mb-3">
-						<a th:href="@{'/select-group'}" class="col mb-3 btn btn-secondary" th:text="#{cancelGroupBtn}"></a>
-					</div>
-					
-					<div class="col mb-3">
-						<th:block th:if="${isAdmin}">
-							<div th:text="#{adminAlert}" class="fs-5"></div>
-						</th:block>
-					</div>
-				
-					<div class="col mb-3">
-						<a th:href="@{'/list-members'}" class="btn btn-success" th:text="#{membersDisplay}"></a>
-					</div>
-					
-					<div class="col mb-3">
-						<a th:href="@{'/select-album'}" class="btn btn-success" th:text="#{useAlbum}"></a>
-					</div>
-					
-					<div class="col mb-3">
-						<a th:href="@{'/list-comment'}" class="btn btn-success" th:text="#{useBulletinBoard}"></a>
-					</div>
-					
-					<div class="col">
-						<th:block th:if="${isAdmin}">
-							<a th:href="@{'/delete-group'}" class="btn btn-danger" th:text="#{deleteGroupBtn}"></a>
-						</th:block>
-					</div>
-					
+				<div class="col mb-3">
+					<a th:href="@{'/select-group'}" class="btn btn-secondary" th:text="#{cancelGroupBtn}"></a>
 				</div>
+				
+				<div class="col mb-3">
+					<th:block th:if="${isAdmin}">
+						<div th:text="#{adminAlert}" class="fs-5"></div>
+					</th:block>
+				</div>
+			
+				<div class="col mb-3">
+					<a th:href="@{'/list-members'}" class="btn btn-success" th:text="#{membersDisplay}"></a>
+				</div>
+				
+				<div class="col mb-3">
+					<a th:href="@{'/select-album'}" class="btn btn-success" th:text="#{useAlbum}"></a>
+				</div>
+				
+				<div class="col mb-3">
+					<a th:href="@{'/list-comment'}" class="btn btn-success" th:text="#{useBulletinBoard}"></a>
+				</div>
+				
+				<div class="col">
+					<th:block th:if="${isAdmin}">
+						<a th:href="@{'/delete-group'}" class="btn btn-danger" th:text="#{deleteGroupBtn}"></a>
+					</th:block>
+				</div>
+				
 			</div>
 		</div>
 	</div>

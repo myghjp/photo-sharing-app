@@ -17,21 +17,18 @@ public class CommentServiceImpl implements CommentService{
 	
 	/*ーーーListCommentーーー*/
 	
-	/*このグループのcommentsテーブルの情報とアカウント名を取得*/
 	@Override
 	public List<Comments> getCommentList(int id){
-		return commentMapper.selectCommentList(id);
+		return commentMapper.selectCommentItems(id);
 	}
 	
 	@Override
 	public void addComment(Comments comments) {
-		commentMapper.insertComment(comments);
+		commentMapper.insert(comments);
 	}
-	
 	
 	/*ーーーDeleteCommentーーー*/
 	
-	/*このidとコメントを取得*/
 	@Override
 	public Comments getComment(int id) {
 		return commentMapper.select(id);
@@ -39,7 +36,6 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Override
 	public void deleteComment(int id) {
-		commentMapper.deleteComment(id);
+		commentMapper.delete(id);
 	}
-
 }

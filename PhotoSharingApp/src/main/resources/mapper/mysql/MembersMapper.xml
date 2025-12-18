@@ -28,8 +28,8 @@
 	
 	<!-- ーーーAddMembersーーー -->
 	
-	<!-- メールアドレスを使用してアカウントIdが存在するかを確認 -->
-	<select id="selectByAccountsId" resultType="String">
+	<!-- メールアドレスが存在するかを確認 -->
+	<select id="selectEmailAddress" resultType="String">
 		select email_address
 		from accounts
 		where email_address = #{accounts.emailAddress}
@@ -48,14 +48,14 @@
 	</select>
 	
 	<!-- メールアドレスを使用してアカウントIDを取得する -->
-	<select id="selectAccountData3">
+	<select id="selectAccountId">
 		select id
 		from accounts
 		where email_address = #{emailAddress}
 	</select>
 	
 	<!-- グループのIDとアカウントのIDを追加する -->
-	<insert id="insertMembers">
+	<insert id="insert">
 		insert into groups_members(
 			 group_id
 			,account_id
@@ -67,8 +67,8 @@
 	
 	<!-- ーーーListMembersーーー -->
 	
-	<!-- このグループのメンバリストを取得する -->
-	<select id="selectMembersList" resultMap="MembersTable">
+	<!-- このグループの利用者一覧を取得する● -->
+	<select id="selectMembersItems" resultMap="MembersTable">
 		select groups_members.id
 				,groups.group_name as groups_group_name
 				,accounts.user as accounts_user
@@ -83,7 +83,7 @@
 	</select>
 	
 	<!-- 管理者名を取得 -->
-	<select id="selectByUserName2">
+	<select id="selectUserName">
 		select user
 		from accounts
 		left join `groups`
@@ -92,7 +92,7 @@
 	</select>
 	
 	<!-- グループ利用者IDとその名前を取得 -->
-	<select id="selectMembersName" resultMap="MembersTable">
+	<select id="selectMembersItems2" resultMap="MembersTable">
 		select groups_members.id
 				,accounts.user as accounts_user
 		from groups_members
@@ -104,7 +104,7 @@
 	<!-- ーーーDeleteMembersーーー -->
 	
 	<!-- グループから利用者を削除 -->
-	<delete id="deleteMembersId">
+	<delete id="delete">
 		delete from groups_members
 			where id = #{id}
 	</delete>

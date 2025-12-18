@@ -15,22 +15,19 @@
 	
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-md mx-auto">
-				<div class="text-center">
-					<p th:text="${status} + ' ' + ${error}" class="fs-3"></p>
-						
-					<div class="col-6">
-						<div class="alert alert-danger alert-dismissible fade show">
-							<span th:text="${message}" class="text-danger fs-4"></span>
-						</div>
-					</div>
+			<div class="col-md mx-auto text-center">
+				<p th:text="${status} + ' ' + ${error}" class="fs-3"></p>
 					
-					<form th:action="@{/postlogout}" method="post">
-						<input type="button" onclick="location.href='/login'"
-						th:value="#{cancelLoginBtn}" class="btn btn-secondary">
-					</form>
+				<div class="col-6">
+					<div class="alert alert-danger alert-dismissible fade show">
+						<span th:text="${message}" class="text-danger fs-4"></span>
+					</div>
 				</div>
 				
+				<form th:action="@{/postlogout}" method="post">
+					<input type="button" onclick="location.href='/login'"
+					th:value="#{cancelLoginBtn}" class="btn btn-secondary">
+				</form>
 			</div>
 		</div>
 	</div>

@@ -16,27 +16,22 @@
 	
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-md-5 mx-auto">
-				<div class="text-center">
+			<div class="col-md-5 mx-auto text-center">
 				
-					<div th:text="#{deleteMembersAlert}" class="fs-5"></div>	
-					
-					<div class="row my-3">
-						<div th:text="${membersData.Accounts?.user?: 'unknown'}" class="fs-5"></div>
-					</div>
-					
-					<form method="post" th:action="@{/delete-members}">
-						
-						<a th:href="@{'/list-members'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn2}"></a>
-						<input type="hidden" th:value="${membersData.id}" name="id">
-						<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3">
-							
-					</form>
-					
+				<div th:text="#{deleteMembersAlert}" class="mb-3 fs-5"></div>	
+				
+				<div class="row mb-3">
+					<div th:text="${membersData.Accounts?.user?: 'unknown'}" class="fs-5"></div>
 				</div>
+				
+				<form method="post" th:action="@{/delete-members}">
+					<a th:href="@{'/list-members'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn2}"></a>
+					<input type="hidden" th:value="${membersData.id}" name="id">
+					<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3">
+				</form>
+				
 			</div>
 		</div>
 	</div>
-	
 </body>
 </html>

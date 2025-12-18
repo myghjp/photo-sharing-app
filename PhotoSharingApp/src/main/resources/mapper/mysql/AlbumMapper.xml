@@ -13,7 +13,7 @@
 	<!-- ーーーEntryAlbumーーー -->
 	
 	<!-- グループIDとアルバム名を追加 -->
-	<insert id="insertAlbum">
+	<insert id="insert">
 		insert into albums(
 			 group_id
 			,album_name
@@ -37,7 +37,7 @@
 	<!-- アルバムIDとアルバム名を取得 -->
 	
 	<!-- ※deleteAlbumでも使用中 -->
-	<select id="selectAlbum" resultMap="AlbumsTable">
+	<select id="select" resultMap="AlbumsTable">
 		select id,album_name
 		from albums
 		where id = #{id}
@@ -46,7 +46,7 @@
 	<!-- ーーーDeleteAlbumーーー -->
 	
 	<!-- アルバムの削除 -->
-	<delete id="deleteAlbum">
+	<delete id="delete">
 		delete from albums
 		where id = #{id}
 	</delete>

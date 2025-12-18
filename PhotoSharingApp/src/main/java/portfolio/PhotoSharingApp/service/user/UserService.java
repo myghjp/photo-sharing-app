@@ -12,10 +12,8 @@ public interface UserService {
 
 	public void createAccount(Accounts accounts);
 	
-	/*登録済のアカウント名と重複していないか確認*/
 	public boolean isUserExisting(Accounts Accounts);
 	
-	/*登録済のメールアドレスと重複していないか確認*/
 	public boolean isEmailAddressExisting(Accounts Accounts);
 	
 	/*ーーーEditAccountーーー*/
@@ -27,6 +25,5 @@ public interface UserService {
 	public void removeAccount(int id);
 	
 	/*ーーーーーーーーーーーーーーーーーーーーーーー*/
-	/*idからuserNameを取得*/
 	/*public Accounts selectByUserName(int id);*/
 }
