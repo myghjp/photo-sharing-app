@@ -42,7 +42,7 @@ public class EditAccountController {
 	}
 	
 	@PostMapping("/edit-account")
-	public String postEditAccount (Model model
+	public String postEditAccount(Model model
 			,HttpSession session
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,@ModelAttribute @Validated EditAccountForm editAccountForm

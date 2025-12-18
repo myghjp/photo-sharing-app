@@ -21,11 +21,11 @@
 					<div th:text="${groupName}" class="col mb-3 fs-5"></div>
 					
 					<div class="col mb-3">
-						<a th:href="@{'/home-group'}" class="btn btn-secondary" th:text="#{cancelBtn1}"></a>
+						<a th:href="@{'/home-group'}" th:text="#{cancelBtn1}" class="btn btn-secondary"></a>
 					</div>
 					
 					<div class="col mb-3">
-						<a th:href="@{'/entry-album'}" class="btn btn-success" th:text="#{entryAlbumBtn}"></a>
+						<a th:href="@{'/entry-album'}" th:text="#{entryAlbumBtn}" class="btn btn-success"></a>
 					</div>
 					
 					<div th:text="#{selectAlbumAlert}" class="col mb-3 fs-5"></div>
@@ -41,7 +41,7 @@
 										
 									</div>
 										<th:block th:if="${isAdmin}">
-											<a th:href="@{'/delete-album/' + ${list.id}}" class="btn btn-danger" th:text="#{deleteBtn}"></a>
+											<a th:href="@{'/delete-album/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
 										</th:block>
 								</div>
 							</div>

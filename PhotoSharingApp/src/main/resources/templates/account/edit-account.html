@@ -19,7 +19,7 @@
 			<div class="col-md-5 mx-auto">
 				<form method="post" th:action="@{/edit-account}" th:object="${editAccountForm}" class="text-center">
 			    	 
-			    	<div th:text="#{editAccountAlert}" class="fs-5"></div>
+			    	<div th:text="#{editAccountAlert}" class="mb-3 fs-5"></div>
 			    	
 				    <div class="row mb-3">
 				        <label for="pass" th:text="#{pass}" class="col-sm-4 col-form-label"></label>
@@ -29,7 +29,7 @@
 					     </div>
 				    </div>
 			    
-				    <a th:href="@{'/select-group'}" class="btn btn-secondary mx-3 my-2" th:text="#{cancelGroupBtn}"></a>
+				    <a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="btn btn-secondary mx-3 my-2"></a>
 				    <input type="submit" th:value="#{editBtn}" class="btn btn-primary mx-3 my-2">
 			    	
 			    </form>

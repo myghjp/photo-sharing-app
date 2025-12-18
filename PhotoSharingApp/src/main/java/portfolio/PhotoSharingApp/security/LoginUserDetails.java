@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import portfolio.PhotoSharingApp.entity.Accounts;
 
-public class LoginUserDetails implements UserDetails{
+public class LoginUserDetails implements UserDetails {
 	
 	private final Accounts accounts;
 	private final Collection<? extends GrantedAuthority> authorities;

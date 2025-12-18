@@ -23,7 +23,7 @@
 					
 					<div th:text="${albumsData.albumName}" class="fs-5 mb-2"></div>
 					
-					<a th:href="@{'/select-album'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn2}"></a>
+					<a th:href="@{'/select-album'}" th:text="#{cancelBtn2}" class="btn btn-secondary mx-3"></a>
 					<input type="hidden" th:value="${albumsData.id}" name="id" >
 				    <input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3">
 				    
