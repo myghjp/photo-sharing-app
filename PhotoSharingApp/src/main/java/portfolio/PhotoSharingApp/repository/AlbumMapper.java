@@ -24,4 +24,6 @@ public interface AlbumMapper {
 	
 	public void delete(@Param("id") Integer id);
 	
+	/*比較を作成*/
+	
 }

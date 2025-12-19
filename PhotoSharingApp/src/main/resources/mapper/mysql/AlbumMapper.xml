@@ -51,4 +51,6 @@
 		where id = #{id}
 	</delete>
 	
+	<!-- 比較を作成 -->
+	
 </mapper>

@@ -23,7 +23,15 @@ public class DeleteAlbumController {
 	public String getDeleteAlbum(Model model
 			,@PathVariable("id")int id
 			,DeleteAlbumForm deleteAlbumForm
+			,RedirectAttributes redirectAttributes
 			) {
+		
+		/*アルバムidは自身が作ったアルバムのidと一致するかを作成*/
+		
+		/*if (albumService.isIdAdminExisting(id)) {
+			return "redirect;error";
+		}*/
+		
 		
 		/*アルバムIDとアルバム名を取得*/
 		Albums albumsData = albumService.getAlbum(id);

@@ -19,5 +19,7 @@ public interface AlbumService {
 	/*ーーーDeleteAlbumーーー*/
 	
 	public void deleteAlbum(int id);
+	
+	/*比較を作成*/
 
 }

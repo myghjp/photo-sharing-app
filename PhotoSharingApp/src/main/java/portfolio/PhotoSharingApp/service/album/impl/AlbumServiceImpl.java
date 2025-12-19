@@ -40,4 +40,6 @@ public class AlbumServiceImpl implements AlbumService{
 	public void deleteAlbum(int id) {
 		albumMapper.delete(id);
 	}
+	
+	/*比較を作成*/
 }

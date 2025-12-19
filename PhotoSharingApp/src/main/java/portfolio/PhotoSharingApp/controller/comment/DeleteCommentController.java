@@ -22,6 +22,9 @@ public class DeleteCommentController {
 	public String getDeleteComment(Model model
 			,@PathVariable("id")int id
 			) {
+		
+		
+		
 
 		/*idとコメントを取得*/
 		Comments commentsData = commentService.getComment(id);

@@ -59,6 +59,7 @@
 							<div class="row me-1">
 								<th:block th:if="${list.Accounts?.user != null and list.Accounts.user == myUsername}">
 									<a th:href="@{'/delete-comment/' + ${list.id}}" class="btn btn-danger" th:text="#{deleteBtn}"></a>
+								
 								</th:block>
 							</div>
 						</div>
