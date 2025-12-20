@@ -52,12 +52,12 @@ public class GroupServiceImpl implements GroupService{
 	
 	/*ーーー※DeleteAccountーーー*/
 	
-	@Override
+	/*@Override
 	public boolean isCreateGroupExisting(int id) {
 		if (groupMapper.groupAdmin(id) == null) {
 			return false;
 		} else {
 			return true;
 		}
-	}
+	}*/
 }

@@ -11,7 +11,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Accounts;
-import portfolio.PhotoSharingApp.service.group.GroupService;
 import portfolio.PhotoSharingApp.service.user.UserService;
 
 @Controller
@@ -20,8 +19,8 @@ public class DeleteAccountController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private GroupService groupService;
+	/*@Autowired
+	private GroupService groupService;*/
 
 	@GetMapping("/delete-account/{userId}")
 	public String getDeleteAccount(Model model
@@ -51,7 +50,7 @@ public class DeleteAccountController {
 		
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		/*自身が作成したグループが存在するか確認*/
-		if (groupService.isCreateGroupExisting(accounts.getId())) {
+		if (userService.isCreateGroupExisting(accounts.getId())) {
 			return getDeleteAccount(model,id,true);
 		}
 		

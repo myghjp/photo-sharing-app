@@ -50,12 +50,27 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void editAccount(Accounts accounts) {
 		userMapper.update(accounts);
-	};
+	}
 	
 	/*ーーーDeleteAccountーーー*/
 	
 	@Override
+	public boolean isCreateGroupExisting(int id) {
+		if (userMapper.groupAdmin(id) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	@Override
 	public void removeAccount(int id){
 		userMapper.delete(id);
-	};
+	}
+	
+	/*ーーー比較ーーー*/
+	@Override
+	public int isIdAdminExisting(int id) {
+		return userMapper.isIdAdminExisting(id);
+	}
 }

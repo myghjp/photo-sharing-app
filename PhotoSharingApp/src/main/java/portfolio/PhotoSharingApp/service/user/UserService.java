@@ -22,8 +22,11 @@ public interface UserService {
 	
 	/*ーーーDeleteAccountーーー*/
 	
+	public boolean isCreateGroupExisting(int id);
+	
 	public void removeAccount(int id);
 	
-	/*ーーーーーーーーーーーーーーーーーーーーーーー*/
-	/*public Accounts selectByUserName(int id);*/
+	/*ーーー比較ーーー*/
+	public int isIdAdminExisting(int id);
+	
 }

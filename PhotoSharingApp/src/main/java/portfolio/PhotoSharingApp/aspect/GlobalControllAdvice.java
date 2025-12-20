@@ -21,6 +21,6 @@ public class GlobalControllAdvice {
 		
 		e.printStackTrace();
 		
-		return "navbar/error";
+		return "common/error";
 	}
 }

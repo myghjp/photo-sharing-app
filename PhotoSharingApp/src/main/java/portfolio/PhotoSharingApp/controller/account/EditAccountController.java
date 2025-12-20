@@ -2,6 +2,7 @@ package portfolio.PhotoSharingApp.controller.account;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Accounts;
 import portfolio.PhotoSharingApp.form.account.EditAccountForm;
+import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.user.UserService;
 
 @Controller
@@ -33,11 +35,11 @@ public class EditAccountController {
 
 	@GetMapping("/edit-account/{userId}")
 	public String getEditAccount(Model model
-			,@PathVariable("userId")int userId
+			,@PathVariable("userId")int id
 			,EditAccountForm editAccountForm
 			) {
 		
-		model.addAttribute("userId",userId);
+		model.addAttribute("id",id);
 		model.addAttribute("editAccountForm", editAccountForm);
 		
 		return "account/edit-account";
@@ -47,11 +49,11 @@ public class EditAccountController {
 	public String postEditAccount(Model model
 			,@RequestParam("id")int id
 			,HttpSession session
-			/*,@AuthenticationPrincipal LoginUserDetails loginUserDetails*/
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,@ModelAttribute @Validated EditAccountForm editAccountForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
-			) {
+			) throws Exception {
 		
 		Accounts accounts = modelMapper.map(editAccountForm, Accounts.class);
 		
@@ -60,6 +62,9 @@ public class EditAccountController {
 		/*Idが自身のアカウントIdと同じか比較*/
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		/*idが自身のアカウントIdと同じかを確認*/
+		if (userService.isIdAdminExisting(accounts.getId()) != loginUserDetails.getUserId()) {
+			throw new IllegalArgumentException("不正");
+		}
 		
 		
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
@@ -70,6 +75,7 @@ public class EditAccountController {
 		}
 		
 		/*accounts.setId(loginUserDetails.getUserId());*/
+		
 		
 		accounts.setPass(passwordEncoder.encode(accounts.getPass()));
 

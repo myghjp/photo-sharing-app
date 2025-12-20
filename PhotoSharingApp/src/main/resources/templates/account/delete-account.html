@@ -35,7 +35,9 @@
 					<div class="text-center">
 						<a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="btn btn-secondary mx-3 my-2"></a>
 				    	<!--<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3 my-2">-->
-				    	<input type="submit" th:value="#{editBtn}" th:name="${id}" class="btn btn-danger mx-3 my-2">
+				    	
+				    	<input type="hidden" name="id" th:value="${id}">
+				    	<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3 my-2">
 				    	
 					</div>
 				   

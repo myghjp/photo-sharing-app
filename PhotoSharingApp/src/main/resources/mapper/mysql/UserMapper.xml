@@ -58,9 +58,23 @@
 	
 	<!-- ーーーDeleteAccountーーー -->
 	
+	<select id="groupAdmin" resultType="Integer">
+		select account_id
+		from `groups`
+		where account_id = #{id}
+		limit 1
+	</select>
+	
 	<delete id="delete">
 		delete from accounts
 		where id = #{id}
 	</delete>
+	
+	<!-- 比較を作成 -->
+	<select id="isIdAdminExisting" resultType="Integer">
+		select id
+		from accounts
+		where id = #{id}
+	</select>
 	
 </mapper>

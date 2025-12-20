@@ -26,6 +26,11 @@ public interface UserMapper {
 	
 	/*ーーーDeleteAccountーーー*/
 	
+	public Integer groupAdmin(@Param("id")Integer id);
+	
 	public void delete(@Param("id") Integer id);
+	
+	/*ーーー比較ーーー*/
+	public Integer isIdAdminExisting(@Param("id") Integer id);
 	
 }

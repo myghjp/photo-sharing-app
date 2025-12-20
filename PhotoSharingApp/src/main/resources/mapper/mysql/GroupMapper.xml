@@ -56,11 +56,11 @@
 	
 	<!-- ーーー※DeleteAccountーーー -->
 	
-	<select id="groupAdmin" resultType="Integer">
+	<!-- <select id="groupAdmin" resultType="Integer">
 		select account_id
 		from `groups`
 		where account_id = #{id}
 		limit 1
-	</select>
+	</select> -->
 	
 </mapper>
