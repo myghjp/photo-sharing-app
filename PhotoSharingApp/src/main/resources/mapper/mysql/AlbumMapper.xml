@@ -52,5 +52,10 @@
 	</delete>
 	
 	<!-- 比較を作成 -->
+	<!-- <select id="select" resultMap="AlbumsTable">
+		select id,album_name
+		from albums
+		where id = #{id}
+	</select> -->
 	
 </mapper>

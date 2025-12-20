@@ -44,7 +44,9 @@
 				
 				<div class="col">
 					<th:block th:if="${isAdmin}">
-						<a th:href="@{'/delete-group'}" class="btn btn-danger" th:text="#{deleteGroupBtn}"></a>
+						<!--<a th:href="@{'/delete-group'}" class="btn btn-danger" th:text="#{deleteGroupBtn}"></a>-->
+						<a th:href="@{'/delete-group/' + ${groups.id}}" th:text="#{deleteGroupBtn}" class="btn btn-danger"></a>
+						
 					</th:block>
 				</div>
 				

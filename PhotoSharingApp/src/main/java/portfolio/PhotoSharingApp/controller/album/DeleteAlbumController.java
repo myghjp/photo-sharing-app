@@ -27,7 +27,6 @@ public class DeleteAlbumController {
 			) {
 		
 		/*アルバムidは自身が作ったアルバムのidと一致するかを作成*/
-		
 		/*if (albumService.isIdAdminExisting(id)) {
 			return "redirect;error";
 		}*/

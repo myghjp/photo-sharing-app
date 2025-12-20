@@ -21,12 +21,16 @@
 				<div th:text="${groups.groupName}" class="col mb-3 fs-5"></div>
 				
 				<div class="col mb-3">
-					<a th:href="@{'/home-group'}" class="btn btn-secondary" th:text="#{cancelBtn1}"></a>
+					<a th:href="@{'/home-group'}" th:text="#{cancelBtn1}"
+						class="btn btn-secondary">
+					</a>
 				</div>
 				
 				<div class="col mb-3">
 					<th:block th:if="${isAdmin}">
-						<a th:href="@{'/add-members'}" class="btn btn-success" th:text="#{addMembersBtn}"></a>
+						<a th:href="@{'/add-members'}" th:text="#{addMembersBtn}"
+							class="btn btn-success">
+						</a>
 					</th:block>
 				</div>
 				
@@ -43,17 +47,18 @@
 				
 				<div th:each="list:${membersList}">
 					<div class="row mb-3">
-						<form method="post" th:action="@{/list-members}">
-							<div class="d-flex justify-content-center">
-								<label th:for="${list.id}" th:text="${list.accounts?.user?: 'unknown'}" class="m-2"></label>
-								<input type="hidden" th:value="${list.id}" name="id">
-								<th:block th:if="${isAdmin}">
-									<input type="submit" th:id="${list.id}" th:value="#{deleteBtn}" class="btn btn-danger">
-								</th:block>
-							</div>
-						</form>
+						<div class="d-flex justify-content-center">
+							<label th:text="${list.accounts?.user?: 'unknown'}" class="m-2"></label>
+							
+							<th:block th:if="${isAdmin}">
+								<a th:href="@{'/delete-members/' + ${list.id}}" th:text="#{deleteBtn}"
+									class="btn btn-danger">
+								</a>
+							</th:block>
+						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>
