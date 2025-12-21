@@ -13,6 +13,7 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
 @EnableWebSecurity
+/*@EnableMethodSecurity*/
 public class SecurityConfig {
 	
 	@Bean
@@ -33,11 +34,13 @@ public class SecurityConfig {
 				/*↓複数の画面を許可*/
 				.requestMatchers(mvc.pattern("/login")).permitAll()
 				.requestMatchers(mvc.pattern("/entry-account")).permitAll()
-				.anyRequest().authenticated()/*※それ以外は認証必要*/
+				/*.requestMatchers("/delete-album/**").hasAuthority("LOG_VIEW")*/
+				/*↓それ以外は認証必要*/
+				.anyRequest().authenticated()
 			);
 
 		http.formLogin(login -> login
-				.loginProcessingUrl("/postlogin")/*postlogin*/
+				.loginProcessingUrl("/postlogin")
 				.loginPage("/login")
 				.failureUrl("/login")
 				.usernameParameter("user")

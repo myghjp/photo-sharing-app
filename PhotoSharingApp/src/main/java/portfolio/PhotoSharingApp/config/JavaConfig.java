@@ -28,5 +28,4 @@ public class JavaConfig {
 
         return provider;
 	}
-	/*※WARN確認*/
 }

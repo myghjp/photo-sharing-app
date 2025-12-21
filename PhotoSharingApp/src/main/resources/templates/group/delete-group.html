@@ -12,22 +12,20 @@
 	<title th:text="#{deleteGroupPage}"></title>
 </head>
 <body>
-	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
+	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
 	
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-5 mx-auto">
 				<form method="post" th:action="@{/delete-group}" class="text-center">
 				
-					<div th:text="#{deleteGroupAlert}" class="fs-5"></div>
+					<div th:text="#{deleteGroupAlert}" class="mb-3 fs-5"></div>
 					
-					<div class="row my-3">
-						<div th:text="${groups.groupName}" class="fs-5"></div>
-					</div>
+					<div th:text="${groupsData.groupName}" class="mb-3 fs-5"></div>
 					
-					<a th:href="@{'/home-group'}" class="btn btn-secondary mx-3">キャンセル</a>
-					<input type="hidden" name="id" th:value="${groups.id}">
-				    <input type="submit" value="削除" class="btn btn-danger mx-3">
+					<a th:href="@{'/home-group'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn2}"></a>
+					<input type="hidden" name="id" th:value="${groupsData.id}">
+				    <input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3">
 				</form>
 			</div>
 		</div>

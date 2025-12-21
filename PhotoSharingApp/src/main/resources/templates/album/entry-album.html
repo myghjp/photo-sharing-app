@@ -12,7 +12,7 @@
 	<title th:text=#{entryAlbumPage}></title>
 </head>
 <body>
-	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
+	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
 	
 	<div class="container">
 		<div class="row justify-content-center">
@@ -29,8 +29,8 @@
 				         </div>
 					</div>
 					
-					<a th:href="@{'/select-album'}" class="btn btn-secondary mx-3">キャンセル</a>
-				    <input type="submit" value="登録" class="btn btn-primary mx-3">
+					<a th:href="@{'/select-album'}" th:text="#{cancelBtn2}" class="btn btn-secondary mx-3"></a>
+				    <input type="submit" th:value="#{entryBtn}" class="btn btn-primary mx-3">
 				    
 				</form>
 			</div>

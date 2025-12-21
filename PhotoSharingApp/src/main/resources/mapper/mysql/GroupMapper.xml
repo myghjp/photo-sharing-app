@@ -10,10 +10,9 @@
 		<result column="account_id" property="accountId" />
 	</resultMap>
 	
-	<!-- EntryGroupーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーEntryGroupーーー -->
 	
-	<!-- グループ名とログイン中のアカウントIDを追加 -->
-	<insert id="insertGroup">
+	<insert id="insert">
 		insert into `groups`(
 			 group_name
 			,account_id
@@ -24,16 +23,16 @@
 	</insert>
 	
 	<!-- データベースに登録済のグループ名と重複していないか確認 -->
-	<select id="selectGroupData" resultType="String">
+	<select id="selectGroupName" resultType="String">
 		select group_name
 		from `groups`
 		where group_name = #{groups.groupName}
 	</select>
 	
-	<!-- SelectGroupーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーSelectGroupーーー -->
 	
 	<!-- 自身が所属しているグループのIDとグループ名の一覧を取得 -->
-	<select id="selectGroupList" resultMap="GroupsTable">
+	<select id="selectMyGroups" resultMap="GroupsTable">
 		select distinct groups.id,group_name
 		from `groups`
 			left join groups_members
@@ -42,28 +41,26 @@
 		or groups_members.account_id = #{id}
 	</select>
 	
-	<!-- groupsテーブルの情報を取得 -->
-	<select id="selectGroups" resultMap="GroupsTable">
+	<select id="select" resultMap="GroupsTable">
 		select *
 		from `groups`
 		where id = #{id}
 	</select>
 	
-	<!-- DeleteGroupーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーDeleteGroupーーー -->
 	
-	<!-- グループの削除 -->
-	<delete id="deleteGroup">
+	<delete id="delete">
 		delete from `groups`
 		where id = #{id}
 	</delete>
 	
-	<!-- ？？？ーーーーーーーーーーーーーーーーー -->
+	<!-- ーーー※DeleteAccountーーー -->
 	
-	<select id="groupAdmin" resultType="Integer">
+	<!-- <select id="groupAdmin" resultType="Integer">
 		select account_id
 		from `groups`
 		where account_id = #{id}
 		limit 1
-	</select>
+	</select> -->
 	
 </mapper>

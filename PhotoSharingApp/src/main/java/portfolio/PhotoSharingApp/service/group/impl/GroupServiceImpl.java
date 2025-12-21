@@ -15,57 +15,49 @@ public class GroupServiceImpl implements GroupService{
 	@Autowired
 	private GroupMapper groupMapper;
 	
-	/*ーEntryGroupーーーーーーーーーーーーーーーーー*/
+	/*ーーーEntryGroupーーー*/
 	
-	/*グループ名とログイン中のアカウントIDを追加*/
 	@Override
 	public void entryGroup(Groups groups) {
-		groupMapper.insertGroup(groups);
+		groupMapper.insert(groups);
 	}
 	
-	/*データベースに登録済のグループ名と重複していないか確認*/
 	@Override
 	public boolean isExistingGroupsData(Groups groups) {
-		if (groupMapper.selectGroupData(groups) == null) {
+		if (groupMapper.selectGroupName(groups) == null) {
 			return false;
 		} else {
 			return true;
 		}
 	}
 	
-	/*ーSelectGroupーーーーーーーーーーーーーーーーー*/
+	/*ーーーSelectGroupーーー*/
 
-	/*自身が所属しているグループのIDとグループ名の一覧を取得*/
 	@Override
 	public List<Groups> getGroupList(int id) {
-		return groupMapper.selectGroupList(id);
+		return groupMapper.selectMyGroups(id);
 	}
 	
-	/*groupsテーブルの情報を取得*/
 	@Override
 	public Groups getGroupsData(int id){
-		return groupMapper.selectGroups(id);
+		return groupMapper.select(id);
 	}
 	
-	/*ーDeleteGroupーーーーーーーーーーーーーーーーー*/
+	/*ーーーDeleteGroupーーー*/
 
-	/*グループの削除*/
 	@Override
 	public void deleteGroup(int id) {
-		groupMapper.deleteGroup(id);
+		groupMapper.delete(id);
 	}
 	
-	/*ー？？？ーーーーーーーーーーーーーーーーー*/
+	/*ーーー※DeleteAccountーーー*/
 	
-	/*※使用中*/
-	/*自身が作成したグループが残っていないかを確認*/
-	@Override
+	/*@Override
 	public boolean isCreateGroupExisting(int id) {
 		if (groupMapper.groupAdmin(id) == null) {
 			return false;
 		} else {
 			return true;
 		}
-	}
-	
+	}*/
 }

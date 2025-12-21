@@ -50,5 +50,4 @@ public class DeletePhotoController {
 		
 		return "redirect:list-photo";
 	}
-
 }

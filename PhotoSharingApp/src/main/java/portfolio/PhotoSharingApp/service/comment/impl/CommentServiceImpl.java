@@ -15,33 +15,27 @@ public class CommentServiceImpl implements CommentService{
 	@Autowired
 	private CommentMapper commentMapper;
 	
-	/*ーListCommentーーーーーーーーーーーーーーーーー*/
+	/*ーーーListCommentーーー*/
 	
-	/*このグループのcommentsテーブルの情報とアカウント名を取得*/
 	@Override
 	public List<Comments> getCommentList(int id){
-		return commentMapper.selectCommentList(id);
+		return commentMapper.selectCommentItems(id);
 	}
 	
-	/*コメント情報を追加*/
 	@Override
 	public void addComment(Comments comments) {
-		commentMapper.insertComment(comments);
+		commentMapper.insert(comments);
 	}
 	
+	/*ーーーDeleteCommentーーー*/
 	
-	/*ーDeleteCommentーーーーーーーーーーーーーーーーー*/
-	
-	/*このidとコメントを取得*/
 	@Override
 	public Comments getComment(int id) {
 		return commentMapper.select(id);
 	}
 	
-	/*コメントの削除*/
 	@Override
 	public void deleteComment(int id) {
-		commentMapper.deleteComment(id);
+		commentMapper.delete(id);
 	}
-
 }

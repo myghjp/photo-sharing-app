@@ -6,19 +6,15 @@ import portfolio.PhotoSharingApp.entity.Comments;
 
 public interface CommentService {
 	
-	/*ーListCommentーーーーーーーーーーーーーーーーー*/
+	/*ーーーListCommentーーー*/
 	
-	/*このグループのcommentsテーブルの情報とアカウント名を取得*/
 	public List<Comments> getCommentList(int id);
 	
-	/*コメント情報を追加*/
 	public void addComment(Comments comments);
 	
-	/*ーDeleteCommentーーーーーーーーーーーーーーーーー*/
+	/*ーーーDeleteCommentーーー*/
 	
-	/*このidとコメントを取得*/
 	public Comments getComment(int id);
 	
-	/*コメントの削除*/
 	public void deleteComment(int id);
 }

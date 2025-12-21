@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import portfolio.PhotoSharingApp.entity.Accounts;
 
-public class LoginUserDetails implements UserDetails{
+public class LoginUserDetails implements UserDetails {
 	
 	private final Accounts accounts;
 	private final Collection<? extends GrantedAuthority> authorities;
@@ -27,7 +27,6 @@ public class LoginUserDetails implements UserDetails{
 
 	public Accounts getAccounts() {return accounts;}
 	
-	/*ログインユーザID取得のためカスタム*/
 	public int getUserId() {return accounts.getId();}
 
 	@Override

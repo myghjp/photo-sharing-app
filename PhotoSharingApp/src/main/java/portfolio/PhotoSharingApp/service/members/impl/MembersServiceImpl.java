@@ -17,20 +17,17 @@ public class MembersServiceImpl implements MembersService{
 	@Autowired
 	private MembersMapper membersMapper;
 	
-	/*ーAddMembersーーーーーーーーーーーーーーーーー*/
+	/*ーーーAddMembersーーー*/
 	
-	/*メールアドレスを使用してアカウントIdが存在するかを確認*/
 	@Override
 	public boolean isExistingAccountId(Accounts accounts) {
-		if (membersMapper.selectByAccountsId(accounts) != null) {
+		if (membersMapper.selectEmailAddress(accounts) != null) {
 			return false;
 		} else {
 			return true;
 		}
 	}
 	
-	/*このメールアドレスは、このグループ内にいるメンバや管理者のアドレスが
-	 * データベースで重複していないかを確認*/
 	@Override
 	public boolean isExistingMembersId(Accounts accounts,Groups groups) {
 		if (membersMapper.selectMembersId(accounts,groups) == null) {
@@ -40,43 +37,37 @@ public class MembersServiceImpl implements MembersService{
 		}
 	}
 	
-	/*メールアドレスを使用してアカウントIDを取得する*/
 	@Override
 	public int selectAccountId(String emailAddress) {
-		return membersMapper.selectAccountData3(emailAddress);
+		return membersMapper.selectAccountId(emailAddress);
 	}
 	
-	/*グループのIDとアカウントのIDを追加する*/
 	@Override
 	public void insertMembers(Members members) {
-		membersMapper.insertMembers(members);
+		membersMapper.insert(members);
 	}
 	
-	/*ーListMembersーーーーーーーーーーーーーーーーー*/
+	/*ーーーListMembersーーー*/
 	
-	/*このグループのメンバリストを取得する*/
 	@Override
 	public List<Members> getMembersList(int groupId){
-		return membersMapper.selectMembersList(groupId);
+		return membersMapper.selectMembersItems(groupId);
 	}
 	
-	/*管理者名を取得*/
 	@Override
 	public String getAdminName(int id) {
-		return membersMapper.selectByUserName2(id);
+		return membersMapper.selectUserName(id);
 	}
 	
-	/*グループ利用者IDとその名前を取得*/
 	@Override
 	public Members getMemberName(int id) {
-		return membersMapper.selectMembersName(id);
+		return membersMapper.selectMembersItems2(id);
 	}
 	
-	/*ーDeleteMembersーーーーーーーーーーーーーーーーー*/
+	/*ーーーDeleteMembersーーー*/
 	
-	/*グループから利用者を削除*/
 	@Override
 	public void deleteMember(int id) {
-		membersMapper.deleteMembersId(id);
+		membersMapper.delete(id);
 	}
 }

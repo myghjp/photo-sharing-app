@@ -12,35 +12,26 @@ import portfolio.PhotoSharingApp.entity.Members;
 @Mapper
 public interface MembersMapper {
 	
-	/*ーAddMembersーーーーーーーーーーーーーーーーー*/
+	/*ーーーAddMembersーーー*/
 	
-	/*メールアドレスを使用してアカウントIdが存在するかを確認*/
-	public String selectByAccountsId(@Param("accounts") Accounts accounts);
+	public String selectEmailAddress(@Param("accounts") Accounts accounts);
 	
-	/*このメールアドレスは、このグループ内にいるメンバや管理者のアドレスが
-	 * データベースで重複していないかを確認*/
 	public Integer selectMembersId(@Param("accounts")Accounts accounts,@Param("groups")Groups groups);
 	
-	/*メールアドレスを使用してアカウントIDを取得する*/
-	public int selectAccountData3(@Param("emailAddress") String emailAddress);
+	public int selectAccountId(@Param("emailAddress") String emailAddress);
 	
-	/*グループのIDとアカウントのIDを追加する*/
-	public void insertMembers(@Param("members")Members members);
+	public void insert(@Param("members")Members members);
 	
-	/*ーListMembersーーーーーーーーーーーーーーーーー*/
+	/*ーーーListMembersーーー*/
 	
-	/*このグループのメンバリストを取得する*/
-	public List<Members> selectMembersList(int groupId);
+	public List<Members> selectMembersItems(int groupId);
 	
-	/*管理者名を取得*/
-	public String selectByUserName2(@Param("id") Integer id);
+	public String selectUserName(@Param("id") Integer id);
 	
-	/*グループ利用者IDとその名前を取得*/
-	public Members selectMembersName(@Param("id")int id);
+	public Members selectMembersItems2(@Param("id")int id);
 	
-	/*ーDeleteMembersーーーーーーーーーーーーーーーーー*/
+	/*ーーーDeleteMembersーーー*/
 	
-	/*グループから利用者を削除*/
-	public void deleteMembersId(int id);
+	public void delete(int id);
 	
 }

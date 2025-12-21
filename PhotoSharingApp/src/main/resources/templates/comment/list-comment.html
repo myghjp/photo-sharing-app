@@ -12,25 +12,21 @@
 	<title th:text=#{listCommentPage}></title>
 </head>
 <body>
-	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
+	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
 
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="text-center">
 		
-				<div class="row mb-3">
-					<div th:text=${groupName} class="fs-5"></div>
+				<div th:text=${groupName} class="col mb-3 fs-5"></div>
+				
+				<div class="col mb-3">
+					<a th:href="@{'/home-group'}" class="btn btn-secondary" th:text="#{cancelBtn1}"></a>
 				</div>
 				
-				<div class="row-cols-12 mb-3">
-					<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a>
-				</div>
+				<div th:text=#{bulletinBoard} class="col mb-3 fs-5"></div>
 				
-				<div class="row mb-3">
-					<div th:text=#{commentAlert} class="fs-5"></div>
-				</div>
-				
-				<div class="col-lg mx-auto mb-3">
+				<div class="col mx-auto mb-3">
 					<div class="border border-dark"></div>
 				</div>
 				
@@ -43,14 +39,14 @@
 						        <div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
 					        </div>
 					        <div class="col-4">
-					    		<input type="submit" value="コメント" class="btn btn-primary">
+					    		<input type="submit" th:value="#{commentBtn}" class="btn btn-primary">
 					        </div>
 					    </div>
 			    	</form>
 				</div>
 		    </div>
 			
-			<div class="col-lg mx-auto">
+			<div class="col mx-auto">
 				<div th:each="list:${commentsList}" class="card mb-3">
 					<div class="card-body">
 						<div class="d-flex justify-content-between align-items-center">
@@ -58,11 +54,12 @@
 								<div th:text="${list.id} + '.'" class="me-3"></div>
 								<div th:text="'▼' + ${list.Accounts?.user?: 'unknown'}" class="me-3"></div>
 								<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}" class="me-3"></div>
-							</div><!--classの無駄が多い-->
+							</div>
 							
 							<div class="row me-1">
 								<th:block th:if="${list.Accounts?.user != null and list.Accounts.user == myUsername}">
-									<a th:href="@{'/delete-comment/' + ${list.id}}" class="btn btn-danger">削除</a>
+									<a th:href="@{'/delete-comment/' + ${list.id}}" class="btn btn-danger" th:text="#{deleteBtn}"></a>
+								
 								</th:block>
 							</div>
 						</div>

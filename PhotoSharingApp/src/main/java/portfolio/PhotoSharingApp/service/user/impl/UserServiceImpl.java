@@ -13,21 +13,20 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserMapper userMapper;
 	
-	/*ログイン(アカウント名が存在するかを確認)*/
+	/*ーーーLoginーーー*/
+	
 	@Override
 	public Accounts getLoginAccount(String user) {
 		return userMapper.getSelectUser(user);
 	}
 	
-	/*ーEntryAccountーーーーーーーーーーーーーーーーー*/
+	/*ーーーEntryAccountーーー*/
 	
-	/*アカウント登録*/
 	@Override
 	public void createAccount(Accounts accounts){
-		userMapper.insertAccount(accounts);
+		userMapper.insert(accounts);
 	}
 	
-	/*アカウント名がデータベースに存在するかを確認*/
 	@Override
 	public boolean isUserExisting(Accounts accounts) {
 		if (userMapper.selectByUser(accounts) == null) {
@@ -37,40 +36,41 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 	
-	/*メールアドレスがデータベースに存在するかを確認*/
 	@Override
 	public boolean isEmailAddressExisting(Accounts accounts) {
-		if (userMapper.selectByEmailAddress(accounts) == null) {
+		if (userMapper.getSelectEmailAddress(accounts) == null) {
 			return false;
 		} else {
 			return true;
 		}
 	}
 	
-	/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
+	/*ーーーEditAccountーーー*/
 	
-	/*パスワード変更*/
 	@Override
 	public void editAccount(Accounts accounts) {
-		userMapper.updatePass(accounts);
-	};
-	
-	/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
-	
-	/*アカウント削除*/
-	@Override
-	public void removeAccount(int id){
-		userMapper.deleteAccount(id);
-	};
-	
-	/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
-
-	
-	
-	/*idからuserNameを取得*/
-	@Override
-	public Accounts selectByUserName(int id) {
-		return userMapper.selectByUserName(id);
+		userMapper.update(accounts);
 	}
 	
+	/*ーーーDeleteAccountーーー*/
+	
+	@Override
+	public boolean isCreateGroupExisting(int id) {
+		if (userMapper.groupAdmin(id) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	@Override
+	public void removeAccount(int id){
+		userMapper.delete(id);
+	}
+	
+	/*ーーー比較ーーー*/
+	@Override
+	public int isIdAdminExisting(int id) {
+		return userMapper.isIdAdminExisting(id);
+	}
 }

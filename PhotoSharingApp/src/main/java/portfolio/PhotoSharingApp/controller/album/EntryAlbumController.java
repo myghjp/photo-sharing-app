@@ -32,6 +32,8 @@ public class EntryAlbumController {
 			,EntryAlbumForm entryAlbumForm
 			) {
 		
+			model.addAttribute("entryAlbumForm", entryAlbumForm);		
+			
 		return "album/entry-album";
 	}
 	
@@ -44,7 +46,7 @@ public class EntryAlbumController {
 			) {
 		
 		if (bindingResult.hasErrors()) {
-			return getEntryAlbum(model, entryAlbumForm);
+			return getEntryAlbum(model,entryAlbumForm);
 		}
 		
 		Albums albums = modelMapper.map(entryAlbumForm,Albums.class);

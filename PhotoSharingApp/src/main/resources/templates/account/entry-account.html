@@ -11,13 +11,13 @@
 	<title th:text="#{entryAccountPage}"></title>
 </head>
 <body>
-	<nav layout:replace="~{navbar/header::header}"></nav>
+	<nav layout:replace="~{common/header::header}"></nav>
 	
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-5 mx-auto">
 				<form method="post" th:action="@{/entry-account}" th:object="${entryAccountForm}">
-				
+					
 				    <div class="row">
 				        <label for="user" th:text="#{user}" class="col-sm-4 col-form-label"></label>
 				        <div class="col-sm-8 mb-3">
@@ -39,8 +39,8 @@
 				    </div>
 				    
 				    <div class="text-center">
-					    <a th:href="@{'/login'}" class="btn btn-secondary m-3">キャンセル</a>
-					    <input type="submit" value="登録" class="btn btn-primary m-3">
+					    <a th:href="@{'/login'}" th:text="#{cancelBtn2}" class="btn btn-secondary mx-3 my-2"></a>
+					    <input type="submit" th:value="#{entryBtn}" class="btn btn-primary mx-3 my-2">
 				    </div>
 				    
 				</form>

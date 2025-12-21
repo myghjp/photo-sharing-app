@@ -12,53 +12,50 @@
 	<title th:text=#{selectAlbumPage}></title>
 </head>
 <body>
-	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
+	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
 
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-md-5 mx-auto">
-				<div class="text-center">
+			<div class="col-md-5 mx-auto text-center">
+				<div th:text="${groupName}" class="col mb-3 fs-5"></div>
 				
-					<div class="row mb-3">
-						<div th:text="${groupName}" class="fs-5"></div>
-					</div>
-					
-					<div class="row-cols-12 mb-3">
-						<a th:href="@{'/home-group'}" class="btn btn-secondary">戻る</a>
-					</div>
-					
-					<div class="row-cols-12 mb-3">
-						<a th:href="@{'/entry-album'}" class="btn btn-success">アルバムを作成する</a>
-					</div>
-					
-					<div class="row mb-3">
-						<div th:text="#{selectAlbumAlert}" class="fs-5"></div>
-					</div>
-					
-					<div class="row mb-3">
-						<form method="post" th:action="@{/select-album}">
-							<div th:each="list:${albumsList}" >
-								<div class="d-flex justify-content-center">
-									<div class="form-check mb-3">
-										<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" class="form-check-input m-2" checked>
-										<label th:for="${list.id}" th:text="${list.albumName}" class="form-check-label"></label>
-									
-										<th:block th:if="${isAdmin}">
-											<a th:href="@{'/delete-album/' + ${list.id}}" class="btn btn-danger" >削除</a>
-										</th:block>
-									</div>
+				<div class="col mb-3">
+					<a th:href="@{'/home-group'}" th:text="#{cancelBtn1}"
+						class="btn btn-secondary">
+					</a>
+				</div>
+				
+				<div class="col mb-3">
+					<a th:href="@{'/entry-album'}" th:text="#{entryAlbumBtn}"
+						class="btn btn-success">
+					</a>
+				</div>
+				
+				<div th:text="#{selectAlbumAlert}" class="col mb-3 fs-5"></div>
+				
+				<div class="row">
+					<form method="post" th:action="@{/select-album}">
+						<div th:each="list:${albumsList}" class="mb-3">
+							<div class="d-inline-flex justify-content-center align-items-center">
+								<div class="form-check m-2">
+									<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" class="form-check-input" checked>
+									<label th:for="${list.id}" th:text="${list.albumName}" class="form-check-label"></label>
 								</div>
-							</div>
-						
-							<div class="row-cols-12">
-								<th:block th:unless="${albumsList.isEmpty()}">
-									<input type="submit" value="アルバムを開く" class="btn btn-primary">
+								
+								<th:block th:if="${isAdmin}">
+									<a th:href="@{'/delete-album/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
 								</th:block>
 							</div>
-						</form>
-					</div>
+						</div>
 					
+						<div class="row-cols">
+							<th:block th:unless="${albumsList.isEmpty()}">
+								<input type="submit" th:value="#{openAlbum}" class="btn btn-primary">
+							</th:block>
+						</div>
+					</form>
 				</div>
+				
 			</div>
 		</div>
 	</div>

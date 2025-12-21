@@ -18,10 +18,10 @@
 		<result column="user" property="user" />
 	</resultMap>
 	
-	<!-- ーListCommentーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーListCommentーーー-->
 	
 	<!-- このグループのcommentsテーブルの情報とアカウント名を取得 -->
-	<select id="selectCommentList" resultMap="CommentsTable">
+	<select id="selectCommentItems" resultMap="CommentsTable">
 		select comments.id
 			,accounts.user as accounts_user
 			,comments.create_date_time
@@ -34,8 +34,7 @@
 			
 	</select>
 	
-	<!-- コメント情報を追加 -->
-	<insert id="insertComment">
+	<insert id="insert">
 		insert into comments(
 			 group_id
 			,comment
@@ -47,7 +46,7 @@
 		)
 	</insert>
 	
-	<!-- ーDeleteCommentーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーDeleteCommentーーー -->
 	
 	<!-- このidとコメントを取得 -->
 	<select id="select" resultMap="CommentsTable">
@@ -56,8 +55,7 @@
 		where id = #{id}
 	</select>
 	
-	<!-- コメントの削除 -->
-	<delete id="deleteComment">
+	<delete id="delete">
 		delete from comments
 		where id = #{id}
 	</delete>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<title th:text="#{errorPage}"></title>
+</head>
+<body>
+	<nav layout:replace="~{common/header::header}"></nav>
+	
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md mx-auto text-center">
+				<p th:text="${status} + ' ' + ${error}" class="fs-3"></p>
+					
+				<div class="col-6">
+					<div class="alert alert-danger alert-dismissible fade show">
+						<span th:text="${message}" class="text-danger fs-4"></span>
+					</div>
+				</div>
+				
+				<form th:action="@{/postlogout}" method="post">
+					<input type="button" onclick="location.href='/login'"
+					th:value="#{cancelLoginBtn}" class="btn btn-secondary">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

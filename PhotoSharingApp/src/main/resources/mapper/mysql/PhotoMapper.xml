@@ -18,10 +18,10 @@
 		<result column="user" property="user"/>
 	</resultMap>
 	
-	<!-- ーListPhotoーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーListPhotoーーー -->
 	
-	<!-- photosテーブルの情報とアカウント名を取得 -->
-	<select id="selectPhotoList" resultMap="PhotosTable">
+	<!-- photosテーブル情報とアカウント名を取得 -->
+	<select id="selectPhotoItems" resultMap="PhotosTable">
 		select 
 		photos.id
 		,accounts.user as accounts_user
@@ -35,8 +35,7 @@
 		    where album_id = #{id}
 	</select>
 	
-	<!-- photosテーブル情報を追加 -->
-	<insert id="insertPhoto">
+	<insert id="insert">
 		insert into photos(
 			 album_id
 			,photo
@@ -48,17 +47,16 @@
 		)
 	</insert>
 	
-	<!-- ーDeletePhotoーーーーーーーーーーーーーーーーー -->
+	<!-- ーーーDeletePhotoーーー -->
 	
 	<!-- このidと画像パス情報を取得 -->
-	<select id="selectPhoto" resultMap="PhotosTable">
+	<select id="select" resultMap="PhotosTable">
 		select id,photo
 		from photos
 		where id = #{id}
 	</select>
 	
-	<!-- データベースのパス情報を削除する -->
-	<delete id="deletePhoto">
+	<delete id="delete">
 		delete from photos
 		where id = #{id}
 	</delete>

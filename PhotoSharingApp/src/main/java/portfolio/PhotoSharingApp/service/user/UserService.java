@@ -4,41 +4,29 @@ import portfolio.PhotoSharingApp.entity.Accounts;
 
 public interface UserService {
 	
-	/*ーLoginーーーーーーーーーーーーーーーーー*/
+	/*ーーーLoginーーー*/
 
-	/*ログイン(アカウント名が存在するかを確認)*/
 	public Accounts getLoginAccount(String user);
 	
-	/*ーEntryAccountーーーーーーーーーーーーーーーーー*/
+	/*ーーーEntryAccountーーー*/
 
-	/*アカウント登録*/
 	public void createAccount(Accounts accounts);
 	
-	/*登録済のアカウント名と重複していないか確認*/
 	public boolean isUserExisting(Accounts Accounts);
 	
-	/*登録済のメールアドレスと重複していないか確認*/
 	public boolean isEmailAddressExisting(Accounts Accounts);
 	
-	/*ーEditAccountーーーーーーーーーーーーーーーーー*/
+	/*ーーーEditAccountーーー*/
 	
-	/*パスワード変更*/
 	public void editAccount(Accounts accounts);
 	
-	/*ーDeleteAccountーーーーーーーーーーーーーーーー*/
+	/*ーーーDeleteAccountーーー*/
 	
-	/*idを使用してアカウントを削除*/
+	public boolean isCreateGroupExisting(int id);
+	
 	public void removeAccount(int id);
 	
-	/*ーーーーーーーーーーーーーーーーーーーーーーー*/
+	/*ーーー比較ーーー*/
+	public int isIdAdminExisting(int id);
 	
-	
-	
-	
-	/*idからuserNameを取得*/
-	public Accounts selectByUserName(int id);
-	
-
-	
-
 }

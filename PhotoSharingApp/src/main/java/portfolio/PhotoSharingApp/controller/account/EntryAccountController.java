@@ -52,12 +52,12 @@ public class EntryAccountController {
 		
 		Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);
 
-		/*データベース登録済のアカウント名と重複していないかを確認*/
+		/*登録済のアカウント名の重複確認*/
 		if (userService.isUserExisting(accounts)) {
 			bindingResult.rejectValue("user", "user.Alert");
 		}
 		
-		/*データベース登録済のメールアドレスと重複していないかを確認*/
+		/*登録済のメールアドレスの重複確認*/
 		if (userService.isEmailAddressExisting(accounts)) {
 			bindingResult.rejectValue("emailAddress", "email_address.Alert");
 		}

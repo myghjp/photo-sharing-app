@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}"
+	>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<nav layout:fragment="header" class="navbar bg-body-tertiary p-2 mb-3">
+	    <span th:text="#{photoSharingApp}" class="navbar-brand m-2"></span>
+	</nav>
+	
+	<!--ーーーーーーーーーーーーーーーーーー-->
+	
+	<!--※穴のある動的delete get内でバリデーションする-->
+	
+	<!--ーーーーーーーーーーーーーーーーーー-->
+	
+	<!--WARN UserDetails不要  バージョンのせい?-->
+	<!--mapper.xmlからcontrollerまで(クラス名やコメント)-->
+	<!--Messageの名前修正-->
+	<!--無駄のないBootstrapに-->
+	<!--closeボタンは必要か-->
+</body>
+</html>

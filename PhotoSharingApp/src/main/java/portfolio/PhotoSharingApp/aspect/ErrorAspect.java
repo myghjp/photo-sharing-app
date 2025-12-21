@@ -21,5 +21,3 @@ public class ErrorAspect {
         log.error("DataAccessExceptionが発生しました");
     }
 }
-
-

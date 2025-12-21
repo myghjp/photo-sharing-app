@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
+	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
 	
 	<div class="container">
 		<div class="row justify-content-center">
@@ -33,8 +33,12 @@
 					</th:block>	
 					
 					<div class="text-center">
-						<a th:href="@{'/select-group'}" class="btn btn-secondary m-3">グループ選択に戻る</a>
-				    	<input type="submit" value="削除" class="btn btn-danger m-3">
+						<a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="btn btn-secondary mx-3 my-2"></a>
+				    	<!--<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3 my-2">-->
+				    	
+				    	<input type="hidden" name="id" th:value="${id}">
+				    	<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3 my-2">
+				    	
 					</div>
 				   
 				</form>

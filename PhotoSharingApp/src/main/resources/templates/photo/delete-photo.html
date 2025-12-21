@@ -12,22 +12,22 @@
 	<title th:text="#{deletePhotoPage}"></title>
 </head>
 <body>
-	<nav layout:replace="~{navbar/header-menu::header-menu}"></nav>
+	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
 	
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-5 mx-auto">
 				<form method="post" th:action="@{/delete-photo}" class="text-center">
 				
-					<div th:text="#{deletePhotoAlert}" class="fs-5"></div>
+					<div th:text="#{deletePhotoAlert}" class="mb-3 fs-5"></div>
 					
-					<div class="row my-3">
+					<div class="row mb-3">
 						<img th:src="@{'/img/' + ${photosData.photo}}">
 					</div>
 					
-					<a th:href="@{'/list-photo'}" class="btn btn-secondary mx-3">キャンセル</a>
+					<a th:href="@{'/list-photo'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn2}"></a>
 					<input type="hidden" name="id" th:value="${photosData.id}">
-				    <input type="submit" value="削除" class="btn btn-danger mx-3">
+				    <input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3">
 				</form>
 			</div>
 		</div>
