@@ -19,10 +19,10 @@
 			<div class="col mx-auto">
 				<form method="post" th:action="@{/select-group}" class="text-center">
 					
-					<a th:href="@{'/entry-group'}" class="btn btn-success mb-3" th:text="#{entryGroupBtn}"></a>
-					<div th:text="#{selectGroupAlert}" class="fs-5 mb-3"></div>
+					<a th:href="@{'/entry-group'}" class="btn btn-success mb-3" th:text="#{createGroupBtn}"></a>
+					<div th:text="#{selectGroupMessage}" class="fs-5 mb-3"></div>
 					
-						<div th:each="list:${groupsLis}">
+						<div th:each="list:${groupsList}">
 							<div class="d-flex justify-content-center">
 								
 								<div class="form-check mb-3">
@@ -34,7 +34,7 @@
 						</div>
 					
 					<th:block th:unless="${groupsList.isEmpty()}">
-							<input type="submit" th:value="#{openGroup}" class="btn btn-primary" >
+							<input type="submit" th:value="#{openGroupBtn}" class="btn btn-primary" >
 					</th:block>
 					
 				</form>

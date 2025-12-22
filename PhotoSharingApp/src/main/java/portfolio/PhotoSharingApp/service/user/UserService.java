@@ -27,6 +27,6 @@ public interface UserService {
 	public void removeAccount(int id);
 	
 	/*ーーー比較ーーー*/
-	public int isIdAdminExisting(int id);
+	public int isCurrentUser(int id);
 	
 }

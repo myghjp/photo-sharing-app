@@ -20,7 +20,7 @@
 				
 				<form method="post" th:action="@{/add-members}" th:object="${addMembersForm}" class="text-center">
 					
-				<div th:text="#{addMembersAlert}" class="mb-3 fs-5"></div>
+				<div th:text="#{addMembersMessage}" class="mb-3 fs-5"></div>
 					
 				   <div class="row mb-3">
 				        <label for="emailAddress" th:text=#{emailAddress}  class="col-sm-4 col-form-label"></label>
@@ -30,7 +30,7 @@
 				        </div>
 				    </div>
 				    
-				    <a th:href="@{'/list-members'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn2}"></a>
+				    <a th:href="@{'/list-members'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn}"></a>
 			    	<input type="submit" th:value="#{addBtn}" class="btn btn-primary mx-3">
 				</form>
 			</div>

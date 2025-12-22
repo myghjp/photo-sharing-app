@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService{
 	
 	/*ーーー比較ーーー*/
 	@Override
-	public int isIdAdminExisting(int id) {
+	public int isCurrentUser(int id) {
 		return userMapper.isIdAdminExisting(id);
 	}
 }

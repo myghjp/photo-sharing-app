@@ -26,20 +26,20 @@
 				
 				<div class="col mb-3">
 					<th:block th:if="${isAdmin}">
-						<div th:text="#{adminAlert}" class="fs-5"></div>
+						<div th:text="#{adminInfo}" class="fs-5"></div>
 					</th:block>
 				</div>
 			
 				<div class="col mb-3">
-					<a th:href="@{'/list-members'}" class="btn btn-success" th:text="#{membersDisplay}"></a>
+					<a th:href="@{'/list-members'}" class="btn btn-success" th:text="#{memberListBtn}"></a>
 				</div>
 				
 				<div class="col mb-3">
-					<a th:href="@{'/select-album'}" class="btn btn-success" th:text="#{useAlbum}"></a>
+					<a th:href="@{'/select-album'}" class="btn btn-success" th:text="#{openAlbumBtn}"></a>
 				</div>
 				
 				<div class="col mb-3">
-					<a th:href="@{'/list-comment'}" class="btn btn-success" th:text="#{useBulletinBoard}"></a>
+					<a th:href="@{'/list-comment'}" class="btn btn-success" th:text="#{openBoardBtn}"></a>
 				</div>
 				
 				<div class="col">

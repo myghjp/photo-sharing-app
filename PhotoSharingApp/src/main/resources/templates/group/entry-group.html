@@ -19,7 +19,7 @@
 			<div class="col-md-5 mx-auto">
 				<form method="post" th:action="@{/entry-group}" th:object="${entryGroupForm}" class="text-center">
 					
-					<div th:text="#{entryGroupAlert}" class="mb-3 fs-5"></div>
+					<div th:text="#{createGroupMessage}" class="mb-3 fs-5"></div>
 					
 					<div class="row mb-3">
 				        <label for="groupName" th:text="#{groupName}" class="col-sm-4 col-form-label"></label>
@@ -29,8 +29,8 @@
 				        </div>
 			        </div>
 			        
-					<a th:href="@{'/select-group'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn2}"></a>
-				    <input type="submit" th:value="#{entryBtn}" class="btn btn-primary mx-3">
+					<a th:href="@{'/select-group'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn}"></a>
+				    <input type="submit" th:value="#{submitBtn}" class="btn btn-primary mx-3">
 			        
 				</form>
 			</div>

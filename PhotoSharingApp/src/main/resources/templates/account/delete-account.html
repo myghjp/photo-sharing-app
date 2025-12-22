@@ -21,13 +21,13 @@
 				<form method="post" th:action="@{/delete-account}">
 				
 					<div class="text-center">
-						<p th:text="#{deleteAccountMessage1}" class="fs-5"></p>
-						<p th:text="#{deleteAccountMessage2}" class="fs-5"></p>
+						<p th:text="#{deleteAccountAlert}" class="fs-5"></p>
+						<p th:text="#{deleteAccountMessage}" class="fs-5"></p>
 					</div>
 					
 					<th:block th:if="${isError}">
 						<div class="alert alert-danger alert-dismissible fade show">
-							<span th:text="#{deleteAccountAlert}" class="text-danger"></span>
+							<span th:text="#{deleteAccountError}" class="text-danger"></span>
 							<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 						</div>
 					</th:block>	

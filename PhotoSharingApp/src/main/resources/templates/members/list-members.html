@@ -21,7 +21,7 @@
 				<div th:text="${groups.groupName}" class="col mb-3 fs-5"></div>
 				
 				<div class="col mb-3">
-					<a th:href="@{'/home-group'}" th:text="#{cancelBtn1}"
+					<a th:href="@{'/home-group'}" th:text="#{backBtn}"
 						class="btn btn-secondary">
 					</a>
 				</div>
@@ -34,7 +34,7 @@
 					</th:block>
 				</div>
 				
-				<div th:text="#{listMembersAlert}" class="col mb-3 fs-5"></div>
+				<div th:text="#{listMembers}" class="col mb-3 fs-5"></div>
 				
 				<th:block th:unless="${isAdmin}">
 					<div class="row mb-3">

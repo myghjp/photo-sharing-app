@@ -20,18 +20,18 @@
 				<div th:text="${groupName}" class="col mb-3 fs-5"></div>
 				
 				<div class="col mb-3">
-					<a th:href="@{'/home-group'}" th:text="#{cancelBtn1}"
+					<a th:href="@{'/home-group'}" th:text="#{backBtn}"
 						class="btn btn-secondary">
 					</a>
 				</div>
 				
 				<div class="col mb-3">
-					<a th:href="@{'/entry-album'}" th:text="#{entryAlbumBtn}"
+					<a th:href="@{'/entry-album'}" th:text="#{createAlbumBtn}"
 						class="btn btn-success">
 					</a>
 				</div>
 				
-				<div th:text="#{selectAlbumAlert}" class="col mb-3 fs-5"></div>
+				<div th:text="#{selectAlbumMessage}" class="col mb-3 fs-5"></div>
 				
 				<div class="row">
 					<form method="post" th:action="@{/select-album}">
@@ -50,7 +50,7 @@
 					
 						<div class="row-cols">
 							<th:block th:unless="${albumsList.isEmpty()}">
-								<input type="submit" th:value="#{openAlbum}" class="btn btn-primary">
+								<input type="submit" th:value="#{openAlbumBtn2}" class="btn btn-primary">
 							</th:block>
 						</div>
 					</form>
