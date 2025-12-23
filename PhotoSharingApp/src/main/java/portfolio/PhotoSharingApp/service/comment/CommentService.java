@@ -17,4 +17,7 @@ public interface CommentService {
 	public Comments getComment(int id);
 	
 	public void deleteComment(int id);
+	
+	/*比較を作成*/
+	public int isCurrentUser(int id);
 }

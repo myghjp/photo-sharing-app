@@ -59,5 +59,12 @@
 		delete from comments
 		where id = #{id}
 	</delete>
+	
+	<!-- 比較を作成 -->
+	<select id="selectUserId" resultType="Integer">
+		select account_id
+		from comments
+		where id = #{id}
+	</select>
 
 </mapper>

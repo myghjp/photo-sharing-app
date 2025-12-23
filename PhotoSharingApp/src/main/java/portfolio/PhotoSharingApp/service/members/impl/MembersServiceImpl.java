@@ -70,4 +70,10 @@ public class MembersServiceImpl implements MembersService{
 	public void deleteMember(int id) {
 		membersMapper.delete(id);
 	}
+	
+	/*比較を作成*/
+	@Override
+	public int isCurrentUser(int id) {
+		return membersMapper.selectUserId(id);
+	}
 }

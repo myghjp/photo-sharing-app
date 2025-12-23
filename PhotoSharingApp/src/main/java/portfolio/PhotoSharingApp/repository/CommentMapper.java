@@ -22,4 +22,7 @@ public interface CommentMapper {
 
 	public void delete(@Param("id")Integer id);
 	
+	/*比較を作成*/
+	public Integer selectUserId(@Param("id") Integer id);
+	
 }

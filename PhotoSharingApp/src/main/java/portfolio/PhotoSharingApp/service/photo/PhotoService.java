@@ -18,4 +18,13 @@ public interface PhotoService {
 	
 	public void removePhoto(int id);
 	
+	
+	
+	
+	
+	/*比較を作成*/
+	public int isCurrentUser(int id);
+	
+	
+	
 }

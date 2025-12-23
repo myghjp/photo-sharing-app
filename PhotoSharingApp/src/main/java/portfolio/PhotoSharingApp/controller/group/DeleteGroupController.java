@@ -1,6 +1,7 @@
 package portfolio.PhotoSharingApp.controller.group;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Groups;
+import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
@@ -23,10 +25,21 @@ public class DeleteGroupController {
 	
 	@GetMapping("/delete-group/{id}")
 	public String getDeleteGroup(Model model
-			,@PathVariable("id")int id
+			,@PathVariable("id")int groupId
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			) {
 		
-		Groups groupsData = groupService.getGroupsData(id);
+		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+		/*※このグループidは自身のアカウントIdが作成したかを確認*/
+		Groups groups = new Groups();
+		groups.setId(groupId);
+		
+		if (groupService.isCurrentUser(groups.getId()) != loginUserDetails.getUserId()) {
+			throw new IllegalArgumentException("不正なIDです");
+		}
+		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+		
+		Groups groupsData = groupService.getGroupsData(groups.getId());
 		model.addAttribute("groupsData",groupsData);
 		
 		return "group/delete-group";
@@ -34,11 +47,11 @@ public class DeleteGroupController {
 	
 	@PostMapping("/delete-group")
 	public String postDeleteGroup(
-			@RequestParam("id")int id
+			@RequestParam("id")int groupId
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		groupService.deleteGroup(id);
+		groupService.deleteGroup(groupId);
 		
 		return "redirect:select-group";
 	}

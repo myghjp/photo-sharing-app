@@ -54,13 +54,10 @@
 		where id = #{id}
 	</delete>
 	
-	<!-- ーーー※DeleteAccountーーー -->
-	
-	<!-- <select id="groupAdmin" resultType="Integer">
+	<!-- 比較を作成 -->
+	<select id="selectUserId" resultType="Integer">
 		select account_id
 		from `groups`
-		where account_id = #{id}
-		limit 1
-	</select> -->
-	
+		where id = #{id}
+	</select>
 </mapper>

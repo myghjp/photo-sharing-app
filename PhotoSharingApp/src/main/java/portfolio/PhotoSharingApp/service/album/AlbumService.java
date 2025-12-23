@@ -21,6 +21,6 @@ public interface AlbumService {
 	public void deleteAlbum(int id);
 	
 	/*比較を作成*/
-	/*public boolean isIdAdminExisting(int id);*/
+	public int isCurrentUser(int id);
 
 }

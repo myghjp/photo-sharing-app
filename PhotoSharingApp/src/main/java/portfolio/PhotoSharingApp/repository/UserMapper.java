@@ -31,6 +31,6 @@ public interface UserMapper {
 	public void delete(@Param("id") Integer id);
 	
 	/*ーーー比較ーーー*/
-	public Integer isIdAdminExisting(@Param("id") Integer id);
+	public Integer selectUserId(@Param("id") Integer id);
 	
 }

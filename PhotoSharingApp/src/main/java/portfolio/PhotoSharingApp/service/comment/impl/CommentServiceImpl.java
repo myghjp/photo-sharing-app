@@ -38,4 +38,10 @@ public class CommentServiceImpl implements CommentService{
 	public void deleteComment(int id) {
 		commentMapper.delete(id);
 	}
+	
+	/*比較を作成*/
+	@Override
+	public int isCurrentUser(int id) {
+		return commentMapper.selectUserId(id);
+	}
 }

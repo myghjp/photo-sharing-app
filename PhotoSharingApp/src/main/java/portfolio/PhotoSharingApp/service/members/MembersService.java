@@ -30,4 +30,7 @@ public interface MembersService {
 	
 	public void deleteMember(int id);
 	
+	/*比較を作成*/
+	public int isCurrentUser(int id);
+	
 }

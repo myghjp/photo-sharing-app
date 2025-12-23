@@ -26,7 +26,10 @@ public interface GroupMapper {
 	
 	public void delete(@Param("id")Integer id);
 	
-	/*ーーー※DeleteAccountーーー*/
-
-	/*public Integer groupAdmin(@Param("id")Integer id);*/
+	/*比較を作成*/
+	public Integer selectUserId(@Param("id") Integer id);
+	
+	/*比較を作成2*/
+	public Integer selectGroupId(@Param("id") Integer id);
+	
 }

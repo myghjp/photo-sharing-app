@@ -71,7 +71,7 @@
 	</delete>
 	
 	<!-- 比較を作成 -->
-	<select id="isIdAdminExisting" resultType="Integer">
+	<select id="selectUserId" resultType="Integer">
 		select id
 		from accounts
 		where id = #{id}

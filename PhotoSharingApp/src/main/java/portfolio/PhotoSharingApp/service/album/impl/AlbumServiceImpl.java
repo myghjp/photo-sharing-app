@@ -42,9 +42,9 @@ public class AlbumServiceImpl implements AlbumService{
 	}
 	
 	/*比較を作成*/
-	/*@Override
-	public boolean isIdAdminExisting(int id) {
-		albumMapper.isIdAdminExisting(id);
-	}*/
+	@Override
+	public int isCurrentUser(int id) {
+		return albumMapper.selectUserId(id);
+	}
 	
 }

@@ -34,4 +34,7 @@ public interface MembersMapper {
 	
 	public void delete(int id);
 	
+	/*比較を作成*/
+	public Integer selectUserId(@Param("id") Integer id);
+	
 }

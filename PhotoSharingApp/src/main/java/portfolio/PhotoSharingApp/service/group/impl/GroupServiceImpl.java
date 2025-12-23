@@ -50,14 +50,9 @@ public class GroupServiceImpl implements GroupService{
 		groupMapper.delete(id);
 	}
 	
-	/*ーーー※DeleteAccountーーー*/
-	
-	/*@Override
-	public boolean isCreateGroupExisting(int id) {
-		if (groupMapper.groupAdmin(id) == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}*/
+	/*比較を作成*/
+	@Override
+	public int isCurrentUser(int id) {
+		return groupMapper.selectUserId(id);
+	}
 }

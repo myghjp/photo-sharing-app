@@ -51,11 +51,13 @@
 		where id = #{id}
 	</delete>
 	
-	<!-- 比較を作成 -->
-	<!-- <select id="select" resultMap="AlbumsTable">
-		select id,album_name
+	<!-- 比較を作成-->
+	<select id="selectUserId" resultType="Integer">
+		select groups.account_id
 		from albums
-		where id = #{id}
-	</select> -->
+			left join `groups`
+			on group_id = groups.id
+		where albums.id = #{id}
+	</select>
 	
 </mapper>

@@ -22,6 +22,6 @@ public interface GroupService {
 	
 	public void deleteGroup(int id);
 	
-	/*ーーー※DeleteAccountーーー*/
-	/*public boolean isCreateGroupExisting(int id);*/
+	/*比較を作成*/
+	public int isCurrentUser(int id);
 }

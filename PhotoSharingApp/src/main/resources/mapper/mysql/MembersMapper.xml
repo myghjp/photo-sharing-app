@@ -109,4 +109,13 @@
 			where id = #{id}
 	</delete>
 	
+	<!-- 比較を作成-->
+	<select id="selectUserId" resultType="Integer">
+		select groups.account_id
+		from groups_members
+			left join `groups`
+			on group_id = groups.id
+		where groups_members.id = #{id}
+	</select>
+	
 </mapper>

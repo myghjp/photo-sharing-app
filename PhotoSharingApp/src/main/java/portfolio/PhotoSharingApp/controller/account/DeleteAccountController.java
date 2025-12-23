@@ -1,6 +1,7 @@
 package portfolio.PhotoSharingApp.controller.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Accounts;
+import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.user.UserService;
 
 @Controller
@@ -38,26 +40,22 @@ public class DeleteAccountController {
 	public String postDeleteAccount(Model model
 			,@RequestParam("id")int id
 			,HttpSession session
-			/*,@AuthenticationPrincipal LoginUserDetails loginUserDetails*/
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,RedirectAttributes redirectAttributes
 			) {
 	
 		Accounts accounts = new Accounts();
 		accounts.setId(id);
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
-		/*idが自身のアカウントIdと同じかを確認*/
-		
-		
+		/*※idが自身のアカウントIdと同じかを確認*/
+		if (userService.isCurrentUser(accounts.getId()) != loginUserDetails.getUserId()) {
+			throw new IllegalArgumentException("不正なIDです");
+		}
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		/*自身が作成したグループが存在するか確認*/
 		if (userService.isCreateGroupExisting(accounts.getId())) {
 			return getDeleteAccount(model,id,true);
 		}
-		
-		/*if (groupService.isCreateGroupExisting(id)) {
-			return getDeleteAccount(model,id,true);
-		} */
-		
 		
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		

@@ -38,4 +38,13 @@ public class PhotoServiceImpl implements PhotoService{
 	public void removePhoto(int id) {
 		photoMapper.delete(id);
 	}
+	
+	
+	
+	
+	/*比較を作成*/
+	@Override
+	public int isCurrentUser(int id) {
+		return photoMapper.selectUserId(id);
+	}
 }
