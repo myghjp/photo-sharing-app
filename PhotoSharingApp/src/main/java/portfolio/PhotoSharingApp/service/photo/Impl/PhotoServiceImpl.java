@@ -39,12 +39,26 @@ public class PhotoServiceImpl implements PhotoService{
 		photoMapper.delete(id);
 	}
 	
+	/*ーーーーーバリデーション作成中ーーーーーーーーーーー*/
 	
 	
 	
-	/*比較を作成*/
+	
 	@Override
-	public int isCurrentUser(int id) {
-		return photoMapper.selectUserId(id);
+	public Photos getSelectAll(int id) {
+		return photoMapper.selectAll(id);
 	}
+	
+	/*2種類mapper比較を呼び出せる*/
+	@Override
+	public boolean isCurrentUser(int photoId,int groupId) {
+		if (photoMapper.selectUserId(photoId) == groupId) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
 }

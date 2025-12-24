@@ -23,11 +23,13 @@ public interface PhotoMapper {
 	public void delete(@Param("id")Integer id);
 	
 	
+	/*バリデーション作成中*/
 	
 	
+	public Photos selectAll(@Param("id")Integer id);
 	
-	/*比較を作成*/
-	public Integer selectUserId(@Param("id") Integer id);
+	public Integer selectUserId(@Param("id") Integer photoId);
+	/*public Integer selectUserId2(@Param("id") Integer groupId);*/
 	
 	
 }

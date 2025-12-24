@@ -65,12 +65,28 @@
 	
 	
 	
-	<!-- 比較を作成-->
-	<select id="selectUserId" resultType="Integer">
-		select account_id
+	<!-- バリデーション作成中-->
+	<select id="selectAll">
+		select *
 		from photos
 		where id = #{id}
 	</select>
+	
+	
+	<select id="selectUserId" resultType="Integer">
+		select groups.id
+		from photos
+			left join `groups`
+			on photos.account_id = groups.account_id
+		where photos.id = #{id}
+		limit 1
+	</select>
+	
+	<!-- <select id="selectUserId2" resultType="Integer">
+		select account_id
+		from 
+		where id = #{id}
+	</select> -->
 	
 	
 	

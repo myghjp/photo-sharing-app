@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Photos;
-import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.photo.PhotoService;
 
 @Controller
@@ -31,49 +30,48 @@ public class DeletePhotoController {
 	public String getDeletePhoto(Model model
 			,Groups groups
 			,@PathVariable("id")int photoId
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			/*,@AuthenticationPrincipal LoginUserDetails loginUserDetails*/
 			) {
 		
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
-		Photos photos = new Photos();
-		photos.setId(photoId);
 		
-		/*まずは自身がグループの利用者かを確認*/
-		/*このグループIDの管理者か利用者に自身が含まれているか*/
-		if (photoService.isGroupMembers(groups.getId)) {
+		
+		/*グループ管理者はグループ内アルバム写真を全て削除できる*/
+		/*グループ利用者は自身が投稿したグループ内写真を削除できる*/
+		
+		/*自身のログイン情報×*/
+		/*自身のグループ情報×？*/
+		/*自身のアルバム情報×？*/
+		/*セッター(controllerでできること)*/
+		
+		/*※二つの引数の値を二種類のリポジトリをserviceで比較？*/
+		/*serviceをserviceに入れない*/
+		/*serviceを変数*/
+		/*controller受け取りだけ？*/
+		
+		
+		/*photoIdだけで比較せずに先に取得もできる*/
+		Photos photosDataA = photoService.getSelectAll(photoId);
+		
+		/*この写真のアルバムはこのグループのものか？*/
+		if (photoService.isCurrentUser(photosDataA.getId(),groups.getId())) {
 			
-			/*(管理者ならそのまま)*/
-			if (photoService.isCurrentUser(photos.getId()) == loginUserDetails.getUserId()) {
-				
-				/*このidと画像パス情報を取得*/
-				Photos photosData = photoService.getPhoto(photoId);
-				model.addAttribute("photosData",photosData);
-				
-			}else {
-				
-
-				/*if利用者なら自分だけ
-				 * 
-				 * 一致すれば
-				 * */
-				
-				/*このidと画像パス情報を取得*/
-				Photos photosData = photoService.getPhoto(photoId);
-				model.addAttribute("photosData",photosData);
-				
-				/*↓elseそれ以外はエラー*/
-				
-				
-			}
+			/*このidと画像パス情報を取得*/
+			Photos photosData = photoService.getPhoto(photosDataA.getId());
+			model.addAttribute("photosData",photosData);
 			
-		} else {
-			
-			/*↓それ以外はエラー*/
-			throw new IllegalArgumentException("不正なIDですB");
+		}else {
+			throw new AccessDeniedException("アクセス権無し");
 		}
 		
+		
+		/*この写真のアカウントは自身のものか？？*/
+		/*そうでなくてもこの写真のグループの管理者か？*/
+		
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+		
+		
 		return"photo/delete-photo";
 
 	}
