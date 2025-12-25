@@ -65,8 +65,12 @@ public class SelectAlbumController {
 		/*アルバムIDとアルバム名を取得*/
 		Albums albumsData = albumService.getAlbum(albumId);
 		
+		/*↓session？？？*/
+		
 		albums.setId(albumsData.getId());
 		albums.setAlbumName(albumsData.getAlbumName());
+		
+
 		
 		return "redirect:list-photo";
 	}

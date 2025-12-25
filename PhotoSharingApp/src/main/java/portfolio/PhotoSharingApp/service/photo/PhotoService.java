@@ -18,15 +18,11 @@ public interface PhotoService {
 	
 	public void removePhoto(int id);
 	
-	
 	/*ーーーーーバリデーション作成中ーーーーーーーーーーー*/
-	public Photos getSelectAll(int id);
 	
+	public boolean isCurrentAlbum(int photoId,int albumId);
 	
-	
-	/*この写真はこのアカウントのもの？(Principal×)*/
-	
-	public boolean isCurrentUser(int photoId,int groupId);
+	public boolean isCurrentUser(int photoId,int loginId);
 	
 	
 	

@@ -41,24 +41,22 @@ public class PhotoServiceImpl implements PhotoService{
 	
 	/*ーーーーーバリデーション作成中ーーーーーーーーーーー*/
 	
-	
-	
-	
 	@Override
-	public Photos getSelectAll(int id) {
-		return photoMapper.selectAll(id);
-	}
-	
-	/*2種類mapper比較を呼び出せる*/
-	@Override
-	public boolean isCurrentUser(int photoId,int groupId) {
-		if (photoMapper.selectUserId(photoId) == groupId) {
+	public boolean isCurrentAlbum(int photoId,int albumId) {
+		if (photoMapper.selectByAlbumId(photoId) != albumId) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 	
-	
+	@Override
+	public boolean isCurrentUser(int photoId,int loginId) {
+		if (photoMapper.selectByAccountId(photoId) == loginId) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 }

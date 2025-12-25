@@ -59,6 +59,8 @@
 						<a th:href="@{'/delete-photo/' + ${list.id}}" class="btn btn-danger" th:text="#{deleteBtn}"></a>
 					</th:block>
 					
+					<!--formがない？-->
+					
 					<th:block th:unless="${isAdmin}">
 						<th:block th:if="${list.Accounts.user == username}">
 							<a th:href="@{'/delete-photo/' + ${list.id}}" class="btn btn-danger" th:text="#{deleteBtn}"></a>
