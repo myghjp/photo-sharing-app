@@ -11,7 +11,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -34,16 +33,16 @@ public class ListPhotoController {
 	@GetMapping("/list-photo")
 	public String getListPhoto(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@ModelAttribute Groups groups,Albums albums
+			,Groups groups
+			,Albums albums
 			,RedirectAttributes redirectAttributes
-			) {
+		) {
 		
-				/*albumのsessionがおかしい*/
+		System.out.println(albums.getId() + "このコントローラ");
 		
-				/*modelにsetする必要がない*/
-		
-		model.addAttribute("groupName",groups.getGroupName());
-		model.addAttribute("albumName",albums.getAlbumName());
+		/*↓modelにsetする必要がない*/
+		/*model.addAttribute("groupName",groups.getGroupName());
+		model.addAttribute("albumName",albums.getAlbumName());*/
 		
 		/*一致すると自身は管理者である*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
@@ -52,11 +51,10 @@ public class ListPhotoController {
 		
 		model.addAttribute("username", loginUserDetails.getUsername());
 		
+		
 		/*photosテーブルの情報とアカウント名を取得*/
 		List<Photos> photosList = photoService.getphotoList(albums.getId());
 		model.addAttribute("photosList", photosList);
-		
-		System.out.println(albums.getId() + "まだ変わってない");
 		
 		return "photo/list-photo";
 	}

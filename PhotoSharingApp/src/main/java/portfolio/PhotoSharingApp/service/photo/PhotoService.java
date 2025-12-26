@@ -25,5 +25,4 @@ public interface PhotoService {
 	public boolean isCurrentUser(int photoId,int loginId);
 	
 	
-	
 }

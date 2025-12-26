@@ -13,6 +13,6 @@ public class Photos {
 	private Integer accountId;/*アカウントテーブルのid*/
 	private Date createDateTime;
 	
-	private Accounts accounts;
+	private Accounts accounts;/*※*/
 
 }

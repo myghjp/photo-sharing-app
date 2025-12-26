@@ -28,7 +28,6 @@ public class HomeGroupController {
 		}
 		
 		model.addAttribute("userId",loginUserDetails.getUserId());
-		/*↑？*/
 		
 		return "group/home-group";
 		

@@ -56,22 +56,17 @@ public class SelectAlbumController {
 	}
 	
 	@PostMapping("/select-album")
-	public String postSelectAlbum(
-			Albums albums
+	public String postSelectAlbum(Model model
 			,@RequestParam("id")int albumId
 			,RedirectAttributes redirectAttributes
 			) {
 		
 		/*アルバムIDとアルバム名を取得*/
-		Albums albumsData = albumService.getAlbum(albumId);
-		
-		/*↓session？？？*/
-		
-		albums.setId(albumsData.getId());
-		albums.setAlbumName(albumsData.getAlbumName());
-		
+		Albums albums = albumService.getAlbum(albumId);
+		/*albums.setId(albums.getId());
+		albums.setAlbumName(albums.getAlbumName());*/
+		redirectAttributes.addFlashAttribute("albums",albums);
 
-		
 		return "redirect:list-photo";
 	}
 }

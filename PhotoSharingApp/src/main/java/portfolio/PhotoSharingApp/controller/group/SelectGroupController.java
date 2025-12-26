@@ -54,8 +54,6 @@ public class SelectGroupController {
 			) {
 
 		Groups groups = groupService.getGroupsData(id);
-		
-		/*↓×*/
 		redirectAttributes.addFlashAttribute("groups",groups);
 
 		return "redirect:home-group";
