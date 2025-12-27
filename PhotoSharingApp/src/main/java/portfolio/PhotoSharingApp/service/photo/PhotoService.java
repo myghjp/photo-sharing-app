@@ -22,7 +22,9 @@ public interface PhotoService {
 	
 	public boolean isCurrentAlbum(int photoId,int albumId);
 	
-	public boolean isCurrentUser(int photoId,int loginId);
+	public boolean isC(int GroupsId,int loginId);
+	
+	public boolean isB(int photoId,int loginId);
 	
 	
 }

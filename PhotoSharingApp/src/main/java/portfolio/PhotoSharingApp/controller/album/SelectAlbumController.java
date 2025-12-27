@@ -33,15 +33,15 @@ public class SelectAlbumController {
 	
 	@GetMapping("/select-album")
 	public String getSelectAlbum(Model model
-			,Groups groups
 			,HttpSession httpSession
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@ModelAttribute("groups")Groups groups
 			,RedirectAttributes redirectAttributes
 			) {
 		
 		httpSession.removeAttribute("albums");
 		
-		model.addAttribute("groupName",groups.getGroupName());
+		/*model.addAttribute("groupName",groups.getGroupName());*/
 		
 		/*このグループのアルバムIDとアルバム名を取得*/
 		List<Albums> albumsList = albumService.getAlbumList(groups.getId());
@@ -60,6 +60,8 @@ public class SelectAlbumController {
 			,@RequestParam("id")int albumId
 			,RedirectAttributes redirectAttributes
 			) {
+		
+		/*↓Modelでset変更では*/
 		
 		/*アルバムIDとアルバム名を取得*/
 		Albums albums = albumService.getAlbum(albumId);

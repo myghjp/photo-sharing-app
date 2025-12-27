@@ -17,15 +17,13 @@
 	<div class="container">
 		<div class="row justify-content-center">
 				<div class="text-center">
-					<!--<div th:text="${groupName}" class="col mb-3 fs-5"></div>-->
-					<div th:text="${groups.groupName}"></div>
+					<div th:text="${groups.groupName}" class="col mb-3 fs-5"></div>
 					
 					<div class="col mb-3">
 						<a th:href="@{'/select-album'}" class="btn btn-secondary" th:text="#{backBtn}"></a>
 					</div>
 					
-					<!--<div th:text="${albumName}"  class="col mb-3 fs-5"></div>-->
-					<div th:text="${albums.albumName}"></div>
+					<div th:text="${albums.albumName}" class="col mb-3 fs-5"></div>
 					
 					<div class="col-7 mx-auto mb-3">
 						<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data">
@@ -60,8 +58,6 @@
 					<th:block th:if="${isAdmin}">
 						<a th:href="@{'/delete-photo/' + ${list.id}}" class="btn btn-danger" th:text="#{deleteBtn}"></a>
 					</th:block>
-					
-					<!--formがない？-->
 					
 					<th:block th:unless="${isAdmin}">
 						<th:block th:if="${list.Accounts.user == username}">

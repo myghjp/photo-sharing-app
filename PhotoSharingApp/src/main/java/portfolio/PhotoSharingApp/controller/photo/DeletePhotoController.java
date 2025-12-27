@@ -13,16 +13,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Albums;
+import portfolio.PhotoSharingApp.entity.Groups;
 import portfolio.PhotoSharingApp.entity.Photos;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.photo.PhotoService;
 
 @Controller
-@SessionAttributes(value = {"albums"})
+@SessionAttributes(value = {"groups","albums"})
 public class DeletePhotoController {
 
 	@Autowired
@@ -32,55 +34,32 @@ public class DeletePhotoController {
 	public String getDeletePhoto(Model model
 			,@PathVariable("id") int photoId
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,Albums albums
+			,@SessionAttribute("albums")Albums albums
+			,@SessionAttribute("groups")Groups groups
 			) {
 		
-		
-		/*PathのphotoIdを自動でalbumにsetされている(引数のとき)*/
-		
-		/*xmlのせい？
-		 * photos.id photos.albumId
-		 * albums.id 
-		 * */
-		
-		System.out.println(albums);
-		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+		/*↓わかりやすく*/
 
-		/*この写真のアルバムはこのグループのものか？*/
-		/*写真テーブルのアルバムIdとこのグループのアルバムIdの比較*/
-		
+		/*この写真のアルバムはこのグループのものでないなら？*/
 		if (photoService.isCurrentAlbum(photoId, albums.getId())) {
-			
-			/*このidと画像パス情報を取得*/
-			Photos photosData = photoService.getPhoto(photoId);
-			model.addAttribute("photosData", photosData);
-			
+			throw new AccessDeniedException("アクセス権無し(このグループの写真ではない");
+		} 
 		
-		} else {
-			throw new AccessDeniedException("アクセス権無しA");
+		/*自身がこのアルバムのグループの管理者でないなら*/
+		if (photoService.isC(groups.getAccountId(),loginUserDetails.getUserId())) {
+			
+			/*この写真のアカウントIDと一致しなければ？←？*/
+			if (photoService.isB(photoId,loginUserDetails.getUserId())){
+				throw new AccessDeniedException("アクセス権無し(自身の写真ではない)");
+			} 
+			
 		}
 
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
-		/*グループ管理者はグループ内アルバム写真を全て削除できる*/
-
-		/*グループ利用者は自身が投稿したグループ内写真を削除できる*/
-		/*if (photoService.isCurrentUser(photoId,loginUserDetails.getUserId())) {
-			
-			このidと画像パス情報を取得
-			Photos photosData = photoService.getPhoto(photoId);
-			model.addAttribute("photosData",photosData);
-			
-		} else {
-			throw new AccessDeniedException("アクセス権無しB");
-		}*/
-
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
-
+		/*このidと画像パス情報を取得*/
+		Photos photosData = photoService.getPhoto(photoId);
+		model.addAttribute("photosData",photosData);
 		
-
 		return "photo/delete-photo";
-
 	}
 
 	@PostMapping("/delete-photo")

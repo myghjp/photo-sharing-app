@@ -51,8 +51,17 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	@Override
-	public boolean isCurrentUser(int photoId,int loginId) {
-		if (photoMapper.selectByAccountId(photoId) == loginId) {
+	public boolean isC(int GroupsId,int loginId) {
+		if (GroupsId != loginId) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean isB(int photoId,int loginId) {
+		if (photoMapper.selectByAccountId(photoId) != loginId) {
 			return true;
 		} else {
 			return false;

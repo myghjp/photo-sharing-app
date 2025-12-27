@@ -33,14 +33,12 @@ public class ListCommentController {
 	
 	@GetMapping("/list-comment")
 	public String getListComment(Model model
-			,Groups groups
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,ListCommentForm listCommentForm
+			,@ModelAttribute("groups")Groups groups
 			) {
 		
 		model.addAttribute("listCommentForm",listCommentForm);
-		
-		model.addAttribute("groupName",groups.getGroupName());
 		
 		model.addAttribute("myUsername",loginUserDetails.getUsername());
 		
@@ -61,7 +59,7 @@ public class ListCommentController {
 			) {
 		
 		if (bindingResult.hasErrors()) {
-			return getListComment(model,groups,loginUserDetails,listCommentForm);
+			return getListComment(model,loginUserDetails,listCommentForm,groups);
 		}
 		
 		Comments comments = modelMapper.map(listCommentForm, Comments.class);

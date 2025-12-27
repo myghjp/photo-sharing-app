@@ -40,8 +40,8 @@ public class AddMembersController {
 	
 	@PostMapping("/add-members")
 	public String postAddMembers(Model model
-			,Groups groups
 			,@RequestParam("emailAddress") String emailAddress
+			,@ModelAttribute("groups")Groups groups
 			,@ModelAttribute @Validated AddMembersForm addMembersForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes

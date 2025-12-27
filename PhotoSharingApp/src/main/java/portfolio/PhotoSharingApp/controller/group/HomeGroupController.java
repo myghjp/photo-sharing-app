@@ -4,6 +4,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -16,8 +17,8 @@ public class HomeGroupController {
 	
 	@GetMapping("/home-group")
 	public String getHomeGroup(Model model
-			,Groups groups
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@ModelAttribute("groups")Groups groups
 			,RedirectAttributes redirectAttributes
 			) {
 		

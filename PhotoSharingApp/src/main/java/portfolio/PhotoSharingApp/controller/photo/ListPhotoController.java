@@ -11,8 +11,10 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -33,12 +35,10 @@ public class ListPhotoController {
 	@GetMapping("/list-photo")
 	public String getListPhoto(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,Groups groups
-			,Albums albums
+			,@ModelAttribute("albums")Albums albums
+			,@ModelAttribute("groups")Groups groups
 			,RedirectAttributes redirectAttributes
 		) {
-		
-		System.out.println(albums.getId() + "このコントローラ");
 		
 		/*↓modelにsetする必要がない*/
 		/*model.addAttribute("groupName",groups.getGroupName());
@@ -61,7 +61,7 @@ public class ListPhotoController {
 	
 	@PostMapping("/list-photo")
 	public String postListPhoto(Model model
-			,Albums albums
+			,@SessionAttribute("albums")Albums albums
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,@RequestParam("photo")MultipartFile photo
 			,RedirectAttributes redirectAttributes
