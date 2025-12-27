@@ -14,5 +14,4 @@ public class Photos {
 	private Date createDateTime;
 	
 	private Accounts accounts;/*※*/
-
 }

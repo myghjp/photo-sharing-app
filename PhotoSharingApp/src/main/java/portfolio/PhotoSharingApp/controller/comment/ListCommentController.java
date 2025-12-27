@@ -51,8 +51,8 @@ public class ListCommentController {
 	
 	@PostMapping("/list-comment")
 	public String postListComment(Model model
-			,Groups groups
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@ModelAttribute("groups")Groups groups
 			,@ModelAttribute @Validated ListCommentForm listCommentForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes

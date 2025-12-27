@@ -20,10 +20,9 @@
 				<form method="post" th:action="@{/delete-group}" class="text-center">
 				
 					<div th:text="#{deleteGroupAlert}" class="mb-3 fs-5"></div>
-					
 					<div th:text="${groupsData.groupName}" class="mb-3 fs-5"></div>
-					
-					<a th:href="@{'/home-group'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn}"></a>
+	
+					<a th:href="@{'/home-group'}" th:text="#{cancelBtn}" class="btn btn-secondary mx-3" ></a>
 					<input type="hidden" name="id" th:value="${groupsData.id}">
 				    <input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3">
 				</form>

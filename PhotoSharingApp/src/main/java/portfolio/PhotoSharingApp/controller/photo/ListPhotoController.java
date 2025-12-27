@@ -40,15 +40,13 @@ public class ListPhotoController {
 			,RedirectAttributes redirectAttributes
 		) {
 		
-		/*↓modelにsetする必要がない*/
-		/*model.addAttribute("groupName",groups.getGroupName());
-		model.addAttribute("albumName",albums.getAlbumName());*/
 		
 		/*一致すると自身は管理者である*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		
+		/*管理者以外は自身のボタンだけを表示*/
 		model.addAttribute("username", loginUserDetails.getUsername());
 		
 		
@@ -74,7 +72,7 @@ public class ListPhotoController {
 		try {
 			Path path = Path.of("src/main/resources/static/img/" + photo.getOriginalFilename());
 			Files.copy(photo.getInputStream(), path);
-		}catch(FileAlreadyExistsException e) {
+		} catch (FileAlreadyExistsException e) {
 			e.printStackTrace();
 			redirectAttributes.addFlashAttribute("isError",true);
 			return "redirect:list-photo";

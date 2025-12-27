@@ -21,7 +21,7 @@
 				<div th:text="${groups.groupName}" class="fs-5 mb-3"></div>
 				
 				<div class="col mb-3">
-					<a th:href="@{'/select-group'}" class="btn btn-secondary" th:text="#{cancelGroupBtn}"></a>
+					<a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="btn btn-secondary" ></a>
 				</div>
 				
 				<div class="col mb-3">
@@ -31,15 +31,15 @@
 				</div>
 			
 				<div class="col mb-3">
-					<a th:href="@{'/list-members'}" class="btn btn-success" th:text="#{memberListBtn}"></a>
+					<a th:href="@{'/list-members'}" th:text="#{memberListBtn}" class="btn btn-success"></a>
 				</div>
 				
 				<div class="col mb-3">
-					<a th:href="@{'/select-album'}" class="btn btn-success" th:text="#{openAlbumBtn}"></a>
+					<a th:href="@{'/select-album'}" th:text="#{openAlbumBtn}" class="btn btn-success"></a>
 				</div>
 				
 				<div class="col mb-3">
-					<a th:href="@{'/list-comment'}" class="btn btn-success" th:text="#{openBoardBtn}"></a>
+					<a th:href="@{'/list-comment'}" th:text="#{openBoardBtn}" class="btn btn-success"></a>
 				</div>
 				
 				<div class="col">

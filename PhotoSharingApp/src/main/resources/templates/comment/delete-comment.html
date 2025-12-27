@@ -17,12 +17,12 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-5 mx-auto text-center">
-				<div th:text=#{deleteCommentAlert} class="mb-3 fs-5"></div>
 				
-				<div th:text=${commentsData.comment} class="mb-3 fs-5"></div>
+				<div th:text="#{deleteCommentAlert}" class="mb-3 fs-5"></div>
+				<div th:text="${commentsData.comment}" class="mb-3 fs-5"></div>
 				
 				<form method="post" th:action="@{/delete-comment}">
-					<a th:href="@{'/list-comment'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn}"></a>
+					<a th:href="@{'/list-comment'}" th:text="#{cancelBtn}" class="btn btn-secondary mx-3" ></a>
 					<input type="hidden" name="id" th:value="${commentsData.id}">
 				    <input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3">
 				</form>

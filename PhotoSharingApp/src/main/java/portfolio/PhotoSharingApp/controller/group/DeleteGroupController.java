@@ -31,15 +31,15 @@ public class DeleteGroupController {
 		
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		/*※このグループidは自身のアカウントIdが作成したかを確認*/
-		Groups groups = new Groups();
-		groups.setId(groupId);
+		/*Groups groups = new Groups();
+		groups.setId(groupId);*/
 		
-		if (groupService.isCurrentUser(groups.getId()) != loginUserDetails.getUserId()) {
+		if (groupService.isCurrentUser(groupId) != loginUserDetails.getUserId()) {
 			throw new IllegalArgumentException("不正なIDです");
 		}
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
-		Groups groupsData = groupService.getGroupsData(groups.getId());
+		Groups groupsData = groupService.getGroupsData(groupId);
 		model.addAttribute("groupsData",groupsData);
 		
 		return "group/delete-group";

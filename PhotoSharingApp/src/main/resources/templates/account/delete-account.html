@@ -19,7 +19,6 @@
 		<div class="row justify-content-center">
 			<div class="col-md-5 mx-auto">
 				<form method="post" th:action="@{/delete-account}">
-				
 					<div class="text-center">
 						<p th:text="#{deleteAccountAlert}" class="fs-5"></p>
 						<p th:text="#{deleteAccountMessage}" class="fs-5"></p>
@@ -34,15 +33,10 @@
 					
 					<div class="text-center">
 						<a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="btn btn-secondary mx-3 my-2"></a>
-				    	<!--<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3 my-2">-->
-				    	
 				    	<input type="hidden" name="id" th:value="${id}">
 				    	<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3 my-2">
-				    	
 					</div>
-				   
 				</form>
-				
 			</div>
 		</div>
 	</div>

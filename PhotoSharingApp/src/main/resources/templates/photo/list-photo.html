@@ -17,10 +17,11 @@
 	<div class="container">
 		<div class="row justify-content-center">
 				<div class="text-center">
+					
 					<div th:text="${groups.groupName}" class="col mb-3 fs-5"></div>
 					
 					<div class="col mb-3">
-						<a th:href="@{'/select-album'}" class="btn btn-secondary" th:text="#{backBtn}"></a>
+						<a th:href="@{'/select-album'}"  th:text="#{backBtn}" class="btn btn-secondary"></a>
 					</div>
 					
 					<div th:text="${albums.albumName}" class="col mb-3 fs-5"></div>
@@ -53,15 +54,15 @@
 					
 					<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}" ></div>
 			
-  					<a th:href="@{'/img/' + ${list.photo}}" download="" class="btn btn-primary" th:text="#{saveBtn}"></a>
+  					<a th:href="@{'/img/' + ${list.photo}}" download="" th:text="#{saveBtn}" class="btn btn-primary"></a>
 				
 					<th:block th:if="${isAdmin}">
-						<a th:href="@{'/delete-photo/' + ${list.id}}" class="btn btn-danger" th:text="#{deleteBtn}"></a>
+						<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
 					</th:block>
 					
 					<th:block th:unless="${isAdmin}">
 						<th:block th:if="${list.Accounts.user == username}">
-							<a th:href="@{'/delete-photo/' + ${list.id}}" class="btn btn-danger" th:text="#{deleteBtn}"></a>
+							<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
 						</th:block>
 					</th:block>
 					

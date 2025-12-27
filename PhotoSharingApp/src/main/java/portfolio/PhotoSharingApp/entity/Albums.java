@@ -8,5 +8,4 @@ public class Albums {
 	private Integer id;
 	private Integer groupId;/*グループテーブルのID*/
 	private String albumName;
-
 }

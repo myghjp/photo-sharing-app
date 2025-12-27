@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpSession;
 public class GlobalControllAdvice {
 
 	@ExceptionHandler(Exception.class)
-	public String exceptionHandler(Exception e, Model model,HttpSession session) {
+	public String exceptionHandler(Model model,Exception e,HttpSession session) {
 
 		model.addAttribute("error", "");
 		model.addAttribute("message", "エラーが発生しました。");

@@ -41,8 +41,6 @@ public class SelectAlbumController {
 		
 		httpSession.removeAttribute("albums");
 		
-		/*model.addAttribute("groupName",groups.getGroupName());*/
-		
 		/*このグループのアルバムIDとアルバム名を取得*/
 		List<Albums> albumsList = albumService.getAlbumList(groups.getId());
 		model.addAttribute("albumsList", albumsList);
@@ -61,13 +59,14 @@ public class SelectAlbumController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		/*↓Modelでset変更では*/
-		
 		/*アルバムIDとアルバム名を取得*/
 		Albums albums = albumService.getAlbum(albumId);
-		/*albums.setId(albums.getId());
-		albums.setAlbumName(albums.getAlbumName());*/
+		
 		redirectAttributes.addFlashAttribute("albums",albums);
+		/*リダイレクト後の@ModelAttributeでset
+		 * 書いたほうがいい
+		 * */
+		
 
 		return "redirect:list-photo";
 	}

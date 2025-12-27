@@ -14,5 +14,4 @@ public class Comments {
 	private Date createDateTime;
 	
 	private Accounts accounts;
-
 }

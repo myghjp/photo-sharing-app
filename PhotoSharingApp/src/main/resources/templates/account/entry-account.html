@@ -19,6 +19,7 @@
 				<form method="post" th:action="@{/entry-account}" th:object="${entryAccountForm}">
 					
 				    <div class="row">
+						
 				        <label for="user" th:text="#{user}" class="col-sm-4 col-form-label"></label>
 				        <div class="col-sm-8 mb-3">
 					        <input type="text" th:field="*{user}" th:errorclass="is-invalid" class="form-control">

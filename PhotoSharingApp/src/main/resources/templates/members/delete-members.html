@@ -25,8 +25,8 @@
 				</div>
 				
 				<form method="post" th:action="@{/delete-members}">
-					<a th:href="@{'/list-members'}" class="btn btn-secondary mx-3" th:text="#{cancelBtn}"></a>
-					<input type="hidden" th:value="${membersData.id}" name="id">
+					<a th:href="@{'/list-members'}" th:text="#{cancelBtn}" class="btn btn-secondary mx-3"></a>
+					<input type="hidden" name="id" th:value="${membersData.id}" >
 					<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3">
 				</form>
 				

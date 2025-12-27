@@ -32,6 +32,7 @@ public class EntryGroupController {
 			) {
 		
 		model.addAttribute("entryGroupForm", entryGroupForm);
+		
 		return "group/entry-group";
 	}
 
@@ -55,7 +56,6 @@ public class EntryGroupController {
 		}
 		
 		groups.setAccountId(loginUserDetails.getUserId());
-		
 		groupService.entryGroup(groups);
 		
 		return "redirect:select-group";

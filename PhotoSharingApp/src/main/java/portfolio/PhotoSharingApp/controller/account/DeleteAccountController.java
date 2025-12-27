@@ -20,9 +20,6 @@ public class DeleteAccountController {
 	
 	@Autowired
 	private UserService userService;
-	
-	/*@Autowired
-	private GroupService groupService;*/
 
 	@GetMapping("/delete-account/{userId}")
 	public String getDeleteAccount(Model model
@@ -30,6 +27,7 @@ public class DeleteAccountController {
 			,boolean bool
 			) {
 		
+		/*※boolean引数名*/
 		model.addAttribute("id",id);
 		model.addAttribute("isError",bool);
 
@@ -56,7 +54,6 @@ public class DeleteAccountController {
 		if (userService.isCreateGroupExisting(accounts.getId())) {
 			return getDeleteAccount(model,id,true);
 		}
-		
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
 		userService.removeAccount(accounts.getId());

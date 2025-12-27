@@ -39,6 +39,7 @@ public class EditAccountController {
 			,EditAccountForm editAccountForm
 			) {
 		
+		/*idをformで使える(Postも確認)*/
 		model.addAttribute("id",id);
 		model.addAttribute("editAccountForm", editAccountForm);
 		
@@ -58,19 +59,16 @@ public class EditAccountController {
 		Accounts accounts = modelMapper.map(editAccountForm, Accounts.class);
 		accounts.setId(id);
 		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		/*idが自身のアカウントIdと同じかを確認*/
 		if (userService.isCurrentUser(accounts.getId()) != loginUserDetails.getUserId()) {
 			throw new IllegalArgumentException("不正なIDです");
 		}
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
 		if (bindingResult.hasErrors()) {
 			return getEditAccount(model,id,editAccountForm);
 		}
 		
 		accounts.setPass(passwordEncoder.encode(accounts.getPass()));
-
 		userService.editAccount(accounts);
 		
 		session.invalidate();

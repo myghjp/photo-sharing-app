@@ -49,8 +49,6 @@ public class DeleteCommentController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		
-	
 		commentService.deleteComment(commentId);
 	
 		return "redirect:list-comment";

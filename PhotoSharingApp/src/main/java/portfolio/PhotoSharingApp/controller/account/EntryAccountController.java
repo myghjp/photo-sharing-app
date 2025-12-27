@@ -37,6 +37,7 @@ public class EntryAccountController {
 		
 		model.addAttribute("entryAccountForm", entryAccountForm);
 		
+		/*↓login側を更新しても残るので今は無駄*/
 		session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 		
 		return "account/entry-account";
@@ -67,7 +68,6 @@ public class EntryAccountController {
 		}
 		
 		accounts.setPass(passwordEncoder.encode(accounts.getPass()));
-
 		userService.createAccount(accounts);
 		
 		return "redirect:login";

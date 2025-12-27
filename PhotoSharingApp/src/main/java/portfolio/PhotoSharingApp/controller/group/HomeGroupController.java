@@ -22,7 +22,6 @@ public class HomeGroupController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		
 		/*自身は管理者*/
 		if (groups.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("isAdmin",true);
