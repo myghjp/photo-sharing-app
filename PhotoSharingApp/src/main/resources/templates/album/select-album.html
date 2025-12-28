@@ -36,10 +36,10 @@
 				
 				<div class="row">
 					<form method="post" th:action="@{/select-album}">
-						<div th:each="list:${albumsList}" class="mb-3">
+						<div th:each="list, status :${albumsList}" class="mb-3">
 							<div class="d-inline-flex justify-content-center align-items-center">
 								<div class="form-check m-2">
-									<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" class="form-check-input" checked>
+									<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" th:checked="${status.index == 0}" class="form-check-input">
 									<label th:for="${list.id}" th:text="${list.albumName}" class="form-check-label"></label>
 								</div>
 								

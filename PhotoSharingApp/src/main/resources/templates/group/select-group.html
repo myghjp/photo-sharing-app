@@ -22,11 +22,11 @@
 					<a th:href="@{'/entry-group'}" th:text="#{createGroupBtn}" class="btn btn-success mb-3" ></a>
 					<div th:text="#{selectGroupMessage}" class="fs-5 mb-3"></div>
 					
-						<div th:each="list:${groupsList}">
+						<div th:each="list, status : ${groupsList}">
 							<div class="d-flex justify-content-center">
 								
 								<div class="form-check mb-3">
-									<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" class="form-check-input" checked>
+									<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" th:checked="${status.index == 0}" class="form-check-input">
 									<label th:for="${list.id}" th:text="${list.groupName}" class="form-check-label"></label>
 								</div>
 								
@@ -34,7 +34,7 @@
 						</div>
 					
 					<th:block th:unless="${groupsList.isEmpty()}">
-							<input type="submit" th:value="#{openGroupBtn}" class="btn btn-primary" >
+							<input type="submit" th:value="#{openGroupBtn}" class="btn btn-primary">
 					</th:block>
 		
 				</form>

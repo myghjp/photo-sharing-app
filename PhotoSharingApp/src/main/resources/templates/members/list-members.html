@@ -48,7 +48,7 @@
 				<div th:each="list:${membersList}">
 					<div class="row mb-3">
 						<div class="d-flex justify-content-center">
-							<label th:text="${list.accounts?.user?: 'unknown'}" class="m-2"></label>
+							<label th:text="${list.accounts?.username?: 'unknown'}" class="m-2"></label>
 							
 							<th:block th:if="${isAdmin}">
 								<a th:href="@{'/delete-members/' + ${list.id}}" th:text="#{deleteBtn}"
