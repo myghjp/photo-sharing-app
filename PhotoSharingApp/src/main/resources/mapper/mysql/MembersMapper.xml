@@ -21,8 +21,8 @@
 	
 	<resultMap type="portfolio.PhotoSharingApp.entity.Accounts" id="AccountsTable">
 		<id column="id" property="id" />
-		<result column="user" property="user" />
-		<result column="pass" property="pass" />
+		<result column="user" property="username" />
+		<result column="pass" property="password" />
 		<result column="email_address" property="emailAddress"/>
 	</resultMap>
 	

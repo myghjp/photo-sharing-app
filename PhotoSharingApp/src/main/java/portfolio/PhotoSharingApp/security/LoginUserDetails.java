@@ -30,10 +30,10 @@ public class LoginUserDetails implements UserDetails {
 	public int getUserId() {return accounts.getId();}
 
 	@Override
-	public String getUsername() {return accounts.getUser();}
+	public String getUsername() {return accounts.getUsername();}
 
 	@Override
-	public String getPassword() {return accounts.getPass();}
+	public String getPassword() {return accounts.getPassword();}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

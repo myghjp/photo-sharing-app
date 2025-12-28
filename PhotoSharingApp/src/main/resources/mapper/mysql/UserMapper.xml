@@ -6,8 +6,8 @@
 
 	<resultMap type="portfolio.PhotoSharingApp.entity.Accounts" id="accountsTable">
 		<id column="id" property="id" />
-		<result column="user" property="user" />
-		<result column="pass" property="pass" />
+		<result column="user" property="username" />
+		<result column="pass" property="password" />
 		<result column="email_address" property="emailAddress" />
 	</resultMap>
 	
@@ -17,7 +17,7 @@
 	<select id="getSelectUser" resultMap="accountsTable">
 		select *
 		from accounts 
-		where user = #{user}
+		where user = #{username}
 	</select>
 	
 	<!-- ーーーEntryAccountーーー-->
@@ -28,8 +28,8 @@
 			,pass
 			,email_address
 		)VALUES(
-			 #{accounts.user}
-			,#{accounts.pass}
+			 #{accounts.username}
+			,#{accounts.password}
 			,#{accounts.emailAddress}
 		)
 	</insert>
@@ -38,7 +38,7 @@
 	<select id="selectByUser"><!-- getSelectUser(Name) -->
 		select user
 		from accounts
-		where user = #{accounts.user}
+		where user = #{accounts.username}
 	</select>
 	
 	<!-- メールアドレスがデータベースに存在するかを確認 -->
@@ -52,7 +52,7 @@
 	
 	<update id="update">
 		update accounts
-		set pass = #{accounts.pass}
+		set pass = #{accounts.password}
 		where id = #{accounts.id}
 	</update>
 	

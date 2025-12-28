@@ -42,8 +42,8 @@ public class SecurityConfig {
 				.loginProcessingUrl("/postlogin")
 				.loginPage("/login")
 				.failureUrl("/login")
-				.usernameParameter("user")
-				.passwordParameter("pass")
+				.usernameParameter("username")
+				.passwordParameter("password")
 				.defaultSuccessUrl("/select-group", true)
 				.permitAll()
 			).logout(logout -> logout
