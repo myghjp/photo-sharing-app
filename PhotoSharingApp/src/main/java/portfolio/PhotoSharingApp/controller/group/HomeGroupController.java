@@ -23,11 +23,11 @@ public class HomeGroupController {
 			) {
 		
 		/*自身は管理者*/
-		if (group.getAccountId() == loginUserDetails.getUserId()) {
+		if (group.getAccountId() == loginUserDetails.getAccountId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		
-		model.addAttribute("userId",loginUserDetails.getUserId());
+		/*model.addAttribute("accountId",loginUserDetails.getAccountId());*/
 		
 		return "group/home-group";
 		

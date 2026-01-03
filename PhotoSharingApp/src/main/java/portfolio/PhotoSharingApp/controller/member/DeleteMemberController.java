@@ -24,16 +24,16 @@ public class DeleteMemberController {
 	private MemberService memberService;
 	
 	@GetMapping("/delete-member/{id}")
-	public String getDeleteMembers(Model model
-			,@PathVariable("id")int memberId
+	public String getDeleteMember(Model model
+			,@PathVariable("id")int id
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			) {
 		
 		Member member = new Member();
-		member.setId(memberId);
+		member.setId(id);
 		
 		/*※このグループの管理者でないならエラー*/
-		if (memberService.isCurrentUser(member.getId()) != loginUserDetails.getUserId()) {
+		if (memberService.isCurrentUser(member.getId()) != loginUserDetails.getAccountId()) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
@@ -45,12 +45,12 @@ public class DeleteMemberController {
 	}
 	
 	@PostMapping("/delete-member")
-	public String postDeleteMembers(Model model
-			,@RequestParam("id")int memberId
+	public String postDeleteMember(Model model
+			,@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		memberService.deleteMember(memberId);
+		memberService.deleteMember(id);
 		
 		return "redirect:list-member";
 	}

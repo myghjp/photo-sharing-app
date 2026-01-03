@@ -56,12 +56,12 @@ public class EntryAccountController {
 
 		/*登録済のアカウント名の重複確認*/
 		if (accountService.isUserExisting(account)) {
-			bindingResult.rejectValue("username", "user.Alert");
+			bindingResult.rejectValue("username", "entryAccountNameError");
 		}
 		
 		/*登録済のメールアドレスの重複確認*/
 		if (accountService.isEmailAddressExisting(account)) {
-			bindingResult.rejectValue("emailAddress", "email_address.Alert");
+			bindingResult.rejectValue("emailAddress", "entryAccountEmailError");
 		}
 		
 		if (bindingResult.hasErrors()) {

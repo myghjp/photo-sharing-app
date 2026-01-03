@@ -66,7 +66,7 @@ public class ListCommentController {
 		Comment comment = modelMapper.map(listCommentForm, Comment.class);
 		
 		comment.setGroupId(group.getId());
-		comment.setAccountId(loginUserDetails.getUserId());
+		comment.setAccountId(loginUserDetails.getAccountId());
 		
 		commentService.addComment(comment);
 	

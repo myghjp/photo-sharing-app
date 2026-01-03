@@ -48,14 +48,14 @@ public class EntryGroupController {
 
 		/*登録済のグループ名の重複確認*/
 		if (groupService.isExistingGroupsData(group)){
-			bindingResult.rejectValue("groupName","group.Alert");
+			bindingResult.rejectValue("groupName","entryGroupNameError");
 		}
 		
 		if (bindingResult.hasErrors()) {
 			return getEntryGroup(model, entryGroupForm);
 		}
 		
-		group.setAccountId(loginUserDetails.getUserId());
+		group.setAccountId(loginUserDetails.getAccountId());
 		groupService.entryGroup(group);
 		
 		return "redirect:select-group";

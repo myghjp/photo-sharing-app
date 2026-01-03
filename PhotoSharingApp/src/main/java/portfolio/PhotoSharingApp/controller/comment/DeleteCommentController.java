@@ -23,16 +23,16 @@ public class DeleteCommentController {
 	
 	@GetMapping("/delete-comment/{id}")
 	public String getDeleteComment(Model model
-			,@PathVariable("id")int commentId
+			,@PathVariable("id")int id
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			) {
 		
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		/*※コメント内容が自身が登録したものかを確認*/
 		Comment comment = new Comment();
-		comment.setId(commentId);
+		comment.setId(id);
 		
-		if (commentService.isCurrentUser(comment.getId()) != loginUserDetails.getUserId()) {
+		if (commentService.isCurrentUser(comment.getId()) != loginUserDetails.getAccountId()) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
@@ -46,11 +46,11 @@ public class DeleteCommentController {
 	
 	@PostMapping("/delete-comment")
 	public String getDeleteComment(
-			@RequestParam("id") int commentId
+			@RequestParam("id") int id
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		commentService.deleteComment(commentId);
+		commentService.deleteComment(id);
 	
 		return "redirect:list-comment";
 	}

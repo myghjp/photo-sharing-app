@@ -30,7 +30,7 @@ public class AddMemberController {
 	private MemberService memberService;
 	
 	@GetMapping("/add-member")
-	public String getAddMembers(Model model
+	public String getAddMember(Model model
 			,AddMemberForm addMembersForm
 			) {
 			
@@ -39,7 +39,7 @@ public class AddMemberController {
 	}
 	
 	@PostMapping("/add-member")
-	public String postAddMembers(Model model
+	public String postAddMember(Model model
 			,@RequestParam("emailAddress") String emailAddress
 			,@ModelAttribute("group")Group group
 			,@ModelAttribute @Validated AddMemberForm addMembersForm
@@ -51,17 +51,17 @@ public class AddMemberController {
 		
 		/*メールアドレスを使用してアカウントIdが存在するかを確認*/
 		if (memberService.isExistingAccountId(account)) {
-			bindingResult.rejectValue("emailAddress", "unkownEmail.Alert");
+			bindingResult.rejectValue("emailAddress", "addMembersEmailError");
 		}
 		
 		/*このメールアドレスは、このグループ内にいる
 		 * 利用者や管理者のアドレスが重複していないかを確認*/
 		if (memberService.isExistingMembersId(account,group)) {
-			bindingResult.rejectValue("emailAddress", "email_address.Alert2");
+			bindingResult.rejectValue("emailAddress", "addMembersEmailError2");
 		}
 		
 		if (bindingResult.hasErrors()) {
-			return getAddMembers(model, addMembersForm);
+			return getAddMember(model, addMembersForm);
 		}
 		
 		Member member = new Member();

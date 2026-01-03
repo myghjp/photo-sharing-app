@@ -37,12 +37,12 @@ public class EditAccountController {
 
 	@GetMapping("/edit-account/{userId}")
 	public String getEditAccount(Model model
-			,@PathVariable("userId")int id
+			,@PathVariable("accountId")int accountId
 			,EditAccountForm editAccountForm
 			) {
 		
 		/*idをformで使える(Postも確認)*/
-		model.addAttribute("id",id);
+		model.addAttribute("id",accountId);
 		model.addAttribute("editAccountForm", editAccountForm);
 		
 		return "account/edit-account";
@@ -62,7 +62,7 @@ public class EditAccountController {
 		account.setId(id);
 		
 		/*idが自身のアカウントIdと同じかを確認*/
-		if (accountService.isCurrentUser(account.getId()) != loginUserDetails.getUserId()) {
+		if (accountService.isCurrentUser(account.getId()) != loginUserDetails.getAccountId()) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		

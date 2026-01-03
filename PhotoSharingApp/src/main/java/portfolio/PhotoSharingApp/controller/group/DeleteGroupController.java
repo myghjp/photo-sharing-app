@@ -23,16 +23,16 @@ public class DeleteGroupController {
 	
 	@GetMapping("/delete-group/{id}")
 	public String getDeleteGroup(Model model
-			,@PathVariable("id")int groupId
+			,@PathVariable("id")int id
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			) {
 		
 		/*※このグループidは自身のアカウントIdが作成したかを確認*/
-		if (groupService.isCurrentUser(groupId) != loginUserDetails.getUserId()) {
+		if (groupService.isCurrentUser(id) != loginUserDetails.getAccountId()) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
-		Group groupData = groupService.getGroupsData(groupId);
+		Group groupData = groupService.getGroupsData(id);
 		model.addAttribute("groupData",groupData);
 		
 		return "group/delete-group";
@@ -40,11 +40,11 @@ public class DeleteGroupController {
 	
 	@PostMapping("/delete-group")
 	public String postDeleteGroup(
-			@RequestParam("id")int groupId
+			@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		groupService.deleteGroup(groupId);
+		groupService.deleteGroup(id);
 		
 		return "redirect:select-group";
 	}

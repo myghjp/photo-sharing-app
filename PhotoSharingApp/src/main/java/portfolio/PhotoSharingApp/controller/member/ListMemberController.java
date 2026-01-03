@@ -24,7 +24,7 @@ public class ListMemberController {
 	private MemberService memberService;
 
 	@GetMapping("/list-member")
-	public String getListMembers(Model model
+	public String getListMember(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,@ModelAttribute("group")Group group
 			,RedirectAttributes redirectAttributes
@@ -34,7 +34,7 @@ public class ListMemberController {
 		model.addAttribute("memberList", memberList);
 
 		/*自身は管理者*/
-		if (group.getAccountId() == loginUserDetails.getUserId()) {
+		if (group.getAccountId() == loginUserDetails.getAccountId()) {
 			model.addAttribute("isAdmin", true);
 		} else {
 			String adminName = memberService.getAdminName(group.getId());

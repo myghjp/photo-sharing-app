@@ -47,7 +47,7 @@ public class SelectAlbumController {
 		model.addAttribute("albumList", albumList);
 		
 		/*一致すると自身は管理者*/
-		if (group.getAccountId() == loginUserDetails.getUserId()) {
+		if (group.getAccountId() == loginUserDetails.getAccountId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		
@@ -56,12 +56,12 @@ public class SelectAlbumController {
 	
 	@PostMapping("/select-album")
 	public String postSelectAlbum(Model model
-			,@RequestParam("id")int albumId
+			,@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
 			) {
 		
 		/*アルバムIDとアルバム名を取得*/
-		Album album = albumService.getAlbum(albumId);
+		Album album = albumService.getAlbum(id);
 		
 		redirectAttributes.addFlashAttribute("album",album);
 		/*リダイレクト後の@ModelAttributeでset
