@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="portfolio.PhotoSharingApp.repository.UserMapper">
+<mapper namespace="portfolio.PhotoSharingApp.repository.AccountMapper">
 
-	<resultMap type="portfolio.PhotoSharingApp.entity.Accounts" id="accountsTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Account" id="accountsTable">
 		<id column="id" property="id" />
 		<result column="user" property="username" />
 		<result column="pass" property="password" />
@@ -28,9 +28,9 @@
 			,pass
 			,email_address
 		)VALUES(
-			 #{accounts.username}
-			,#{accounts.password}
-			,#{accounts.emailAddress}
+			 #{account.username}
+			,#{account.password}
+			,#{account.emailAddress}
 		)
 	</insert>
 	
@@ -38,22 +38,22 @@
 	<select id="selectByUser"><!-- getSelectUser(Name) -->
 		select user
 		from accounts
-		where user = #{accounts.username}
+		where user = #{account.username}
 	</select>
 	
 	<!-- メールアドレスがデータベースに存在するかを確認 -->
 	<select id="getSelectEmailAddress">
 		select email_address
 		from accounts
-		where email_address = #{accounts.emailAddress}
+		where email_address = #{account.emailAddress}
 	</select>
 	
 	<!-- ーーーEditAccountーーー -->
 	
 	<update id="update">
 		update accounts
-		set pass = #{accounts.password}
-		where id = #{accounts.id}
+		set pass = #{account.password}
+		where id = #{account.id}
 	</update>
 	
 	<!-- ーーーDeleteAccountーーー -->

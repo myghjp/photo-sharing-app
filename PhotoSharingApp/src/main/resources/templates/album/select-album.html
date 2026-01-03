@@ -19,7 +19,7 @@
 			<div class="col-auto">
 				
 				<div class="text-center">
-					<div th:text="${groups.groupName}" class="mb-3 fs-5"></div>
+					<div th:text="${group.groupName}" class="mb-3 fs-5"></div>
 					
 					<div class="col mb-3">
 						<a th:href="@{'/home-group'}" th:text="#{backBtn}" class="btn btn-secondary"></a>
@@ -33,7 +33,7 @@
 				</div>
 				
 				<form method="post" th:action="@{/select-album}">
-					<div th:each="list, status :${albumsList}" class="mb-3">
+					<div th:each="list, status :${albumList}" class="mb-3">
 						<div class="d-flex align-items-center">
 							<div class="form-check m-2">
 								<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" th:checked="${status.index == 0}" class="form-check-input">
@@ -46,7 +46,7 @@
 						</div>
 					</div>
 				
-					<th:block th:unless="${albumsList.isEmpty()}">
+					<th:block th:unless="${albumList.isEmpty()}">
 						<div class="text-center">
 							<input type="submit" th:value="#{openAlbumBtn2}" class="btn btn-primary">
 						</div>

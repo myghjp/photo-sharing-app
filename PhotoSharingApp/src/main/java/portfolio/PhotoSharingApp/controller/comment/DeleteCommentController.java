@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Comments;
+import portfolio.PhotoSharingApp.entity.Comment;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.comment.CommentService;
 
@@ -29,17 +29,17 @@ public class DeleteCommentController {
 		
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		/*※コメント内容が自身が登録したものかを確認*/
-		Comments comments = new Comments();
-		comments.setId(commentId);
+		Comment comment = new Comment();
+		comment.setId(commentId);
 		
-		if (commentService.isCurrentUser(comments.getId()) != loginUserDetails.getUserId()) {
+		if (commentService.isCurrentUser(comment.getId()) != loginUserDetails.getUserId()) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
 		/*idとコメントを取得*/
-		Comments commentsData = commentService.getComment(comments.getId());
-		model.addAttribute("commentsData", commentsData);
+		Comment commentData = commentService.getComment(comment.getId());
+		model.addAttribute("commentData", commentData);
 		
 		return "comment/delete-comment";
 	}

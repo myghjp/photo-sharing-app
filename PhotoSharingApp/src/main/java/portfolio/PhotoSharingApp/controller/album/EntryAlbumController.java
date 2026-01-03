@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Albums;
-import portfolio.PhotoSharingApp.entity.Groups;
+import portfolio.PhotoSharingApp.entity.Album;
+import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.form.album.EntryAlbumForm;
 import portfolio.PhotoSharingApp.service.album.AlbumService;
 
 @Controller
-@SessionAttributes(value = {"groups"})
+@SessionAttributes(value = {"group"})
 public class EntryAlbumController {
 	
 	@Autowired
@@ -39,7 +39,7 @@ public class EntryAlbumController {
 	
 	@PostMapping("/entry-album")
 	public String postEntryAlbum(Model model
-			,Groups groups
+			,Group group
 			,@ModelAttribute @Validated EntryAlbumForm entryAlbumForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
@@ -49,11 +49,11 @@ public class EntryAlbumController {
 			return getEntryAlbum(model,entryAlbumForm);
 		}
 		
-		Albums albums = modelMapper.map(entryAlbumForm,Albums.class);
+		Album album = modelMapper.map(entryAlbumForm,Album.class);
 		
-		albums.setGroupId(groups.getId());
+		album.setGroupId(group.getId());
 		
-		albumService.addAlbum(albums);
+		albumService.addAlbum(album);
 		
 		return "redirect:select-album";
 	}

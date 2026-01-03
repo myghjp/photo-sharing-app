@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import portfolio.PhotoSharingApp.entity.Photos;
+import portfolio.PhotoSharingApp.entity.Photo;
 import portfolio.PhotoSharingApp.repository.PhotoMapper;
 import portfolio.PhotoSharingApp.service.photo.PhotoService;
 
@@ -18,19 +18,19 @@ public class PhotoServiceImpl implements PhotoService{
 	/*ーーーListPhotoーーー*/
 	
 	@Override
-	public List<Photos> getphotoList(int id){
+	public List<Photo> getphotoList(int id){
 		return photoMapper.selectPhotoItems(id);
 	}
 	
 	@Override
-	public void addPhoto(Photos photos) {
-		photoMapper.insert(photos);
+	public void addPhoto(Photo photo) {
+		photoMapper.insert(photo);
 	}
 	
 	/*ーーーDeletePhotoーーー*/
 	
 	@Override
-	public Photos getPhoto(int id) {
+	public Photo getPhoto(int id) {
 		return photoMapper.select(id);
 	}
 	
@@ -51,8 +51,8 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	@Override
-	public boolean isC(int GroupsId,int loginId) {
-		if (GroupsId != loginId) {
+	public boolean isC(int GroupId,int loginId) {
+		if (GroupId != loginId) {
 			return true;
 		} else {
 			return false;

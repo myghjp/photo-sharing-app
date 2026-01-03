@@ -18,7 +18,7 @@
 		<div class="row justify-content-center">
 			<div class="col mx-auto text-center">
 				
-				<div th:text="${groups.groupName}" class="col mb-3 fs-5"></div>
+				<div th:text="${group.groupName}" class="col mb-3 fs-5"></div>
 				
 				<div class="col mb-3">
 					<a th:href="@{'/home-group'}" th:text="#{backBtn}"
@@ -28,7 +28,7 @@
 				
 				<div class="col mb-3">
 					<th:block th:if="${isAdmin}">
-						<a th:href="@{'/add-members'}" th:text="#{addMembersBtn}"
+						<a th:href="@{'/add-member'}" th:text="#{addMembersBtn}"
 							class="btn btn-success">
 						</a>
 					</th:block>
@@ -45,13 +45,13 @@
 					</div>
 				</th:block>
 				
-				<div th:each="list:${membersList}">
+				<div th:each="list:${memberList}">
 					<div class="row mb-3">
 						<div class="d-flex justify-content-center">
-							<label th:text="${list.accounts?.username?: 'unknown'}" class="m-2"></label>
+							<label th:text="${list.account?.username?: 'unknown'}" class="m-2"></label>
 							
 							<th:block th:if="${isAdmin}">
-								<a th:href="@{'/delete-members/' + ${list.id}}" th:text="#{deleteBtn}"
+								<a th:href="@{'/delete-member/' + ${list.id}}" th:text="#{deleteBtn}"
 									class="btn btn-danger">
 								</a>
 							</th:block>

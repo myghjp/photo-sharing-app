@@ -2,24 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="portfolio.PhotoSharingApp.repository.MembersMapper">
+<mapper namespace="portfolio.PhotoSharingApp.repository.MemberMapper">
 
-	<resultMap type="portfolio.PhotoSharingApp.entity.Members" id="MembersTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Member" id="MembersTable">
 		<id column="id" property="id" />
 		<result column="group_id" property="groupId" />
 		<result column="account_id" property="accountId" />
-		<collection property="groups" resultMap="GroupsTable" columnPrefix="groups_"/>
-		<collection property="accounts" resultMap="AccountsTable" columnPrefix="accounts_"/>
+		<collection property="group" resultMap="GroupsTable" columnPrefix="groups_"/>
+		<collection property="account" resultMap="AccountsTable" columnPrefix="accounts_"/>
 	</resultMap>
 	
-	<resultMap type="portfolio.PhotoSharingApp.entity.Groups" id="GroupsTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Group" id="GroupsTable">
 		<id column="id" property="id" />
 		<result column="group_name" property="groupName" />
 		<result column="account_id" property="accountId" />
-		<collection property="accounts" resultMap="AccountsTable" columnPrefix="accounts_"/>
+		<collection property="account" resultMap="AccountsTable" columnPrefix="accounts_"/>
 	</resultMap>
 	
-	<resultMap type="portfolio.PhotoSharingApp.entity.Accounts" id="AccountsTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Account" id="AccountsTable">
 		<id column="id" property="id" />
 		<result column="user" property="username" />
 		<result column="pass" property="password" />
@@ -32,7 +32,7 @@
 	<select id="selectEmailAddress" resultType="String">
 		select email_address
 		from accounts
-		where email_address = #{accounts.emailAddress}
+		where email_address = #{account.emailAddress}
 	</select>
 	
 	<!-- このメールアドレスは、このグループ内にいるメンバや管理者のアドレスが
@@ -42,9 +42,9 @@
 		from groups_members
 			left join accounts
 				on groups_members.account_id = accounts.id
-			where accounts.email_address = #{accounts.emailAddress}
-			and (groups_members.group_id = #{groups.id}
-				or groups_members.account_id = #{groups.accountId})
+			where accounts.email_address = #{account.emailAddress}
+			and (groups_members.group_id = #{group.id}
+				or groups_members.account_id = #{group.accountId})
 	</select>
 	
 	<!-- メールアドレスを使用してアカウントIDを取得する -->
@@ -60,8 +60,8 @@
 			 group_id
 			,account_id
 		)VALUES(
-			 #{members.groupId}
-			,#{members.accountId}
+			 #{member.groupId}
+			,#{member.accountId}
 		)
 	</insert>
 	

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import portfolio.PhotoSharingApp.entity.Comments;
+import portfolio.PhotoSharingApp.entity.Comment;
 import portfolio.PhotoSharingApp.repository.CommentMapper;
 import portfolio.PhotoSharingApp.service.comment.CommentService;
 
@@ -18,19 +18,19 @@ public class CommentServiceImpl implements CommentService{
 	/*ーーーListCommentーーー*/
 	
 	@Override
-	public List<Comments> getCommentList(int id){
+	public List<Comment> getCommentList(int id){
 		return commentMapper.selectCommentItems(id);
 	}
 	
 	@Override
-	public void addComment(Comments comments) {
-		commentMapper.insert(comments);
+	public void addComment(Comment comment) {
+		commentMapper.insert(comment);
 	}
 	
 	/*ーーーDeleteCommentーーー*/
 	
 	@Override
-	public Comments getComment(int id) {
+	public Comment getComment(int id) {
 		return commentMapper.select(id);
 	}
 	

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Albums;
+import portfolio.PhotoSharingApp.entity.Album;
 import portfolio.PhotoSharingApp.form.album.DeleteAlbumForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.album.AlbumService;
@@ -32,19 +32,19 @@ public class DeleteAlbumController {
 		
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		/*※このアルバムidが自身が作成したのかを確認*/
-		Albums albums = new Albums();
-		albums.setId(albumId);
+		Album album = new Album();
+		album.setId(albumId);
 		
-		if (albumService.isCurrentUser(albums.getId()) != loginUserDetails.getUserId()) {
+		if (albumService.isCurrentUser(album.getId()) != loginUserDetails.getUserId()) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
 		
 		/*アルバムIDとアルバム名を取得*/
-		Albums albumsData = albumService.getAlbum(albums.getId());
+		Album albumData = albumService.getAlbum(album.getId());
 		
-		model.addAttribute("albumsData", albumsData);
+		model.addAttribute("albumData", albumData);
 		model.addAttribute("deleteAlbumForm",deleteAlbumForm);
 		
 		return "album/delete-album";

@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Photos {
+public class Photo {
 	
 	private Integer id;
 	private Integer albumId;/*アルバムテーブルのid*/
@@ -13,5 +13,5 @@ public class Photos {
 	private Integer accountId;/*アカウントテーブルのid*/
 	private Date createDateTime;
 	
-	private Accounts accounts;/*※*/
+	private Account account;/*※*/
 }

@@ -4,16 +4,16 @@
 	
 <mapper namespace="portfolio.PhotoSharingApp.repository.PhotoMapper">
 
-	<resultMap type="portfolio.PhotoSharingApp.entity.Photos" id="PhotosTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Photo" id="PhotosTable">
 		<id column="id" property="id"/>
 		<result column="album_id" property="albumId"/>
 		<result column="photo" property="photo"/>
 		<result column="account_id" property="accountId"/>
 		<result column="create_date_time" property="createDateTime"/>
-		<association property="accounts" resultMap="accountsTable" columnPrefix="accounts_"/>
+		<association property="account" resultMap="accountsTable" columnPrefix="accounts_"/>
 	</resultMap>
 	
-	<resultMap type="portfolio.PhotoSharingApp.entity.Accounts" id="accountsTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Account" id="accountsTable">
 		<id column="id" property="id" />
 		<result column="user" property="username"/>
 	</resultMap>
@@ -41,9 +41,9 @@
 			,photo
 			,account_id
 		)VALUES(
-			 #{photos.albumId}
-			,#{photos.photo}
-			,#{photos.accountId}
+			 #{photo.albumId}
+			,#{photo.photo}
+			,#{photo.accountId}
 		)
 	</insert>
 	

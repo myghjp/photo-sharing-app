@@ -14,11 +14,8 @@ public class LoginController {
 	
 	/*ーーやることーー*/
 	
-	/*役割毎のServiceクラスに変更*/
 	/*xmlMapの書き直し*/
-	
 	/*全体の引数名をわかりやすく統一*/
-	/*Exception名の変更*/
 	
 	/*staticからの画像削除を再確認*/
 	/*第二引数Messageの再設定*/

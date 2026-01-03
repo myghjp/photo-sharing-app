@@ -2,21 +2,21 @@ package portfolio.PhotoSharingApp.service.group;
 
 import java.util.List;
 
-import portfolio.PhotoSharingApp.entity.Groups;
+import portfolio.PhotoSharingApp.entity.Group;
 
 public interface GroupService {
 	
 	/*ーーーEntryGroupーーー*/
 	
-	public void entryGroup(Groups groups);
+	public void entryGroup(Group group);
 	
-	public boolean isExistingGroupsData(Groups groups);
+	public boolean isExistingGroupsData(Group group);
 	
 	/*ーーーSelectGroupーーー*/
 	
-	public List<Groups> getGroupList(int id);
+	public List<Group> getGroupList(int id);
 	
-	public Groups getGroupsData(int id);
+	public Group getGroupsData(int id);
 	
 	/*ーーーDeleteGroupーーー*/
 	

@@ -4,7 +4,7 @@
 	
 <mapper namespace="portfolio.PhotoSharingApp.repository.GroupMapper">
 
-	<resultMap type="portfolio.PhotoSharingApp.entity.Groups" id="GroupsTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Group" id="GroupsTable">
 		<id column="id" property="id" />
 		<result column="group_name" property="groupName" />
 		<result column="account_id" property="accountId" />
@@ -17,8 +17,8 @@
 			 group_name
 			,account_id
 		)VALUES(
-			 #{groups.groupName}
-			,#{groups.accountId}
+			 #{group.groupName}
+			,#{group.accountId}
 		)
 	</insert>
 	
@@ -26,7 +26,7 @@
 	<select id="selectGroupName" resultType="String">
 		select group_name
 		from `groups`
-		where group_name = #{groups.groupName}
+		where group_name = #{group.groupName}
 	</select>
 	
 	<!-- ーーーSelectGroupーーー -->

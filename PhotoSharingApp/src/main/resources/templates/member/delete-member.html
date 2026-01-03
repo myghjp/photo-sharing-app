@@ -21,12 +21,12 @@
 				<div th:text="#{deleteMembersAlert}" class="mb-3 fs-5"></div>	
 				
 				<div class="row mb-3">
-					<div th:text="${membersData.Accounts?.user?: 'unknown'}" class="fs-5"></div>
+					<div th:text="${memberData.Account?.username?: 'unknown'}" class="fs-5"></div>
 				</div>
 				
-				<form method="post" th:action="@{/delete-members}">
-					<a th:href="@{'/list-members'}" th:text="#{cancelBtn}" class="btn btn-secondary mx-3"></a>
-					<input type="hidden" name="id" th:value="${membersData.id}" >
+				<form method="post" th:action="@{/delete-member}">
+					<a th:href="@{'/list-member'}" th:text="#{cancelBtn}" class="btn btn-secondary mx-3"></a>
+					<input type="hidden" name="id" th:value="${memberData.id}" >
 					<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3">
 				</form>
 				

@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Accounts;
+import portfolio.PhotoSharingApp.entity.Account;
 import portfolio.PhotoSharingApp.form.account.EditAccountForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
-import portfolio.PhotoSharingApp.service.user.UserService;
+import portfolio.PhotoSharingApp.service.account.AccountService;
 
 @Controller
 public class EditAccountController {
@@ -30,7 +30,7 @@ public class EditAccountController {
 	private ModelMapper modelMapper;
 	
 	@Autowired
-	private UserService userService;
+	private AccountService accountService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -58,11 +58,11 @@ public class EditAccountController {
 			,RedirectAttributes redirectAttributes
 			) throws Exception {
 		
-		Accounts accounts = modelMapper.map(editAccountForm, Accounts.class);
-		accounts.setId(id);
+		Account account = modelMapper.map(editAccountForm, Account.class);
+		account.setId(id);
 		
 		/*idが自身のアカウントIdと同じかを確認*/
-		if (userService.isCurrentUser(accounts.getId()) != loginUserDetails.getUserId()) {
+		if (accountService.isCurrentUser(account.getId()) != loginUserDetails.getUserId()) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
@@ -70,8 +70,8 @@ public class EditAccountController {
 			return getEditAccount(model,id,editAccountForm);
 		}
 		
-		accounts.setPassword(passwordEncoder.encode(accounts.getPassword()));
-		userService.editAccount(accounts);
+		account.setPassword(passwordEncoder.encode(account.getPassword()));
+		accountService.editAccount(account);
 		
 		session.invalidate();
 		

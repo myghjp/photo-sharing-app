@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Groups;
+import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.form.group.EntryGroupForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
@@ -44,10 +44,10 @@ public class EntryGroupController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		Groups groups = modelMapper.map(entryGroupForm, Groups.class);
+		Group group = modelMapper.map(entryGroupForm, Group.class);
 
 		/*登録済のグループ名の重複確認*/
-		if (groupService.isExistingGroupsData(groups)){
+		if (groupService.isExistingGroupsData(group)){
 			bindingResult.rejectValue("groupName","group.Alert");
 		}
 		
@@ -55,8 +55,8 @@ public class EntryGroupController {
 			return getEntryGroup(model, entryGroupForm);
 		}
 		
-		groups.setAccountId(loginUserDetails.getUserId());
-		groupService.entryGroup(groups);
+		group.setAccountId(loginUserDetails.getUserId());
+		groupService.entryGroup(group);
 		
 		return "redirect:select-group";
 	}

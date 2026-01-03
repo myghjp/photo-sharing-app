@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Comments {
+public class Comment {
 	
 	private Integer id;
 	private Integer groupId;/*グループテーブルのID*/
@@ -13,5 +13,5 @@ public class Comments {
 	private Integer accountId;/*アカウントテーブルのID*/
 	private Date createDateTime;
 	
-	private Accounts accounts;
+	private Account account;
 }

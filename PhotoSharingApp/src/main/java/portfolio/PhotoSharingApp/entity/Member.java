@@ -3,12 +3,12 @@ package portfolio.PhotoSharingApp.entity;
 import lombok.Data;
 
 @Data
-public class Members {
+public class Member {
 	
 	private int id;
 	private int groupId;/*グループテーブルのID*/
 	private int accountId;/*アカウントテーブルのID*/
 	
-	private Groups groups;
-	private Accounts accounts;
+	private Group group;
+	private Account account;
 }

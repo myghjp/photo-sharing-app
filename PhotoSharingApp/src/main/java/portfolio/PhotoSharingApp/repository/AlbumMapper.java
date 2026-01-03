@@ -5,20 +5,20 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import portfolio.PhotoSharingApp.entity.Albums;
+import portfolio.PhotoSharingApp.entity.Album;
 
 @Mapper
 public interface AlbumMapper {
 	
 	/*ーーーEntryAlbumーーー*/
 	
-	public void insert(@Param("albums") Albums albums);
+	public void insert(@Param("album") Album album);
 	
 	/*ーーーSelectAlbumーーー*/
 	
-	public List<Albums> selectAlbumList(@Param("id") Integer id);
+	public List<Album> selectAlbumList(@Param("id") Integer id);
 	
-	public Albums select(@Param("id") Integer id);
+	public Album select(@Param("id") Integer id);
 	
 	/*ーーーDeleteAlbumーーー*/
 	

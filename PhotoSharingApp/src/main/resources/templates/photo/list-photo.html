@@ -18,13 +18,13 @@
 		<div class="row justify-content-center">
 				<div class="text-center">
 					
-					<div th:text="${groups.groupName}" class="col mb-3 fs-5"></div>
+					<div th:text="${group.groupName}" class="col mb-3 fs-5"></div>
 					
 					<div class="col mb-3">
 						<a th:href="@{'/select-album'}"  th:text="#{backBtn}" class="btn btn-secondary"></a>
 					</div>
 					
-					<div th:text="${albums.albumName}" class="col mb-3 fs-5"></div>
+					<div th:text="${album.albumName}" class="col mb-3 fs-5"></div>
 					
 					<div class="col-7 mx-auto mb-3">
 						<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data">
@@ -45,9 +45,9 @@
 	
 	<div class="container">
 		<div class="row row-cols-md-3 row-cols-sm-2 justify-content-start">
-			<div th:each="list : ${photosList}" class="card">
+			<div th:each="list : ${photoList}" class="card">
 				<div class="card-body text-center">
-					<div th:text="'▼' + ${list.Accounts.user}"></div>
+					<div th:text="'▼' + ${list.Account.user}"></div>
 					
 					<img th:src="@{'/img/' + ${list.photo}}" th:alt="${list.photo}" height="150" style="max-width: 15rem;"
 					data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}"  class="card-img">
@@ -61,7 +61,7 @@
 					</th:block>
 					
 					<th:block th:unless="${isAdmin}">
-						<th:block th:if="${list.Accounts.user == username}">
+						<th:block th:if="${list.Account.user == username}">
 							<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
 						</th:block>
 					</th:block>

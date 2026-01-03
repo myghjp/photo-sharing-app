@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Albums;
-import portfolio.PhotoSharingApp.entity.Groups;
-import portfolio.PhotoSharingApp.entity.Photos;
+import portfolio.PhotoSharingApp.entity.Album;
+import portfolio.PhotoSharingApp.entity.Group;
+import portfolio.PhotoSharingApp.entity.Photo;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.photo.PhotoService;
 
 @Controller
-@SessionAttributes(value = {"groups","albums"})
+@SessionAttributes(value = {"group","album"})
 public class DeletePhotoController {
 
 	@Autowired
@@ -34,20 +34,20 @@ public class DeletePhotoController {
 	public String getDeletePhoto(Model model
 			,@PathVariable("id") int photoId
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@SessionAttribute("albums")Albums albums
-			,@SessionAttribute("groups")Groups groups
+			,@SessionAttribute("album")Album album
+			,@SessionAttribute("group")Group group
 			) {
 		
 		/*↓わかりやすくする*/
 		/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
 
 		/*この写真のアルバムはこのグループのものでないなら*/
-		if (photoService.isCurrentAlbum(photoId, albums.getId())) {
+		if (photoService.isCurrentAlbum(photoId, album.getId())) {
 			throw new AccessDeniedException("アクセス権無し(このグループの写真ではない");
 		} 
 		
 		/*自身がこのアルバムのグループの管理者でないなら*/
-		if (photoService.isC(groups.getAccountId(),loginUserDetails.getUserId())) {
+		if (photoService.isC(group.getAccountId(),loginUserDetails.getUserId())) {
 			
 			/*この写真のアカウントIDと一致しないなら*/
 			if (photoService.isB(photoId,loginUserDetails.getUserId())){
@@ -57,8 +57,8 @@ public class DeletePhotoController {
 		}
 		
 		/*このidと画像パス情報を取得*/
-		Photos photosData = photoService.getPhoto(photoId);
-		model.addAttribute("photosData",photosData);
+		Photo photoData = photoService.getPhoto(photoId);
+		model.addAttribute("photoData",photoData);
 		
 		/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
@@ -71,12 +71,12 @@ public class DeletePhotoController {
 			, RedirectAttributes redirectAttributes
 			)throws IOException {
 
-		Photos photosData = photoService.getPhoto(photoId);
+		Photo photoData = photoService.getPhoto(photoId);
 
-		Path path = Path.of("src/main/resources/static/img/" + photosData.getPhoto());
+		Path path = Path.of("src/main/resources/static/img/" + photoData.getPhoto());
 		Files.delete(path);
 
-		photoService.removePhoto(photosData.getId());
+		photoService.removePhoto(photoData.getId());
 
 		return "redirect:list-photo";
 	}

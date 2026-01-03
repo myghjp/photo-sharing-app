@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Accounts;
+import portfolio.PhotoSharingApp.entity.Account;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
-import portfolio.PhotoSharingApp.service.user.UserService;
+import portfolio.PhotoSharingApp.service.account.AccountService;
 
 @Controller
 public class DeleteAccountController {
 	
 	@Autowired
-	private UserService userService;
+	private AccountService accountService;
 
 	@GetMapping("/delete-account/{userId}")
 	public String getDeleteAccount(Model model
@@ -44,21 +44,21 @@ public class DeleteAccountController {
 			,RedirectAttributes redirectAttributes
 			) {
 	
-		Accounts accounts = new Accounts();
-		accounts.setId(id);
+		Account account = new Account();
+		account.setId(id);
 		
 		/*※idが自身のアカウントIdと同じかを確認*/
-		if (userService.isCurrentUser(accounts.getId()) != loginUserDetails.getUserId()) {
+		if (accountService.isCurrentUser(account.getId()) != loginUserDetails.getUserId()) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
 		/*自身が作成したグループが存在するか確認*/
-		if (userService.isCreateGroupExisting(accounts.getId())) {
+		if (accountService.isCreateGroupExisting(account.getId())) {
 			return getDeleteAccount(model,id,true);
 		}
 		
 		
-		userService.removeAccount(accounts.getId());
+		accountService.removeAccount(account.getId());
 		
 		session.invalidate();
 		

@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.controller.members;
+package portfolio.PhotoSharingApp.controller.member;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,50 +13,50 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Accounts;
-import portfolio.PhotoSharingApp.entity.Groups;
-import portfolio.PhotoSharingApp.entity.Members;
-import portfolio.PhotoSharingApp.form.members.AddMembersForm;
-import portfolio.PhotoSharingApp.service.members.MembersService;
+import portfolio.PhotoSharingApp.entity.Account;
+import portfolio.PhotoSharingApp.entity.Group;
+import portfolio.PhotoSharingApp.entity.Member;
+import portfolio.PhotoSharingApp.form.member.AddMemberForm;
+import portfolio.PhotoSharingApp.service.member.MemberService;
 
 @Controller
-@SessionAttributes(value = {"groups"})
-public class AddMembersController {
+@SessionAttributes(value = {"group"})
+public class AddMemberController {
 	
 	@Autowired
 	private ModelMapper modelMapper;
 	
 	@Autowired
-	private MembersService membersService;
+	private MemberService memberService;
 	
-	@GetMapping("/add-members")
+	@GetMapping("/add-member")
 	public String getAddMembers(Model model
-			,AddMembersForm addMembersForm
+			,AddMemberForm addMembersForm
 			) {
 			
 		model.addAttribute("addMembersForm",addMembersForm);
-		return "members/add-members";
+		return "member/add-member";
 	}
 	
-	@PostMapping("/add-members")
+	@PostMapping("/add-member")
 	public String postAddMembers(Model model
 			,@RequestParam("emailAddress") String emailAddress
-			,@ModelAttribute("groups")Groups groups
-			,@ModelAttribute @Validated AddMembersForm addMembersForm
+			,@ModelAttribute("group")Group group
+			,@ModelAttribute @Validated AddMemberForm addMembersForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		Accounts accounts = modelMapper.map(addMembersForm, Accounts.class);
+		Account account = modelMapper.map(addMembersForm, Account.class);
 		
 		/*メールアドレスを使用してアカウントIdが存在するかを確認*/
-		if (membersService.isExistingAccountId(accounts)) {
+		if (memberService.isExistingAccountId(account)) {
 			bindingResult.rejectValue("emailAddress", "unkownEmail.Alert");
 		}
 		
 		/*このメールアドレスは、このグループ内にいる
 		 * 利用者や管理者のアドレスが重複していないかを確認*/
-		if (membersService.isExistingMembersId(accounts,groups)) {
+		if (memberService.isExistingMembersId(account,group)) {
 			bindingResult.rejectValue("emailAddress", "email_address.Alert2");
 		}
 		
@@ -64,13 +64,13 @@ public class AddMembersController {
 			return getAddMembers(model, addMembersForm);
 		}
 		
-		Members members = new Members();
+		Member member = new Member();
 		
-		members.setGroupId(groups.getId());
-		members.setAccountId(membersService.selectAccountId(emailAddress));
+		member.setGroupId(group.getId());
+		member.setAccountId(memberService.selectAccountId(emailAddress));
 		
-		membersService.insertMembers(members);
+		memberService.insertMembers(member);
 		
-		return "redirect:list-members";
+		return "redirect:list-member";
 	}
 }

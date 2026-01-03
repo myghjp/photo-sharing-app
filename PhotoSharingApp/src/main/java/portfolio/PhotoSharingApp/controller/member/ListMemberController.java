@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.controller.members;
+package portfolio.PhotoSharingApp.controller.member;
 
 import java.util.List;
 
@@ -11,36 +11,36 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Groups;
-import portfolio.PhotoSharingApp.entity.Members;
+import portfolio.PhotoSharingApp.entity.Group;
+import portfolio.PhotoSharingApp.entity.Member;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
-import portfolio.PhotoSharingApp.service.members.MembersService;
+import portfolio.PhotoSharingApp.service.member.MemberService;
 
 @Controller
-@SessionAttributes(value = { "groups" })
-public class ListMembersController {
+@SessionAttributes(value = {"group"})
+public class ListMemberController {
 
 	@Autowired
-	private MembersService membersService;
+	private MemberService memberService;
 
-	@GetMapping("/list-members")
+	@GetMapping("/list-member")
 	public String getListMembers(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@ModelAttribute("groups")Groups groups
+			,@ModelAttribute("group")Group group
 			,RedirectAttributes redirectAttributes
 		) {
 
-		List<Members> membersList = membersService.getMembersList(groups.getId());
-		model.addAttribute("membersList", membersList);
+		List<Member> memberList = memberService.getMembersList(group.getId());
+		model.addAttribute("memberList", memberList);
 
 		/*自身は管理者*/
-		if (groups.getAccountId() == loginUserDetails.getUserId()) {
+		if (group.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("isAdmin", true);
 		} else {
-			String adminName = membersService.getAdminName(groups.getId());
+			String adminName = memberService.getAdminName(group.getId());
 			model.addAttribute("adminName", adminName);
 		}
 
-		return "members/list-members";
+		return "member/list-member";
 	}
 }

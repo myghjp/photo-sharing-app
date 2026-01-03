@@ -3,7 +3,7 @@ package portfolio.PhotoSharingApp.entity;
 import lombok.Data;
 
 @Data
-public class Albums {
+public class Album {
 	
 	private Integer id;
 	private Integer groupId;/*グループテーブルのID*/

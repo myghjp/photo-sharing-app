@@ -5,30 +5,30 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import portfolio.PhotoSharingApp.entity.Accounts;
-import portfolio.PhotoSharingApp.entity.Groups;
-import portfolio.PhotoSharingApp.entity.Members;
+import portfolio.PhotoSharingApp.entity.Account;
+import portfolio.PhotoSharingApp.entity.Group;
+import portfolio.PhotoSharingApp.entity.Member;
 
 @Mapper
-public interface MembersMapper {
+public interface MemberMapper {
 	
 	/*ーーーAddMembersーーー*/
 	
-	public String selectEmailAddress(@Param("accounts") Accounts accounts);
+	public String selectEmailAddress(@Param("account") Account account);
 	
-	public Integer selectMembersId(@Param("accounts")Accounts accounts,@Param("groups")Groups groups);
+	public Integer selectMembersId(@Param("account")Account account,@Param("group")Group group);
 	
 	public int selectAccountId(@Param("emailAddress") String emailAddress);
 	
-	public void insert(@Param("members")Members members);
+	public void insert(@Param("member")Member member);
 	
 	/*ーーーListMembersーーー*/
 	
-	public List<Members> selectMembersItems(int groupId);
+	public List<Member> selectMembersItems(int groupId);
 	
 	public String selectUserName(@Param("id") Integer id);
 	
-	public Members selectMembersItems2(@Param("id")int id);
+	public Member selectMembersItems2(@Param("id")int id);
 	
 	/*ーーーDeleteMembersーーー*/
 	

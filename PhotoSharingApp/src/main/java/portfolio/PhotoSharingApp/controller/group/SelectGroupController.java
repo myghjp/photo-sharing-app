@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Groups;
+import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
-@SessionAttributes(value = {"groups"})
+@SessionAttributes(value = {"group"})
 public class SelectGroupController {
 
 	@Autowired
 	private GroupService groupService;
 
-	@ModelAttribute(value = "groups")
-	public Groups groups() {
-		return new Groups();
+	@ModelAttribute(value = "group")
+	public Group group() {
+		return new Group();
 	}
 
 	@GetMapping("/select-group")
@@ -39,9 +39,9 @@ public class SelectGroupController {
 		sessionStatus.setComplete();
 		
 		/*自身が所属しているグループIDとグループ名を取得*/
-		List<Groups> groupsList = groupService.getGroupList(loginUserDetails.getUserId());
+		List<Group> groupList = groupService.getGroupList(loginUserDetails.getUserId());
 		
-		model.addAttribute("groupsList", groupsList);
+		model.addAttribute("groupList", groupList);
 
 		return "group/select-group";
 	}
@@ -53,8 +53,8 @@ public class SelectGroupController {
 			,RedirectAttributes redirectAttributes
 			) {
 
-		Groups groups = groupService.getGroupsData(id);
-		redirectAttributes.addFlashAttribute("groups",groups);
+		Group group = groupService.getGroupsData(id);
+		redirectAttributes.addFlashAttribute("group",group);
 
 		return "redirect:home-group";
 	}

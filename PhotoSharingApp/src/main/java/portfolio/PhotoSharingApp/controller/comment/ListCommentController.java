@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Comments;
-import portfolio.PhotoSharingApp.entity.Groups;
+import portfolio.PhotoSharingApp.entity.Comment;
+import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.form.comment.ListCommentForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.comment.CommentService;
 
 @Controller
-@SessionAttributes(value = {"groups"})
+@SessionAttributes(value = {"group"})
 public class ListCommentController {
 	
 	@Autowired
@@ -35,16 +35,17 @@ public class ListCommentController {
 	public String getListComment(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,ListCommentForm listCommentForm
-			,@ModelAttribute("groups")Groups groups
+			,@ModelAttribute("group")Group group
 			) {
 		
 		model.addAttribute("listCommentForm",listCommentForm);
 		
+		/*↓?*/	
 		model.addAttribute("myUsername",loginUserDetails.getUsername());
 		
 		/*このグループのcommentsテーブル情報とアカウント名を取得*/
-		List<Comments> commentsList = commentService.getCommentList(groups.getId());
-		model.addAttribute("commentsList", commentsList);
+		List<Comment> commentList = commentService.getCommentList(group.getId());
+		model.addAttribute("commentList", commentList);
 		
 		return "comment/list-comment";
 	}
@@ -52,22 +53,22 @@ public class ListCommentController {
 	@PostMapping("/list-comment")
 	public String postListComment(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@ModelAttribute("groups")Groups groups
+			,@ModelAttribute("group")Group group
 			,@ModelAttribute @Validated ListCommentForm listCommentForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) {
 		
 		if (bindingResult.hasErrors()) {
-			return getListComment(model,loginUserDetails,listCommentForm,groups);
+			return getListComment(model,loginUserDetails,listCommentForm,group);
 		}
 		
-		Comments comments = modelMapper.map(listCommentForm, Comments.class);
+		Comment comment = modelMapper.map(listCommentForm, Comment.class);
 		
-		comments.setGroupId(groups.getId());
-		comments.setAccountId(loginUserDetails.getUserId());
+		comment.setGroupId(group.getId());
+		comment.setAccountId(loginUserDetails.getUserId());
 		
-		commentService.addComment(comments);
+		commentService.addComment(comment);
 	
 		return "redirect:list-comment";
 	}

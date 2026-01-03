@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Groups;
+import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 
 @Controller
-@SessionAttributes(value = {"groups"})
+@SessionAttributes(value = {"group"})
 public class HomeGroupController {
 	
 	@GetMapping("/home-group")
 	public String getHomeGroup(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@ModelAttribute("groups")Groups groups
+			,@ModelAttribute("group")Group group
 			,RedirectAttributes redirectAttributes
 			) {
 		
 		/*自身は管理者*/
-		if (groups.getAccountId() == loginUserDetails.getUserId()) {
+		if (group.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		

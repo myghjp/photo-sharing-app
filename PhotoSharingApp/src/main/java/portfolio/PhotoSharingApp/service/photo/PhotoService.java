@@ -2,19 +2,19 @@ package portfolio.PhotoSharingApp.service.photo;
 
 import java.util.List;
 
-import portfolio.PhotoSharingApp.entity.Photos;
+import portfolio.PhotoSharingApp.entity.Photo;
 
 public interface PhotoService {
 	
 	/*ーーーListPhotoーーー*/
 	
-	public List<Photos> getphotoList(int id);
+	public List<Photo> getphotoList(int id);
 	
-	public void addPhoto(Photos photos);
+	public void addPhoto(Photo photo);
 
 	/*ーーーDeletePhotoーーー*/
 	
-	public Photos getPhoto(int id);
+	public Photo getPhoto(int id);
 	
 	public void removePhoto(int id);
 	
@@ -22,7 +22,7 @@ public interface PhotoService {
 	
 	public boolean isCurrentAlbum(int photoId,int albumId);
 	
-	public boolean isC(int GroupsId,int loginId);
+	public boolean isC(int GroupId,int loginId);
 	
 	public boolean isB(int photoId,int loginId);
 	

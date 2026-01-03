@@ -8,14 +8,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import portfolio.PhotoSharingApp.entity.Accounts;
+import portfolio.PhotoSharingApp.entity.Account;
 
 public class LoginUserDetails implements UserDetails {
 	
-	private final Accounts accounts;
+	private final Account accounts;
 	private final Collection<? extends GrantedAuthority> authorities;
 
-	public LoginUserDetails(Accounts accounts) {
+	public LoginUserDetails(Account accounts) {
 
 		GrantedAuthority authority = new SimpleGrantedAuthority("role");
 		List<GrantedAuthority> authorities = new ArrayList<>();
@@ -25,7 +25,7 @@ public class LoginUserDetails implements UserDetails {
 		this.authorities = authorities;
 	}
 
-	public Accounts getAccounts() {return accounts;}
+	public Account getAccounts() {return accounts;}
 	
 	public int getUserId() {return accounts.getId();}
 

@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Albums;
-import portfolio.PhotoSharingApp.entity.Groups;
-import portfolio.PhotoSharingApp.entity.Photos;
+import portfolio.PhotoSharingApp.entity.Album;
+import portfolio.PhotoSharingApp.entity.Group;
+import portfolio.PhotoSharingApp.entity.Photo;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.photo.PhotoService;
 
 @Controller
-@SessionAttributes(value = {"groups","albums"})
+@SessionAttributes(value = {"group","album"})
 public class ListPhotoController { 
 	
 	@Autowired
@@ -35,14 +35,13 @@ public class ListPhotoController {
 	@GetMapping("/list-photo")
 	public String getListPhoto(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@ModelAttribute("albums")Albums albums
-			,@ModelAttribute("groups")Groups groups
+			,@ModelAttribute("album")Album album
+			,@ModelAttribute("group")Group group
 			,RedirectAttributes redirectAttributes
 		) {
 		
-		
 		/*一致すると自身は管理者である*/
-		if (groups.getAccountId() == loginUserDetails.getUserId()) {
+		if (group.getAccountId() == loginUserDetails.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		
@@ -51,40 +50,40 @@ public class ListPhotoController {
 		
 		
 		/*photosテーブルの情報とアカウント名を取得*/
-		List<Photos> photosList = photoService.getphotoList(albums.getId());
-		model.addAttribute("photosList", photosList);
+		List<Photo> photoList = photoService.getphotoList(album.getId());
+		model.addAttribute("photoList", photoList);
 		
 		return "photo/list-photo";
 	}
 	
 	@PostMapping("/list-photo")
 	public String postListPhoto(Model model
-			,@SessionAttribute("albums")Albums albums
+			,@SessionAttribute("album")Album albums
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@RequestParam("photo")MultipartFile photo
+			,@RequestParam("photo")MultipartFile photoPath
 			,RedirectAttributes redirectAttributes
 			)throws IOException {
 		
-		if (photo.isEmpty()) {
+		if (photoPath.isEmpty()) {
 			return "redirect:list-photo";
 		}
 		
 		try {
-			Path path = Path.of("src/main/resources/static/img/" + photo.getOriginalFilename());
-			Files.copy(photo.getInputStream(), path);
+			Path path = Path.of("src/main/resources/static/img/" + photoPath.getOriginalFilename());
+			Files.copy(photoPath.getInputStream(), path);
 		} catch (FileAlreadyExistsException e) {
 			e.printStackTrace();
 			redirectAttributes.addFlashAttribute("isError",true);
 			return "redirect:list-photo";
 		}
 		
-		Photos photos = new Photos();
+		Photo photo = new Photo();
 		
-		photos.setAlbumId(albums.getId());
-		photos.setAccountId(loginUserDetails.getUserId());
-		photos.setPhoto(photo.getOriginalFilename());
+		photo.setAlbumId(albums.getId());
+		photo.setAccountId(loginUserDetails.getUserId());
+		photo.setPhoto(photoPath.getOriginalFilename());
 		
-		photoService.addPhoto(photos);
+		photoService.addPhoto(photo);
 	
 		return "redirect:list-photo";
 	}

@@ -9,16 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Groups;
+import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
-@SessionAttributes(value = {"groups"})
-/*↑@PathVariable後は不要状態※*/
 public class DeleteGroupController {
 	
 	@Autowired
@@ -30,18 +27,13 @@ public class DeleteGroupController {
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			) {
 		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		/*※このグループidは自身のアカウントIdが作成したかを確認*/
-		/*Groups groups = new Groups();
-		groups.setId(groupId);*/
-		
 		if (groupService.isCurrentUser(groupId) != loginUserDetails.getUserId()) {
 			throw new AccessDeniedException("不正なIDです");
 		}
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
-		Groups groupsData = groupService.getGroupsData(groupId);
-		model.addAttribute("groupsData",groupsData);
+		Group groupData = groupService.getGroupsData(groupId);
+		model.addAttribute("groupData",groupData);
 		
 		return "group/delete-group";
 	}

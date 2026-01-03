@@ -4,16 +4,16 @@
 	
 <mapper namespace="portfolio.PhotoSharingApp.repository.CommentMapper">
 
-	<resultMap type="portfolio.PhotoSharingApp.entity.Comments" id="CommentsTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Comment" id="CommentsTable">
 		<id column="id" property="id"/>
 		<result column="group_id" property="groupId"/>
 		<result column="comment" property="comment"/>
 		<result column="account_id" property="accountId"/>
 		<result column="create_date_time" property="createDateTime"/>
-		<association property="accounts" resultMap="accountsTable" columnPrefix="accounts_"/>
+		<association property="account" resultMap="accountsTable" columnPrefix="accounts_"/>
 	</resultMap>
 	
-	<resultMap type="portfolio.PhotoSharingApp.entity.Accounts" id="accountsTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Account" id="accountsTable">
 		<id column="id" property="id" />
 		<result column="user" property="username" />
 	</resultMap>
@@ -40,9 +40,9 @@
 			,comment
 			,account_id
 		)VALUES(
-			 #{comments.groupId}
-			,#{comments.comment}
-			,#{comments.accountId}
+			 #{comment.groupId}
+			,#{comment.comment}
+			,#{comment.accountId}
 		)
 	</insert>
 	

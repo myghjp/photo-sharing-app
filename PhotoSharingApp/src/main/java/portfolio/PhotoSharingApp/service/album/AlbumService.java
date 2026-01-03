@@ -2,19 +2,19 @@ package portfolio.PhotoSharingApp.service.album;
 
 import java.util.List;
 
-import portfolio.PhotoSharingApp.entity.Albums;
+import portfolio.PhotoSharingApp.entity.Album;
 
 public interface AlbumService {
 	
 	/*ーーーEntryAlbumーーー*/
 	
-	public void addAlbum(Albums albums);
+	public void addAlbum(Album album);
 	
 	/*ーーーSelectAlbumーーー*/
 	
-	public List<Albums> getAlbumList(int id);
+	public List<Album> getAlbumList(int id);
 	
-	public Albums getAlbum(int id);
+	public Album getAlbum(int id);
 	
 	/*ーーーDeleteAlbumーーー*/
 	

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import portfolio.PhotoSharingApp.entity.Groups;
+import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.repository.GroupMapper;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
@@ -18,13 +18,13 @@ public class GroupServiceImpl implements GroupService{
 	/*ーーーEntryGroupーーー*/
 	
 	@Override
-	public void entryGroup(Groups groups) {
-		groupMapper.insert(groups);
+	public void entryGroup(Group group) {
+		groupMapper.insert(group);
 	}
 	
 	@Override
-	public boolean isExistingGroupsData(Groups groups) {
-		if (groupMapper.selectGroupName(groups) == null) {
+	public boolean isExistingGroupsData(Group group) {
+		if (groupMapper.selectGroupName(group) == null) {
 			return false;
 		} else {
 			return true;
@@ -34,12 +34,12 @@ public class GroupServiceImpl implements GroupService{
 	/*ーーーSelectGroupーーー*/
 
 	@Override
-	public List<Groups> getGroupList(int id) {
+	public List<Group> getGroupList(int id) {
 		return groupMapper.selectMyGroups(id);
 	}
 	
 	@Override
-	public Groups getGroupsData(int id){
+	public Group getGroupsData(int id){
 		return groupMapper.select(id);
 	}
 	

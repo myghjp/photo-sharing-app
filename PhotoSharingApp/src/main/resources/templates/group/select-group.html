@@ -24,12 +24,12 @@
 						<div th:text="#{selectGroupMessage}" class="fs-5 mb-3"></div>
 					</div>
 					
-					<div th:each="list, status : ${groupsList}" class="form-check mb-3">
+					<div th:each="list, status : ${groupList}" class="form-check mb-3">
 						<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" th:checked="${status.index == 0}" class="form-check-input">
 						<label th:for="${list.id}" th:text="${list.groupName}" class="form-check-label"></label>
 					</div>
 					
-					<th:block th:unless="${groupsList.isEmpty()}">
+					<th:block th:unless="${groupList.isEmpty()}">
 						<div class="text-center">
 							<input type="submit" th:value="#{openGroupBtn}" class="btn btn-primary">
 						</div>

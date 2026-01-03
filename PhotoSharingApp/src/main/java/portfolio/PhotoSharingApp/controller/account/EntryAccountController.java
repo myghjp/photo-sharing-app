@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Accounts;
+import portfolio.PhotoSharingApp.entity.Account;
 import portfolio.PhotoSharingApp.form.account.EntryAccountForm;
-import portfolio.PhotoSharingApp.service.user.UserService;
+import portfolio.PhotoSharingApp.service.account.AccountService;
 
 @Controller
 public class EntryAccountController {
@@ -25,7 +25,7 @@ public class EntryAccountController {
 	private ModelMapper modelMapper;
 	
 	@Autowired
-	private UserService userService;
+	private AccountService accountService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -52,15 +52,15 @@ public class EntryAccountController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		Accounts accounts = modelMapper.map(entryAccountForm, Accounts.class);
+		Account account = modelMapper.map(entryAccountForm, Account.class);
 
 		/*登録済のアカウント名の重複確認*/
-		if (userService.isUserExisting(accounts)) {
+		if (accountService.isUserExisting(account)) {
 			bindingResult.rejectValue("username", "user.Alert");
 		}
 		
 		/*登録済のメールアドレスの重複確認*/
-		if (userService.isEmailAddressExisting(accounts)) {
+		if (accountService.isEmailAddressExisting(account)) {
 			bindingResult.rejectValue("emailAddress", "email_address.Alert");
 		}
 		
@@ -68,8 +68,8 @@ public class EntryAccountController {
 			return getEntryAccount(model,session,entryAccountForm);
 		}
 		
-		accounts.setPassword(passwordEncoder.encode(accounts.getPassword()));
-		userService.createAccount(accounts);
+		account.setPassword(passwordEncoder.encode(account.getPassword()));
+		accountService.createAccount(account);
 		
 		return "redirect:login";
 	}

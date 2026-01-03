@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.controller.members;
+package portfolio.PhotoSharingApp.controller.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
@@ -12,50 +12,46 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import portfolio.PhotoSharingApp.entity.Members;
+import portfolio.PhotoSharingApp.entity.Member;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
-import portfolio.PhotoSharingApp.service.members.MembersService;
+import portfolio.PhotoSharingApp.service.member.MemberService;
 
 @Controller
-@SessionAttributes(value = {"groups"})
-public class DeleteMembersController {
+@SessionAttributes(value = {"group"})
+public class DeleteMemberController {
 	
 	@Autowired
-	private MembersService membersService;
+	private MemberService memberService;
 	
-	@GetMapping("/delete-members/{id}")
+	@GetMapping("/delete-member/{id}")
 	public String getDeleteMembers(Model model
 			,@PathVariable("id")int memberId
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			) {
 		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+		Member member = new Member();
+		member.setId(memberId);
+		
 		/*※このグループの管理者でないならエラー*/
-		/*このmembersIdのグループの管理者Idでなければエラー*/
-		
-		Members members = new Members();
-		members.setId(memberId);
-		
-		if (membersService.isCurrentUser(members.getId()) != loginUserDetails.getUserId()) {
+		if (memberService.isCurrentUser(member.getId()) != loginUserDetails.getUserId()) {
 			throw new AccessDeniedException("不正なIDです");
 		}
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
 		/*グループ利用者IDとその名前を取得*/
-		Members membersData = membersService.getMemberName(members.getId());
-		model.addAttribute("membersData",membersData);
+		Member memberData = memberService.getMemberName(member.getId());
+		model.addAttribute("memberData",memberData);
 		
-		return "members/delete-members";
+		return "member/delete-member";
 	}
 	
-	@PostMapping("/delete-members")
+	@PostMapping("/delete-member")
 	public String postDeleteMembers(Model model
 			,@RequestParam("id")int memberId
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		membersService.deleteMember(memberId);
+		memberService.deleteMember(memberId);
 		
-		return "redirect:list-members";
+		return "redirect:list-member";
 	}
 }
