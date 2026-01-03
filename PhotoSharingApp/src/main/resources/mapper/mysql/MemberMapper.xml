@@ -8,15 +8,15 @@
 		<id column="id" property="id" />
 		<result column="group_id" property="groupId" />
 		<result column="account_id" property="accountId" />
-		<collection property="group" resultMap="GroupsTable" columnPrefix="groups_"/>
-		<collection property="account" resultMap="AccountsTable" columnPrefix="accounts_"/>
+		<association property="group" resultMap="GroupsTable" columnPrefix="groups_"/>
+		<association property="account" resultMap="AccountsTable" columnPrefix="accounts_"/>
 	</resultMap>
 	
 	<resultMap type="portfolio.PhotoSharingApp.entity.Group" id="GroupsTable">
 		<id column="id" property="id" />
 		<result column="group_name" property="groupName" />
 		<result column="account_id" property="accountId" />
-		<collection property="account" resultMap="AccountsTable" columnPrefix="accounts_"/>
+		<association property="account" resultMap="AccountsTable" columnPrefix="accounts_"/>
 	</resultMap>
 	
 	<resultMap type="portfolio.PhotoSharingApp.entity.Account" id="AccountsTable">
@@ -48,7 +48,7 @@
 	</select>
 	
 	<!-- メールアドレスを使用してアカウントIDを取得する -->
-	<select id="selectAccountId">
+	<select id="selectAccountId" resultType="Integer">>
 		select id
 		from accounts
 		where email_address = #{emailAddress}
@@ -83,7 +83,7 @@
 	</select>
 	
 	<!-- 管理者名を取得 -->
-	<select id="selectUserName">
+	<select id="selectUserName" resultType="String">
 		select user
 		from accounts
 		left join `groups`

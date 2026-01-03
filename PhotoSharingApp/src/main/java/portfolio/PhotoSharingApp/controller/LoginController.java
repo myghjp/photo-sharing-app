@@ -12,11 +12,7 @@ public class LoginController {
 		return "login";
 	}
 	
-	/*ーーやることーー*/
-	
-	/*xmlMapの書き直し*/
 	/*全体の引数名をわかりやすく統一*/
-	
 	/*staticからの画像削除を再確認*/
 	/*第二引数Messageの再設定*/
 	/*BootStrapの再確認*/

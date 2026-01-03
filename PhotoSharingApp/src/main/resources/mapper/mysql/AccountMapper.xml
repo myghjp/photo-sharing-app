@@ -35,14 +35,14 @@
 	</insert>
 	
 	<!-- アカウント名がデータベースに存在するかを確認● -->
-	<select id="selectByUser"><!-- getSelectUser(Name) -->
+	<select id="selectByUser" resultType="String">
 		select user
 		from accounts
 		where user = #{account.username}
 	</select>
 	
 	<!-- メールアドレスがデータベースに存在するかを確認 -->
-	<select id="getSelectEmailAddress">
+	<select id="getSelectEmailAddress" resultType="String">
 		select email_address
 		from accounts
 		where email_address = #{account.emailAddress}
