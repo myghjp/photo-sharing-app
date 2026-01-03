@@ -1,6 +1,7 @@
 package portfolio.PhotoSharingApp.controller.group;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +36,7 @@ public class DeleteGroupController {
 		groups.setId(groupId);*/
 		
 		if (groupService.isCurrentUser(groupId) != loginUserDetails.getUserId()) {
-			throw new IllegalArgumentException("不正なIDです");
+			throw new AccessDeniedException("不正なIDです");
 		}
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		

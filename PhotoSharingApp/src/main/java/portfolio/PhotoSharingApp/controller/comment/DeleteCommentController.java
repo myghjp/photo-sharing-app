@@ -1,6 +1,7 @@
 package portfolio.PhotoSharingApp.controller.comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +33,7 @@ public class DeleteCommentController {
 		comments.setId(commentId);
 		
 		if (commentService.isCurrentUser(comments.getId()) != loginUserDetails.getUserId()) {
-			throw new IllegalArgumentException("不正なIDです");
+			throw new AccessDeniedException("不正なIDです");
 		}
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		

@@ -19,14 +19,9 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ms-auto align-items-center">
 				<li class="nav-link">
-					<!--<a th:href="@{'/edit-account'}" class="btn btn-outline-success" th:text="#{editPassBtn}"></a>-->
 					<a th:href="@{/edit-account/{userId}(userId=${#authentication.principal.userId})}" th:text="#{updatePasswordBtn}" class="btn btn-outline-success"></a>
-					
-					<!--※th:ation無し-->
-					
 				</li>
 				<li class="nav-link">
-					<!--<a th:href="@{'/delete-account}" class="btn btn-outline-danger" th:text="#{deleteAccountBtn}"></a>-->
 					<a th:href="@{/delete-account/{userId}(userId=${#authentication.principal.userId})}" th:text="#{deleteAccountBtn}" class="btn btn-outline-danger"></a>
 				</li>
 				<li class="navbar-text mx-3">

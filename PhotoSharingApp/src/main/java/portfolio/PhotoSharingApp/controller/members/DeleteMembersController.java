@@ -1,6 +1,7 @@
 package portfolio.PhotoSharingApp.controller.members;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +37,7 @@ public class DeleteMembersController {
 		members.setId(memberId);
 		
 		if (membersService.isCurrentUser(members.getId()) != loginUserDetails.getUserId()) {
-			throw new IllegalArgumentException("不正なIDです");
+			throw new AccessDeniedException("不正なIDです");
 		}
 		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		

@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpSession;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -62,7 +63,7 @@ public class EditAccountController {
 		
 		/*idが自身のアカウントIdと同じかを確認*/
 		if (userService.isCurrentUser(accounts.getId()) != loginUserDetails.getUserId()) {
-			throw new IllegalArgumentException("不正なIDです");
+			throw new AccessDeniedException("不正なIDです");
 		}
 		
 		if (bindingResult.hasErrors()) {
