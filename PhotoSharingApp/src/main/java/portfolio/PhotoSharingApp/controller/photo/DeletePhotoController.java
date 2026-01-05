@@ -70,9 +70,8 @@ public class DeletePhotoController {
 
 		Path path = Path.of("src/main/resources/static/img/" + photoData.getPhoto());
 		Files.delete(path);
-
 		photoService.removePhoto(photoData.getId());
-
+      
 		return "redirect:list-photo";
 	}
 }
