@@ -18,7 +18,7 @@ public class GroupServiceImpl implements GroupService{
 	/*ーーーEntryGroupーーー*/
 	
 	@Override
-	public void entryGroup(Group group) {
+	public void createGroup(Group group) {
 		groupMapper.insert(group);
 	}
 	

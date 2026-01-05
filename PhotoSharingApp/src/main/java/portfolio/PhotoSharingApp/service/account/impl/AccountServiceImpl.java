@@ -48,7 +48,7 @@ public class AccountServiceImpl implements AccountService{
 	/*ーーーEditAccountーーー*/
 	
 	@Override
-	public void editAccount(Account account) {
+	public void updateAccount(Account account) {
 		accountMapper.update(account);
 	}
 	

@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 import lombok.Data;
 
 @Data
-public class EntryAccountForm {
+public class CreateAccountForm {
 	
 	@NotBlank
 	@Length(max = 50)

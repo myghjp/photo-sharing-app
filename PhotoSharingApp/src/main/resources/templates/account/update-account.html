@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	<title th:text="#{editAccountPage}"></title>
+	<title th:text="#{updateAccountPage}"></title>
 </head>
 <body>
 	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
@@ -17,7 +17,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-5 mx-auto">
-				<form method="post" th:action="@{/edit-account}" th:object="${editAccountForm}" class="text-center">
+				<form method="post" th:action="@{/update-account}" th:object="${updateAccountForm}" class="text-center">
 				
 			    	<div th:text="#{updatePasswordAlert}" class="mb-3 fs-5"></div>
 			    	

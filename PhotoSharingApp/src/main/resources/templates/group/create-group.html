@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	<title th:text="#{entryGroupPage}"></title>
+	<title th:text="#{createGroupPage}"></title>
 </head>
 <body>
 	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
@@ -17,7 +17,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-5 mx-auto">
-				<form method="post" th:action="@{/entry-group}" th:object="${entryGroupForm}" class="text-center">
+				<form method="post" th:action="@{/create-group}" th:object="${createGroupForm}" class="text-center">
 					
 					<div th:text="#{createGroupMessage}" class="mb-3 fs-5"></div>
 					

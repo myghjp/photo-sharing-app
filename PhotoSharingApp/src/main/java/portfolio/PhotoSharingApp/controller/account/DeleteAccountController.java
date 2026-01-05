@@ -25,7 +25,7 @@ public class DeleteAccountController {
 
 	@GetMapping("/delete-account/{userId}")
 	public String getDeleteAccount(Model model
-			,@PathVariable("accountId")int id
+			,@PathVariable("userId")int id
 			,boolean error
 			) {
 		
@@ -46,6 +46,8 @@ public class DeleteAccountController {
 		Account account = new Account();
 		account.setId(id);
 		
+		/*↓getに書く*/
+		
 		/*※idが自身のアカウントIdと同じかを確認*/
 		if (accountService.isCurrentAccount(account.getId(),loginUserDetails.getAccountId())) {
 			throw new AccessDeniedException("不正なIDです");
@@ -55,7 +57,6 @@ public class DeleteAccountController {
 		if (accountService.isCreateGroupExisting(account.getId())) {
 			return getDeleteAccount(model,id,true);
 		}
-		
 		
 		accountService.removeAccount(account.getId());
 		

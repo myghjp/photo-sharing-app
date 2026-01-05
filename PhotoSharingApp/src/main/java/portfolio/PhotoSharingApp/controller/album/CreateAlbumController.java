@@ -14,12 +14,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Album;
 import portfolio.PhotoSharingApp.entity.Group;
-import portfolio.PhotoSharingApp.form.album.EntryAlbumForm;
+import portfolio.PhotoSharingApp.form.album.CreateAlbumForm;
 import portfolio.PhotoSharingApp.service.album.AlbumService;
 
 @Controller
 @SessionAttributes(value = {"group"})
-public class EntryAlbumController {
+public class CreateAlbumController {
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -27,29 +27,29 @@ public class EntryAlbumController {
 	@Autowired
 	private AlbumService albumService;
 	
-	@GetMapping("/entry-album")
-	public String getEntryAlbum(Model model
-			,EntryAlbumForm entryAlbumForm
+	@GetMapping("/create-album")
+	public String getCreateAlbum(Model model
+			,CreateAlbumForm createAlbumForm
 			) {
 		
-		model.addAttribute("entryAlbumForm", entryAlbumForm);
+		model.addAttribute("createAlbumForm", createAlbumForm);
 			
-		return "album/entry-album";
+		return "album/create-album";
 	}
 	
-	@PostMapping("/entry-album")
-	public String postEntryAlbum(Model model
+	@PostMapping("/create-album")
+	public String postCreateAlbum(Model model
 			,Group group
-			,@ModelAttribute @Validated EntryAlbumForm entryAlbumForm
+			,@ModelAttribute @Validated CreateAlbumForm createAlbumForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) {
 		
 		if (bindingResult.hasErrors()) {
-			return getEntryAlbum(model,entryAlbumForm);
+			return getCreateAlbum(model,createAlbumForm);
 		}
 		
-		Album album = modelMapper.map(entryAlbumForm,Album.class);
+		Album album = modelMapper.map(createAlbumForm,Album.class);
 		
 		album.setGroupId(group.getId());
 		

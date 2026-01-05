@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import lombok.Data;
 
 @Data
-public class EntryGroupForm {
+public class CreateGroupForm {
 	
 	@NotBlank
 	@Length(max = 50)

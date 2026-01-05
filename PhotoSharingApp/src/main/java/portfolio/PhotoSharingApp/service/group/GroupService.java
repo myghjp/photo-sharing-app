@@ -8,7 +8,7 @@ public interface GroupService {
 	
 	/*ーーーEntryGroupーーー*/
 	
-	public void entryGroup(Group group);
+	public void createGroup(Group group);
 	
 	public boolean isExistingGroup(Group group);
 	

@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Group;
-import portfolio.PhotoSharingApp.form.group.EntryGroupForm;
+import portfolio.PhotoSharingApp.form.group.CreateGroupForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
 
 @Controller
-public class EntryGroupController {
+public class CreateGroupController {
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -26,25 +26,25 @@ public class EntryGroupController {
 	@Autowired
 	private GroupService groupService;
 	
-	@GetMapping("/entry-group")
-	public String getEntryGroup(Model model
-			,EntryGroupForm entryGroupForm
+	@GetMapping("/create-group")
+	public String getCreateGroup(Model model
+			,CreateGroupForm createGroupForm
 			) {
 		
-		model.addAttribute("entryGroupForm", entryGroupForm);
+		model.addAttribute("createGroupForm", createGroupForm);
 		
-		return "group/entry-group";
+		return "group/create-group";
 	}
 
-	@PostMapping("/entry-group")
-	public String postEntryGroup(Model model
+	@PostMapping("/create-group")
+	public String postCreateGroup(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@ModelAttribute @Validated EntryGroupForm entryGroupForm
+			,@ModelAttribute @Validated CreateGroupForm createGroupForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		Group group = modelMapper.map(entryGroupForm, Group.class);
+		Group group = modelMapper.map(createGroupForm, Group.class);
 
 		/*登録済のグループ名の重複確認*/
 		if (groupService.isExistingGroup(group)){
@@ -52,11 +52,11 @@ public class EntryGroupController {
 		}
 		
 		if (bindingResult.hasErrors()) {
-			return getEntryGroup(model, entryGroupForm);
+			return getCreateGroup(model, createGroupForm);
 		}
 		
 		group.setAccountId(loginUserDetails.getAccountId());
-		groupService.entryGroup(group);
+		groupService.createGroup(group);
 		
 		return "redirect:select-group";
 	}

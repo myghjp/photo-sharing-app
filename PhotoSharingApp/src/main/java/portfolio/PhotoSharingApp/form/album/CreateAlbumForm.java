@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import lombok.Data;
 
 @Data
-public class EntryAlbumForm {
+public class CreateAlbumForm {
 	
 	@NotBlank
 	@Length(max = 50)

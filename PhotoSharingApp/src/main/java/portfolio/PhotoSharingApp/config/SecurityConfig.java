@@ -31,7 +31,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(authorize -> authorize
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 				.requestMatchers(mvc.pattern("/login")).permitAll()
-				.requestMatchers(mvc.pattern("/entry-account")).permitAll()
+				.requestMatchers(mvc.pattern("/create-account")).permitAll()
 				.anyRequest().authenticated()
 			);
 

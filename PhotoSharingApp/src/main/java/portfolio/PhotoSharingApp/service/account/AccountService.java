@@ -18,7 +18,7 @@ public interface AccountService {
 	
 	/*ーーーEditAccountーーー*/
 	
-	public void editAccount(Account account);
+	public void updateAccount(Account account);
 	
 	/*ーーーDeleteAccountーーー*/
 	

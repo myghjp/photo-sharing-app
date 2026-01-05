@@ -6,7 +6,9 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
-public class EditAccountForm {
+public class UpdateAccountForm {
+	
+	private Integer id;
 	
 	@NotBlank
 	@Pattern(regexp = "^[a-zA-Z0-9]{8,12}$")

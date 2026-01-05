@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	<title th:text="#{entryAccountPage}"></title>
+	<title th:text="#{createAccountPage}"></title>
 </head>
 <body>
 	<nav layout:replace="~{common/header::header}"></nav>
@@ -16,7 +16,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-5 mx-auto">
-				<form method="post" th:action="@{/entry-account}" th:object="${entryAccountForm}">
+				<form method="post" th:action="@{/create-account}" th:object="${createAccountForm}">
 				    <div class="row">
 				        <label for="username" th:text="#{username}" class="col-sm-4 col-form-label"></label>
 				        <div class="col-sm-8 mb-3">

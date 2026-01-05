@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Account;
-import portfolio.PhotoSharingApp.form.account.EntryAccountForm;
+import portfolio.PhotoSharingApp.form.account.CreateAccountForm;
 import portfolio.PhotoSharingApp.service.account.AccountService;
 
 @Controller
-public class EntryAccountController {
+public class CreateAccountController {
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -30,28 +30,28 @@ public class EntryAccountController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@GetMapping("/entry-account")
-	public String getEntryAccount(Model model
+	@GetMapping("/create-account")
+	public String getCreateAccount(Model model
 			,HttpSession session
-			,EntryAccountForm entryAccountForm
+			,CreateAccountForm createAccountForm
 			) {
 		
-		model.addAttribute("entryAccountForm", entryAccountForm);
+		model.addAttribute("createAccountForm", createAccountForm);
 		
 		session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 		
-		return "account/entry-account";
+		return "account/create-account";
 	}
 	
-	@PostMapping("/entry-account")
-	public String postEntryAcount(Model model
+	@PostMapping("/create-account")
+	public String postCreateAcount(Model model
 			,HttpSession session
-			,@ModelAttribute @Validated EntryAccountForm entryAccountForm
+			,@ModelAttribute @Validated CreateAccountForm createAccountForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		Account account = modelMapper.map(entryAccountForm, Account.class);
+		Account account = modelMapper.map(createAccountForm, Account.class);
 
 		/*登録済のアカウント名の重複確認*/
 		if (accountService.isUsernameExisting(account)) {
@@ -64,7 +64,7 @@ public class EntryAccountController {
 		}
 		
 		if (bindingResult.hasErrors()) {
-			return getEntryAccount(model,session,entryAccountForm);
+			return getCreateAccount(model,session,createAccountForm);
 		}
 		
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
