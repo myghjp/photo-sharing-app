@@ -27,15 +27,13 @@ public class DeleteCommentController {
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			) {
 		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
-		/*※コメント内容が自身が登録したものかを確認*/
 		Comment comment = new Comment();
 		comment.setId(id);
 		
-		if (commentService.isCurrentUser(comment.getId()) != loginUserDetails.getAccountId()) {
+		/*コメント内容が自身が登録したものかを確認*/
+		if (commentService.isCurrentAccount(comment.getId(),loginUserDetails.getAccountId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
 		/*idとコメントを取得*/
 		Comment commentData = commentService.getComment(comment.getId());

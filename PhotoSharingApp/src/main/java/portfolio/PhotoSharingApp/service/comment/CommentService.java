@@ -19,5 +19,5 @@ public interface CommentService {
 	public void deleteComment(int id);
 	
 	/*比較を作成*/
-	public int isCurrentUser(int id);
+	public boolean isCurrentAccount(int id,int loginId);
 }

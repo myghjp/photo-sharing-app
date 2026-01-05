@@ -18,11 +18,11 @@ public interface CommentMapper {
 	
 	/*ーーーDeleteCommentーーー*/
 	
-	public Comment select(@Param("id")Integer id);
+	public Comment selectById(@Param("id")Integer id);
 
 	public void delete(@Param("id")Integer id);
 	
 	/*比較を作成*/
-	public Integer selectUserId(@Param("id") Integer id);
+	public Integer selectByAccountId(@Param("id") Integer id);
 	
 }

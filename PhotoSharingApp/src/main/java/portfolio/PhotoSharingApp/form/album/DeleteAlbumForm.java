@@ -6,5 +6,4 @@ import lombok.Data;
 public class DeleteAlbumForm {
 	
 	private Integer id;
-
 }

@@ -50,7 +50,7 @@
 	<!-- ーーーDeletePhotoーーー -->
 	
 	<!-- このidと画像パス情報を取得 -->
-	<select id="select" resultMap="PhotosTable">
+	<select id="selectPhoto" resultMap="PhotosTable">
 		select id,photo
 		from photos
 		where id = #{id}
@@ -63,13 +63,13 @@
 	
 	
 	<!-- バリデーション作成中-->
-	<select id="selectByAlbumId" resultType="Integer">
+	<select id="existsByAlbumId" resultType="Integer">
 		select album_id
 		from photos
 		where id = #{id}
 	</select>
 	
-	<select id="selectByAccountId" resultType="Integer">
+	<select id="existsByAccountId" resultType="Integer">
 		select account_id
 		from photos
 		where id = #{id}

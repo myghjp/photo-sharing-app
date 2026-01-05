@@ -25,8 +25,6 @@
 								th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" 
 								class="text-danger">
 							</span>
-							<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-							<!--↑sessionは破棄されない-->
 						</div>
 					</th:block>
 						
@@ -46,7 +44,6 @@
 						<input type="submit" th:value="#{loginBtn}" class="btn btn-primary mx-3 my-2">
 						<a th:href="@{'/entry-account'}" th:text="#{createAccountBtn}" class="btn btn-success mx-3 my-2" ></a>
 					</div>
-					
 				</form>
 			</div>
 		</div>

@@ -26,7 +26,7 @@
 	<!-- ーーーSelectAlbumーーー -->
 	
 	<!-- このグループ内のアルバムIDとアルバム名を取得 -->
-	<select id="selectAlbumList" resultMap="AlbumsTable">
+	<select id="selectGroupAlbum" resultMap="AlbumsTable">
 		select albums.id,album_name
 		from albums
 		left join `groups`
@@ -37,7 +37,7 @@
 	<!-- アルバムIDとアルバム名を取得 -->
 	
 	<!-- ※deleteAlbumでも使用中 -->
-	<select id="select" resultMap="AlbumsTable">
+	<select id="selectAlbum" resultMap="AlbumsTable">
 		select id,album_name
 		from albums
 		where id = #{id}
@@ -52,7 +52,7 @@
 	</delete>
 	
 	<!-- 比較を作成-->
-	<select id="selectUserId" resultType="Integer">
+	<select id="existsAlbumByAccountId" resultType="Integer">
 		select groups.account_id
 		from albums
 			left join `groups`

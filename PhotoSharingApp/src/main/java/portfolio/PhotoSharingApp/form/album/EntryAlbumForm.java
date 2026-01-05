@@ -1,8 +1,9 @@
 package portfolio.PhotoSharingApp.form.album;
 
+import jakarta.validation.constraints.NotBlank;
+
 import org.hibernate.validator.constraints.Length;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data

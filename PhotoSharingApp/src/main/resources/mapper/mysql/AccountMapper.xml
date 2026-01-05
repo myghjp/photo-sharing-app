@@ -11,10 +11,10 @@
 		<result column="email_address" property="emailAddress" />
 	</resultMap>
 	
-	<!-- ーーーloginーーー-->
+	<!-- ーーーLoginーーー-->
 	
-	<!-- アカウント名が存在するかを確認● -->
-	<select id="getSelectUser" resultMap="accountsTable">
+	<!-- アカウント名が存在するかを確認 -->
+	<select id="selectByUsername" resultMap="accountsTable">
 		select *
 		from accounts 
 		where user = #{username}
@@ -34,15 +34,15 @@
 		)
 	</insert>
 	
-	<!-- アカウント名がデータベースに存在するかを確認● -->
-	<select id="selectByUser" resultType="String">
+	<!-- アカウント名がデータベースに存在するかを確認 -->
+	<select id="existsByUsername" resultType="String">
 		select user
 		from accounts
 		where user = #{account.username}
 	</select>
 	
 	<!-- メールアドレスがデータベースに存在するかを確認 -->
-	<select id="getSelectEmailAddress" resultType="String">
+	<select id="existsByEmailAddress" resultType="String">
 		select email_address
 		from accounts
 		where email_address = #{account.emailAddress}
@@ -58,7 +58,7 @@
 	
 	<!-- ーーーDeleteAccountーーー -->
 	
-	<select id="groupAdmin" resultType="Integer">
+	<select id="existsByAccountId" resultType="Integer">
 		select account_id
 		from `groups`
 		where account_id = #{id}
@@ -71,7 +71,7 @@
 	</delete>
 	
 	<!-- 比較を作成 -->
-	<select id="selectUserId" resultType="Integer">
+	<select id="existsGroupByAccountId" resultType="Integer">
 		select id
 		from accounts
 		where id = #{id}

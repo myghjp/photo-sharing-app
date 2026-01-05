@@ -10,18 +10,18 @@ public interface GroupService {
 	
 	public void entryGroup(Group group);
 	
-	public boolean isExistingGroupsData(Group group);
+	public boolean isExistingGroup(Group group);
 	
 	/*ーーーSelectGroupーーー*/
 	
 	public List<Group> getGroupList(int id);
 	
-	public Group getGroupsData(int id);
+	public Group getGroup(int id);
 	
 	/*ーーーDeleteGroupーーー*/
 	
 	public void deleteGroup(int id);
 	
 	/*比較を作成*/
-	public int isCurrentUser(int id);
+	public boolean isCurrentAccount(int GroupId,int loginId);
 }

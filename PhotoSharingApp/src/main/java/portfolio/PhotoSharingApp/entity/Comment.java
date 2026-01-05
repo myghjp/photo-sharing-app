@@ -8,9 +8,9 @@ import lombok.Data;
 public class Comment {
 	
 	private Integer id;
-	private Integer groupId;/*グループテーブルのID*/
+	private Integer groupId;
 	private String comment;
-	private Integer accountId;/*アカウントテーブルのID*/
+	private Integer accountId;
 	private Date createDateTime;
 	
 	private Account account;

@@ -8,5 +8,4 @@ public class SelectGroupForm{
 	private Integer id;
 	private String groupName;
 	private Integer accountId;
-	
 }

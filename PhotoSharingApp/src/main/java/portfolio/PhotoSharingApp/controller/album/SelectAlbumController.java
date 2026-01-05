@@ -64,11 +64,7 @@ public class SelectAlbumController {
 		Album album = albumService.getAlbum(id);
 		
 		redirectAttributes.addFlashAttribute("album",album);
-		/*リダイレクト後の@ModelAttributeでset
-		 * 書いたほうがいい
-		 * */
 		
-
 		return "redirect:list-photo";
 	}
 }

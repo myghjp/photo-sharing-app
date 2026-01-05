@@ -12,7 +12,7 @@ public interface AccountService {
 
 	public void createAccount(Account account);
 	
-	public boolean isUserExisting(Account Account);
+	public boolean isUsernameExisting(Account Account);
 	
 	public boolean isEmailAddressExisting(Account Account);
 	
@@ -27,6 +27,6 @@ public interface AccountService {
 	public void removeAccount(int id);
 	
 	/*ーーー比較ーーー*/
-	public int isCurrentUser(int id);
+	public boolean isCurrentAccount(int accountId,int loginId);
 	
 }

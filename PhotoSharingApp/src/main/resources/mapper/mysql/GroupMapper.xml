@@ -23,7 +23,7 @@
 	</insert>
 	
 	<!-- データベースに登録済のグループ名と重複していないか確認 -->
-	<select id="selectGroupName" resultType="String">
+	<select id="existsByGroupName" resultType="String">
 		select group_name
 		from `groups`
 		where group_name = #{group.groupName}
@@ -41,7 +41,7 @@
 		or groups_members.account_id = #{id}
 	</select>
 	
-	<select id="select" resultMap="GroupsTable">
+	<select id="selectById" resultMap="GroupsTable">
 		select *
 		from `groups`
 		where id = #{id}
@@ -55,9 +55,10 @@
 	</delete>
 	
 	<!-- 比較を作成 -->
-	<select id="selectUserId" resultType="Integer">
+	<select id="existsGroupByAccountId" resultType="Integer">
 		select account_id
 		from `groups`
 		where id = #{id}
 	</select>
+	
 </mapper>

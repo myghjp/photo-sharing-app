@@ -27,8 +27,6 @@ public class HomeGroupController {
 			model.addAttribute("isAdmin",true);
 		}
 		
-		/*model.addAttribute("accountId",loginUserDetails.getAccountId());*/
-		
 		return "group/home-group";
 		
 	}

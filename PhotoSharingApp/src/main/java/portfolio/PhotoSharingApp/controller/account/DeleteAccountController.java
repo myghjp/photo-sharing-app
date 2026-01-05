@@ -26,12 +26,11 @@ public class DeleteAccountController {
 	@GetMapping("/delete-account/{userId}")
 	public String getDeleteAccount(Model model
 			,@PathVariable("accountId")int id
-			,boolean bool
+			,boolean error
 			) {
 		
-		/*※boolean引数名*/
 		model.addAttribute("id",id);
-		model.addAttribute("isError",bool);
+		model.addAttribute("isError",error);
 
 		return "account/delete-account";
 	}
@@ -48,7 +47,7 @@ public class DeleteAccountController {
 		account.setId(id);
 		
 		/*※idが自身のアカウントIdと同じかを確認*/
-		if (accountService.isCurrentUser(account.getId()) != loginUserDetails.getAccountId()) {
+		if (accountService.isCurrentAccount(account.getId(),loginUserDetails.getAccountId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		

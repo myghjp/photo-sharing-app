@@ -31,7 +31,7 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Override
 	public Comment getComment(int id) {
-		return commentMapper.select(id);
+		return commentMapper.selectById(id);
 	}
 	
 	@Override
@@ -41,7 +41,11 @@ public class CommentServiceImpl implements CommentService{
 	
 	/*比較を作成*/
 	@Override
-	public int isCurrentUser(int id) {
-		return commentMapper.selectUserId(id);
+	public boolean isCurrentAccount(int commentId,int loginId) {
+		if ( commentMapper.selectByAccountId(commentId) == loginId) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

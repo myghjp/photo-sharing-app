@@ -28,11 +28,11 @@ public class DeleteGroupController {
 			) {
 		
 		/*※このグループidは自身のアカウントIdが作成したかを確認*/
-		if (groupService.isCurrentUser(id) != loginUserDetails.getAccountId()) {
+		if (groupService.isCurrentAccount(id,loginUserDetails.getAccountId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
-		Group groupData = groupService.getGroupsData(id);
+		Group groupData = groupService.getGroup(id);
 		model.addAttribute("groupData",groupData);
 		
 		return "group/delete-group";

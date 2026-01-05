@@ -37,9 +37,6 @@ public class DeletePhotoController {
 			,@SessionAttribute("album")Album album
 			,@SessionAttribute("group")Group group
 			) {
-		
-		/*↓わかりやすくする*/
-		/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
 
 		/*この写真のアルバムはこのグループのものでないなら*/
 		if (photoService.isCurrentAlbum(id, album.getId())) {
@@ -47,10 +44,10 @@ public class DeletePhotoController {
 		} 
 		
 		/*自身がこのアルバムのグループの管理者でないなら*/
-		if (photoService.isC(group.getAccountId(),loginUserDetails.getAccountId())) {
+		if (photoService.isCurrentGroupAdmin(group.getAccountId(),loginUserDetails.getAccountId())) {
 			
 			/*この写真のアカウントIDと一致しないなら*/
-			if (photoService.isB(id,loginUserDetails.getAccountId())){
+			if (photoService.isCurrentPhoto(id,loginUserDetails.getAccountId())){
 				throw new AccessDeniedException("アクセス権無し(自身の写真ではない)");
 			} 
 			
@@ -59,8 +56,6 @@ public class DeletePhotoController {
 		/*このidと画像パス情報を取得*/
 		Photo photoData = photoService.getPhoto(id);
 		model.addAttribute("photoData",photoData);
-		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
 		return "photo/delete-photo";
 	}

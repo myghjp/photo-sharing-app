@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public boolean isExistingAccountId(Account account) {
-		if (memberMapper.selectEmailAddress(account) != null) {
+		if (memberMapper.existsByEmailAddress(account) != null) {
 			return false;
 		} else {
 			return true;
@@ -30,7 +30,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public boolean isExistingMembersId(Account account,Group group) {
-		if (memberMapper.selectMembersId(account,group) == null) {
+		if (memberMapper.existsMembersByEmailAddress(account,group) == null) {
 			return false;
 		} else {
 			return true;
@@ -39,7 +39,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public int selectAccountId(String emailAddress) {
-		return memberMapper.selectAccountId(emailAddress);
+		return memberMapper.selectAccountById(emailAddress);
 	}
 	
 	@Override
@@ -51,20 +51,20 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public List<Member> getMembersList(int groupId){
-		return memberMapper.selectMembersItems(groupId);
+		return memberMapper.selectMyGroupsMembers(groupId);
 	}
 	
 	@Override
 	public String getAdminName(int id) {
-		return memberMapper.selectUserName(id);
-	}
-	
-	@Override
-	public Member getMemberName(int id) {
-		return memberMapper.selectMembersItems2(id);
+		return memberMapper.selectAccountByUsername(id);
 	}
 	
 	/*ーーーDeleteMembersーーー*/
+	
+	@Override
+	public Member getMemberName(int id) {
+		return memberMapper.selectByMembersId(id);
+	}
 	
 	@Override
 	public void deleteMember(int id) {
@@ -73,7 +73,11 @@ public class MemberServiceImpl implements MemberService{
 	
 	/*比較を作成*/
 	@Override
-	public int isCurrentUser(int id) {
-		return memberMapper.selectUserId(id);
+	public boolean isCurrentAccount(int memberId,int loginId) {
+		if (memberMapper.existsGroupByAccountId(memberId) == loginId) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

@@ -30,16 +30,13 @@ public class DeleteAlbumController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
-		/*※このアルバムidが自身が作成したのかを確認*/
 		Album album = new Album();
 		album.setId(id);
 		
-		if (albumService.isCurrentUser(album.getId()) != loginUserDetails.getAccountId()) {
+		/*※このアルバムidが自身が作成したのかを確認*/
+		if (albumService.isCurrentAccount(album.getId(),loginUserDetails.getAccountId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
-		
 		
 		/*アルバムIDとアルバム名を取得*/
 		Album albumData = albumService.getAlbum(album.getId());

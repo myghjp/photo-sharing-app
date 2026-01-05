@@ -26,12 +26,12 @@ public class AlbumServiceImpl implements AlbumService{
 	
 	@Override
 	public List<Album> getAlbumList(int id) {
-		return albumMapper.selectAlbumList(id);
+		return albumMapper.selectGroupAlbum(id);
 	}
 	
 	@Override
 	public Album getAlbum(int id) {
-		return albumMapper.select(id);
+		return albumMapper.selectAlbum(id);
 	}
 	
 	/*ーーーDeleteAlbumーーー*/
@@ -43,8 +43,12 @@ public class AlbumServiceImpl implements AlbumService{
 	
 	/*比較を作成*/
 	@Override
-	public int isCurrentUser(int id) {
-		return albumMapper.selectUserId(id);
+	public boolean isCurrentAccount(int albumId,int loginId) {
+		if (albumMapper.existsAlbumByAccountId(albumId) == loginId) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 }

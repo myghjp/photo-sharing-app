@@ -23,8 +23,8 @@ public class GroupServiceImpl implements GroupService{
 	}
 	
 	@Override
-	public boolean isExistingGroupsData(Group group) {
-		if (groupMapper.selectGroupName(group) == null) {
+	public boolean isExistingGroup(Group group) {
+		if (groupMapper.existsByGroupName(group) == null) {
 			return false;
 		} else {
 			return true;
@@ -39,8 +39,8 @@ public class GroupServiceImpl implements GroupService{
 	}
 	
 	@Override
-	public Group getGroupsData(int id){
-		return groupMapper.select(id);
+	public Group getGroup(int id){
+		return groupMapper.selectById(id);
 	}
 	
 	/*ーーーDeleteGroupーーー*/
@@ -52,7 +52,11 @@ public class GroupServiceImpl implements GroupService{
 	
 	/*比較を作成*/
 	@Override
-	public int isCurrentUser(int id) {
-		return groupMapper.selectUserId(id);
+	public boolean isCurrentAccount(int GroupId,int loginId) {
+		if (groupMapper.existsGroupByAccountId(GroupId) == loginId) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

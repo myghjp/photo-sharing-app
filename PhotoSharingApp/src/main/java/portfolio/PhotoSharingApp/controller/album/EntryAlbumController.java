@@ -32,7 +32,7 @@ public class EntryAlbumController {
 			,EntryAlbumForm entryAlbumForm
 			) {
 		
-			model.addAttribute("entryAlbumForm", entryAlbumForm);		
+		model.addAttribute("entryAlbumForm", entryAlbumForm);
 			
 		return "album/entry-album";
 	}

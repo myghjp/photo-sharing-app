@@ -17,7 +17,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public Account getLoginAccount(String user) {
-		return accountMapper.getSelectUser(user);
+		return accountMapper.selectByUsername(user);
 	}
 	
 	/*ーーーEntryAccountーーー*/
@@ -28,8 +28,8 @@ public class AccountServiceImpl implements AccountService{
 	}
 	
 	@Override
-	public boolean isUserExisting(Account account) {
-		if (accountMapper.selectByUser(account) == null) {
+	public boolean isUsernameExisting(Account account) {
+		if (accountMapper.existsByUsername(account) == null) {
 			return false;
 		} else {
 			return true;
@@ -38,7 +38,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public boolean isEmailAddressExisting(Account account) {
-		if (accountMapper.getSelectEmailAddress(account) == null) {
+		if (accountMapper.existsByEmailAddress(account) == null) {
 			return false;
 		} else {
 			return true;
@@ -56,7 +56,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public boolean isCreateGroupExisting(int id) {
-		if (accountMapper.groupAdmin(id) == null) {
+		if (accountMapper.existsByAccountId(id) == null) {
 			return false;
 		} else {
 			return true;
@@ -69,8 +69,13 @@ public class AccountServiceImpl implements AccountService{
 	}
 	
 	/*ーーー比較ーーー*/
+	
 	@Override
-	public int isCurrentUser(int id) {
-		return accountMapper.selectUserId(id);
+	public boolean isCurrentAccount(int accountId,int loginId) {
+		if (accountMapper.existsGroupByAccountId(accountId) == loginId){
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

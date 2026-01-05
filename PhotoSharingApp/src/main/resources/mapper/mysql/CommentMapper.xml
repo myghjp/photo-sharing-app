@@ -49,7 +49,7 @@
 	<!-- ーーーDeleteCommentーーー -->
 	
 	<!-- このidとコメントを取得 -->
-	<select id="select" resultMap="CommentsTable">
+	<select id="selectById" resultMap="CommentsTable">
 		select id,comment
 		from comments
 		where id = #{id}
@@ -61,7 +61,7 @@
 	</delete>
 	
 	<!-- 比較を作成 -->
-	<select id="selectUserId" resultType="Integer">
+	<select id="selectByAccountId" resultType="Integer">
 		select account_id
 		from comments
 		where id = #{id}

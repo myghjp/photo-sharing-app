@@ -45,9 +45,7 @@ public class ListPhotoController {
 			model.addAttribute("isAdmin",true);
 		}
 		
-		/*管理者以外は自身のボタンだけを表示*/
 		model.addAttribute("username", loginUserDetails.getUsername());
-		
 		
 		/*photosテーブルの情報とアカウント名を取得*/
 		List<Photo> photoList = photoService.getphotoList(album.getId());

@@ -13,7 +13,6 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
 @EnableWebSecurity
-/*@EnableMethodSecurity*/
 public class SecurityConfig {
 	
 	@Bean
@@ -31,10 +30,8 @@ public class SecurityConfig {
 
 		http.authorizeHttpRequests(authorize -> authorize
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-				/*↓複数の画面を許可*/
 				.requestMatchers(mvc.pattern("/login")).permitAll()
 				.requestMatchers(mvc.pattern("/entry-account")).permitAll()
-				/*↓それ以外は認証必要*/
 				.anyRequest().authenticated()
 			);
 

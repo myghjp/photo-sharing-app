@@ -18,15 +18,15 @@ public interface PhotoMapper {
 	
 	/*ーーーDeletePhotoーーー*/
 	
-	public Photo select(@Param("id")Integer id);
+	public Photo selectPhoto(@Param("id")Integer id);
 	
 	public void delete(@Param("id")Integer id);
 	
 	
 	/*バリデーション作成中*/
-	public Integer selectByAlbumId(@Param("id") Integer id);
+	public Integer existsByAlbumId(@Param("id") Integer id);
 	
-	public Integer selectByAccountId(@Param("id")Integer id);
+	public Integer existsByAccountId(@Param("id")Integer id);
 	
 	
 	

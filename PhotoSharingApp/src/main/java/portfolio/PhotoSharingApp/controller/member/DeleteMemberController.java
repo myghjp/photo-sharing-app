@@ -32,8 +32,8 @@ public class DeleteMemberController {
 		Member member = new Member();
 		member.setId(id);
 		
-		/*※このグループの管理者でないならエラー*/
-		if (memberService.isCurrentUser(member.getId()) != loginUserDetails.getAccountId()) {
+		/*このグループの管理者でないならエラー*/
+		if (memberService.isCurrentAccount(member.getId(),loginUserDetails.getAccountId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		

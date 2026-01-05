@@ -29,7 +29,7 @@
 	<!-- ーーーAddMembersーーー -->
 	
 	<!-- メールアドレスが存在するかを確認 -->
-	<select id="selectEmailAddress" resultType="String">
+	<select id="existsByEmailAddress" resultType="String">
 		select email_address
 		from accounts
 		where email_address = #{account.emailAddress}
@@ -37,7 +37,7 @@
 	
 	<!-- このメールアドレスは、このグループ内にいるメンバや管理者のアドレスが
 	データベースで重複していないかを確認 -->
-	<select id="selectMembersId" resultType="Integer">
+	<select id="existsMembersByEmailAddress" resultType="Integer">
 		select groups_members.id
 		from groups_members
 			left join accounts
@@ -48,7 +48,7 @@
 	</select>
 	
 	<!-- メールアドレスを使用してアカウントIDを取得する -->
-	<select id="selectAccountId" resultType="Integer">>
+	<select id="selectAccountById" resultType="Integer">>
 		select id
 		from accounts
 		where email_address = #{emailAddress}
@@ -67,8 +67,8 @@
 	
 	<!-- ーーーListMembersーーー -->
 	
-	<!-- このグループの利用者一覧を取得する● -->
-	<select id="selectMembersItems" resultMap="MembersTable">
+	<!-- このグループの利用者一覧を取得する -->
+	<select id="selectMyGroupsMembers" resultMap="MembersTable">
 		select groups_members.id
 				,groups.group_name as groups_group_name
 				,accounts.user as accounts_user
@@ -83,7 +83,7 @@
 	</select>
 	
 	<!-- 管理者名を取得 -->
-	<select id="selectUserName" resultType="String">
+	<select id="selectAccountByUsername" resultType="String">
 		select user
 		from accounts
 		left join `groups`
@@ -91,8 +91,10 @@
 		where groups.id = #{id}
 	</select>
 	
+	<!-- ーーーDeleteMembersーーー -->
+	
 	<!-- グループ利用者IDとその名前を取得 -->
-	<select id="selectMembersItems2" resultMap="MembersTable">
+	<select id="selectByMembersId" resultMap="MembersTable">
 		select groups_members.id
 				,accounts.user as accounts_user
 		from groups_members
@@ -101,7 +103,7 @@
 		where groups_members.id = #{id}
 	</select>
 	
-	<!-- ーーーDeleteMembersーーー -->
+	
 	
 	<!-- グループから利用者を削除 -->
 	<delete id="delete">
@@ -110,7 +112,7 @@
 	</delete>
 	
 	<!-- 比較を作成-->
-	<select id="selectUserId" resultType="Integer">
+	<select id="existsGroupByAccountId" resultType="Integer">
 		select groups.account_id
 		from groups_members
 			left join `groups`

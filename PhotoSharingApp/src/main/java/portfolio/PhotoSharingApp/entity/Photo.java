@@ -8,10 +8,10 @@ import lombok.Data;
 public class Photo {
 	
 	private Integer id;
-	private Integer albumId;/*アルバムテーブルのid*/
-	private String photo; /*写真のパス情報？*/
-	private Integer accountId;/*アカウントテーブルのid*/
+	private Integer albumId;
+	private String photo;
+	private Integer accountId;
 	private Date createDateTime;
 	
-	private Account account;/*※*/
+	private Account account;
 }

@@ -21,16 +21,12 @@
 				<div th:text="${group.groupName}" class="col mb-3 fs-5"></div>
 				
 				<div class="col mb-3">
-					<a th:href="@{'/home-group'}" th:text="#{backBtn}"
-						class="btn btn-secondary">
-					</a>
+					<a th:href="@{'/home-group'}" th:text="#{backBtn}" class="btn btn-secondary"></a>
 				</div>
 				
 				<div class="col mb-3">
 					<th:block th:if="${isAdmin}">
-						<a th:href="@{'/add-member'}" th:text="#{addMembersBtn}"
-							class="btn btn-success">
-						</a>
+						<a th:href="@{'/add-member'}" th:text="#{addMembersBtn}" class="btn btn-success"></a>
 					</th:block>
 				</div>
 				
@@ -51,14 +47,11 @@
 							<label th:text="${list.account?.username?: 'unknown'}" class="m-2"></label>
 							
 							<th:block th:if="${isAdmin}">
-								<a th:href="@{'/delete-member/' + ${list.id}}" th:text="#{deleteBtn}"
-									class="btn btn-danger">
-								</a>
+								<a th:href="@{'/delete-member/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
 							</th:block>
 						</div>
 					</div>
 				</div>
-				
 			</div>
 		</div>
 	</div>

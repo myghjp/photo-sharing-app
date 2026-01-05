@@ -24,13 +24,14 @@ public interface MemberService {
 	
 	public String getAdminName(int id);
 	
-	public Member getMemberName(int id);
-	
 	/*ーーーDeleteMembersーーー*/
+	
+	/*グループ利用者IDとその名前を取得*/
+	public Member getMemberName(int id);
 	
 	public void deleteMember(int id);
 	
 	/*比較を作成*/
-	public int isCurrentUser(int id);
+	public boolean isCurrentAccount(int memberId,int loginId);
 	
 }

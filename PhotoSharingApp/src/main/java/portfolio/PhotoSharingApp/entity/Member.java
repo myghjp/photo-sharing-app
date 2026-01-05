@@ -6,8 +6,8 @@ import lombok.Data;
 public class Member {
 	
 	private int id;
-	private int groupId;/*グループテーブルのID*/
-	private int accountId;/*アカウントテーブルのID*/
+	private int groupId;
+	private int accountId;
 	
 	private Group group;
 	private Account account;

@@ -14,27 +14,27 @@ public interface MemberMapper {
 	
 	/*ーーーAddMembersーーー*/
 	
-	public String selectEmailAddress(@Param("account") Account account);
+	public String existsByEmailAddress(@Param("account") Account account);
 	
-	public Integer selectMembersId(@Param("account")Account account,@Param("group")Group group);
+	public Integer existsMembersByEmailAddress(@Param("account")Account account,@Param("group")Group group);
 	
-	public int selectAccountId(@Param("emailAddress") String emailAddress);
+	public int selectAccountById(@Param("emailAddress") String emailAddress);
 	
 	public void insert(@Param("member")Member member);
 	
 	/*ーーーListMembersーーー*/
 	
-	public List<Member> selectMembersItems(int groupId);
+	public List<Member> selectMyGroupsMembers(int groupId);
 	
-	public String selectUserName(@Param("id") Integer id);
-	
-	public Member selectMembersItems2(@Param("id")int id);
+	public String selectAccountByUsername(@Param("id") Integer id);
 	
 	/*ーーーDeleteMembersーーー*/
+	
+	public Member selectByMembersId(@Param("id")int id);
 	
 	public void delete(int id);
 	
 	/*比較を作成*/
-	public Integer selectUserId(@Param("id") Integer id);
+	public Integer existsGroupByAccountId(@Param("id") Integer id);
 	
 }

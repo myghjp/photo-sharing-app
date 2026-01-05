@@ -38,7 +38,6 @@ public class EntryAccountController {
 		
 		model.addAttribute("entryAccountForm", entryAccountForm);
 		
-		/*↓login側を更新しても残るので今は無駄*/
 		session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 		
 		return "account/entry-account";
@@ -55,7 +54,7 @@ public class EntryAccountController {
 		Account account = modelMapper.map(entryAccountForm, Account.class);
 
 		/*登録済のアカウント名の重複確認*/
-		if (accountService.isUserExisting(account)) {
+		if (accountService.isUsernameExisting(account)) {
 			bindingResult.rejectValue("username", "entryAccountNameError");
 		}
 		

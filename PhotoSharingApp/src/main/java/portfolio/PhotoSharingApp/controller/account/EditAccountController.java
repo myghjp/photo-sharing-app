@@ -41,7 +41,6 @@ public class EditAccountController {
 			,EditAccountForm editAccountForm
 			) {
 		
-		/*idをformで使える(Postも確認)*/
 		model.addAttribute("id",accountId);
 		model.addAttribute("editAccountForm", editAccountForm);
 		
@@ -62,7 +61,7 @@ public class EditAccountController {
 		account.setId(id);
 		
 		/*idが自身のアカウントIdと同じかを確認*/
-		if (accountService.isCurrentUser(account.getId()) != loginUserDetails.getAccountId()) {
+		if (accountService.isCurrentAccount(account.getId(),loginUserDetails.getAccountId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		

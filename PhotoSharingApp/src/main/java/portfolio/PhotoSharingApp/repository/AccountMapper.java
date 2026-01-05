@@ -10,15 +10,15 @@ public interface AccountMapper {
 	
 	/*ーーーloginーーー*/
 	
-	public Account getSelectUser(String user);
+	public Account selectByUsername(String user);
 	
 	/*ーーーEntryAccountーーー*/
 	
 	public void insert(@Param("account") Account account);
 	
-	public String selectByUser(@Param("account") Account account);
+	public String existsByUsername(@Param("account") Account account);
 	
-	public String getSelectEmailAddress(@Param("account") Account account);
+	public String existsByEmailAddress(@Param("account") Account account);
 	
 	/*ーーーEditAccountーーー*/
 	
@@ -26,11 +26,11 @@ public interface AccountMapper {
 	
 	/*ーーーDeleteAccountーーー*/
 	
-	public Integer groupAdmin(@Param("id")Integer id);
+	public Integer existsByAccountId(@Param("id")Integer id);
 	
 	public void delete(@Param("id") Integer id);
 	
 	/*ーーー比較ーーー*/
-	public Integer selectUserId(@Param("id") Integer id);
+	public Integer existsGroupByAccountId(@Param("id") Integer id);
 	
 }

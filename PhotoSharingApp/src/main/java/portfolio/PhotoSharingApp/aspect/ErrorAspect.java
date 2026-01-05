@@ -11,8 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class ErrorAspect {
-	
-	/*※不要が多い*/
 
     @AfterThrowing(value = "execution(* *..*..*(..)) &&"
             + "(bean(*Controller) || bean(*Service) || bean(*Repository))",

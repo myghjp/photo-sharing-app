@@ -31,7 +31,7 @@ public class PhotoServiceImpl implements PhotoService{
 	
 	@Override
 	public Photo getPhoto(int id) {
-		return photoMapper.select(id);
+		return photoMapper.selectPhoto(id);
 	}
 	
 	@Override
@@ -39,11 +39,9 @@ public class PhotoServiceImpl implements PhotoService{
 		photoMapper.delete(id);
 	}
 	
-	/*ーーーーーバリデーション作成中ーーーーーーーーーーー*/
-	
 	@Override
 	public boolean isCurrentAlbum(int photoId,int albumId) {
-		if (photoMapper.selectByAlbumId(photoId) != albumId) {
+		if (photoMapper.existsByAlbumId(photoId) != albumId) {
 			return true;
 		} else {
 			return false;
@@ -51,7 +49,7 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	@Override
-	public boolean isC(int GroupId,int loginId) {
+	public boolean isCurrentGroupAdmin(int GroupId,int loginId) {
 		if (GroupId != loginId) {
 			return true;
 		} else {
@@ -60,8 +58,8 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	@Override
-	public boolean isB(int photoId,int loginId) {
-		if (photoMapper.selectByAccountId(photoId) != loginId) {
+	public boolean isCurrentPhoto(int photoId,int loginId) {
+		if (photoMapper.existsByAccountId(photoId) != loginId) {
 			return true;
 		} else {
 			return false;

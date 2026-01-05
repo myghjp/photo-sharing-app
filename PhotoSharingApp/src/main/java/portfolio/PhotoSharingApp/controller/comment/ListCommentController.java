@@ -39,8 +39,6 @@ public class ListCommentController {
 			) {
 		
 		model.addAttribute("listCommentForm",listCommentForm);
-		
-		/*↓?*/	
 		model.addAttribute("myUsername",loginUserDetails.getUsername());
 		
 		/*このグループのcommentsテーブル情報とアカウント名を取得*/
