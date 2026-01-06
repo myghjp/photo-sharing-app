@@ -1,7 +1,5 @@
 package portfolio.PhotoSharingApp.controller.account;
 
-import jakarta.servlet.http.HttpSession;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -12,11 +10,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Account;
 import portfolio.PhotoSharingApp.form.account.UpdateAccountForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
@@ -34,13 +32,22 @@ public class UpdateAccountController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@GetMapping("/update-account/{accountId}")
+	@GetMapping("/update-account")
 	public String getUpdateAccount(Model model
-			,@PathVariable("accountId")int id
+	/*,@PathVariable("accountId")int accountId*/
+			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,UpdateAccountForm updateAccountForm
 			) {
 		
-		model.addAttribute("id",id);
+		/*↓不要になる*/
+		/*formのidも不要*/
+		
+		/*idが自身のアカウントIdと同じかを確認*/
+		/*if (accountService.isCurrentAccount(accountId,loginUserDetails.getAccountId())) {
+			throw new AccessDeniedException("不正なIDです");
+		}*/
+		
+		model.addAttribute("id",loginUserDetails.getAccountId());
 		model.addAttribute("updateAccountForm", updateAccountForm);
 		
 		return "account/update-account";
@@ -48,28 +55,23 @@ public class UpdateAccountController {
 	
 	@PostMapping("/update-account")
 	public String postUpdateAccount(Model model
-			,@RequestParam("id")int id
 			,HttpSession session
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@RequestParam("id")int id
 			,@ModelAttribute @Validated UpdateAccountForm updateAccountForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) throws Exception {
 		
-		Account account = modelMapper.map(updateAccountForm, Account.class);
-		account.setId(id);
-		
-		/*↓getに*/
-		
-		/*idが自身のアカウントIdと同じかを確認*/
-		/*if (accountService.isCurrentAccount(account.getId(),loginUserDetails.getAccountId())) {
-			throw new AccessDeniedException("不正なIDです");
-		}*/
-	
 		if (bindingResult.hasErrors()) {
-			return getUpdateAccount(model,id,updateAccountForm);
+			return getUpdateAccount(model,loginUserDetails,updateAccountForm);
 		}
 		
+		/*@RequestParamも不要*/
+		
+		Account account = modelMapper.map(updateAccountForm, Account.class);
+		
+		account.setId(id);
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
 		accountService.updateAccount(account);
 		

@@ -85,4 +85,52 @@ public class ListPhotoController {
 	
 		return "redirect:list-photo";
 	}
+	
+	/*formならMultipartFile型も*/
+	
+	/*↓画像保存参考PostMapping*/
+	
+	/*@PostMapping("/create")
+	public String store(Model model,
+			@AuthenticationPrincipal User user,
+			@ModelAttribute @Validated PostForm form,
+			BindingResult bindingResult
+	) throws IOException {
+		if (bindingResult.hasErrors()) {
+			return create(model, form);
+		}
+		
+		Post post = new Post();
+		
+		post.setUserId(user.getId());
+		post.setCategoryId(form.getCategoryId());
+		// スラッグは現在日時とする
+		post.setSlug(LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYYMMddHHmmss")));
+		post.setTitle(form.getTitle());
+		post.setBody(form.getBody());
+	
+		MultipartFile thumbnailFile = form.getThumbnailFile();
+		if (thumbnailFile != null) {
+			String originalFilename = thumbnailFile.getOriginalFilename();
+			String extension = StringUtils.getFilenameExtension(originalFilename);
+			// アップロードファイルはUUIDを使って重複しない名前にする
+			String fileName = UUID.randomUUID().toString() + "." + extension;
+			// 画像保存先フォルダに保存する
+			Path destPath = Paths.get(mediaDirectory, fileName);
+			// 保存先ディレクトリがなければ作成する
+			Files.createDirectories(destPath.getParent());
+			// アップロードしたファイルを保存
+			Files.write(destPath, thumbnailFile.getBytes());
+			// thumbnail にはファイル名を保存
+			post.setThumbnail(fileName);
+		} else {
+			// ファイルがセットされていなければもとの thumbnail のまま(新規の場合は null)
+			post.setThumbnail(form.getThumbnail());
+		}
+		
+		postService.post(post);
+	
+		return "redirect:/";
+	*/
+	
 }

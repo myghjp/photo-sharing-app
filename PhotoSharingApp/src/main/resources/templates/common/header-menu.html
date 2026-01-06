@@ -19,10 +19,10 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ms-auto align-items-center">
 				<li class="nav-link">
-					<a th:href="@{/update-account/{accountId}(accountId=${#authentication.principal.accountId})}" th:text="#{updatePasswordBtn}" class="btn btn-outline-success"></a>
+					<a th:href="@{/update-account}" th:text="#{updatePasswordBtn}" class="btn btn-outline-success"></a>
 				</li>
 				<li class="nav-link">
-					<a th:href="@{/delete-account/{accountId}(accountId=${#authentication.principal.accountId})}" th:text="#{deleteAccountBtn}" class="btn btn-outline-danger"></a>
+					<a th:href="@{/delete-account}" th:text="#{deleteAccountBtn}" class="btn btn-outline-danger"></a>
 				</li>
 				<li class="navbar-text mx-3">
 					<span sec:authentication="principal.username"></span>

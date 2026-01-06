@@ -71,7 +71,61 @@ public class DeletePhotoController {
 		Path path = Path.of("src/main/resources/static/img/" + photoData.getPhoto());
 		Files.delete(path);
 		photoService.removePhoto(photoData.getId());
-      
+		
+		/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
+		/*application.propertiesでc:指定 画像サイズも*/
+		
+		/*# 投稿画像保存先ディレクトリ(末尾に'/'を入れる)
+		app.media.directory=C:/Users/user/Downloads/blog/
+		
+		# アップロード可能な画像のサイズの設定
+		spring.servlet.multipart.max-file-size=10MB
+		spring.servlet.multipart.max-request-size=10MB
+		*/
+
+		/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
+		/*SecurityConfigで/mediaを許可*/
+		/*.requestMatchers("/media/**").permitAll()*/
+		/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
+		/*WebMvcConfigを新しく作成*/
+		
+		/*import org.springframework.beans.factory.annotation.Value;
+		  import org.springframework.context.annotation.Configuration;
+		  import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+		  import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+			
+			@Configuration
+			public class WebMvcConfig implements WebMvcConfigurer {
+				
+			@Value("${app.media.directory}")
+			private String mediaDirectory;
+		
+			@Override
+			public void addResourceHandlers(ResourceHandlerRegistry registry) {
+				registry.addResourceHandler("/media/**").addResourceLocations("file:" + mediaDirectory);
+			}
+		
+		 * 
+		 * */
+		/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
+		/*↓thymeleafカード内media呼び出し*/
+		
+		/*<img class="card-img-top"
+		th:src="@{/images/logo.png}"
+		th:src="${post.thumbnail != null} ? @{/media/__${post.thumbnail}__} : @{/images/logo.png}"
+		alt="blog photos"
+		>*/
+		
+		/*<img class="img-fluid rounded"
+				th:src="@{/images/logo.png}"
+				th:src="${post.thumbnail != null} ? @{/media/__${post.thumbnail}__} : @{/images/logo.png}"
+				alt="blog photos"
+		>*/
+		
+		/*ーーーーーーーーーーーーーーーーーーーーーーーー*/
+		/*/resources/配下はコンパイルエラー*/
+		/*staticとpublicは自動で探してくれる*/
+		/*ーーーーーーーーーーーーーーーーーーーーーーーー*/ 
 		return "redirect:list-photo";
 	}
 }
