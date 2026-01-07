@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,9 @@ public class DeletePhotoController {
 
 	@Autowired
 	private PhotoService photoService;
+	
+	@Value("${app.media.directory}")
+	private String mediaDirectory;
 
 	@GetMapping("/delete-photo/{id}")
 	public String getDeletePhoto(Model model
@@ -50,10 +54,9 @@ public class DeletePhotoController {
 			if (photoService.isCurrentPhoto(id,loginUserDetails.getAccountId())){
 				throw new AccessDeniedException("アクセス権無し(自身の写真ではない)");
 			} 
-			
 		}
 		
-		/*このidと画像パス情報を取得*/
+		/*このidとphotoを取得*/
 		Photo photoData = photoService.getPhoto(id);
 		model.addAttribute("photoData",photoData);
 		
@@ -66,10 +69,12 @@ public class DeletePhotoController {
 			, RedirectAttributes redirectAttributes
 			)throws IOException {
 
+		/*このidとphotoを取得*/
 		Photo photoData = photoService.getPhoto(id);
-
-		Path path = Path.of("src/main/resources/static/img/" + photoData.getPhoto());
+		
+		Path path = Path.of(mediaDirectory + photoData.getPhoto());
 		Files.delete(path);
+		
 		photoService.removePhoto(photoData.getId());
 		
 		return "redirect:list-photo";

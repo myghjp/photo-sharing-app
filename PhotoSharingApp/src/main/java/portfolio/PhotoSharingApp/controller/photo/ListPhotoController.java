@@ -66,35 +66,20 @@ public class ListPhotoController {
 			,RedirectAttributes redirectAttributes
 			)throws IOException {
 		
-		/*↓formだとBindingResulthasError可*/
 		if (multipartFile.isEmpty()) {
 			return "redirect:list-photo";
 		}
 		
 		/*元のファイル名を取得*/
 		String originalFilename = multipartFile.getOriginalFilename();
-		
-		/*拡張子のみを取得*/
-		/*String extension = StringUtils.getFilenameExtension(originalFilename);*/
-		
-		// アップロードファイルはUUIDを使って重複しない名前にする
-		/*String fileName = UUID.randomUUID().toString() + "." + extension;*/
-		
 		// 画像保存先フォルダに保存する
-		/*Path destPath = Paths.get(mediaDirectory, fileName);*/
 		Path destPath = Paths.get(mediaDirectory, originalFilename);
-		
 		// 保存先ディレクトリがなければ作成する
 		Files.createDirectories(destPath.getParent());
-		
 		// アップロードしたファイルを保存
 		Files.write(destPath, multipartFile.getBytes());
 		
-		/*ーーーーーーーーーーーーーーーーーーー*/
-		
 		/*try {
-			Path path = Path.of("src/main/resources/static/img/" + photoPath.getOriginalFilename());
-			Files.copy(photoPath.getInputStream(), path);
 		} catch (FileAlreadyExistsException e) {
 			e.printStackTrace();
 			redirectAttributes.addFlashAttribute("isError",true);
@@ -112,42 +97,4 @@ public class ListPhotoController {
 	
 		return "redirect:list-photo";
 	}
-	
-	/*formならMultipartFile型も*/
-	/*↓画像保存参考PostMapping*/
-	
-	/*@PostMapping("/create")
-	public String store(Model model,
-			@AuthenticationPrincipal User user,
-			@ModelAttribute @Validated PostForm form,
-			BindingResult bindingResult
-	) throws IOException {
-		if (bindingResult.hasErrors()) {
-			return create(model, form);
-		}
-	
-		MultipartFile thumbnailFile = form.getThumbnailFile();
-		if (thumbnailFile != null) {
-			String originalFilename = thumbnailFile.getOriginalFilename();
-			String extension = StringUtils.getFilenameExtension(originalFilename);
-			// アップロードファイルはUUIDを使って重複しない名前にする
-			String fileName = UUID.randomUUID().toString() + "." + extension;
-			// 画像保存先フォルダに保存する
-			Path destPath = Paths.get(mediaDirectory, fileName);
-			// 保存先ディレクトリがなければ作成する
-			Files.createDirectories(destPath.getParent());
-			// アップロードしたファイルを保存
-			Files.write(destPath, thumbnailFile.getBytes());
-			// thumbnail にはファイル名を保存
-			post.setThumbnail(fileName);
-		} else {
-			// ファイルがセットされていなければもとの thumbnail のまま(新規の場合は null)
-			post.setThumbnail(form.getThumbnail());
-		}
-		
-		postService.post(post);
-	
-		return "redirect:/";
-	*/
-	
 }

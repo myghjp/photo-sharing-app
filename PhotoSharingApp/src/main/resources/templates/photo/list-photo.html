@@ -49,14 +49,8 @@
 				<div class="card-body text-center">
 					<div th:text="'▼' + ${list.Account.username}"></div>
 					
-					<!--ーーーーーーーーーーーーーーーーーーーーーーーー-->
-					
-					<!--@{/media/__${list.photo}__}-->
-					
 					<img th:src="@{'/media/' + ${list.photo}}" th:alt="${list.photo}" height="150" style="max-width: 15rem;"
 					data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}"  class="card-img">
-					
-					<!--ーーーーーーーーーーーーーーーーーーーーーーーー-->
 					
 					<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}" ></div>
 			
@@ -66,11 +60,16 @@
 						<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
 					</th:block>
 					
+					<!--ーーーーーーーーーーーーーーーーーー-->
+					<!--画像削除を再作成-->
+					
 					<th:block th:unless="${isAdmin}">
 						<th:block th:if="${list.Account.username == loginUsername}">
 							<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
 						</th:block>
 					</th:block>
+					
+					<!--ーーーーーーーーーーーーーーーーーー-->
 					
 					<!-- Modal -->
 					<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-hidden="true">

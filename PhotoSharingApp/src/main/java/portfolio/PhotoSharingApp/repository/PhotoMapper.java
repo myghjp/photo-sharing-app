@@ -22,12 +22,9 @@ public interface PhotoMapper {
 	
 	public void delete(@Param("id")Integer id);
 	
-	
 	/*バリデーション作成中*/
 	public Integer existsByAlbumId(@Param("id") Integer id);
 	
 	public Integer existsByAccountId(@Param("id")Integer id);
-	
-	
 	
 }

@@ -22,7 +22,7 @@
 					<div th:text="#{deletePhotoAlert}" class="mb-3 fs-5"></div>
 					
 					<div class="row mb-3">
-						<img th:src="@{'/img/' + ${photoData.photo}}">
+						<img th:src="@{'/media/' + ${photoData.photo}}">
 					</div>
 					
 					<a th:href="@{'/list-photo'}" th:text="#{cancelBtn}" class="btn btn-secondary mx-3"></a>
