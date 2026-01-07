@@ -30,7 +30,4 @@ public interface AccountMapper {
 	
 	public void delete(@Param("id") Integer id);
 	
-	/*ーーー比較ーーー*/
-	public Integer existsGroupByAccountId(@Param("id") Integer id);
-	
 }

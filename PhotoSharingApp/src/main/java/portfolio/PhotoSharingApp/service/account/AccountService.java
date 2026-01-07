@@ -26,7 +26,4 @@ public interface AccountService {
 	
 	public void removeAccount(int id);
 	
-	/*ーーー比較ーーー*/
-	public boolean isCurrentAccount(int accountId,int loginId);
-	
 }

@@ -6,4 +6,6 @@ import lombok.Data;
 public class DeleteAccountForm {
 	
 	private Integer id;
+	
+	/*↑不要*/
 }

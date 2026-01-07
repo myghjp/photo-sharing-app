@@ -70,11 +70,4 @@
 		where id = #{id}
 	</delete>
 	
-	<!-- 比較を作成 -->
-	<select id="existsGroupByAccountId" resultType="Integer">
-		select id
-		from accounts
-		where id = #{id}
-	</select>
-	
 </mapper>

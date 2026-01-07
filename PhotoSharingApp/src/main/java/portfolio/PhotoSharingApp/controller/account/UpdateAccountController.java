@@ -11,7 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
@@ -34,20 +33,10 @@ public class UpdateAccountController {
 
 	@GetMapping("/update-account")
 	public String getUpdateAccount(Model model
-	/*,@PathVariable("accountId")int accountId*/
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
 			,UpdateAccountForm updateAccountForm
 			) {
 		
-		/*↓不要になる*/
-		/*formのidも不要*/
-		
-		/*idが自身のアカウントIdと同じかを確認*/
-		/*if (accountService.isCurrentAccount(accountId,loginUserDetails.getAccountId())) {
-			throw new AccessDeniedException("不正なIDです");
-		}*/
-		
-		model.addAttribute("id",loginUserDetails.getAccountId());
 		model.addAttribute("updateAccountForm", updateAccountForm);
 		
 		return "account/update-account";
@@ -57,7 +46,6 @@ public class UpdateAccountController {
 	public String postUpdateAccount(Model model
 			,HttpSession session
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@RequestParam("id")int id
 			,@ModelAttribute @Validated UpdateAccountForm updateAccountForm
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
@@ -67,11 +55,9 @@ public class UpdateAccountController {
 			return getUpdateAccount(model,loginUserDetails,updateAccountForm);
 		}
 		
-		/*@RequestParamも不要*/
-		
 		Account account = modelMapper.map(updateAccountForm, Account.class);
 		
-		account.setId(id);
+		account.setId(loginUserDetails.getAccountId());
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
 		accountService.updateAccount(account);
 		

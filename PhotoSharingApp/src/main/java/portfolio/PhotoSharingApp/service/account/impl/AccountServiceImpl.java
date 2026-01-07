@@ -67,15 +67,4 @@ public class AccountServiceImpl implements AccountService{
 	public void removeAccount(int id){
 		accountMapper.delete(id);
 	}
-	
-	/*ーーー比較ーーー*/
-	
-	@Override
-	public boolean isCurrentAccount(int accountId,int loginId) {
-		if (accountMapper.existsGroupByAccountId(accountId) == loginId){
-			return false;
-		} else {
-			return true;
-		}
-	}
 }
