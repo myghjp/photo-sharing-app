@@ -31,23 +31,24 @@ public class AddMemberController {
 	
 	@GetMapping("/add-member")
 	public String getAddMember(Model model
-			,AddMemberForm addMembersForm
+			,AddMemberForm form
 			) {
 			
-		model.addAttribute("addMembersForm",addMembersForm);
+		model.addAttribute("addMembersForm",form);
+		
 		return "member/add-member";
 	}
 	
 	@PostMapping("/add-member")
 	public String postAddMember(Model model
-			,@RequestParam("emailAddress") String emailAddress
+			,@RequestParam("emailAddress") String email
 			,@ModelAttribute("group")Group group
-			,@ModelAttribute @Validated AddMemberForm addMembersForm
+			,@ModelAttribute @Validated AddMemberForm form
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		Account account = modelMapper.map(addMembersForm, Account.class);
+		Account account = modelMapper.map(form, Account.class);
 		
 		/*メールアドレスを使用してアカウントIdが存在するかを確認*/
 		if (memberService.isExistingAccountId(account)) {
@@ -61,13 +62,13 @@ public class AddMemberController {
 		}
 		
 		if (bindingResult.hasErrors()) {
-			return getAddMember(model, addMembersForm);
+			return getAddMember(model, form);
 		}
 		
 		Member member = new Member();
 		
 		member.setGroupId(group.getId());
-		member.setAccountId(memberService.selectAccountId(emailAddress));
+		member.setAccountId(memberService.selectAccountId(email));
 		
 		memberService.insertMembers(member);
 		

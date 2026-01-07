@@ -35,7 +35,7 @@ public class SelectAlbumController {
 	@GetMapping("/select-album")
 	public String getSelectAlbum(Model model
 			,HttpSession httpSession
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("group")Group group
 			,RedirectAttributes redirectAttributes
 			) {
@@ -47,7 +47,7 @@ public class SelectAlbumController {
 		model.addAttribute("albumList", albumList);
 		
 		/*一致すると自身は管理者*/
-		if (group.getAccountId() == loginUserDetails.getAccountId()) {
+		if (group.getAccountId() == user.getAccountId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		

@@ -31,16 +31,16 @@ public class DeleteAccountController {
 	@PostMapping("/delete-account")
 	public String postDeleteAccount(Model model
 			,HttpSession session
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@AuthenticationPrincipal LoginUserDetails user
 			,RedirectAttributes redirectAttributes
 			) {
 		
 		/*自身が作成したグループが存在するか確認*/
-		if (accountService.isCreateGroupExisting(loginUserDetails.getAccountId())) {
+		if (accountService.isCreateGroupExisting(user.getAccountId())) {
 			return getDeleteAccount(model,true);
 		}
 		
-		accountService.removeAccount(loginUserDetails.getAccountId());
+		accountService.removeAccount(user.getAccountId());
 		
 		session.invalidate();
 		

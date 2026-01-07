@@ -25,8 +25,8 @@ public class DeleteAlbumController {
 	@GetMapping("/delete-album/{id}")
 	public String getDeleteAlbum(Model model
 			,@PathVariable("id")int id
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,DeleteAlbumForm deleteAlbumForm
+			,@AuthenticationPrincipal LoginUserDetails user
+			,DeleteAlbumForm form
 			,RedirectAttributes redirectAttributes
 			) {
 		
@@ -34,7 +34,7 @@ public class DeleteAlbumController {
 		album.setId(id);
 		
 		/*※このアルバムidが自身が作成したのかを確認*/
-		if (albumService.isCurrentAccount(album.getId(),loginUserDetails.getAccountId())) {
+		if (albumService.isCurrentAccount(album.getId(),user.getAccountId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
@@ -42,7 +42,7 @@ public class DeleteAlbumController {
 		Album albumData = albumService.getAlbum(album.getId());
 		
 		model.addAttribute("albumData", albumData);
-		model.addAttribute("deleteAlbumForm",deleteAlbumForm);
+		model.addAttribute("deleteAlbumForm",form);
 		
 		return "album/delete-album";
 	}

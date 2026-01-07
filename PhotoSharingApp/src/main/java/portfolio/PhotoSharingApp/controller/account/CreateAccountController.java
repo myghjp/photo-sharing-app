@@ -33,10 +33,10 @@ public class CreateAccountController {
 	@GetMapping("/create-account")
 	public String getCreateAccount(Model model
 			,HttpSession session
-			,CreateAccountForm createAccountForm
+			,CreateAccountForm form
 			) {
 		
-		model.addAttribute("createAccountForm", createAccountForm);
+		model.addAttribute("createAccountForm", form);
 		
 		session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 		
@@ -46,12 +46,12 @@ public class CreateAccountController {
 	@PostMapping("/create-account")
 	public String postCreateAcount(Model model
 			,HttpSession session
-			,@ModelAttribute @Validated CreateAccountForm createAccountForm
+			,@ModelAttribute @Validated CreateAccountForm form
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		Account account = modelMapper.map(createAccountForm, Account.class);
+		Account account = modelMapper.map(form, Account.class);
 
 		/*登録済のアカウント名の重複確認*/
 		if (accountService.isUsernameExisting(account)) {
@@ -64,7 +64,7 @@ public class CreateAccountController {
 		}
 		
 		if (bindingResult.hasErrors()) {
-			return getCreateAccount(model,session,createAccountForm);
+			return getCreateAccount(model,session,form);
 		}
 		
 		account.setPassword(passwordEncoder.encode(account.getPassword()));

@@ -28,23 +28,23 @@ public class CreateGroupController {
 	
 	@GetMapping("/create-group")
 	public String getCreateGroup(Model model
-			,CreateGroupForm createGroupForm
+			,CreateGroupForm form
 			) {
 		
-		model.addAttribute("createGroupForm", createGroupForm);
+		model.addAttribute("createGroupForm", form);
 		
 		return "group/create-group";
 	}
 
 	@PostMapping("/create-group")
 	public String postCreateGroup(Model model
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@ModelAttribute @Validated CreateGroupForm createGroupForm
+			,@AuthenticationPrincipal LoginUserDetails user
+			,@ModelAttribute @Validated CreateGroupForm form
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		Group group = modelMapper.map(createGroupForm, Group.class);
+		Group group = modelMapper.map(form, Group.class);
 
 		/*登録済のグループ名の重複確認*/
 		if (groupService.isExistingGroup(group)){
@@ -52,10 +52,10 @@ public class CreateGroupController {
 		}
 		
 		if (bindingResult.hasErrors()) {
-			return getCreateGroup(model, createGroupForm);
+			return getCreateGroup(model, form);
 		}
 		
-		group.setAccountId(loginUserDetails.getAccountId());
+		group.setAccountId(user.getAccountId());
 		groupService.createGroup(group);
 		
 		return "redirect:select-group";

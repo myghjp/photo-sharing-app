@@ -33,13 +33,13 @@ public class SelectGroupController {
 	@GetMapping("/select-group")
 	public String getSelectGroup(Model model
 			,SessionStatus sessionStatus
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 
 		sessionStatus.setComplete();
 		
 		/*自身が所属しているグループIDとグループ名を取得*/
-		List<Group> groupList = groupService.getGroupList(loginUserDetails.getAccountId());
+		List<Group> groupList = groupService.getGroupList(user.getAccountId());
 		model.addAttribute("groupList", groupList);
 
 		return "group/select-group";
@@ -47,7 +47,7 @@ public class SelectGroupController {
 
 	@PostMapping("/select-group")
 	public String postSelectGroup(Model model
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@AuthenticationPrincipal LoginUserDetails user
 			,@RequestParam("id")int id
 			,RedirectAttributes redirectAttributes
 			) {

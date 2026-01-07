@@ -24,11 +24,11 @@ public class DeleteGroupController {
 	@GetMapping("/delete-group/{id}")
 	public String getDeleteGroup(Model model
 			,@PathVariable("id")int id
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 		
 		/*※このグループidは自身のアカウントIdが作成したかを確認*/
-		if (groupService.isCurrentAccount(id,loginUserDetails.getAccountId())) {
+		if (groupService.isCurrentAccount(id,user.getAccountId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		

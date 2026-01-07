@@ -26,14 +26,14 @@ public class DeleteMemberController {
 	@GetMapping("/delete-member/{id}")
 	public String getDeleteMember(Model model
 			,@PathVariable("id")int id
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 		
 		Member member = new Member();
 		member.setId(id);
 		
 		/*このグループの管理者でないならエラー*/
-		if (memberService.isCurrentAccount(member.getId(),loginUserDetails.getAccountId())) {
+		if (memberService.isCurrentAccount(member.getId(),user.getAccountId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		

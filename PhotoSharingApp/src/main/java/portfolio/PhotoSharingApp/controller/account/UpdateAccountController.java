@@ -33,11 +33,10 @@ public class UpdateAccountController {
 
 	@GetMapping("/update-account")
 	public String getUpdateAccount(Model model
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,UpdateAccountForm updateAccountForm
+			,UpdateAccountForm form
 			) {
 		
-		model.addAttribute("updateAccountForm", updateAccountForm);
+		model.addAttribute("updateAccountForm", form);
 		
 		return "account/update-account";
 	}
@@ -45,19 +44,19 @@ public class UpdateAccountController {
 	@PostMapping("/update-account")
 	public String postUpdateAccount(Model model
 			,HttpSession session
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@ModelAttribute @Validated UpdateAccountForm updateAccountForm
+			,@AuthenticationPrincipal LoginUserDetails user
+			,@ModelAttribute @Validated UpdateAccountForm form
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) throws Exception {
 		
 		if (bindingResult.hasErrors()) {
-			return getUpdateAccount(model,loginUserDetails,updateAccountForm);
+			return getUpdateAccount(model,form);
 		}
 		
-		Account account = modelMapper.map(updateAccountForm, Account.class);
+		Account account = modelMapper.map(form, Account.class);
 		
-		account.setId(loginUserDetails.getAccountId());
+		account.setId(user.getAccountId());
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
 		accountService.updateAccount(account);
 		

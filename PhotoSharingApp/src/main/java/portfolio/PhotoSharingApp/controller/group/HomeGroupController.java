@@ -17,13 +17,13 @@ public class HomeGroupController {
 	
 	@GetMapping("/home-group")
 	public String getHomeGroup(Model model
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("group")Group group
 			,RedirectAttributes redirectAttributes
 			) {
 		
 		/*自身は管理者*/
-		if (group.getAccountId() == loginUserDetails.getAccountId()) {
+		if (group.getAccountId() == user.getAccountId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		

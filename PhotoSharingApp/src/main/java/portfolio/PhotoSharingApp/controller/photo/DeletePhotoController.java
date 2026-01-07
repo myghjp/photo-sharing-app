@@ -37,7 +37,7 @@ public class DeletePhotoController {
 	@GetMapping("/delete-photo/{id}")
 	public String getDeletePhoto(Model model
 			,@PathVariable("id") int id
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@AuthenticationPrincipal LoginUserDetails user
 			,@SessionAttribute("album")Album album
 			,@SessionAttribute("group")Group group
 			) {
@@ -48,10 +48,10 @@ public class DeletePhotoController {
 		} 
 		
 		/*自身がこのアルバムのグループの管理者でないなら*/
-		if (photoService.isCurrentGroupAdmin(group.getAccountId(),loginUserDetails.getAccountId())) {
+		if (photoService.isCurrentGroupAdmin(group.getAccountId(),user.getAccountId())) {
 			
 			/*この写真のアカウントIDと一致しないなら*/
-			if (photoService.isCurrentPhoto(id,loginUserDetails.getAccountId())){
+			if (photoService.isCurrentPhoto(id,user.getAccountId())){
 				throw new AccessDeniedException("アクセス権無し(自身の写真ではない)");
 			} 
 		}

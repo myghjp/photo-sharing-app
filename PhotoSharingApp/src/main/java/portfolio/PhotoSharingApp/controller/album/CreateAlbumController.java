@@ -29,10 +29,10 @@ public class CreateAlbumController {
 	
 	@GetMapping("/create-album")
 	public String getCreateAlbum(Model model
-			,CreateAlbumForm createAlbumForm
+			,CreateAlbumForm form
 			) {
 		
-		model.addAttribute("createAlbumForm", createAlbumForm);
+		model.addAttribute("createAlbumForm", form);
 			
 		return "album/create-album";
 	}
@@ -40,19 +40,18 @@ public class CreateAlbumController {
 	@PostMapping("/create-album")
 	public String postCreateAlbum(Model model
 			,Group group
-			,@ModelAttribute @Validated CreateAlbumForm createAlbumForm
+			,@ModelAttribute @Validated CreateAlbumForm form
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) {
 		
 		if (bindingResult.hasErrors()) {
-			return getCreateAlbum(model,createAlbumForm);
+			return getCreateAlbum(model,form);
 		}
 		
-		Album album = modelMapper.map(createAlbumForm,Album.class);
+		Album album = modelMapper.map(form,Album.class);
 		
 		album.setGroupId(group.getId());
-		
 		albumService.addAlbum(album);
 		
 		return "redirect:select-album";

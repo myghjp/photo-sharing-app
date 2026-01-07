@@ -33,13 +33,13 @@ public class ListCommentController {
 	
 	@GetMapping("/list-comment")
 	public String getListComment(Model model
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,ListCommentForm listCommentForm
+			,@AuthenticationPrincipal LoginUserDetails user
+			,ListCommentForm form
 			,@ModelAttribute("group")Group group
 			) {
 		
-		model.addAttribute("listCommentForm",listCommentForm);
-		model.addAttribute("myUsername",loginUserDetails.getUsername());
+		model.addAttribute("listCommentForm",form);
+		model.addAttribute("loginUser",user.getUsername());
 		
 		/*このグループのcommentsテーブル情報とアカウント名を取得*/
 		List<Comment> commentList = commentService.getCommentList(group.getId());
@@ -50,21 +50,21 @@ public class ListCommentController {
 	
 	@PostMapping("/list-comment")
 	public String postListComment(Model model
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("group")Group group
-			,@ModelAttribute @Validated ListCommentForm listCommentForm
+			,@ModelAttribute @Validated ListCommentForm form
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) {
 		
 		if (bindingResult.hasErrors()) {
-			return getListComment(model,loginUserDetails,listCommentForm,group);
+			return getListComment(model,user,form,group);
 		}
 		
-		Comment comment = modelMapper.map(listCommentForm, Comment.class);
+		Comment comment = modelMapper.map(form, Comment.class);
 		
 		comment.setGroupId(group.getId());
-		comment.setAccountId(loginUserDetails.getAccountId());
+		comment.setAccountId(user.getAccountId());
 		
 		commentService.addComment(comment);
 	

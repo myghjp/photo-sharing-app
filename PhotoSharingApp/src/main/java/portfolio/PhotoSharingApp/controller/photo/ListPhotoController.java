@@ -38,18 +38,18 @@ public class ListPhotoController {
 	
 	@GetMapping("/list-photo")
 	public String getListPhoto(Model model
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
+			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("album")Album album
 			,@ModelAttribute("group")Group group
 			,RedirectAttributes redirectAttributes
 		) {
 		
 		/*一致すると自身は管理者である*/
-		if (group.getAccountId() == loginUserDetails.getAccountId()) {
+		if (group.getAccountId() == user.getAccountId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		
-		model.addAttribute("loginUsername", loginUserDetails.getUsername());
+		model.addAttribute("loginUser", user.getUsername());
 		
 		/*photosテーブルの情報とアカウント名を取得*/
 		List<Photo> photoList = photoService.getphotoList(album.getId());
@@ -60,24 +60,24 @@ public class ListPhotoController {
 	
 	@PostMapping("/list-photo")
 	public String postListPhoto(Model model
-			,@SessionAttribute("album")Album albums
-			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@RequestParam("multipartFile")MultipartFile multipartFile
+			,@SessionAttribute("album")Album album
+			,@AuthenticationPrincipal LoginUserDetails user
+			,@RequestParam("multipartFile")MultipartFile file
 			,RedirectAttributes redirectAttributes
 			)throws IOException {
 		
-		if (multipartFile.isEmpty()) {
+		if (file.isEmpty()) {
 			return "redirect:list-photo";
 		}
 		
 		/*元のファイル名を取得*/
-		String originalFilename = multipartFile.getOriginalFilename();
+		String originalFilename = file.getOriginalFilename();
 		// 画像保存先フォルダに保存する
 		Path destPath = Paths.get(mediaDirectory, originalFilename);
 		// 保存先ディレクトリがなければ作成する
 		Files.createDirectories(destPath.getParent());
 		// アップロードしたファイルを保存
-		Files.write(destPath, multipartFile.getBytes());
+		Files.write(destPath, file.getBytes());
 		
 		/*try {
 		} catch (FileAlreadyExistsException e) {
@@ -88,10 +88,10 @@ public class ListPhotoController {
 		
 		Photo photo = new Photo();
 		
-		photo.setAlbumId(albums.getId());
-		photo.setAccountId(loginUserDetails.getAccountId());
+		photo.setAlbumId(album.getId());
+		photo.setAccountId(user.getAccountId());
 		//ファイル名を保存
-		photo.setPhoto(multipartFile.getOriginalFilename());
+		photo.setPhoto(file.getOriginalFilename());
 		
 		photoService.addPhoto(photo);
 	
