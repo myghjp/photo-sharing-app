@@ -32,6 +32,7 @@ public class SecurityConfig {
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 				.requestMatchers(mvc.pattern("/login")).permitAll()
 				.requestMatchers(mvc.pattern("/create-account")).permitAll()
+				.requestMatchers("/media/**").permitAll()
 				.anyRequest().authenticated()
 			);
 

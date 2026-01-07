@@ -27,10 +27,10 @@
 					<div th:text="${album.albumName}" class="col mb-3 fs-5"></div>
 					
 					<div class="col-7 mx-auto mb-3">
+						
 						<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data">
 							
-							<input type="file" name="photo" 
-							accept=".jpg, .jpeg, .png" class="form-control mb-3">
+							<input type="file" name="multipartFile" accept=".jpg, .jpeg, .png" class="form-control mb-3">
 								
 						    <input type="submit" th:value="#{addPhotoBtn}" class="btn btn-primary mb-3">
 						    <th:block th:if="${isError}">
@@ -47,21 +47,27 @@
 		<div class="row row-cols-md-3 row-cols-sm-2 justify-content-start">
 			<div th:each="list : ${photoList}" class="card">
 				<div class="card-body text-center">
-					<div th:text="'▼' + ${list.Account.user}"></div>
+					<div th:text="'▼' + ${list.Account.username}"></div>
 					
-					<img th:src="@{'/img/' + ${list.photo}}" th:alt="${list.photo}" height="150" style="max-width: 15rem;"
+					<!--ーーーーーーーーーーーーーーーーーーーーーーーー-->
+					
+					<!--@{/media/__${list.photo}__}-->
+					
+					<img th:src="@{'/media/' + ${list.photo}}" th:alt="${list.photo}" height="150" style="max-width: 15rem;"
 					data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}"  class="card-img">
+					
+					<!--ーーーーーーーーーーーーーーーーーーーーーーーー-->
 					
 					<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}" ></div>
 			
-  					<a th:href="@{'/img/' + ${list.photo}}" download="" th:text="#{saveBtn}" class="btn btn-primary"></a>
+  					<a th:href="@{'/media/' + ${list.photo}}" download="" th:text="#{saveBtn}" class="btn btn-primary"></a>
 				
 					<th:block th:if="${isAdmin}">
 						<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
 					</th:block>
 					
 					<th:block th:unless="${isAdmin}">
-						<th:block th:if="${list.Account.user == username}">
+						<th:block th:if="${list.Account.username == loginUsername}">
 							<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
 						</th:block>
 					</th:block>
@@ -70,7 +76,7 @@
 					<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-hidden="true">
 					  <div class="modal-dialog modal-dialog-centered">
 					    <div class="modal-content">
-					       <img th:src="@{'/img/' + ${list.photo}}" 
+					       <img th:src="@{'/media/' + ${list.photo}}" 
 					       data-bs-dismiss="modal" aria-label="Close" class="img-fluid"/>
 					    </div>
 					  </div>

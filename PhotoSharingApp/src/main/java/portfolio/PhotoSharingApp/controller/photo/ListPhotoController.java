@@ -1,12 +1,13 @@
 package portfolio.PhotoSharingApp.controller.photo;
 
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +33,9 @@ public class ListPhotoController {
 	@Autowired
 	private PhotoService photoService;
 	
+	@Value("${app.media.directory}")
+	private String mediaDirectory;
+	
 	@GetMapping("/list-photo")
 	public String getListPhoto(Model model
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
@@ -45,7 +49,7 @@ public class ListPhotoController {
 			model.addAttribute("isAdmin",true);
 		}
 		
-		model.addAttribute("username", loginUserDetails.getUsername());
+		model.addAttribute("loginUsername", loginUserDetails.getUsername());
 		
 		/*photosテーブルの情報とアカウント名を取得*/
 		List<Photo> photoList = photoService.getphotoList(album.getId());
@@ -58,28 +62,51 @@ public class ListPhotoController {
 	public String postListPhoto(Model model
 			,@SessionAttribute("album")Album albums
 			,@AuthenticationPrincipal LoginUserDetails loginUserDetails
-			,@RequestParam("photo")MultipartFile photoPath
+			,@RequestParam("multipartFile")MultipartFile multipartFile
 			,RedirectAttributes redirectAttributes
 			)throws IOException {
 		
-		if (photoPath.isEmpty()) {
+		/*↓formだとBindingResulthasError可*/
+		if (multipartFile.isEmpty()) {
 			return "redirect:list-photo";
 		}
 		
-		try {
+		/*元のファイル名を取得*/
+		String originalFilename = multipartFile.getOriginalFilename();
+		
+		/*拡張子のみを取得*/
+		/*String extension = StringUtils.getFilenameExtension(originalFilename);*/
+		
+		// アップロードファイルはUUIDを使って重複しない名前にする
+		/*String fileName = UUID.randomUUID().toString() + "." + extension;*/
+		
+		// 画像保存先フォルダに保存する
+		/*Path destPath = Paths.get(mediaDirectory, fileName);*/
+		Path destPath = Paths.get(mediaDirectory, originalFilename);
+		
+		// 保存先ディレクトリがなければ作成する
+		Files.createDirectories(destPath.getParent());
+		
+		// アップロードしたファイルを保存
+		Files.write(destPath, multipartFile.getBytes());
+		
+		/*ーーーーーーーーーーーーーーーーーーー*/
+		
+		/*try {
 			Path path = Path.of("src/main/resources/static/img/" + photoPath.getOriginalFilename());
 			Files.copy(photoPath.getInputStream(), path);
 		} catch (FileAlreadyExistsException e) {
 			e.printStackTrace();
 			redirectAttributes.addFlashAttribute("isError",true);
 			return "redirect:list-photo";
-		}
+		}*/
 		
 		Photo photo = new Photo();
 		
 		photo.setAlbumId(albums.getId());
 		photo.setAccountId(loginUserDetails.getAccountId());
-		photo.setPhoto(photoPath.getOriginalFilename());
+		//ファイル名を保存
+		photo.setPhoto(multipartFile.getOriginalFilename());
 		
 		photoService.addPhoto(photo);
 	
@@ -87,7 +114,6 @@ public class ListPhotoController {
 	}
 	
 	/*formならMultipartFile型も*/
-	
 	/*↓画像保存参考PostMapping*/
 	
 	/*@PostMapping("/create")
@@ -99,15 +125,6 @@ public class ListPhotoController {
 		if (bindingResult.hasErrors()) {
 			return create(model, form);
 		}
-		
-		Post post = new Post();
-		
-		post.setUserId(user.getId());
-		post.setCategoryId(form.getCategoryId());
-		// スラッグは現在日時とする
-		post.setSlug(LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYYMMddHHmmss")));
-		post.setTitle(form.getTitle());
-		post.setBody(form.getBody());
 	
 		MultipartFile thumbnailFile = form.getThumbnailFile();
 		if (thumbnailFile != null) {
