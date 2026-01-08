@@ -16,7 +16,9 @@ public interface MemberMapper {
 	
 	public String existsByEmailAddress(@Param("account") Account account);
 	
+	/*※*/
 	public Integer existsMembersByEmailAddress(@Param("account")Account account,@Param("group")Group group);
+	
 	
 	public int selectAccountById(@Param("emailAddress") String emailAddress);
 	

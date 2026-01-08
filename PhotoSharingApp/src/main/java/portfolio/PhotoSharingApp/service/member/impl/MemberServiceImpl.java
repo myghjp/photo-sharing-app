@@ -37,6 +37,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	
+	
 	@Override
 	public int selectAccountId(String emailAddress) {
 		return memberMapper.selectAccountById(emailAddress);

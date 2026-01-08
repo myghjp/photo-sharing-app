@@ -25,7 +25,9 @@
 					</div>
 					
 					<div class="col mb-3">
-						<a th:href="@{'/create-album'}" th:text="#{createAlbumBtn}" class="btn btn-success"></a>
+						<th:block th:if="${isAdmin}">
+							<a th:href="@{'/create-album'}" th:text="#{createAlbumBtn}" class="btn btn-success"></a>
+						</th:block>
 					</div>
 					
 					<div th:text="#{selectAlbumMessage}" class="mb-3 fs-5"></div>

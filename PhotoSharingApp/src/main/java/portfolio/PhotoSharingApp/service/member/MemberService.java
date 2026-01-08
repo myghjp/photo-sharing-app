@@ -14,6 +14,8 @@ public interface MemberService {
 	
 	public boolean isExistingMembersId(Account account,Group group);
 	
+	
+	
 	public int selectAccountId(String emailAddress);
 	
 	public void insertMembers(Member member);

@@ -35,8 +35,7 @@
 		where email_address = #{account.emailAddress}
 	</select>
 	
-	<!-- このメールアドレスは、このグループ内にいるメンバや管理者のアドレスが
-	データベースで重複していないかを確認 -->
+	<!-- このグループ内にいる利用者のアドレスが重複していないかを確認 -->
 	<select id="existsMembersByEmailAddress" resultType="Integer">
 		select groups_members.id
 		from groups_members
@@ -47,8 +46,10 @@
 				or groups_members.account_id = #{group.accountId})
 	</select>
 	
+	
+	
 	<!-- メールアドレスを使用してアカウントIDを取得する -->
-	<select id="selectAccountById" resultType="Integer">>
+	<select id="selectAccountById" resultType="Integer">
 		select id
 		from accounts
 		where email_address = #{emailAddress}

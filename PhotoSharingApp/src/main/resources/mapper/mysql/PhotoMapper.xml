@@ -33,6 +33,7 @@
 			left join albums
 				on album_id = photos.id
 		    where album_id = #{id}
+		    order by photos.id desc
 	</select>
 	
 	<insert id="insert">

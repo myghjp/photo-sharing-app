@@ -47,7 +47,7 @@
 		<div class="row row-cols-md-3 row-cols-sm-2 justify-content-start">
 			<div th:each="list : ${photoList}" class="card">
 				<div class="card-body text-center">
-					<div th:text="'▼' + ${list.Account.username}"></div>
+					<div th:text="'▼' + ${list.Account?.username?: 'unknown'}"></div>
 					
 					<img th:src="@{'/media/' + ${list.photo}}" th:alt="${list.photo}" height="150" style="max-width: 15rem;"
 					data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}"  class="card-img">
@@ -61,9 +61,9 @@
 					</th:block>
 					
 					<th:block th:unless="${isAdmin}">
-						<th:block th:if="${list.Account.username == loginUser}">
-							<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
-						</th:block>
+							<th:block th:if="${list.Account?.username != null and list.Account.username == loginUser}">
+								<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
+							</th:block>
 					</th:block>
 					
 					<!-- Modal -->
