@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import portfolio.PhotoSharingApp.entity.Account;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.entity.Member;
 import portfolio.PhotoSharingApp.repository.MemberMapper;
@@ -20,8 +19,8 @@ public class MemberServiceImpl implements MemberService{
 	/*ーーーAddMembersーーー*/
 	
 	@Override
-	public boolean isExistingAccountId(Account account) {
-		if (memberMapper.existsByEmailAddress(account) != null) {
+	public boolean isExistingAccountId(String email) {
+		if (memberMapper.existsByEmailAddress(email) != null) {
 			return false;
 		} else {
 			return true;
@@ -29,14 +28,33 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public boolean isExistingMembersId(Account account,Group group) {
-		if (memberMapper.existsMembersByEmailAddress(account,group) == null) {
+	public boolean isExistingMembersId(String email,Group group) {
+		if (memberMapper.existsMembersByEmailAddress(email,group) == null) {
 			return false;
 		} else {
 			return true;
 		}
 	}
-	
+	/*
+	@Override
+	public boolean isExisting(String adminEmail,String formEmail) {
+		
+		if (adminEmail == formEmail) {
+			
+			System.out.println("true");
+			System.out.println(adminEmail);
+			System.out.println(formEmail);
+			
+			return true;
+		} else {
+			
+			System.out.println("false");
+			System.out.println(adminEmail);
+			System.out.println(formEmail);
+			
+			return false;
+		}
+	}*/
 	
 	@Override
 	public int selectAccountId(String emailAddress) {
@@ -44,7 +62,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public void insertMembers(Member member) {
+	public void insertMember(Member member) {
 		memberMapper.insert(member);
 	}
 	

@@ -53,7 +53,10 @@ public class SelectGroupController {
 			) {
 
 		Group group = groupService.getGroup(id);
-		redirectAttributes.addFlashAttribute("group",group);
+		
+		/*SessionAttributesに追加*/
+		model.addAttribute("group",group);
+		/*redirectAttributes.addFlashAttribute("group",group);*/
 
 		return "redirect:home-group";
 	}

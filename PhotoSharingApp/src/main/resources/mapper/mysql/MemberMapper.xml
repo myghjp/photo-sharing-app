@@ -32,7 +32,7 @@
 	<select id="existsByEmailAddress" resultType="String">
 		select email_address
 		from accounts
-		where email_address = #{account.emailAddress}
+		where email_address = #{email}
 	</select>
 	
 	<!-- このグループ内にいる利用者のアドレスが重複していないかを確認 -->
@@ -41,12 +41,10 @@
 		from groups_members
 			left join accounts
 				on groups_members.account_id = accounts.id
-			where accounts.email_address = #{account.emailAddress}
+			where accounts.email_address = #{email}
 			and (groups_members.group_id = #{group.id}
 				or groups_members.account_id = #{group.accountId})
 	</select>
-	
-	
 	
 	<!-- メールアドレスを使用してアカウントIDを取得する -->
 	<select id="selectAccountById" resultType="Integer">

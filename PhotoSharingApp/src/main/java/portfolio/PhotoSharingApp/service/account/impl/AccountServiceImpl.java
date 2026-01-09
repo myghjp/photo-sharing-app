@@ -67,4 +67,15 @@ public class AccountServiceImpl implements AccountService{
 	public void removeAccount(int id){
 		accountMapper.delete(id);
 	}
+	
+	/*ーーーー仮ーーーーーーーーーーーーー*/
+
+	@Override
+	public boolean isExisting(int adminAccountId,String email) {
+		if (accountMapper.isExistingMapper(adminAccountId) == email) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

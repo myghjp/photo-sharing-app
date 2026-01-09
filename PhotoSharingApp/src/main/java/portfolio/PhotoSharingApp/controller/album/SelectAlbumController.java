@@ -2,8 +2,6 @@ package portfolio.PhotoSharingApp.controller.album;
 
 import java.util.List;
 
-import jakarta.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Album;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
@@ -36,8 +35,8 @@ public class SelectAlbumController {
 	public String getSelectAlbum(Model model
 			,HttpSession httpSession
 			,@AuthenticationPrincipal LoginUserDetails user
-			,@ModelAttribute("group")Group group
 			,RedirectAttributes redirectAttributes
+			,@ModelAttribute("group")Group group
 			) {
 		
 		httpSession.removeAttribute("album");
@@ -63,7 +62,9 @@ public class SelectAlbumController {
 		/*アルバムIDとアルバム名を取得*/
 		Album album = albumService.getAlbum(id);
 		
-		redirectAttributes.addFlashAttribute("album",album);
+		/*SessionAttributesに追加*/
+		model.addAttribute("album",album);
+		/*redirectAttributes.addFlashAttribute("album",album);*/
 		
 		return "redirect:list-photo";
 	}

@@ -2,7 +2,6 @@ package portfolio.PhotoSharingApp.service.member;
 
 import java.util.List;
 
-import portfolio.PhotoSharingApp.entity.Account;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.entity.Member;
 
@@ -10,15 +9,22 @@ public interface MemberService {
 	
 	/*ーーーAddMembersーーー*/
 	
-	public boolean isExistingAccountId(Account account);
+	public boolean isExistingAccountId(String email);
 	
-	public boolean isExistingMembersId(Account account,Group group);
+	public boolean isExistingMembersId(String email,Group group);
+	
+	
+	
+	
+	
+	/*public boolean isExisting(String adminEmail,String formEmail);*/
+	
 	
 	
 	
 	public int selectAccountId(String emailAddress);
 	
-	public void insertMembers(Member member);
+	public void insertMember(Member member);
 	
 	/*ーーーListMembersーーー*/
 	

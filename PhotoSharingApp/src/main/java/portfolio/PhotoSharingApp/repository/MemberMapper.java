@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import portfolio.PhotoSharingApp.entity.Account;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.entity.Member;
 
@@ -14,11 +13,9 @@ public interface MemberMapper {
 	
 	/*ーーーAddMembersーーー*/
 	
-	public String existsByEmailAddress(@Param("account") Account account);
+	public String existsByEmailAddress(String email);
 	
-	/*※*/
-	public Integer existsMembersByEmailAddress(@Param("account")Account account,@Param("group")Group group);
-	
+	public Integer existsMembersByEmailAddress(String email,@Param("group")Group group);
 	
 	public int selectAccountById(@Param("emailAddress") String emailAddress);
 	

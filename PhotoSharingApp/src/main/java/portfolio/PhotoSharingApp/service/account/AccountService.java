@@ -26,4 +26,8 @@ public interface AccountService {
 	
 	public void removeAccount(int id);
 	
+	
+	/*ーーーーーー仮ーーーーーー*/
+	public boolean isExisting(int adminId,String email);
+	
 }

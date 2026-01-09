@@ -30,4 +30,8 @@ public interface AccountMapper {
 	
 	public void delete(@Param("id") Integer id);
 	
+	/*ーーーー仮ーーーーーーーーーー*/
+	
+	public String isExistingMapper(@Param("id") Integer id);
+	
 }

@@ -39,9 +39,9 @@ public class ListPhotoController {
 	@GetMapping("/list-photo")
 	public String getListPhoto(Model model
 			,@AuthenticationPrincipal LoginUserDetails user
+			,RedirectAttributes redirectAttributes
 			,@ModelAttribute("album")Album album
 			,@ModelAttribute("group")Group group
-			,RedirectAttributes redirectAttributes
 		) {
 		
 		/*一致すると自身は管理者である*/
