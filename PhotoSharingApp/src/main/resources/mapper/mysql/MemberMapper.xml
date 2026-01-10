@@ -46,6 +46,12 @@
 				or groups_members.account_id = #{group.accountId})
 	</select>
 	
+	<select id="is" resultType="String">
+		select email_address
+		from accounts
+		where id = #{adminId}
+	</select>
+	
 	<!-- メールアドレスを使用してアカウントIDを取得する -->
 	<select id="selectAccountById" resultType="Integer">
 		select id
@@ -101,8 +107,6 @@
 			on groups_members.account_id = accounts.id
 		where groups_members.id = #{id}
 	</select>
-	
-	
 	
 	<!-- グループから利用者を削除 -->
 	<delete id="delete">

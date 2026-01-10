@@ -72,10 +72,10 @@
 	
 	<!-- ーーーーーーーーーーーーーー -->
 	
-	<select id="isExistingMapper" resultType="String">
+	<!-- <select id="isExistingMapper" resultType="String">
 		select email_address
 		from accounts
 		where id = #{id}
-	</select>
+	</select> -->
 	
 </mapper>

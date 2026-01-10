@@ -32,6 +32,6 @@ public interface AccountMapper {
 	
 	/*ーーーー仮ーーーーーーーーーー*/
 	
-	public String isExistingMapper(@Param("id") Integer id);
+	/*public String isExistingMapper(@Param("id") Integer id);*/
 	
 }

@@ -35,26 +35,15 @@ public class MemberServiceImpl implements MemberService{
 			return true;
 		}
 	}
-	/*
+	
 	@Override
-	public boolean isExisting(String adminEmail,String formEmail) {
-		
-		if (adminEmail == formEmail) {
-			
-			System.out.println("true");
-			System.out.println(adminEmail);
-			System.out.println(formEmail);
-			
+	public boolean is(int adminId,String formEmail) {
+		if (memberMapper.is(adminId).equals(formEmail) == formEmail.equals(formEmail)) {
 			return true;
 		} else {
-			
-			System.out.println("false");
-			System.out.println(adminEmail);
-			System.out.println(formEmail);
-			
 			return false;
 		}
-	}*/
+	}
 	
 	@Override
 	public int selectAccountId(String emailAddress) {

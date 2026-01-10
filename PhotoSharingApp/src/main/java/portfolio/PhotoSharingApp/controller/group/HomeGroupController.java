@@ -22,8 +22,6 @@ public class HomeGroupController {
 			,@ModelAttribute("group")Group group
 			) {
 		
-		System.out.println(group);
-		
 		/*自身は管理者*/
 		if (group.getAccountId() == user.getAccountId()) {
 			model.addAttribute("isAdmin",true);

@@ -70,12 +70,18 @@ public class AccountServiceImpl implements AccountService{
 	
 	/*ーーーー仮ーーーーーーーーーーーーー*/
 
-	@Override
+	/*@Override
 	public boolean isExisting(int adminAccountId,String email) {
 		if (accountMapper.isExistingMapper(adminAccountId) == email) {
 			return true;
 		} else {
 			return false;
 		}
-	}
+	}*/
+	
+	/*@Override
+	public String isExisting(int accountId) {
+		return accountMapper.isExistingMapper(accountId);
+	}*/
+		
 }

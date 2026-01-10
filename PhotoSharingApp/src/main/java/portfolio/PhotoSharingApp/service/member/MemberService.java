@@ -13,14 +13,7 @@ public interface MemberService {
 	
 	public boolean isExistingMembersId(String email,Group group);
 	
-	
-	
-	
-	
-	/*public boolean isExisting(String adminEmail,String formEmail);*/
-	
-	
-	
+	public boolean is(int adminId, String formEmail);
 	
 	public int selectAccountId(String emailAddress);
 	
