@@ -10,21 +10,13 @@ import portfolio.PhotoSharingApp.entity.Album;
 @Mapper
 public interface AlbumMapper {
 	
-	/*ーーーEntryAlbumーーー*/
-	
 	public void insert(@Param("album") Album album);
 	
-	/*ーーーSelectAlbumーーー*/
+	public void delete(Integer id);
 	
 	public List<Album> selectGroupAlbum(Integer id);
 	
 	public Album selectAlbum(Integer id);
 	
-	/*ーーーDeleteAlbumーーー*/
-	
-	public void delete(Integer id);
-	
-	/*比較を作成*/
 	public Integer existsAlbumByAccountId(Integer id);
-	
 }

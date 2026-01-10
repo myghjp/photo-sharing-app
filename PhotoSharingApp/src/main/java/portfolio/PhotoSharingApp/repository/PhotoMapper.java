@@ -10,21 +10,15 @@ import portfolio.PhotoSharingApp.entity.Photo;
 @Mapper
 public interface PhotoMapper {
 	
-	/*ーーーListPhotoーーー*/
-	
-	public List<Photo> selectPhotoItems(Integer id);
-	
 	public void insert(@Param("photo")Photo photo);
-	
-	/*ーーーDeletePhotoーーー*/
-	
-	public Photo selectPhoto(Integer id);
 	
 	public void delete(Integer id);
 	
-	/*バリデーション作成中*/
+	public List<Photo> selectPhotoItems(Integer id);
+	
+	public Photo selectPhoto(Integer id);
+	
 	public Integer existsByAlbumId(Integer id);
 	
 	public Integer existsByAccountId(Integer id);
-	
 }

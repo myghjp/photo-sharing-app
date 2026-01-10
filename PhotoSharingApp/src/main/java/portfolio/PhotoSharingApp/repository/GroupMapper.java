@@ -10,23 +10,15 @@ import portfolio.PhotoSharingApp.entity.Group;
 @Mapper
 public interface GroupMapper {
 	
-	/*ーーーEntryGroupーーー*/
-	
 	public void insert(@Param("group")Group group);
 	
-	public String existsByGroupName(@Param("group")Group group);
+	public void delete(Integer id);
 	
-	/*ーーーSelectGroupーーー*/
+	public String existsByGroupName(@Param("group")Group group);
 	
 	public List<Group> selectMyGroups(Integer id);
 	
 	public Group selectById(Integer id);
 	
-	/*ーーーDeleteGroupーーー*/
-	
-	public void delete(Integer id);
-	
-	/*比較を作成*/
 	public Integer existsGroupByAccountId(Integer id);
-	
 }

@@ -11,7 +11,17 @@ import portfolio.PhotoSharingApp.entity.Member;
 @Mapper
 public interface MemberMapper {
 	
-	/*ーーーAddMembersーーー*/
+	public void insert(@Param("member")Member member);
+	
+	public void delete(Integer id);
+	
+	public Integer selectAccountById(String emailAddress);
+	
+	public List<Member> selectMyGroupsMembers(Integer groupId);
+	
+	public String selectAccountByUsername(Integer id);
+	
+	public Member selectByMembersId(Integer id);
 	
 	public String existsByEmailAddress(String email);
 	
@@ -19,23 +29,5 @@ public interface MemberMapper {
 	
 	public String is(Integer adminId);
 	
-	public Integer selectAccountById(String emailAddress);
-	
-	public void insert(@Param("member")Member member);
-	
-	/*ーーーListMembersーーー*/
-	
-	public List<Member> selectMyGroupsMembers(Integer groupId);
-	
-	public String selectAccountByUsername(Integer id);
-	
-	/*ーーーDeleteMembersーーー*/
-	
-	public Member selectByMembersId(Integer id);
-	
-	public void delete(Integer id);
-	
-	/*比較を作成*/
 	public Integer existsGroupByAccountId(Integer id);
-	
 }
