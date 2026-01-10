@@ -18,22 +18,6 @@
 		<result column="user" property="username" />
 	</resultMap>
 	
-	<!-- ーーーListCommentーーー-->
-	
-	<!-- このグループのcommentsテーブルの情報とアカウント名を取得 -->
-	<select id="selectCommentItems" resultMap="CommentsTable">
-		select comments.id
-			,accounts.user as accounts_user
-			,comments.create_date_time
-			,comments.comment
-		from comments
-			left join accounts
-			on comments.account_id = accounts.id
-			where comments.group_id = #{id}
-			order by comments.id desc
-			
-	</select>
-	
 	<insert id="insert">
 		insert into comments(
 			 group_id
@@ -46,25 +30,32 @@
 		)
 	</insert>
 	
-	<!-- ーーーDeleteCommentーーー -->
+	<delete id="delete">
+		delete from comments
+		where id = #{id}
+	</delete>
 	
-	<!-- このidとコメントを取得 -->
+	<select id="selectCommentItems" resultMap="CommentsTable">
+		select comments.id
+			,accounts.user as accounts_user
+			,comments.create_date_time
+			,comments.comment
+		from comments
+			left join accounts
+				on comments.account_id = accounts.id
+			where comments.group_id = #{id}
+				order by comments.id desc
+	</select>
+	
 	<select id="selectById" resultMap="CommentsTable">
 		select id,comment
 		from comments
 		where id = #{id}
 	</select>
 	
-	<delete id="delete">
-		delete from comments
-		where id = #{id}
-	</delete>
-	
-	<!-- 比較を作成 -->
 	<select id="selectByAccountId" resultType="Integer">
 		select account_id
 		from comments
 		where id = #{id}
 	</select>
-
 </mapper>

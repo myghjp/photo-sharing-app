@@ -11,16 +11,11 @@
 		<result column="email_address" property="emailAddress" />
 	</resultMap>
 	
-	<!-- ーーーLoginーーー-->
-	
-	<!-- アカウント名が存在するかを確認 -->
 	<select id="selectByUsername" resultMap="accountsTable">
 		select *
 		from accounts 
 		where user = #{username}
 	</select>
-	
-	<!-- ーーーEntryAccountーーー-->
 	
 	<insert id="insert">
 		insert into accounts(
@@ -34,29 +29,28 @@
 		)
 	</insert>
 	
-	<!-- アカウント名がデータベースに存在するかを確認 -->
-	<select id="existsByUsername" resultType="String">
-		select user
-		from accounts
-		where user = #{account.username}
-	</select>
-	
-	<!-- メールアドレスがデータベースに存在するかを確認 -->
-	<select id="existsByEmailAddress" resultType="String">
-		select email_address
-		from accounts
-		where email_address = #{account.emailAddress}
-	</select>
-	
-	<!-- ーーーEditAccountーーー -->
-	
 	<update id="update">
 		update accounts
 		set pass = #{account.password}
 		where id = #{account.id}
 	</update>
 	
-	<!-- ーーーDeleteAccountーーー -->
+	<delete id="delete">
+		delete from accounts
+		where id = #{id}
+	</delete>
+	
+	<select id="existsByUsername" resultType="String">
+		select user
+		from accounts
+		where user = #{account.username}
+	</select>
+	
+	<select id="existsByEmailAddress" resultType="String">
+		select email_address
+		from accounts
+		where email_address = #{account.emailAddress}
+	</select>
 	
 	<select id="existsByAccountId" resultType="Integer">
 		select account_id
@@ -64,10 +58,4 @@
 		where account_id = #{id}
 		limit 1
 	</select>
-	
-	<delete id="delete">
-		delete from accounts
-		where id = #{id}
-	</delete>
-	
 </mapper>

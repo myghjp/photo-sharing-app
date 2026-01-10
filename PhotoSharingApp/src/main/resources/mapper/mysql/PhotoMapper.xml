@@ -18,9 +18,23 @@
 		<result column="user" property="username"/>
 	</resultMap>
 	
-	<!-- ーーーListPhotoーーー -->
+	<insert id="insert">
+		insert into photos(
+			 album_id
+			,photo
+			,account_id
+		)VALUES(
+			 #{photo.albumId}
+			,#{photo.photo}
+			,#{photo.accountId}
+		)
+	</insert>
 	
-	<!-- photosテーブル情報とアカウント名を取得 -->
+	<delete id="delete">
+		delete from photos
+		where id = #{id}
+	</delete>
+	
 	<select id="selectPhotoItems" resultMap="PhotosTable">
 		select 
 		photos.id
@@ -36,34 +50,12 @@
 		    order by photos.id desc
 	</select>
 	
-	<insert id="insert">
-		insert into photos(
-			 album_id
-			,photo
-			,account_id
-		)VALUES(
-			 #{photo.albumId}
-			,#{photo.photo}
-			,#{photo.accountId}
-		)
-	</insert>
-	
-	<!-- ーーーDeletePhotoーーー -->
-	
-	<!-- このidと画像パス情報を取得 -->
 	<select id="selectPhoto" resultMap="PhotosTable">
 		select id,photo
 		from photos
 		where id = #{id}
 	</select>
 	
-	<delete id="delete">
-		delete from photos
-		where id = #{id}
-	</delete>
-	
-	
-	<!-- バリデーション作成中-->
 	<select id="existsByAlbumId" resultType="Integer">
 		select album_id
 		from photos
@@ -75,6 +67,4 @@
 		from photos
 		where id = #{id}
 	</select>
-	
-	
 </mapper>

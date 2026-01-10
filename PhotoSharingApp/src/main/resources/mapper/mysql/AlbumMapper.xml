@@ -10,9 +10,6 @@
 		<result column="album_name" property="albumName" />
 	</resultMap>
 	
-	<!-- ーーーEntryAlbumーーー -->
-	
-	<!-- グループIDとアルバム名を追加 -->
 	<insert id="insert">
 		insert into albums(
 			 group_id
@@ -23,9 +20,11 @@
 		)
 	</insert>
 	
-	<!-- ーーーSelectAlbumーーー -->
+	<delete id="delete">
+		delete from albums
+		where id = #{id}
+	</delete>
 	
-	<!-- このグループ内のアルバムIDとアルバム名を取得 -->
 	<select id="selectGroupAlbum" resultMap="AlbumsTable">
 		select albums.id,album_name
 		from albums
@@ -34,24 +33,12 @@
 		where group_id = #{id}
 	</select>
 	
-	<!-- アルバムIDとアルバム名を取得 -->
-	
-	<!-- ※deleteAlbumでも使用中 -->
 	<select id="selectAlbum" resultMap="AlbumsTable">
 		select id,album_name
 		from albums
 		where id = #{id}
 	</select>
 	
-	<!-- ーーーDeleteAlbumーーー -->
-	
-	<!-- アルバムの削除 -->
-	<delete id="delete">
-		delete from albums
-		where id = #{id}
-	</delete>
-	
-	<!-- 比較を作成-->
 	<select id="existsAlbumByAccountId" resultType="Integer">
 		select groups.account_id
 		from albums
@@ -59,5 +46,4 @@
 			on group_id = groups.id
 		where albums.id = #{id}
 	</select>
-	
 </mapper>

@@ -10,8 +10,6 @@
 		<result column="account_id" property="accountId" />
 	</resultMap>
 	
-	<!-- ーーーEntryGroupーーー -->
-	
 	<insert id="insert">
 		insert into `groups`(
 			 group_name
@@ -22,16 +20,17 @@
 		)
 	</insert>
 	
-	<!-- データベースに登録済のグループ名と重複していないか確認 -->
+	<delete id="delete">
+		delete from `groups`
+		where id = #{id}
+	</delete>
+	
 	<select id="existsByGroupName" resultType="String">
 		select group_name
 		from `groups`
 		where group_name = #{group.groupName}
 	</select>
 	
-	<!-- ーーーSelectGroupーーー -->
-	
-	<!-- 自身が所属しているグループのIDとグループ名の一覧を取得 -->
 	<select id="selectMyGroups" resultMap="GroupsTable">
 		select distinct groups.id,group_name
 		from `groups`
@@ -47,18 +46,9 @@
 		where id = #{id}
 	</select>
 	
-	<!-- ーーーDeleteGroupーーー -->
-	
-	<delete id="delete">
-		delete from `groups`
-		where id = #{id}
-	</delete>
-	
-	<!-- 比較を作成 -->
 	<select id="existsGroupByAccountId" resultType="Integer">
 		select account_id
 		from `groups`
 		where id = #{id}
 	</select>
-	
 </mapper>
