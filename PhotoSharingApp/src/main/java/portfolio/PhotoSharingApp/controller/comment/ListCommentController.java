@@ -41,7 +41,7 @@ public class ListCommentController {
 		model.addAttribute("listCommentForm",form);
 		model.addAttribute("loginUser",user.getUsername());
 		
-		/*このグループのcommentsテーブル情報とアカウント名を取得*/
+		/*このグループのコメントのテーブル情報とアカウント名を取得*/
 		List<Comment> commentList = commentService.getCommentList(group.getId());
 		model.addAttribute("commentList", commentList);
 		
@@ -51,10 +51,10 @@ public class ListCommentController {
 	@PostMapping("/list-comment")
 	public String postListComment(Model model
 			,@AuthenticationPrincipal LoginUserDetails user
-			,@ModelAttribute("group")Group group
-			,@ModelAttribute @Validated ListCommentForm form
+			,@ModelAttribute("listCommentForm") @Validated ListCommentForm form
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
+			,@ModelAttribute("group")Group group
 			) {
 		
 		if (bindingResult.hasErrors()) {

@@ -40,18 +40,18 @@ public class ListPhotoController {
 	public String getListPhoto(Model model
 			,@AuthenticationPrincipal LoginUserDetails user
 			,RedirectAttributes redirectAttributes
-			,@ModelAttribute("album")Album album
 			,@ModelAttribute("group")Group group
+			,@ModelAttribute("album")Album album
 		) {
 		
-		/*一致すると自身は管理者である*/
+		/*自身がグループの管理者であるかを確認*/
 		if (group.getAccountId() == user.getAccountId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		
 		model.addAttribute("loginUser", user.getUsername());
 		
-		/*photosテーブルの情報とアカウント名を取得*/
+		/*写真のテーブル情報とアカウント名を取得*/
 		List<Photo> photoList = photoService.getphotoList(album.getId());
 		model.addAttribute("photoList", photoList);
 		
@@ -60,10 +60,10 @@ public class ListPhotoController {
 	
 	@PostMapping("/list-photo")
 	public String postListPhoto(Model model
-			,@SessionAttribute("album")Album album
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@RequestParam("multipartFile")MultipartFile file
 			,RedirectAttributes redirectAttributes
+			,@SessionAttribute("album")Album album
 			)throws IOException {
 		
 		if (file.isEmpty()) {
@@ -72,25 +72,19 @@ public class ListPhotoController {
 		
 		/*元のファイル名を取得*/
 		String originalFilename = file.getOriginalFilename();
-		// 画像保存先フォルダに保存する
+		/*画像保存先フォルダに保存する*/
 		Path destPath = Paths.get(mediaDirectory, originalFilename);
-		// 保存先ディレクトリがなければ作成する
+		/*保存先ディレクトリがなければ作成する*/
 		Files.createDirectories(destPath.getParent());
-		// アップロードしたファイルを保存
+		/*アップロードしたファイルを保存*/
 		Files.write(destPath, file.getBytes());
-		
-		/*try {
-		} catch (FileAlreadyExistsException e) {
-			e.printStackTrace();
-			redirectAttributes.addFlashAttribute("isError",true);
-			return "redirect:list-photo";
-		}*/
 		
 		Photo photo = new Photo();
 		
 		photo.setAlbumId(album.getId());
 		photo.setAccountId(user.getAccountId());
-		//ファイル名を保存
+		
+		/*ファイル名を保存*/
 		photo.setPhoto(file.getOriginalFilename());
 		
 		photoService.addPhoto(photo);

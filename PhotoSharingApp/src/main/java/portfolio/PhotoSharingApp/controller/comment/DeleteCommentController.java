@@ -30,12 +30,12 @@ public class DeleteCommentController {
 		Comment comment = new Comment();
 		comment.setId(id);
 		
-		/*コメント内容が自身が登録したものかを確認*/
+		/*このコメントは自身がコメントしたものかを確認*/
 		if (commentService.isCurrentAccount(comment.getId(),user.getAccountId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
-		/*idとコメントを取得*/
+		/*コメントのIDとコメント内容を取得*/
 		Comment commentData = commentService.getComment(comment.getId());
 		model.addAttribute("commentData", commentData);
 		

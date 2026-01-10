@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	<title th:text="#{deleteMembersPage}"></title>
+	<title th:text="#{deleteMemberPage}"></title>
 </head>
 <body>
 	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
@@ -18,7 +18,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-5 mx-auto text-center">
 				
-				<div th:text="#{deleteMembersAlert}" class="mb-3 fs-5"></div>	
+				<div th:text="#{deleteMemberAlert}" class="mb-3 fs-5"></div>	
 				
 				<div class="row mb-3">
 					<div th:text="${memberData.Account?.username?: 'unknown'}" class="fs-5"></div>

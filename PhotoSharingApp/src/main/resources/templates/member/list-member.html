@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	<title th:text="#{listMembersPage}"></title>
+	<title th:text="#{listMemberPage}"></title>
 </head>
 <body>
 	<nav layout:replace="~{common/header-menu::header-menu}"></nav>
@@ -26,7 +26,7 @@
 				
 				<div class="col mb-3">
 					<th:block th:if="${isAdmin}">
-						<a th:href="@{'/add-member'}" th:text="#{addMembersBtn}" class="btn btn-success"></a>
+						<a th:href="@{'/add-member'}" th:text="#{addMemberBtn}" class="btn btn-success"></a>
 					</th:block>
 				</div>
 				

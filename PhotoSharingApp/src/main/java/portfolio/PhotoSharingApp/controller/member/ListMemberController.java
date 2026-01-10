@@ -33,7 +33,7 @@ public class ListMemberController {
 		List<Member> memberList = memberService.getMembersList(group.getId());
 		model.addAttribute("memberList", memberList);
 
-		/*自身は管理者*/
+		/*自身がグループの管理者であるかを確認*/
 		if (group.getAccountId() == user.getAccountId()) {
 			model.addAttribute("isAdmin", true);
 		} else {

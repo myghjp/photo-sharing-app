@@ -35,7 +35,7 @@ public class DeleteAccountController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		/*自身が作成したグループが存在するか確認*/
+		/*自身が作成したグループが存在するかを確認*/
 		if (accountService.isCreateGroupExisting(user.getAccountId())) {
 			return getDeleteAccount(model,true);
 		}

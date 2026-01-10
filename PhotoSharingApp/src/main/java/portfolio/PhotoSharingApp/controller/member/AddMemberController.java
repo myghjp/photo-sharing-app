@@ -43,19 +43,19 @@ public class AddMemberController {
 		
 		String email = form.getEmailAddress();
 		
-		/*アカウントIdが存在するかを確認*/
+		/*このメールアドレスは登録されているかを確認*/
 		if (memberService.isExistingAccountId(email)) {
-			bindingResult.rejectValue("emailAddress", "addMembersEmailError");
+			bindingResult.rejectValue("emailAddress", "addMemberEmailError");
 		}
 		
-		/*このグループ内にいる利用者のアドレスが重複していないかを確認*/
+		/*このグループに追加済のメールアドレスではないかを確認*/
 		if (memberService.isExistingMembersId(email,group)) {
-			bindingResult.rejectValue("emailAddress", "addMembersEmailError2");
+			bindingResult.rejectValue("emailAddress", "addMemberEmailError2");
 		}
 		
-		/*このグループの管理者のメールアドレスならエラー*/
+		/*このグループの管理者のメールアドレスではないかを確認*/
 		if (memberService.is(group.getAccountId(),email)) {
-			bindingResult.rejectValue("emailAddress", "addMembersEmailError3");
+			bindingResult.rejectValue("emailAddress", "addMemberEmailError3");
 		}
 		
 		if (bindingResult.hasErrors()) {

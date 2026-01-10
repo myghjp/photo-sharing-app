@@ -22,7 +22,7 @@ public class HomeGroupController {
 			,@ModelAttribute("group")Group group
 			) {
 		
-		/*自身は管理者*/
+		/*自身がグループの管理者であるかを確認*/
 		if (group.getAccountId() == user.getAccountId()) {
 			model.addAttribute("isAdmin",true);
 		}

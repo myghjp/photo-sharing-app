@@ -42,21 +42,21 @@ public class DeletePhotoController {
 			,@SessionAttribute("group")Group group
 			) {
 
-		/*この写真のアルバムはこのグループのものでないなら*/
+		/*このグループの写真なのかを確認*/
 		if (photoService.isCurrentAlbum(id, album.getId())) {
 			throw new AccessDeniedException("アクセス権無し(このグループの写真ではない");
 		} 
 		
-		/*自身がこのアルバムのグループの管理者でないなら*/
+		/*自身がグループの管理者であるかを確認*/
 		if (photoService.isCurrentGroupAdmin(group.getAccountId(),user.getAccountId())) {
 			
-			/*この写真のアカウントIDと一致しないなら*/
+			/*自身が追加した写真なのかを確認*/
 			if (photoService.isCurrentPhoto(id,user.getAccountId())){
 				throw new AccessDeniedException("アクセス権無し(自身の写真ではない)");
 			} 
 		}
 		
-		/*このidとphotoを取得*/
+		/*この写真のIDとパス情報を取得*/
 		Photo photoData = photoService.getPhoto(id);
 		model.addAttribute("photoData",photoData);
 		
@@ -69,10 +69,11 @@ public class DeletePhotoController {
 			, RedirectAttributes redirectAttributes
 			)throws IOException {
 
-		/*このidとphotoを取得*/
+		/*この写真のIDとパス情報を取得*/
 		Photo photoData = photoService.getPhoto(id);
 		
 		Path path = Path.of(mediaDirectory + photoData.getPhoto());
+		/*ファイルを削除*/
 		Files.delete(path);
 		
 		photoService.removePhoto(photoData.getId());

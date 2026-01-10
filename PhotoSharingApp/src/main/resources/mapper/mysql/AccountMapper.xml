@@ -70,12 +70,4 @@
 		where id = #{id}
 	</delete>
 	
-	<!-- ーーーーーーーーーーーーーー -->
-	
-	<!-- <select id="isExistingMapper" resultType="String">
-		select email_address
-		from accounts
-		where id = #{id}
-	</select> -->
-	
 </mapper>

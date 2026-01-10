@@ -45,7 +45,7 @@ public class SelectAlbumController {
 		List<Album> albumList = albumService.getAlbumList(group.getId());
 		model.addAttribute("albumList", albumList);
 		
-		/*一致すると自身は管理者*/
+		/*自身がグループの管理者であるかを確認*/
 		if (group.getAccountId() == user.getAccountId()) {
 			model.addAttribute("isAdmin",true);
 		}
@@ -61,10 +61,7 @@ public class SelectAlbumController {
 		
 		/*アルバムIDとアルバム名を取得*/
 		Album album = albumService.getAlbum(id);
-		
-		/*SessionAttributesに追加*/
 		model.addAttribute("album",album);
-		/*redirectAttributes.addFlashAttribute("album",album);*/
 		
 		return "redirect:list-photo";
 	}

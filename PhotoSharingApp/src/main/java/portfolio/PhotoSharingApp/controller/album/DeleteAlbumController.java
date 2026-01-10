@@ -33,7 +33,7 @@ public class DeleteAlbumController {
 		Album album = new Album();
 		album.setId(id);
 		
-		/*※このアルバムidが自身が作成したのかを確認*/
+		/*自身が作成したアルバムであるかを確認*/
 		if (albumService.isCurrentAccount(album.getId(),user.getAccountId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}

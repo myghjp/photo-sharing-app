@@ -39,10 +39,10 @@ public class CreateAlbumController {
 	
 	@PostMapping("/create-album")
 	public String postCreateAlbum(Model model
-			,Group group
-			,@ModelAttribute @Validated CreateAlbumForm form
+			,@ModelAttribute("createAlbumForm") @Validated CreateAlbumForm form
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
+			,@ModelAttribute("group")Group group
 			) {
 		
 		if (bindingResult.hasErrors()) {
