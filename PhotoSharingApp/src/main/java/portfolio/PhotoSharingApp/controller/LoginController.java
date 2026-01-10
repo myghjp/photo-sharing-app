@@ -10,4 +10,6 @@ public class LoginController {
 	public String getLogin() {
 		return "login";
 	}
+	
+	/*命名規則*/
 }
