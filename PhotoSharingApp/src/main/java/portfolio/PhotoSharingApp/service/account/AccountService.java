@@ -12,9 +12,9 @@ public interface AccountService {
 	
 	public void removeAccount(int id);
 	
-	public boolean isUsernameExisting(Account Account);
+	public boolean isExistsByUsername(Account Account);
 	
-	public boolean isEmailAddressExisting(Account Account);
+	public boolean isExistsByEmail(Account Account);
 	
-	public boolean isCreateGroupExisting(int id);
+	public boolean isFindCreateGroup(int id);
 }

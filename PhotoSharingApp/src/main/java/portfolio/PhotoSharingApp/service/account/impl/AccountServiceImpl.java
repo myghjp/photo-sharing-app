@@ -35,7 +35,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	/*登録済のアカウント名と重複していないかを確認*/
 	@Override
-	public boolean isUsernameExisting(Account account) {
+	public boolean isExistsByUsername(Account account) {
 		if (accountMapper.existsByUsername(account) == null) {
 			return false;
 		} else {
@@ -45,7 +45,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	/*登録済のメールアドレスと重複していないかを確認*/
 	@Override
-	public boolean isEmailAddressExisting(Account account) {
+	public boolean isExistsByEmail(Account account) {
 		if (accountMapper.existsByEmailAddress(account) == null) {
 			return false;
 		} else {
@@ -55,7 +55,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	/*自身が作成したグループが存在するかを確認*/
 	@Override
-	public boolean isCreateGroupExisting(int id) {
+	public boolean isFindCreateGroup(int id) {
 		if (accountMapper.existsByAccountId(id) == null) {
 			return false;
 		} else {

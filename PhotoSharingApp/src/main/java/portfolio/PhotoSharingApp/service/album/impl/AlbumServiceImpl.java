@@ -39,7 +39,7 @@ public class AlbumServiceImpl implements AlbumService{
 	
 	/*自身が作成したアルバムであるかを確認*/
 	@Override
-	public boolean isCurrentAccount(int albumId,int loginId) {
+	public boolean isFindCreateAlbum(int albumId,int loginId) {
 		if (albumMapper.existsAlbumByAccountId(albumId) == loginId) {
 			return false;
 		} else {

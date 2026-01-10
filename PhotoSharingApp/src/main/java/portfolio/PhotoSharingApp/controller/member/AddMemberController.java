@@ -44,17 +44,17 @@ public class AddMemberController {
 		String email = form.getEmailAddress();
 		
 		/*このメールアドレスは登録されているかを確認*/
-		if (memberService.isExistingAccountId(email)) {
+		if (memberService.isFindByAccountId(email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError");
 		}
 		
 		/*このグループに追加済のメールアドレスではないかを確認*/
-		if (memberService.isExistingMembersId(email,group)) {
+		if (memberService.isFindByMembersId(email,group)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError2");
 		}
 		
 		/*このグループの管理者のメールアドレスではないかを確認*/
-		if (memberService.is(group.getAccountId(),email)) {
+		if (memberService.isFind(group.getAccountId(),email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError3");
 		}
 		

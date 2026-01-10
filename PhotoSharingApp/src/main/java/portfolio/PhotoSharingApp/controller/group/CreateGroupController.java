@@ -47,7 +47,7 @@ public class CreateGroupController {
 		Group group = modelMapper.map(form, Group.class);
 
 		/*登録済のグループ名と重複していないかを確認*/
-		if (groupService.isExistingGroup(group)){
+		if (groupService.isExistsGroup(group)){
 			bindingResult.rejectValue("groupName","entryGroupNameError");
 		}
 		

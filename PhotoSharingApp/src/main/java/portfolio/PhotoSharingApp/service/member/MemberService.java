@@ -19,11 +19,11 @@ public interface MemberService {
 	
 	public Member getMemberName(int id);
 	
-	public boolean isExistingAccountId(String email);
+	public boolean isFindByAccountId(String email);
 	
-	public boolean isExistingMembersId(String email,Group group);
+	public boolean isFindByMembersId(String email,Group group);
 	
-	public boolean is(int adminId, String formEmail);
+	public boolean isFind(int adminId, String formEmail);
 	
-	public boolean isCurrentAccount(int memberId,int loginId);
+	public boolean isFindGroupAdmin(int memberId,int loginId);
 }

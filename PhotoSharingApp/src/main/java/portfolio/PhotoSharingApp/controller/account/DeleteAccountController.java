@@ -36,7 +36,7 @@ public class DeleteAccountController {
 			) {
 		
 		/*自身が作成したグループが存在するかを確認*/
-		if (accountService.isCreateGroupExisting(user.getAccountId())) {
+		if (accountService.isFindCreateGroup(user.getAccountId())) {
 			return getDeleteAccount(model,true);
 		}
 		

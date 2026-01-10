@@ -14,5 +14,5 @@ public interface AlbumService {
 	
 	public Album getAlbum(int id);
 	
-	public boolean isCurrentAccount(int albumId,int loginId);
+	public boolean isFindCreateAlbum(int albumId,int loginId);
 }

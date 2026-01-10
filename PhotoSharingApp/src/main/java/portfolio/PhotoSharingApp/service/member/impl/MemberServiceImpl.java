@@ -49,7 +49,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	/*このメールアドレスは登録されているかを確認*/
 	@Override
-	public boolean isExistingAccountId(String email) {
+	public boolean isFindByAccountId(String email) {
 		if (memberMapper.existsByEmailAddress(email) != null) {
 			return false;
 		} else {
@@ -59,7 +59,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	/*このグループに追加済のメールアドレスではないかを確認*/
 	@Override
-	public boolean isExistingMembersId(String email,Group group) {
+	public boolean isFindByMembersId(String email,Group group) {
 		if (memberMapper.existsMembersByEmailAddress(email,group) == null) {
 			return false;
 		} else {
@@ -69,7 +69,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	/*このグループの管理者のメールアドレスではないかを確認*/
 	@Override
-	public boolean is(int adminId,String formEmail) {
+	public boolean isFind(int adminId,String formEmail) {
 		if (memberMapper.is(adminId).equals(formEmail) == formEmail.equals(formEmail)) {
 			return true;
 		} else {
@@ -79,7 +79,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	/*このグループの管理者であるかを確認*/
 	@Override
-	public boolean isCurrentAccount(int memberId,int loginId) {
+	public boolean isFindGroupAdmin(int memberId,int loginId) {
 		if (memberMapper.existsGroupByAccountId(memberId) == loginId) {
 			return false;
 		} else {

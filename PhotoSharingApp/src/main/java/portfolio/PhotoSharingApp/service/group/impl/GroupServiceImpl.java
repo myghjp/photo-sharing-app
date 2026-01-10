@@ -27,7 +27,7 @@ public class GroupServiceImpl implements GroupService{
 	
 	/*登録済のグループ名と重複していないかを確認*/
 	@Override
-	public boolean isExistingGroup(Group group) {
+	public boolean isExistsGroup(Group group) {
 		if (groupMapper.existsByGroupName(group) == null) {
 			return false;
 		} else {
@@ -49,7 +49,7 @@ public class GroupServiceImpl implements GroupService{
 	
 	/*このグループは自身が作成したグループなのかを確認*/
 	@Override
-	public boolean isCurrentAccount(int GroupId,int loginId) {
+	public boolean isFindCreateMyGroup(int GroupId,int loginId) {
 		if (groupMapper.existsGroupByAccountId(GroupId) == loginId) {
 			return false;
 		} else {

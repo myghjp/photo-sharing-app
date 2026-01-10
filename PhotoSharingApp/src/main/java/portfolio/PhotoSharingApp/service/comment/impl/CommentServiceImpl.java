@@ -39,7 +39,7 @@ public class CommentServiceImpl implements CommentService{
 	
 	/*このコメントは自身がコメントしたものかを確認*/
 	@Override
-	public boolean isCurrentAccount(int commentId,int loginId) {
+	public boolean isFindAddMyComment(int commentId,int loginId) {
 		if ( commentMapper.selectByAccountId(commentId) == loginId) {
 			return false;
 		} else {

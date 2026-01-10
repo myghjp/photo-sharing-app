@@ -28,7 +28,7 @@ public class DeleteGroupController {
 			) {
 		
 		/*このグループは自身が作成したグループなのかを確認*/
-		if (groupService.isCurrentAccount(id,user.getAccountId())) {
+		if (groupService.isFindCreateMyGroup(id,user.getAccountId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		

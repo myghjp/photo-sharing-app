@@ -14,5 +14,5 @@ public interface CommentService {
 	
 	public Comment getComment(int id);
 	
-	public boolean isCurrentAccount(int id,int loginId);
+	public boolean isFindAddMyComment(int id,int loginId);
 }

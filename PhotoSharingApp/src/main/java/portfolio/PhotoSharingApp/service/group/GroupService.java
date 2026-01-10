@@ -8,7 +8,7 @@ public interface GroupService {
 	
 	public void createGroup(Group group);
 	
-	public boolean isExistingGroup(Group group);
+	public boolean isExistsGroup(Group group);
 	
 	public List<Group> getGroupList(int id);
 	
@@ -16,5 +16,5 @@ public interface GroupService {
 	
 	public void deleteGroup(int id);
 	
-	public boolean isCurrentAccount(int GroupId,int loginId);
+	public boolean isFindCreateMyGroup(int GroupId,int loginId);
 }
