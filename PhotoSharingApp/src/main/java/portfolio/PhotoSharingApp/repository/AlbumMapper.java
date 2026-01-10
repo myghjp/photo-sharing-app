@@ -16,15 +16,15 @@ public interface AlbumMapper {
 	
 	/*ーーーSelectAlbumーーー*/
 	
-	public List<Album> selectGroupAlbum(@Param("id") Integer id);
+	public List<Album> selectGroupAlbum(Integer id);
 	
-	public Album selectAlbum(@Param("id") Integer id);
+	public Album selectAlbum(Integer id);
 	
 	/*ーーーDeleteAlbumーーー*/
 	
-	public void delete(@Param("id") Integer id);
+	public void delete(Integer id);
 	
 	/*比較を作成*/
-	public Integer existsAlbumByAccountId(@Param("id") Integer id);
+	public Integer existsAlbumByAccountId(Integer id);
 	
 }

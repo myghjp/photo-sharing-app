@@ -26,12 +26,8 @@ public interface AccountMapper {
 	
 	/*ーーーDeleteAccountーーー*/
 	
-	public Integer existsByAccountId(@Param("id")Integer id);
+	public Integer existsByAccountId(Integer id);
 	
-	public void delete(@Param("id") Integer id);
-	
-	/*ーーーー仮ーーーーーーーーーー*/
-	
-	/*public String isExistingMapper(@Param("id") Integer id);*/
+	public void delete(Integer id);
 	
 }

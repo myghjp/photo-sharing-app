@@ -12,19 +12,19 @@ public interface PhotoMapper {
 	
 	/*ーーーListPhotoーーー*/
 	
-	public List<Photo> selectPhotoItems(@Param("id")Integer id);
+	public List<Photo> selectPhotoItems(Integer id);
 	
 	public void insert(@Param("photo")Photo photo);
 	
 	/*ーーーDeletePhotoーーー*/
 	
-	public Photo selectPhoto(@Param("id")Integer id);
+	public Photo selectPhoto(Integer id);
 	
-	public void delete(@Param("id")Integer id);
+	public void delete(Integer id);
 	
 	/*バリデーション作成中*/
-	public Integer existsByAlbumId(@Param("id") Integer id);
+	public Integer existsByAlbumId(Integer id);
 	
-	public Integer existsByAccountId(@Param("id")Integer id);
+	public Integer existsByAccountId(Integer id);
 	
 }

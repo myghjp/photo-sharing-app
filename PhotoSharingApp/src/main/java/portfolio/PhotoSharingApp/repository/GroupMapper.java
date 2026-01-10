@@ -18,15 +18,15 @@ public interface GroupMapper {
 	
 	/*ーーーSelectGroupーーー*/
 	
-	public List<Group> selectMyGroups(@Param("id")Integer id);
+	public List<Group> selectMyGroups(Integer id);
 	
-	public Group selectById(@Param("id")Integer id);
+	public Group selectById(Integer id);
 	
 	/*ーーーDeleteGroupーーー*/
 	
-	public void delete(@Param("id")Integer id);
+	public void delete(Integer id);
 	
 	/*比較を作成*/
-	public Integer existsGroupByAccountId(@Param("id") Integer id);
+	public Integer existsGroupByAccountId(Integer id);
 	
 }
