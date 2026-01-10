@@ -15,23 +15,9 @@ public class PhotoServiceImpl implements PhotoService{
 	@Autowired
 	private PhotoMapper photoMapper;
 	
-	/*ーーーListPhotoーーー*/
-	
-	@Override
-	public List<Photo> getphotoList(int id){
-		return photoMapper.selectPhotoItems(id);
-	}
-	
 	@Override
 	public void addPhoto(Photo photo) {
 		photoMapper.insert(photo);
-	}
-	
-	/*ーーーDeletePhotoーーー*/
-	
-	@Override
-	public Photo getPhoto(int id) {
-		return photoMapper.selectPhoto(id);
 	}
 	
 	@Override
@@ -39,6 +25,19 @@ public class PhotoServiceImpl implements PhotoService{
 		photoMapper.delete(id);
 	}
 	
+	/*写真のテーブル情報とアカウント名を取得*/
+	@Override
+	public List<Photo> getphotoList(int id){
+		return photoMapper.selectPhotoItems(id);
+	}
+	
+	
+	@Override
+	public Photo getPhoto(int id) {
+		return photoMapper.selectPhoto(id);
+	}
+	
+	/*このグループの写真なのかを確認*/
 	@Override
 	public boolean isCurrentAlbum(int photoId,int albumId) {
 		if (photoMapper.existsByAlbumId(photoId) != albumId) {
@@ -48,6 +47,7 @@ public class PhotoServiceImpl implements PhotoService{
 		}
 	}
 	
+	/*自身がグループの管理者であるかを確認*/
 	@Override
 	public boolean isCurrentGroupAdmin(int GroupId,int loginId) {
 		if (GroupId != loginId) {
@@ -57,6 +57,7 @@ public class PhotoServiceImpl implements PhotoService{
 		}
 	}
 	
+	/*自身が追加した写真なのかを確認*/
 	@Override
 	public boolean isCurrentPhoto(int photoId,int loginId) {
 		if (photoMapper.existsByAccountId(photoId) != loginId) {
@@ -65,5 +66,4 @@ public class PhotoServiceImpl implements PhotoService{
 			return false;
 		}
 	}
-	
 }

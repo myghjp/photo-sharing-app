@@ -15,23 +15,9 @@ public class CommentServiceImpl implements CommentService{
 	@Autowired
 	private CommentMapper commentMapper;
 	
-	/*ーーーListCommentーーー*/
-	
-	@Override
-	public List<Comment> getCommentList(int id){
-		return commentMapper.selectCommentItems(id);
-	}
-	
 	@Override
 	public void addComment(Comment comment) {
 		commentMapper.insert(comment);
-	}
-	
-	/*ーーーDeleteCommentーーー*/
-	
-	@Override
-	public Comment getComment(int id) {
-		return commentMapper.selectById(id);
 	}
 	
 	@Override
@@ -39,7 +25,19 @@ public class CommentServiceImpl implements CommentService{
 		commentMapper.delete(id);
 	}
 	
-	/*比較を作成*/
+	/*このグループのコメントのテーブル情報とアカウント名を取得*/
+	@Override
+	public List<Comment> getCommentList(int id){
+		return commentMapper.selectCommentItems(id);
+	}
+	
+	/*コメントのIDとコメント内容を取得*/
+	@Override
+	public Comment getComment(int id) {
+		return commentMapper.selectById(id);
+	}
+	
+	/*このコメントは自身がコメントしたものかを確認*/
 	@Override
 	public boolean isCurrentAccount(int commentId,int loginId) {
 		if ( commentMapper.selectByAccountId(commentId) == loginId) {

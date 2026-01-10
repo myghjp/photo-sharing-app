@@ -6,19 +6,13 @@ import portfolio.PhotoSharingApp.entity.Photo;
 
 public interface PhotoService {
 	
-	/*ーーーListPhotoーーー*/
-	
-	public List<Photo> getphotoList(int id);
-	
 	public void addPhoto(Photo photo);
-
-	/*ーーーDeletePhotoーーー*/
-	
-	public Photo getPhoto(int id);
 	
 	public void removePhoto(int id);
 	
-	/*ーーーーーバリデーション作成中ーーーーーーーーーーー*/
+	public List<Photo> getphotoList(int id);
+	
+	public Photo getPhoto(int id);
 	
 	public boolean isCurrentAlbum(int photoId,int albumId);
 	

@@ -6,21 +6,13 @@ import portfolio.PhotoSharingApp.entity.Album;
 
 public interface AlbumService {
 	
-	/*ーーーEntryAlbumーーー*/
-	
 	public void addAlbum(Album album);
 	
-	/*ーーーSelectAlbumーーー*/
+	public void deleteAlbum(int id);
 	
 	public List<Album> getAlbumList(int id);
 	
 	public Album getAlbum(int id);
 	
-	/*ーーーDeleteAlbumーーー*/
-	
-	public void deleteAlbum(int id);
-	
-	/*比較を作成*/
 	public boolean isCurrentAccount(int albumId,int loginId);
-
 }

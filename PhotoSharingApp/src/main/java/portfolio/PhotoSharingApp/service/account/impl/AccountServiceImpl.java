@@ -13,20 +13,27 @@ public class AccountServiceImpl implements AccountService{
 	@Autowired
 	private AccountMapper accountMapper;
 	
-	/*ーーーLoginーーー*/
-	
 	@Override
 	public Account getLoginAccount(String user) {
 		return accountMapper.selectByUsername(user);
 	}
-	
-	/*ーーーEntryAccountーーー*/
 	
 	@Override
 	public void createAccount(Account account){
 		accountMapper.insert(account);
 	}
 	
+	@Override
+	public void updateAccount(Account account) {
+		accountMapper.update(account);
+	}
+	
+	@Override
+	public void removeAccount(int id){
+		accountMapper.delete(id);
+	}
+	
+	/*登録済のアカウント名と重複していないかを確認*/
 	@Override
 	public boolean isUsernameExisting(Account account) {
 		if (accountMapper.existsByUsername(account) == null) {
@@ -36,6 +43,7 @@ public class AccountServiceImpl implements AccountService{
 		}
 	}
 	
+	/*登録済のメールアドレスと重複していないかを確認*/
 	@Override
 	public boolean isEmailAddressExisting(Account account) {
 		if (accountMapper.existsByEmailAddress(account) == null) {
@@ -45,15 +53,7 @@ public class AccountServiceImpl implements AccountService{
 		}
 	}
 	
-	/*ーーーEditAccountーーー*/
-	
-	@Override
-	public void updateAccount(Account account) {
-		accountMapper.update(account);
-	}
-	
-	/*ーーーDeleteAccountーーー*/
-	
+	/*自身が作成したグループが存在するかを確認*/
 	@Override
 	public boolean isCreateGroupExisting(int id) {
 		if (accountMapper.existsByAccountId(id) == null) {
@@ -62,26 +62,4 @@ public class AccountServiceImpl implements AccountService{
 			return true;
 		}
 	}
-	
-	@Override
-	public void removeAccount(int id){
-		accountMapper.delete(id);
-	}
-	
-	/*ーーーー仮ーーーーーーーーーーーーー*/
-
-	/*@Override
-	public boolean isExisting(int adminAccountId,String email) {
-		if (accountMapper.isExistingMapper(adminAccountId) == email) {
-			return true;
-		} else {
-			return false;
-		}
-	}*/
-	
-	/*@Override
-	public String isExisting(int accountId) {
-		return accountMapper.isExistingMapper(accountId);
-	}*/
-		
 }

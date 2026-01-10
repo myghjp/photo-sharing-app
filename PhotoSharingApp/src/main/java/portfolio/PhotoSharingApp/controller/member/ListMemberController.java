@@ -29,7 +29,7 @@ public class ListMemberController {
 			,@ModelAttribute("group")Group group
 			,RedirectAttributes redirectAttributes
 		) {
-
+		
 		List<Member> memberList = memberService.getMembersList(group.getId());
 		model.addAttribute("memberList", memberList);
 

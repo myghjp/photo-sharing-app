@@ -16,46 +16,20 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private MemberMapper memberMapper;
 	
-	/*ーーーAddMembersーーー*/
-	
 	@Override
-	public boolean isExistingAccountId(String email) {
-		if (memberMapper.existsByEmailAddress(email) != null) {
-			return false;
-		} else {
-			return true;
-		}
+	public void insertMember(Member member) {
+		memberMapper.insert(member);
 	}
 	
 	@Override
-	public boolean isExistingMembersId(String email,Group group) {
-		if (memberMapper.existsMembersByEmailAddress(email,group) == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
-	@Override
-	public boolean is(int adminId,String formEmail) {
-		if (memberMapper.is(adminId).equals(formEmail) == formEmail.equals(formEmail)) {
-			return true;
-		} else {
-			return false;
-		}
+	public void deleteMember(int id) {
+		memberMapper.delete(id);
 	}
 	
 	@Override
 	public int selectAccountId(String emailAddress) {
 		return memberMapper.selectAccountById(emailAddress);
 	}
-	
-	@Override
-	public void insertMember(Member member) {
-		memberMapper.insert(member);
-	}
-	
-	/*ーーーListMembersーーー*/
 	
 	@Override
 	public List<Member> getMembersList(int groupId){
@@ -67,19 +41,43 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.selectAccountByUsername(id);
 	}
 	
-	/*ーーーDeleteMembersーーー*/
-	
+	/*グループ利用者IDとその名前を取得*/
 	@Override
 	public Member getMemberName(int id) {
 		return memberMapper.selectByMembersId(id);
 	}
 	
+	/*このメールアドレスは登録されているかを確認*/
 	@Override
-	public void deleteMember(int id) {
-		memberMapper.delete(id);
+	public boolean isExistingAccountId(String email) {
+		if (memberMapper.existsByEmailAddress(email) != null) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
-	/*比較を作成*/
+	/*このグループに追加済のメールアドレスではないかを確認*/
+	@Override
+	public boolean isExistingMembersId(String email,Group group) {
+		if (memberMapper.existsMembersByEmailAddress(email,group) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	/*このグループの管理者のメールアドレスではないかを確認*/
+	@Override
+	public boolean is(int adminId,String formEmail) {
+		if (memberMapper.is(adminId).equals(formEmail) == formEmail.equals(formEmail)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/*このグループの管理者であるかを確認*/
 	@Override
 	public boolean isCurrentAccount(int memberId,int loginId) {
 		if (memberMapper.existsGroupByAccountId(memberId) == loginId) {

@@ -15,33 +15,29 @@ public class AlbumServiceImpl implements AlbumService{
 	@Autowired
 	private AlbumMapper albumMapper;
 	
-	/*ーーーEntryAlbumーーー*/
-	
 	@Override
 	public void addAlbum(Album album) {
 		albumMapper.insert(album);
 	}
-	
-	/*ーーーSelectAlbumーーー*/
-	
-	@Override
-	public List<Album> getAlbumList(int id) {
-		return albumMapper.selectGroupAlbum(id);
-	}
-	
-	@Override
-	public Album getAlbum(int id) {
-		return albumMapper.selectAlbum(id);
-	}
-	
-	/*ーーーDeleteAlbumーーー*/
 	
 	@Override
 	public void deleteAlbum(int id) {
 		albumMapper.delete(id);
 	}
 	
-	/*比較を作成*/
+	/*このグループのアルバムIDとアルバム名を取得*/
+	@Override
+	public List<Album> getAlbumList(int id) {
+		return albumMapper.selectGroupAlbum(id);
+	}
+	
+	/*アルバムIDとアルバム名を取得*/
+	@Override
+	public Album getAlbum(int id) {
+		return albumMapper.selectAlbum(id);
+	}
+	
+	/*自身が作成したアルバムであるかを確認*/
 	@Override
 	public boolean isCurrentAccount(int albumId,int loginId) {
 		if (albumMapper.existsAlbumByAccountId(albumId) == loginId) {
@@ -50,5 +46,4 @@ public class AlbumServiceImpl implements AlbumService{
 			return true;
 		}
 	}
-	
 }
