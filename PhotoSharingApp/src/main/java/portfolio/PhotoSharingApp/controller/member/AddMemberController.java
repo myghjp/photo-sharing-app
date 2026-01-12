@@ -14,11 +14,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.entity.Member;
 import portfolio.PhotoSharingApp.form.member.AddMemberForm;
+import portfolio.PhotoSharingApp.service.account.AccountService;
 import portfolio.PhotoSharingApp.service.member.MemberService;
 
 @Controller
 @SessionAttributes(value = {"group"})
 public class AddMemberController {
+	
+	@Autowired
+	private AccountService accountService;
 	
 	@Autowired
 	private MemberService memberService;
@@ -43,20 +47,22 @@ public class AddMemberController {
 		
 		String email = form.getEmailAddress();
 		
+		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		/*このメールアドレスは登録されているかを確認*/
-		if (memberService.isFindByAccountId(email)) {
+		if (accountService.existsByEmail(email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError");
 		}
 		
 		/*このグループに追加済のメールアドレスではないかを確認*/
-		if (memberService.isFindByMembersId(email,group)) {
+		if (memberService.isMember(email,group)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError2");
 		}
 		
 		/*このグループの管理者のメールアドレスではないかを確認*/
-		if (memberService.isFind(group.getAccountId(),email)) {
+		if (memberService.is(group.getAccountId(),email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError3");
 		}
+		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
 		if (bindingResult.hasErrors()) {
 			return getAddMember(model, form);
@@ -65,9 +71,9 @@ public class AddMemberController {
 		Member member = new Member();
 		
 		member.setGroupId(group.getId());
-		member.setAccountId(memberService.selectAccountId(email));
+		member.setAccountId(accountService.findById(email));
 		
-		memberService.insertMember(member);
+		memberService.insert(member);
 		
 		return "redirect:list-member";
 	}

@@ -31,7 +31,7 @@ public class DeleteCommentController {
 		comment.setId(id);
 		
 		/*このコメントは自身がコメントしたものかを確認*/
-		if (commentService.isFindAddMyComment(comment.getId(),user.getAccountId())) {
+		if (commentService.isFindAddMyComment(comment.getId(),user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		

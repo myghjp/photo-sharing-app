@@ -17,19 +17,16 @@ public class MemberServiceImpl implements MemberService{
 	private MemberMapper memberMapper;
 	
 	@Override
-	public void insertMember(Member member) {
+	public void insert(Member member) {
 		memberMapper.insert(member);
 	}
 	
 	@Override
-	public void deleteMember(int id) {
+	public void delete(int id) {
 		memberMapper.delete(id);
 	}
 	
-	@Override
-	public int selectAccountId(String emailAddress) {
-		return memberMapper.selectAccountById(emailAddress);
-	}
+	
 	
 	@Override
 	public List<Member> getMembersList(int groupId){
@@ -47,19 +44,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.selectByMembersId(id);
 	}
 	
-	/*このメールアドレスは登録されているかを確認*/
-	@Override
-	public boolean isFindByAccountId(String email) {
-		if (memberMapper.existsByEmailAddress(email) != null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
 	/*このグループに追加済のメールアドレスではないかを確認*/
 	@Override
-	public boolean isFindByMembersId(String email,Group group) {
+	public boolean isMember(String email,Group group) {
 		if (memberMapper.existsMembersByEmailAddress(email,group) == null) {
 			return false;
 		} else {
@@ -69,7 +56,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	/*このグループの管理者のメールアドレスではないかを確認*/
 	@Override
-	public boolean isFind(int adminId,String formEmail) {
+	public boolean is(int adminId,String formEmail) {
 		if (memberMapper.is(adminId).equals(formEmail) == formEmail.equals(formEmail)) {
 			return true;
 		} else {

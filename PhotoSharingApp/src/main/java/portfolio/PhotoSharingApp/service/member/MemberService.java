@@ -7,11 +7,10 @@ import portfolio.PhotoSharingApp.entity.Member;
 
 public interface MemberService {
 	
-	public void insertMember(Member member);
+	public void insert(Member member);
 	
-	public void deleteMember(int id);
+	public void delete(int id);
 	
-	public int selectAccountId(String emailAddress);
 	
 	public List<Member> getMembersList(int groupId);
 	
@@ -19,11 +18,9 @@ public interface MemberService {
 	
 	public Member getMemberName(int id);
 	
-	public boolean isFindByAccountId(String email);
+	public boolean isMember(String email,Group group);
 	
-	public boolean isFindByMembersId(String email,Group group);
-	
-	public boolean isFind(int adminId, String formEmail);
+	public boolean is(int adminId, String formEmail);
 	
 	public boolean isFindGroupAdmin(int memberId,int loginId);
 }

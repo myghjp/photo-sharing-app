@@ -45,7 +45,7 @@ public class ListPhotoController {
 		) {
 		
 		/*自身がグループの管理者であるかを確認*/
-		if (group.getAccountId() == user.getAccountId()) {
+		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		
@@ -82,7 +82,7 @@ public class ListPhotoController {
 		Photo photo = new Photo();
 		
 		photo.setAlbumId(album.getId());
-		photo.setAccountId(user.getAccountId());
+		photo.setAccountId(user.getUserId());
 		
 		/*ファイル名を保存*/
 		photo.setPhoto(file.getOriginalFilename());

@@ -41,11 +41,7 @@
 			where id = #{id}
 	</delete>
 	
-	<select id="selectAccountById" resultType="Integer">
-		select id
-		from accounts
-		where email_address = #{emailAddress}
-	</select>
+	
 	
 	<select id="selectMyGroupsMembers" resultMap="MembersTable">
 		select groups_members.id
@@ -78,12 +74,6 @@
 		where groups_members.id = #{id}
 	</select>
 	
-	<select id="existsByEmailAddress" resultType="String">
-		select email_address
-		from accounts
-		where email_address = #{email}
-	</select>
-	
 	<select id="existsMembersByEmailAddress" resultType="Integer">
 		select groups_members.id
 		from groups_members
@@ -92,7 +82,7 @@
 			where accounts.email_address = #{email}
 				and (groups_members.group_id = #{group.id}
 				or groups_members.account_id = #{group.accountId})
-	</select>
+	</select><!-- ※↑おかしい -->
 	
 	<select id="is" resultType="String">
 		select email_address

@@ -39,7 +39,7 @@ public class SelectGroupController {
 		sessionStatus.setComplete();
 		
 		/*自身が所属しているグループIDとグループ名を取得*/
-		List<Group> groupList = groupService.getGroupList(user.getAccountId());
+		List<Group> groupList = groupService.findAllByUserId(user.getUserId());
 		model.addAttribute("groupList", groupList);
 
 		return "group/select-group";
@@ -52,7 +52,7 @@ public class SelectGroupController {
 			) {
 
 		/*グループ情報を取得*/
-		Group group = groupService.getGroup(id);
+		Group group = groupService.findById(id);
 		model.addAttribute("group",group);
 		
 		return "redirect:home-group";

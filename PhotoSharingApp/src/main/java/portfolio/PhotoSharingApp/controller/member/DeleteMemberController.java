@@ -33,7 +33,7 @@ public class DeleteMemberController {
 		member.setId(id);
 		
 		/*このグループの管理者であるかを確認*/
-		if (memberService.isFindGroupAdmin(member.getId(),user.getAccountId())) {
+		if (memberService.isFindGroupAdmin(member.getId(),user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
@@ -50,7 +50,7 @@ public class DeleteMemberController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		memberService.deleteMember(id);
+		memberService.delete(id);
 		
 		return "redirect:list-member";
 	}

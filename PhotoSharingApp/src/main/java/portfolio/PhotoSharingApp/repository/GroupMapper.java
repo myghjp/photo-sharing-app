@@ -12,13 +12,15 @@ public interface GroupMapper {
 	
 	public void insert(@Param("group")Group group);
 	
-	public void delete(Integer id);
-	
-	public String existsByGroupName(@Param("group")Group group);
-	
 	public List<Group> selectMyGroups(Integer id);
+	
+	public String existsByGroupName(String groupName);
 	
 	public Group selectById(Integer id);
 	
+	public void delete(Integer id);
+	
 	public Integer existsGroupByAccountId(Integer id);
+	
+	public Integer existsByAccountId(Integer id);
 }

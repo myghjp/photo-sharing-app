@@ -20,17 +20,6 @@
 		)
 	</insert>
 	
-	<delete id="delete">
-		delete from `groups`
-		where id = #{id}
-	</delete>
-	
-	<select id="existsByGroupName" resultType="String">
-		select group_name
-		from `groups`
-		where group_name = #{group.groupName}
-	</select>
-	
 	<select id="selectMyGroups" resultMap="GroupsTable">
 		select distinct groups.id,group_name
 		from `groups`
@@ -46,9 +35,27 @@
 		where id = #{id}
 	</select>
 	
+	<delete id="delete">
+		delete from `groups`
+		where id = #{id}
+	</delete>
+	
+	<select id="existsByGroupName" resultType="String">
+		select group_name
+		from `groups`
+		where group_name = #{groupName}
+	</select>
+	
 	<select id="existsGroupByAccountId" resultType="Integer">
 		select account_id
 		from `groups`
 		where id = #{id}
+	</select>
+	
+	<select id="existsByAccountId" resultType="Integer">
+		select account_id
+		from `groups`
+		where account_id = #{id}
+		limit 1
 	</select>
 </mapper>

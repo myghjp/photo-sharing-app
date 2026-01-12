@@ -48,10 +48,10 @@ public class DeletePhotoController {
 		} 
 		
 		/*自身がグループの管理者であるかを確認*/
-		if (photoService.isCurrentGroupAdmin(group.getAccountId(),user.getAccountId())) {
+		if (photoService.isCurrentGroupAdmin(group.getAccountId(),user.getUserId())) {
 			
 			/*自身が追加した写真なのかを確認*/
-			if (photoService.isCurrentPhoto(id,user.getAccountId())){
+			if (photoService.isCurrentPhoto(id,user.getUserId())){
 				throw new AccessDeniedException("アクセス権がありません");
 			} 
 		}

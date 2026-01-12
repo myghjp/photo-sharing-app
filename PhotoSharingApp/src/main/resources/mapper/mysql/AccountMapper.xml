@@ -11,12 +11,6 @@
 		<result column="email_address" property="emailAddress" />
 	</resultMap>
 	
-	<select id="selectByUsername" resultMap="accountsTable">
-		select *
-		from accounts 
-		where user = #{username}
-	</select>
-	
 	<insert id="insert">
 		insert into accounts(
 			 user
@@ -28,6 +22,12 @@
 			,#{account.emailAddress}
 		)
 	</insert>
+	
+	<select id="selectByUsername" resultMap="accountsTable">
+		select *
+		from accounts 
+		where user = #{username}
+	</select>
 	
 	<update id="update">
 		update accounts
@@ -43,19 +43,19 @@
 	<select id="existsByUsername" resultType="String">
 		select user
 		from accounts
-		where user = #{account.username}
+		where user = #{username}
 	</select>
 	
 	<select id="existsByEmailAddress" resultType="String">
 		select email_address
 		from accounts
-		where email_address = #{account.emailAddress}
+		where email_address = #{emailAddress}
 	</select>
 	
-	<select id="existsByAccountId" resultType="Integer">
-		select account_id
-		from `groups`
-		where account_id = #{id}
-		limit 1
+	<select id="selectAccountById" resultType="Integer">
+		select id
+		from accounts
+		where email_address = #{emailAddress}
 	</select>
+	
 </mapper>

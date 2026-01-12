@@ -28,12 +28,12 @@ public class DeleteGroupController {
 			) {
 		
 		/*このグループは自身が作成したグループなのかを確認*/
-		if (groupService.isFindCreateMyGroup(id,user.getAccountId())) {
+		if (groupService.isOwner(id,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
-		/*このIDのグループテーブル情報を取得*/
-		Group groupData = groupService.getGroup(id);
+		/*グループ情報を取得*/
+		Group groupData = groupService.findById(id);
 		model.addAttribute("groupData",groupData);
 		
 		return "group/delete-group";
@@ -45,7 +45,7 @@ public class DeleteGroupController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		groupService.deleteGroup(id);
+		groupService.delete(id);
 		
 		return "redirect:select-group";
 	}

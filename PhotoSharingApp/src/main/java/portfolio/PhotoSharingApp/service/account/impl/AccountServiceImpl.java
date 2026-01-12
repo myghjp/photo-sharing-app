@@ -14,29 +14,29 @@ public class AccountServiceImpl implements AccountService{
 	private AccountMapper accountMapper;
 	
 	@Override
+	public void create(Account account){
+		accountMapper.insert(account);
+	}
+	
+	@Override
 	public Account getLoginAccount(String user) {
 		return accountMapper.selectByUsername(user);
 	}
 	
 	@Override
-	public void createAccount(Account account){
-		accountMapper.insert(account);
-	}
-	
-	@Override
-	public void updateAccount(Account account) {
+	public void update(Account account) {
 		accountMapper.update(account);
 	}
 	
 	@Override
-	public void removeAccount(int id){
+	public void remove(int id){
 		accountMapper.delete(id);
 	}
 	
 	/*登録済のアカウント名と重複していないかを確認*/
 	@Override
-	public boolean isExistsByUsername(Account account) {
-		if (accountMapper.existsByUsername(account) == null) {
+	public boolean existsByUsername(String username) {
+		if (accountMapper.existsByUsername(username) == null) {
 			return false;
 		} else {
 			return true;
@@ -45,21 +45,16 @@ public class AccountServiceImpl implements AccountService{
 	
 	/*登録済のメールアドレスと重複していないかを確認*/
 	@Override
-	public boolean isExistsByEmail(Account account) {
-		if (accountMapper.existsByEmailAddress(account) == null) {
+	public boolean existsByEmail(String emailAddress) {
+		if (accountMapper.existsByEmailAddress(emailAddress) == null) {
 			return false;
 		} else {
 			return true;
 		}
 	}
 	
-	/*自身が作成したグループが存在するかを確認*/
 	@Override
-	public boolean isFindCreateGroup(int id) {
-		if (accountMapper.existsByAccountId(id) == null) {
-			return false;
-		} else {
-			return true;
-		}
+	public int findById(String emailAddress) {
+		return accountMapper.selectAccountById(emailAddress);
 	}
 }

@@ -4,17 +4,18 @@ import portfolio.PhotoSharingApp.entity.Account;
 
 public interface AccountService {
 	
+	public void create(Account account);
+	
 	public Account getLoginAccount(String user);
 	
-	public void createAccount(Account account);
+	public void update(Account account);
 	
-	public void updateAccount(Account account);
+	public void remove(int id);
 	
-	public void removeAccount(int id);
+	public boolean existsByUsername(String username);
 	
-	public boolean isExistsByUsername(Account Account);
+	public boolean existsByEmail(String emailAddress);
+
+	public int findById(String emailAddress);
 	
-	public boolean isExistsByEmail(Account Account);
-	
-	public boolean isFindCreateGroup(int id);
 }

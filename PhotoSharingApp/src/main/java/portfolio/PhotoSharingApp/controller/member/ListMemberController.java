@@ -34,7 +34,7 @@ public class ListMemberController {
 		model.addAttribute("memberList", memberList);
 
 		/*自身がグループの管理者であるかを確認*/
-		if (group.getAccountId() == user.getAccountId()) {
+		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin", true);
 		} else {
 			String adminName = memberService.getAdminName(group.getId());

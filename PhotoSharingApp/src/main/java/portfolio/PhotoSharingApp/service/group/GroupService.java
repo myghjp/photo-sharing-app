@@ -6,15 +6,18 @@ import portfolio.PhotoSharingApp.entity.Group;
 
 public interface GroupService {
 	
-	public void createGroup(Group group);
+	public void create(Group group);
 	
-	public boolean isExistsGroup(Group group);
+	public List<Group> findAllByUserId(int id);
 	
-	public List<Group> getGroupList(int id);
+	public Group findById(int id);
 	
-	public Group getGroup(int id);
+	public void delete(int id);
 	
-	public void deleteGroup(int id);
+	public boolean existsByGroupName(String groupName);
 	
-	public boolean isFindCreateMyGroup(int GroupId,int loginId);
+	public boolean isOwner(int GroupId,int loginId);
+	
+	/*※済*/
+	public boolean existsByUserId(int userId);
 }

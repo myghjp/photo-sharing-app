@@ -1,5 +1,7 @@
 package portfolio.PhotoSharingApp.controller.account;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Account;
 import portfolio.PhotoSharingApp.form.account.CreateAccountForm;
 import portfolio.PhotoSharingApp.service.account.AccountService;
@@ -53,12 +54,12 @@ public class CreateAccountController {
 		Account account = modelMapper.map(form, Account.class);
 
 		/*登録済のアカウント名と重複していないかを確認*/
-		if (accountService.isExistsByUsername(account)) {
+		if (accountService.existsByUsername(account.getUsername())) {
 			bindingResult.rejectValue("username", "entryAccountNameError");
 		}
 		
 		/*登録済のメールアドレスと重複していないかを確認*/
-		if (accountService.isExistsByEmail(account)) {
+		if (accountService.existsByEmail(account.getEmailAddress())) {
 			bindingResult.rejectValue("emailAddress", "entryAccountEmailError");
 		}
 		
@@ -67,7 +68,7 @@ public class CreateAccountController {
 		}
 		
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
-		accountService.createAccount(account);
+		accountService.create(account);
 		
 		return "redirect:login";
 	}

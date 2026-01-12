@@ -56,9 +56,9 @@ public class UpdateAccountController {
 		
 		Account account = modelMapper.map(form, Account.class);
 		
-		account.setId(user.getAccountId());
+		account.setId(user.getUserId());
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
-		accountService.updateAccount(account);
+		accountService.update(account);
 		
 		session.invalidate();
 		

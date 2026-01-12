@@ -47,7 +47,7 @@ public class CreateGroupController {
 		Group group = modelMapper.map(form, Group.class);
 
 		/*登録済のグループ名と重複していないかを確認*/
-		if (groupService.isExistsGroup(group)){
+		if (groupService.existsByGroupName(group.getGroupName())){
 			bindingResult.rejectValue("groupName","entryGroupNameError");
 		}
 		
@@ -55,8 +55,8 @@ public class CreateGroupController {
 			return getCreateGroup(model, form);
 		}
 		
-		group.setAccountId(user.getAccountId());
-		groupService.createGroup(group);
+		group.setAccountId(user.getUserId());
+		groupService.create(group);
 		
 		return "redirect:select-group";
 	}

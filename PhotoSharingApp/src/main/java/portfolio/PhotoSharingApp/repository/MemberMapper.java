@@ -15,15 +15,13 @@ public interface MemberMapper {
 	
 	public void delete(Integer id);
 	
-	public Integer selectAccountById(String emailAddress);
+	
 	
 	public List<Member> selectMyGroupsMembers(Integer groupId);
 	
 	public String selectAccountByUsername(Integer id);
 	
 	public Member selectByMembersId(Integer id);
-	
-	public String existsByEmailAddress(String email);
 	
 	public Integer existsMembersByEmailAddress(String email,@Param("group")Group group);
 	

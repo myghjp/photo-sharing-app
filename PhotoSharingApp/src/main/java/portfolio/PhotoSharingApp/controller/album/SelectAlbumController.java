@@ -46,7 +46,7 @@ public class SelectAlbumController {
 		model.addAttribute("albumList", albumList);
 		
 		/*自身がグループの管理者であるかを確認*/
-		if (group.getAccountId() == user.getAccountId()) {
+		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		

@@ -27,7 +27,7 @@ public class LoginUserDetails implements UserDetails {
 
 	public Account getAccounts() {return accounts;}
 	
-	public int getAccountId() {return accounts.getId();}
+	public int getUserId() {return accounts.getId();}
 
 	@Override
 	public String getUsername() {return accounts.getUsername();}
