@@ -8,14 +8,16 @@ public interface AccountService {
 	
 	public Account getLoginAccount(String user);
 	
-	public void update(Account account);
+	public void edit(Account account);
 	
 	public void remove(int userId);
+	
+	/*ーーーーーーーーーーーーーーーーーーーー*/
+	
+	public int findById(String emailAddress);
 	
 	public boolean existsByUsername(String username);
 	
 	public boolean existsByEmail(String emailAddress);
 
-	public int findById(String emailAddress);
-	
 }

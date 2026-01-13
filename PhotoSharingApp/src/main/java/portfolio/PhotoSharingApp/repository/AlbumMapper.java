@@ -14,9 +14,11 @@ public interface AlbumMapper {
 	
 	public void delete(Integer albumId);
 	
-	public List<Album> selectGroupAlbum(Integer groupId);
+	/*ーーーーーーーーーーーーーーーーーーーー*/
+	
+	public List<Album> selectAlbums(Integer groupId);
 	
 	public Album selectAlbum(Integer albumId);
 	
-	public Integer existsAlbumByAccountId(Integer albumId);
+	public Integer selectGroupByAccountId(Integer albumId);
 }

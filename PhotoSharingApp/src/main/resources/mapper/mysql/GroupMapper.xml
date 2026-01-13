@@ -20,7 +20,15 @@
 		)
 	</insert>
 	
-	<select id="selectMyGroups" resultMap="GroupsTable">
+	<delete id="delete">
+		delete from `groups`
+		where id = #{groupId}
+	</delete>
+	
+	<!-- ーーーーーーーーーーーーーーーーーーーー -->
+	
+	<!-- ここを修正すると -->
+	<select id="selectGroups" resultMap="GroupsTable">
 		select distinct groups.id,group_name
 		from `groups`
 			left join groups_members
@@ -29,41 +37,39 @@
 		or groups_members.account_id = #{id}
 	</select>
 	
+	<!-- ここも修正 -->
 	<select id="selectById" resultMap="GroupsTable">
 		select *
 		from `groups`
 		where id = #{groupId}
 	</select>
 	
-	<delete id="delete">
-		delete from `groups`
-		where id = #{groupId}
-	</delete>
+	<select id="selectAccountByUsername" resultType="String">
+		select accounts.user
+		from `groups`accounts
+			left join accounts
+			on groups.account_id = accounts.id
+		where groups.id = #{id}
+	</select>
 	
-	<select id="existsByGroupName" resultType="String">
+	<select id="selectByGroupName" resultType="String">
 		select group_name
 		from `groups`
 		where group_name = #{groupName}
 	</select>
 	
-	<select id="existsGroupByAccountId" resultType="Integer">
+	<select id="selectGroupByAccountId" resultType="Integer">
 		select account_id
 		from `groups`
 		where id = #{groupId}
 	</select>
 	
-	<select id="existsByAccountId" resultType="Integer">
+	<!-- 修正 -->
+	<select id="selectByAccountId" resultType="Integer">
 		select account_id
 		from `groups`
 		where account_id = #{id}
 		limit 1
 	</select>
 	
-	<select id="selectAccountByUsername" resultType="String">
-		select accounts.user
-		from `groups`accounts
-		left join accounts
-		on groups.account_id = accounts.id
-		where groups.id = #{id}
-	</select>
 </mapper>

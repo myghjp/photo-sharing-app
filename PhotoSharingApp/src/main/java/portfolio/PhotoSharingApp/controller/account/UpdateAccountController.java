@@ -58,7 +58,7 @@ public class UpdateAccountController {
 		
 		account.setId(user.getUserId());
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
-		accountService.update(account);
+		accountService.edit(account);
 		
 		session.invalidate();
 		

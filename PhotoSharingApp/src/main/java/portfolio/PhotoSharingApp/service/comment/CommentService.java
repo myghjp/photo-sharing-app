@@ -8,11 +8,14 @@ public interface CommentService {
 	
 	public void add(Comment comment);
 	
+	public List<Comment> findAllById(int groupId);
+	
 	public void delete(int commentId);
 	
-	public List<Comment> findAllById(int groupId);
+	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
 	public Comment findById(int commentId);
 	
 	public boolean isMyComment(int commentId,int userId);
+	
 }

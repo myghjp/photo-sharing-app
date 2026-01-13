@@ -21,36 +21,34 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	@Override
+	public List<Photo> findAllById(int albumId){
+		return photoMapper.selectPhotos(albumId);
+	}
+	
+	@Override
 	public void remove(int photoId) {
 		photoMapper.delete(photoId);
 	}
 	
-	/*写真のテーブル情報とアカウント名を取得*/
-	@Override
-	public List<Photo> findAllById(int albumId){
-		return photoMapper.selectPhotoItems(albumId);
-	}
-	
+	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
 	@Override
 	public Photo findById(int photoId) {
 		return photoMapper.selectPhoto(photoId);
 	}
 	
-	/*このグループの写真なのかを確認*/
 	@Override
 	public boolean isCurrentAlbum(int photoId,int albumId) {
-		if (photoMapper.existsByAlbumId(photoId) != albumId) {
+		if (photoMapper.selectByAlbumId(photoId) != albumId) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 	
-	/*自身が追加した写真なのかを確認*/
 	@Override
 	public boolean isCurrentPhoto(int photoId,int userId) {
-		if (photoMapper.existsByAccountId(photoId) != userId) {
+		if (photoMapper.selectByAccountId(photoId) != userId) {
 			return true;
 		} else {
 			return false;

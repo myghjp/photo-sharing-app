@@ -21,56 +21,51 @@ public class GroupServiceImpl implements GroupService{
 	}
 	
 	@Override
+	public List<Group> findAllByUserId(int id) {
+		return groupMapper.selectGroups(id);
+	}
+	
+	@Override
 	public void delete(int groupId) {
 		groupMapper.delete(groupId);
 	}
 	
-	/*自身が所属しているグループIDとグループ名を取得*/
-	@Override
-	public List<Group> findAllByUserId(int id) {
-		return groupMapper.selectMyGroups(id);
-	}
+	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	/*グループ情報を取得*/
 	@Override
 	public Group findById(int groupId){
 		return groupMapper.selectById(groupId);
-	}
-	
-	/*登録済のグループ名と重複していないかを確認*/
-	@Override
-	public boolean existsByGroupName(String groupName) {
-		if (groupMapper.existsByGroupName(groupName) == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	/*このグループは自身が作成したグループなのかを確認*/
-	@Override
-	public boolean isOwner(int groupId,int userId) {
-		if (groupMapper.existsGroupByAccountId(groupId) == userId) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
-	/*済*/
-	/*自身が作成したグループが存在するかを確認*/
-	@Override
-	public boolean existsByUserId(int id) {
-		if (groupMapper.existsByAccountId(id) == null) {
-			return false;
-		} else {
-			return true;
-		}
 	}
 	
 	@Override
 	public String findByUsername(int id) {
 		return groupMapper.selectAccountByUsername(id);
 	}
+	
+	@Override
+	public boolean existsByGroupName(String groupName) {
+		if (groupMapper.selectByGroupName(groupName) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
+	@Override
+	public boolean isOwner(int groupId,int userId) {
+		if (groupMapper.selectGroupByAccountId(groupId) == userId) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	@Override
+	public boolean existsByUserId(int id) {
+		if (groupMapper.selectByAccountId(id) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

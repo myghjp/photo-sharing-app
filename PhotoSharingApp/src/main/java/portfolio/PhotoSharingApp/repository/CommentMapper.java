@@ -14,7 +14,9 @@ public interface CommentMapper {
 	
 	public void delete(Integer commentId);
 	
-	public List<Comment> selectCommentItems(Integer groupId);
+	/*ーーーーーーーーーーーーーーーーーーーー*/
+	
+	public List<Comment> selectComments(Integer groupId);
 	
 	public Comment selectById(Integer commentId);
 	

@@ -20,11 +20,11 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public Account getLoginAccount(String user) {
-		return accountMapper.selectByUsername(user);
+		return accountMapper.selectByUser(user);
 	}
 	
 	@Override
-	public void update(Account account) {
+	public void edit(Account account) {
 		accountMapper.update(account);
 	}
 	
@@ -33,10 +33,17 @@ public class AccountServiceImpl implements AccountService{
 		accountMapper.delete(userId);
 	}
 	
+	/*ーーーーーーーーーーーーーーーーーーーー*/
+	
+	@Override
+	public int findById(String emailAddress) {
+		return accountMapper.selectByUserId(emailAddress);
+	}
+	
 	/*登録済のアカウント名と重複していないかを確認*/
 	@Override
 	public boolean existsByUsername(String username) {
-		if (accountMapper.existsByUsername(username) == null) {
+		if (accountMapper.selectByUsername(username) == null) {
 			return false;
 		} else {
 			return true;
@@ -46,15 +53,10 @@ public class AccountServiceImpl implements AccountService{
 	/*登録済のメールアドレスと重複していないかを確認*/
 	@Override
 	public boolean existsByEmail(String emailAddress) {
-		if (accountMapper.existsByEmailAddress(emailAddress) == null) {
+		if (accountMapper.selectByEmailAddress(emailAddress) == null) {
 			return false;
 		} else {
 			return true;
 		}
-	}
-	
-	@Override
-	public int findById(String emailAddress) {
-		return accountMapper.selectAccountById(emailAddress);
 	}
 }

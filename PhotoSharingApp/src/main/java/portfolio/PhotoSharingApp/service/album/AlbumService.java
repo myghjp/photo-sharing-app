@@ -8,11 +8,14 @@ public interface AlbumService {
 	
 	public void add(Album album);
 	
+	public List<Album> findAllById(int groupId);
+	
 	public void delete(int albumId);
 	
-	public List<Album> findAllById(int groupId);
+	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
 	public Album findById(int albumId);
 	
 	public boolean isAlbum(int albumId,int userId);
+	
 }

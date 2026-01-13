@@ -35,20 +35,7 @@
 		where id = #{photoId}
 	</delete>
 	
-	<select id="selectPhotoItems" resultMap="PhotosTable">
-		select 
-		photos.id
-		,accounts.user as accounts_user
-		,photo
-		,photos.create_date_time
-		from photos
-			left join accounts
-				on photos.account_id = accounts.id
-			left join albums
-				on album_id = photos.id
-		    where album_id = #{albumId}
-		    order by photos.id desc
-	</select>
+	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
 	<select id="selectPhoto" resultMap="PhotosTable">
 		select id,photo
@@ -56,15 +43,30 @@
 		where id = #{photoId}
 	</select>
 	
-	<select id="existsByAlbumId" resultType="Integer">
+	<select id="selectPhotos" resultMap="PhotosTable">
+		select photos.id
+			,accounts.user as accounts_user
+			,photo
+			,photos.create_date_time
+		from photos
+			left join accounts
+				on photos.account_id = accounts.id
+			left join albums
+				on album_id = photos.id
+	    where album_id = #{albumId}
+		order by photos.id desc
+	</select>
+	
+	<select id="selectByAlbumId" resultType="Integer">
 		select album_id
 		from photos
 		where id = #{photoId}
 	</select>
 	
-	<select id="existsByAccountId" resultType="Integer">
+	<select id="selectByAccountId" resultType="Integer">
 		select account_id
 		from photos
 		where id = #{photoId}
 	</select>
+	
 </mapper>

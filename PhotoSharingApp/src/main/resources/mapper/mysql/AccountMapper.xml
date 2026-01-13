@@ -23,12 +23,6 @@
 		)
 	</insert>
 	
-	<select id="selectByUsername" resultMap="accountsTable">
-		select *
-		from accounts 
-		where user = #{username}
-	</select>
-	
 	<update id="update">
 		update accounts
 		set pass = #{account.password}
@@ -40,20 +34,28 @@
 		where id = #{userId}
 	</delete>
 	
-	<select id="existsByUsername" resultType="String">
+	<!-- ーーーーーーーーーーーーーーーーーーーー -->
+	
+	<select id="selectByUser" resultMap="accountsTable">
+		select *
+		from accounts 
+		where user = #{username}
+	</select>
+	
+	<select id="selectByUserId" resultType="Integer">
+		select id
+		from accounts
+		where email_address = #{emailAddress}
+	</select>
+	
+	<select id="selectByUsername" resultType="String">
 		select user
 		from accounts
 		where user = #{username}
 	</select>
 	
-	<select id="existsByEmailAddress" resultType="String">
+	<select id="selectByEmailAddress" resultType="String">
 		select email_address
-		from accounts
-		where email_address = #{emailAddress}
-	</select>
-	
-	<select id="selectAccountById" resultType="Integer">
-		select id
 		from accounts
 		where email_address = #{emailAddress}
 	</select>

@@ -21,23 +21,22 @@ public class CommentServiceImpl implements CommentService{
 	}
 	
 	@Override
+	public List<Comment> findAllById(int groupId){
+		return commentMapper.selectComments(groupId);
+	}
+	
+	@Override
 	public void delete(int commentId) {
 		commentMapper.delete(commentId);
 	}
 	
-	/*このグループのコメントのテーブル情報とアカウント名を取得*/
-	@Override
-	public List<Comment> findAllById(int groupId){
-		return commentMapper.selectCommentItems(groupId);
-	}
+	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	/*コメントのIDとコメント内容を取得*/
 	@Override
 	public Comment findById(int commentId) {
 		return commentMapper.selectById(commentId);
 	}
 	
-	/*このコメントは自身がコメントしたものかを確認*/
 	@Override
 	public boolean isMyComment(int commentId,int userId) {
 		if (commentMapper.selectByAccountId(commentId) == userId) {

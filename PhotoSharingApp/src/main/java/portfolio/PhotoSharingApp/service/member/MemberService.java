@@ -9,9 +9,11 @@ public interface MemberService {
 	
 	public void insert(Member member);
 	
+	public List<Member> findAllById(int groupId);
+	
 	public void delete(int memberId);
 	
-	public List<Member> findAllById(int groupId);
+	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
 	public Member findById(int memberId);
 	

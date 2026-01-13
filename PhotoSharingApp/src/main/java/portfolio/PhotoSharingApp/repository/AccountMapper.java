@@ -10,15 +10,18 @@ public interface AccountMapper {
 	
 	public void insert(@Param("account") Account account);
 	
-	public Account selectByUsername(String user);
-	
 	public void update(@Param("account") Account account);
 	
 	public void delete(Integer userId);
 	
-	public String existsByUsername(String username);
+	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	public String existsByEmailAddress(String emailAddress);
+	public Account selectByUser(String user);
 	
-	public Integer selectAccountById(String emailAddress);
+	public Integer selectByUserId(String emailAddress);
+	
+	public String selectByUsername(String username);
+	
+	public String selectByEmailAddress(String emailAddress);
+	
 }

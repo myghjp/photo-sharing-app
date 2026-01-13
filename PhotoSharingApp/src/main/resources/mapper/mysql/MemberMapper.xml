@@ -38,12 +38,12 @@
 	
 	<delete id="delete">
 		delete from groups_members
-			where id = #{memberId}
+		where id = #{memberId}
 	</delete>
 	
+	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
-	
-	<select id="selectMyGroupsMembers" resultMap="MembersTable">
+	<select id="selectMembers" resultMap="MembersTable">
 		select groups_members.id
 			,groups.group_name as groups_group_name
 			,accounts.user as accounts_user
@@ -57,39 +57,38 @@
 		where groups.id = #{groupId}
 	</select>
 	
-	
-	
-	<select id="selectByMembersId" resultMap="MembersTable">
+	<select id="selectById" resultMap="MembersTable">
 		select groups_members.id
-				,accounts.user as accounts_user
+			,accounts.user as accounts_user
 		from groups_members
 			left join accounts
 			on groups_members.account_id = accounts.id
-		where groups_members.id = #{id}
+		where groups_members.id = #{memberId}
 	</select>
 	
 	<select id="existsMembersByEmailAddress" resultType="Integer">
 		select groups_members.id
 		from groups_members
 			left join accounts
-				on groups_members.account_id = accounts.id
-			where accounts.email_address = #{email}
-				and (groups_members.group_id = #{group.id}
-				or groups_members.account_id = #{group.accountId})
+			on groups_members.account_id = accounts.id
+		where accounts.email_address = #{email}
+			and (groups_members.group_id = #{group.id}
+			or groups_members.account_id = #{group.accountId})
 	</select><!-- ※↑おかしい -->
 	
-	<!-- ※不要 -->
+	<!-- ※不要になる -->
 	<select id="is" resultType="String">
 		select email_address
 		from accounts
 		where id = #{adminId}
 	</select>
 	
-	<select id="existsGroupByAccountId" resultType="Integer">
+	<select id="selectGroupByAccountId" resultType="Integer">
 		select groups.account_id
 		from groups_members
 			left join `groups`
 			on group_id = groups.id
-		where groups_members.id = #{id}
+		where groups_members.id = #{memberId}
 	</select>
+	
 </mapper>

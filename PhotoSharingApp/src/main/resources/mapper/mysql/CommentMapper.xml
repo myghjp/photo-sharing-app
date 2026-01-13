@@ -35,16 +35,18 @@
 		where id = #{commentId}
 	</delete>
 	
-	<select id="selectCommentItems" resultMap="CommentsTable">
+	<!-- ーーーーーーーーーーーーーーーーーーーー -->
+	
+	<select id="selectComments" resultMap="CommentsTable">
 		select comments.id
 			,accounts.user as accounts_user
 			,comments.create_date_time
 			,comments.comment
 		from comments
 			left join accounts
-				on comments.account_id = accounts.id
-			where comments.group_id = #{groupId}
-				order by comments.id desc
+			on comments.account_id = accounts.id
+		where comments.group_id = #{groupId}
+		order by comments.id desc
 	</select>
 	
 	<select id="selectById" resultMap="CommentsTable">
@@ -58,4 +60,5 @@
 		from comments
 		where id = #{commentId}
 	</select>
+	
 </mapper>

@@ -12,17 +12,19 @@ public interface GroupMapper {
 	
 	public void insert(@Param("group")Group group);
 	
-	public List<Group> selectMyGroups(Integer id);
+	public void delete(Integer groupId);
 	
-	public String existsByGroupName(String groupName);
+	/*ーーーーーーーーーーーーーーーーーーーー*/
+	
+	public List<Group> selectGroups(Integer id);
+	
+	public String selectByGroupName(String groupName);
 	
 	public Group selectById(Integer groupId);
 	
-	public void delete(Integer groupId);
+	public Integer selectGroupByAccountId(Integer groupId);
 	
-	public Integer existsGroupByAccountId(Integer groupId);
-	
-	public Integer existsByAccountId(Integer id);
+	public Integer selectByAccountId(Integer id);
 	
 	public String selectAccountByUsername(Integer id);
 }

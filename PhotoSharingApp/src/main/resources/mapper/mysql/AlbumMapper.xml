@@ -25,11 +25,14 @@
 		where id = #{albumId}
 	</delete>
 	
-	<select id="selectGroupAlbum" resultMap="AlbumsTable">
+	<!-- ーーーーーーーーーーーーーーーーーーーー -->
+	
+	<!-- 修正 -->
+	<select id="selectAlbums" resultMap="AlbumsTable">
 		select albums.id,album_name
 		from albums
-		left join `groups`
-		on group_id = groups.id
+			left join `groups`
+			on group_id = groups.id
 		where group_id = #{groupId}
 	</select>
 	
@@ -39,11 +42,13 @@
 		where id = #{albumId}
 	</select>
 	
-	<select id="existsAlbumByAccountId" resultType="Integer">
+	<!-- 修正 -->
+	<select id="selectGroupByAccountId" resultType="Integer">
 		select groups.account_id
 		from albums
 			left join `groups`
 			on group_id = groups.id
 		where albums.id = #{albumId}
 	</select>
+	
 </mapper>

@@ -22,25 +22,27 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public List<Member> findAllById(int groupId){
+		return memberMapper.selectMembers(groupId);
+	}
+	
+	@Override
 	public void delete(int memberId) {
 		memberMapper.delete(memberId);
 	}
 	
-	@Override
-	public List<Member> findAllById(int groupId){
-		return memberMapper.selectMyGroupsMembers(groupId);
-	}
-	
+	/*ーーーーーーーーーーーーーーーーーーーー*/
+
 	/*グループ利用者IDとその名前を取得*/
 	@Override
-	public Member findById(int id) {
-		return memberMapper.selectByMembersId(id);
+	public Member findById(int memberId) {
+		return memberMapper.selectById(memberId);
 	}
 	
 	/*このグループに追加済のメールアドレスではないかを確認*/
 	@Override
 	public boolean isMember(String email,Group group) {
-		if (memberMapper.existsMembersByEmailAddress(email,group) == null) {
+		if (memberMapper.selectById2(email,group) == null) {
 			return false;
 		} else {
 			return true;
@@ -60,7 +62,7 @@ public class MemberServiceImpl implements MemberService{
 	/*このグループの管理者であるかを確認*/
 	@Override
 	public boolean isAdmin(int memberId,int userId) {
-		if (memberMapper.existsGroupByAccountId(memberId) == userId) {
+		if (memberMapper.selectGroupByAccountId(memberId) == userId) {
 			return false;
 		} else {
 			return true;

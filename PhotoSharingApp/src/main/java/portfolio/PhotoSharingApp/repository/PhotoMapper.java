@@ -14,11 +14,13 @@ public interface PhotoMapper {
 	
 	public void delete(Integer photoId);
 	
-	public List<Photo> selectPhotoItems(Integer albumId);
+	/*ーーーーーーーーーーーーーーーーーーーー*/
+	
+	public List<Photo> selectPhotos(Integer albumId);
 	
 	public Photo selectPhoto(Integer photoId);
 	
-	public Integer existsByAlbumId(Integer photoId);
+	public Integer selectByAlbumId(Integer photoId);
 	
-	public Integer existsByAccountId(Integer photoId);
+	public Integer selectByAccountId(Integer photoId);
 }

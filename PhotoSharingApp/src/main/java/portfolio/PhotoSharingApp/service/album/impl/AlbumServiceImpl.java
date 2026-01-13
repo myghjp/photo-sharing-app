@@ -21,26 +21,25 @@ public class AlbumServiceImpl implements AlbumService{
 	}
 	
 	@Override
+	public List<Album> findAllById(int groupId) {
+		return albumMapper.selectAlbums(groupId);
+	}
+	
+	@Override
 	public void delete(int albumId) {
 		albumMapper.delete(albumId);
 	}
 	
-	/*このグループのアルバムIDとアルバム名を取得*/
-	@Override
-	public List<Album> findAllById(int groupId) {
-		return albumMapper.selectGroupAlbum(groupId);
-	}
+	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	/*アルバムIDとアルバム名を取得*/
 	@Override
 	public Album findById(int albumId) {
 		return albumMapper.selectAlbum(albumId);
 	}
 	
-	/*自身が作成したアルバムであるかを確認*/
 	@Override
 	public boolean isAlbum(int albumId,int userId) {
-		if (albumMapper.existsAlbumByAccountId(albumId) == userId) {
+		if (albumMapper.selectGroupByAccountId(albumId) == userId) {
 			return false;
 		} else {
 			return true;
