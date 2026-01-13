@@ -11,5 +11,4 @@ public class LoginController {
 		return "login";
 	}
 	
-	/*命名規則 動詞*/
 }

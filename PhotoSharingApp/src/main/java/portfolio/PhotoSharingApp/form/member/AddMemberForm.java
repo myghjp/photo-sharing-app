@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 public class AddMemberForm {
 	
-	/*@NotBlank*/
 	@Email
 	private String emailAddress;
 }

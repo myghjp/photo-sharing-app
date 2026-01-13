@@ -52,15 +52,13 @@ public class AddMemberController {
 		if (accountService.isRegister(email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError");
 		}
-		
-		/*このグループに追加済のメールアドレスではないかを確認*/
-		if (memberService.isMember(email,group)) {
-			bindingResult.rejectValue("emailAddress", "addMemberEmailError2");
-		}
-		
 		/*このグループの管理者のメールアドレスではないかを確認*/
-		if (memberService.isOwner(group.getAccountId(),email)) {
+		else if (memberService.isOwner(group.getAccountId(),email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError3");
+		}
+		/*このグループに追加済のメールアドレスではないかを確認*/
+		else if (memberService.isMember(email,group)) {
+			bindingResult.rejectValue("emailAddress", "addMemberEmailError2");
 		}
 		
 		if (bindingResult.hasErrors()) {

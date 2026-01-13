@@ -46,7 +46,7 @@
 	
 	<select id="selectAccountByUsername" resultType="String">
 		select accounts.user
-		from `groups`accounts
+		from `groups`
 			left join accounts
 			on groups.account_id = accounts.id
 		where groups.id = #{id}
