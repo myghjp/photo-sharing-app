@@ -32,12 +32,12 @@
 	<select id="selectById" resultMap="GroupsTable">
 		select *
 		from `groups`
-		where id = #{id}
+		where id = #{groupId}
 	</select>
 	
 	<delete id="delete">
 		delete from `groups`
-		where id = #{id}
+		where id = #{groupId}
 	</delete>
 	
 	<select id="existsByGroupName" resultType="String">
@@ -49,7 +49,7 @@
 	<select id="existsGroupByAccountId" resultType="Integer">
 		select account_id
 		from `groups`
-		where id = #{id}
+		where id = #{groupId}
 	</select>
 	
 	<select id="existsByAccountId" resultType="Integer">
@@ -57,5 +57,13 @@
 		from `groups`
 		where account_id = #{id}
 		limit 1
+	</select>
+	
+	<select id="selectAccountByUsername" resultType="String">
+		select accounts.user
+		from `groups`accounts
+		left join accounts
+		on groups.account_id = accounts.id
+		where groups.id = #{id}
 	</select>
 </mapper>

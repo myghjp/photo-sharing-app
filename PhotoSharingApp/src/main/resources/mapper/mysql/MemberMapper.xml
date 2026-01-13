@@ -38,7 +38,7 @@
 	
 	<delete id="delete">
 		delete from groups_members
-			where id = #{id}
+			where id = #{memberId}
 	</delete>
 	
 	
@@ -54,16 +54,10 @@
 				or groups_members.account_id is null)
 			left join accounts
 				on groups_members.account_id = accounts.id
-		where groups.id = #{id}
+		where groups.id = #{groupId}
 	</select>
 	
-	<select id="selectAccountByUsername" resultType="String">
-		select user
-		from accounts
-		left join `groups`
-		on accounts.id = groups.account_id
-		where groups.id = #{id}
-	</select>
+	
 	
 	<select id="selectByMembersId" resultMap="MembersTable">
 		select groups_members.id
@@ -84,6 +78,7 @@
 				or groups_members.account_id = #{group.accountId})
 	</select><!-- ※↑おかしい -->
 	
+	<!-- ※不要 -->
 	<select id="is" resultType="String">
 		select email_address
 		from accounts

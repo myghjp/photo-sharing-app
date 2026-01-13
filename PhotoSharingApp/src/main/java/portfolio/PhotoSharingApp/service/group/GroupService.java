@@ -10,14 +10,16 @@ public interface GroupService {
 	
 	public List<Group> findAllByUserId(int id);
 	
-	public Group findById(int id);
+	public Group findById(int groupId);
 	
-	public void delete(int id);
+	public void delete(int groupId);
 	
 	public boolean existsByGroupName(String groupName);
 	
-	public boolean isOwner(int GroupId,int loginId);
+	public boolean isOwner(int groupId,int userId);
 	
 	/*※済*/
 	public boolean existsByUserId(int userId);
+	
+	public String findByUsername(int id);
 }

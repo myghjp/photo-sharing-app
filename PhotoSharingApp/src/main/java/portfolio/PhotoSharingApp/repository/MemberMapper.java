@@ -13,13 +13,13 @@ public interface MemberMapper {
 	
 	public void insert(@Param("member")Member member);
 	
-	public void delete(Integer id);
+	public void delete(Integer memberId);
 	
 	
 	
 	public List<Member> selectMyGroupsMembers(Integer groupId);
 	
-	public String selectAccountByUsername(Integer id);
+	
 	
 	public Member selectByMembersId(Integer id);
 	

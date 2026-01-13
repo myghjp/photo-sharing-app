@@ -12,11 +12,11 @@ public interface CommentMapper {
 	
 	public void insert(@Param("comment") Comment comment);
 	
-	public void delete(Integer id);
+	public void delete(Integer commentId);
 	
-	public List<Comment> selectCommentItems(Integer id);
+	public List<Comment> selectCommentItems(Integer groupId);
 	
-	public Comment selectById(Integer id);
+	public Comment selectById(Integer commentId);
 	
-	public Integer selectByAccountId(Integer id);
+	public Integer selectByAccountId(Integer commentId);
 }

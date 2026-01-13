@@ -14,7 +14,7 @@ public interface AccountMapper {
 	
 	public void update(@Param("account") Account account);
 	
-	public void delete(Integer id);
+	public void delete(Integer userId);
 	
 	public String existsByUsername(String username);
 	

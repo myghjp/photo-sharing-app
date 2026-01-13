@@ -12,11 +12,11 @@ public interface AlbumMapper {
 	
 	public void insert(@Param("album") Album album);
 	
-	public void delete(Integer id);
+	public void delete(Integer albumId);
 	
-	public List<Album> selectGroupAlbum(Integer id);
+	public List<Album> selectGroupAlbum(Integer groupId);
 	
-	public Album selectAlbum(Integer id);
+	public Album selectAlbum(Integer albumId);
 	
-	public Integer existsAlbumByAccountId(Integer id);
+	public Integer existsAlbumByAccountId(Integer albumId);
 }

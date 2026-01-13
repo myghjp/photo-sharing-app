@@ -32,7 +32,7 @@
 	
 	<delete id="delete">
 		delete from photos
-		where id = #{id}
+		where id = #{photoId}
 	</delete>
 	
 	<select id="selectPhotoItems" resultMap="PhotosTable">
@@ -46,25 +46,25 @@
 				on photos.account_id = accounts.id
 			left join albums
 				on album_id = photos.id
-		    where album_id = #{id}
+		    where album_id = #{albumId}
 		    order by photos.id desc
 	</select>
 	
 	<select id="selectPhoto" resultMap="PhotosTable">
 		select id,photo
 		from photos
-		where id = #{id}
+		where id = #{photoId}
 	</select>
 	
 	<select id="existsByAlbumId" resultType="Integer">
 		select album_id
 		from photos
-		where id = #{id}
+		where id = #{photoId}
 	</select>
 	
 	<select id="existsByAccountId" resultType="Integer">
 		select account_id
 		from photos
-		where id = #{id}
+		where id = #{photoId}
 	</select>
 </mapper>

@@ -21,8 +21,8 @@ public class GroupServiceImpl implements GroupService{
 	}
 	
 	@Override
-	public void delete(int id) {
-		groupMapper.delete(id);
+	public void delete(int groupId) {
+		groupMapper.delete(groupId);
 	}
 	
 	/*自身が所属しているグループIDとグループ名を取得*/
@@ -33,8 +33,8 @@ public class GroupServiceImpl implements GroupService{
 	
 	/*グループ情報を取得*/
 	@Override
-	public Group findById(int id){
-		return groupMapper.selectById(id);
+	public Group findById(int groupId){
+		return groupMapper.selectById(groupId);
 	}
 	
 	/*登録済のグループ名と重複していないかを確認*/
@@ -49,8 +49,8 @@ public class GroupServiceImpl implements GroupService{
 
 	/*このグループは自身が作成したグループなのかを確認*/
 	@Override
-	public boolean isOwner(int GroupId,int loginId) {
-		if (groupMapper.existsGroupByAccountId(GroupId) == loginId) {
+	public boolean isOwner(int groupId,int userId) {
+		if (groupMapper.existsGroupByAccountId(groupId) == userId) {
 			return false;
 		} else {
 			return true;
@@ -66,6 +66,11 @@ public class GroupServiceImpl implements GroupService{
 		} else {
 			return true;
 		}
+	}
+	
+	@Override
+	public String findByUsername(int id) {
+		return groupMapper.selectAccountByUsername(id);
 	}
 
 }

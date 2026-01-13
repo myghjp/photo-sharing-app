@@ -16,31 +16,31 @@ public class CommentServiceImpl implements CommentService{
 	private CommentMapper commentMapper;
 	
 	@Override
-	public void addComment(Comment comment) {
+	public void add(Comment comment) {
 		commentMapper.insert(comment);
 	}
 	
 	@Override
-	public void deleteComment(int id) {
-		commentMapper.delete(id);
+	public void delete(int commentId) {
+		commentMapper.delete(commentId);
 	}
 	
 	/*このグループのコメントのテーブル情報とアカウント名を取得*/
 	@Override
-	public List<Comment> getCommentList(int id){
-		return commentMapper.selectCommentItems(id);
+	public List<Comment> findAllById(int groupId){
+		return commentMapper.selectCommentItems(groupId);
 	}
 	
 	/*コメントのIDとコメント内容を取得*/
 	@Override
-	public Comment getComment(int id) {
-		return commentMapper.selectById(id);
+	public Comment findById(int commentId) {
+		return commentMapper.selectById(commentId);
 	}
 	
 	/*このコメントは自身がコメントしたものかを確認*/
 	@Override
-	public boolean isFindAddMyComment(int commentId,int loginId) {
-		if ( commentMapper.selectByAccountId(commentId) == loginId) {
+	public boolean isMyComment(int commentId,int userId) {
+		if (commentMapper.selectByAccountId(commentId) == userId) {
 			return false;
 		} else {
 			return true;

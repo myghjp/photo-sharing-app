@@ -42,7 +42,7 @@ public class ListCommentController {
 		model.addAttribute("loginUser",user.getUsername());
 		
 		/*このグループのコメントのテーブル情報とアカウント名を取得*/
-		List<Comment> commentList = commentService.getCommentList(group.getId());
+		List<Comment> commentList = commentService.findAllById(group.getId());
 		model.addAttribute("commentList", commentList);
 		
 		return "comment/list-comment";
@@ -66,7 +66,7 @@ public class ListCommentController {
 		comment.setGroupId(group.getId());
 		comment.setAccountId(user.getUserId());
 		
-		commentService.addComment(comment);
+		commentService.add(comment);
 	
 		return "redirect:list-comment";
 	}

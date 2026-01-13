@@ -42,7 +42,7 @@ public class SelectAlbumController {
 		httpSession.removeAttribute("album");
 		
 		/*このグループのアルバムIDとアルバム名を取得*/
-		List<Album> albumList = albumService.getAlbumList(group.getId());
+		List<Album> albumList = albumService.findAllById(group.getId());
 		model.addAttribute("albumList", albumList);
 		
 		/*自身がグループの管理者であるかを確認*/
@@ -60,7 +60,7 @@ public class SelectAlbumController {
 			) {
 		
 		/*アルバムIDとアルバム名を取得*/
-		Album album = albumService.getAlbum(id);
+		Album album = albumService.findById(id);
 		model.addAttribute("album",album);
 		
 		return "redirect:list-photo";

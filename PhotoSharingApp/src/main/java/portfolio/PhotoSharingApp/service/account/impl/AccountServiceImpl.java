@@ -29,8 +29,8 @@ public class AccountServiceImpl implements AccountService{
 	}
 	
 	@Override
-	public void remove(int id){
-		accountMapper.delete(id);
+	public void remove(int userId){
+		accountMapper.delete(userId);
 	}
 	
 	/*登録済のアカウント名と重複していないかを確認*/

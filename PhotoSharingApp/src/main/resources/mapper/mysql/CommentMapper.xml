@@ -32,7 +32,7 @@
 	
 	<delete id="delete">
 		delete from comments
-		where id = #{id}
+		where id = #{commentId}
 	</delete>
 	
 	<select id="selectCommentItems" resultMap="CommentsTable">
@@ -43,19 +43,19 @@
 		from comments
 			left join accounts
 				on comments.account_id = accounts.id
-			where comments.group_id = #{id}
+			where comments.group_id = #{groupId}
 				order by comments.id desc
 	</select>
 	
 	<select id="selectById" resultMap="CommentsTable">
 		select id,comment
 		from comments
-		where id = #{id}
+		where id = #{commentId}
 	</select>
 	
 	<select id="selectByAccountId" resultType="Integer">
 		select account_id
 		from comments
-		where id = #{id}
+		where id = #{commentId}
 	</select>
 </mapper>

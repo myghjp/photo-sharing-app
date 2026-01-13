@@ -6,13 +6,13 @@ import portfolio.PhotoSharingApp.entity.Comment;
 
 public interface CommentService {
 	
-	public void addComment(Comment comment);
+	public void add(Comment comment);
 	
-	public void deleteComment(int id);
+	public void delete(int commentId);
 	
-	public List<Comment> getCommentList(int id);
+	public List<Comment> findAllById(int groupId);
 	
-	public Comment getComment(int id);
+	public Comment findById(int commentId);
 	
-	public boolean isFindAddMyComment(int id,int loginId);
+	public boolean isMyComment(int commentId,int userId);
 }

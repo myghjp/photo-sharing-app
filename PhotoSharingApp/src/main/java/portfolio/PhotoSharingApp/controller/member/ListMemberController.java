@@ -14,12 +14,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.entity.Member;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
+import portfolio.PhotoSharingApp.service.group.GroupService;
 import portfolio.PhotoSharingApp.service.member.MemberService;
 
 @Controller
 @SessionAttributes(value = {"group"})
 public class ListMemberController {
 
+	@Autowired
+	private GroupService groupService;
+	
 	@Autowired
 	private MemberService memberService;
 
@@ -30,14 +34,16 @@ public class ListMemberController {
 			,RedirectAttributes redirectAttributes
 		) {
 		
-		List<Member> memberList = memberService.getMembersList(group.getId());
+		/*グループ内の利用者一覧を取得*/
+		List<Member> memberList = memberService.findAllById(group.getId());
 		model.addAttribute("memberList", memberList);
 
 		/*自身がグループの管理者であるかを確認*/
 		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin", true);
 		} else {
-			String adminName = memberService.getAdminName(group.getId());
+			/*このグループの管理者名を取得*/
+			String adminName = groupService.findByUsername(group.getId());
 			model.addAttribute("adminName", adminName);
 		}
 

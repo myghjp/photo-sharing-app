@@ -6,13 +6,13 @@ import portfolio.PhotoSharingApp.entity.Album;
 
 public interface AlbumService {
 	
-	public void addAlbum(Album album);
+	public void add(Album album);
 	
-	public void deleteAlbum(int id);
+	public void delete(int albumId);
 	
-	public List<Album> getAlbumList(int id);
+	public List<Album> findAllById(int groupId);
 	
-	public Album getAlbum(int id);
+	public Album findById(int albumId);
 	
-	public boolean isFindCreateAlbum(int albumId,int loginId);
+	public boolean isAlbum(int albumId,int userId);
 }

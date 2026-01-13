@@ -12,13 +12,13 @@ public interface PhotoMapper {
 	
 	public void insert(@Param("photo")Photo photo);
 	
-	public void delete(Integer id);
+	public void delete(Integer photoId);
 	
-	public List<Photo> selectPhotoItems(Integer id);
+	public List<Photo> selectPhotoItems(Integer albumId);
 	
-	public Photo selectPhoto(Integer id);
+	public Photo selectPhoto(Integer photoId);
 	
-	public Integer existsByAlbumId(Integer id);
+	public Integer existsByAlbumId(Integer photoId);
 	
-	public Integer existsByAccountId(Integer id);
+	public Integer existsByAccountId(Integer photoId);
 }

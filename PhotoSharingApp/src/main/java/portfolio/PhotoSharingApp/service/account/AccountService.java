@@ -10,7 +10,7 @@ public interface AccountService {
 	
 	public void update(Account account);
 	
-	public void remove(int id);
+	public void remove(int userId);
 	
 	public boolean existsByUsername(String username);
 	

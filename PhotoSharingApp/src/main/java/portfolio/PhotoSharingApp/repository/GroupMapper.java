@@ -16,11 +16,13 @@ public interface GroupMapper {
 	
 	public String existsByGroupName(String groupName);
 	
-	public Group selectById(Integer id);
+	public Group selectById(Integer groupId);
 	
-	public void delete(Integer id);
+	public void delete(Integer groupId);
 	
-	public Integer existsGroupByAccountId(Integer id);
+	public Integer existsGroupByAccountId(Integer groupId);
 	
 	public Integer existsByAccountId(Integer id);
+	
+	public String selectAccountByUsername(Integer id);
 }

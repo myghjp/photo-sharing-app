@@ -6,18 +6,16 @@ import portfolio.PhotoSharingApp.entity.Photo;
 
 public interface PhotoService {
 	
-	public void addPhoto(Photo photo);
+	public void add(Photo photo);
 	
-	public void removePhoto(int id);
+	public void remove(int photoId);
 	
-	public List<Photo> getphotoList(int id);
+	public List<Photo> findAllById(int albumId);
 	
-	public Photo getPhoto(int id);
+	public Photo findById(int photoId);
 	
 	public boolean isCurrentAlbum(int photoId,int albumId);
 	
-	public boolean isCurrentGroupAdmin(int GroupId,int loginId);
-	
-	public boolean isCurrentPhoto(int photoId,int loginId);
+	public boolean isCurrentPhoto(int photoId,int userId);
 	
 }

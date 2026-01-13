@@ -37,7 +37,7 @@
 	
 	<delete id="delete">
 		delete from accounts
-		where id = #{id}
+		where id = #{userId}
 	</delete>
 	
 	<select id="existsByUsername" resultType="String">

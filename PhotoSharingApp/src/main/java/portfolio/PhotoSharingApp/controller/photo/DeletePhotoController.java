@@ -36,28 +36,28 @@ public class DeletePhotoController {
 
 	@GetMapping("/delete-photo/{id}")
 	public String getDeletePhoto(Model model
-			,@PathVariable("id") int id
+			,@PathVariable("id") int photoId
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@SessionAttribute("album")Album album
 			,@SessionAttribute("group")Group group
 			) {
 
 		/*このグループの写真なのかを確認*/
-		if (photoService.isCurrentAlbum(id, album.getId())) {
+		if (photoService.isCurrentAlbum(photoId, album.getId())) {
 			throw new AccessDeniedException("アクセス権がありません");
 		} 
 		
-		/*自身がグループの管理者であるかを確認*/
-		if (photoService.isCurrentGroupAdmin(group.getAccountId(),user.getUserId())) {
+		/*自身がグループの管理者ではないかを確認*/
+		if (group.getAccountId() != user.getUserId()) {
 			
 			/*自身が追加した写真なのかを確認*/
-			if (photoService.isCurrentPhoto(id,user.getUserId())){
+			if (photoService.isCurrentPhoto(photoId,user.getUserId())){
 				throw new AccessDeniedException("アクセス権がありません");
 			} 
 		}
 		
 		/*この写真のIDとパス情報を取得*/
-		Photo photoData = photoService.getPhoto(id);
+		Photo photoData = photoService.findById(photoId);
 		model.addAttribute("photoData",photoData);
 		
 		return "photo/delete-photo";
@@ -65,18 +65,18 @@ public class DeletePhotoController {
 
 	@PostMapping("/delete-photo")
 	public String postDeletePhoto(Model model
-			, @RequestParam("id") int id
+			, @RequestParam("id") int photoId
 			, RedirectAttributes redirectAttributes
 			)throws IOException {
 
 		/*この写真のIDとパス情報を取得*/
-		Photo photoData = photoService.getPhoto(id);
+		Photo photoData = photoService.findById(photoId);
 		
 		Path path = Path.of(mediaDirectory + photoData.getPhoto());
 		/*ファイルを削除*/
 		Files.delete(path);
 		
-		photoService.removePhoto(photoData.getId());
+		photoService.remove(photoData.getId());
 		
 		return "redirect:list-photo";
 	}

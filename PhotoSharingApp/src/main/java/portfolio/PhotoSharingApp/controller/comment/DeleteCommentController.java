@@ -23,20 +23,20 @@ public class DeleteCommentController {
 	
 	@GetMapping("/delete-comment/{id}")
 	public String getDeleteComment(Model model
-			,@PathVariable("id")int id
+			,@PathVariable("id")int commentId
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 		
 		Comment comment = new Comment();
-		comment.setId(id);
+		comment.setId(commentId);
 		
 		/*このコメントは自身がコメントしたものかを確認*/
-		if (commentService.isFindAddMyComment(comment.getId(),user.getUserId())) {
+		if (commentService.isMyComment(comment.getId(),user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
 		/*コメントのIDとコメント内容を取得*/
-		Comment commentData = commentService.getComment(comment.getId());
+		Comment commentData = commentService.findById(comment.getId());
 		model.addAttribute("commentData", commentData);
 		
 		return "comment/delete-comment";
@@ -48,7 +48,7 @@ public class DeleteCommentController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		commentService.deleteComment(id);
+		commentService.delete(id);
 	
 		return "redirect:list-comment";
 	}

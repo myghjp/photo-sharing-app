@@ -24,22 +24,22 @@ public class DeleteAlbumController {
 	
 	@GetMapping("/delete-album/{id}")
 	public String getDeleteAlbum(Model model
-			,@PathVariable("id")int id
+			,@PathVariable("id")int albumId
 			,@AuthenticationPrincipal LoginUserDetails user
 			,DeleteAlbumForm form
 			,RedirectAttributes redirectAttributes
 			) {
 		
 		Album album = new Album();
-		album.setId(id);
+		album.setId(albumId);
 		
 		/*自身が作成したアルバムであるかを確認*/
-		if (albumService.isFindCreateAlbum(album.getId(),user.getUserId())) {
+		if (albumService.isAlbum(album.getId(),user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
 		/*アルバムIDとアルバム名を取得*/
-		Album albumData = albumService.getAlbum(album.getId());
+		Album albumData = albumService.findById(album.getId());
 		
 		model.addAttribute("albumData", albumData);
 		model.addAttribute("deleteAlbumForm",form);
@@ -49,11 +49,11 @@ public class DeleteAlbumController {
 	
 	@PostMapping("/delete-album")
 	public String postDeleteAlbum(
-			@RequestParam("id")int id
+			@RequestParam("id")int albumId
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		albumService.deleteAlbum(id);
+		albumService.delete(albumId);
 		
 		return "redirect:select-album";
 	}

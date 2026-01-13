@@ -9,18 +9,15 @@ public interface MemberService {
 	
 	public void insert(Member member);
 	
-	public void delete(int id);
+	public void delete(int memberId);
 	
+	public List<Member> findAllById(int groupId);
 	
-	public List<Member> getMembersList(int groupId);
-	
-	public String getAdminName(int id);
-	
-	public Member getMemberName(int id);
+	public Member findById(int memberId);
 	
 	public boolean isMember(String email,Group group);
 	
 	public boolean is(int adminId, String formEmail);
 	
-	public boolean isFindGroupAdmin(int memberId,int loginId);
+	public boolean isAdmin(int memberId,int userId);
 }

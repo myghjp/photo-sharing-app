@@ -47,12 +47,12 @@ public class SelectGroupController {
 
 	@PostMapping("/select-group")
 	public String postSelectGroup(Model model
-			,@RequestParam("id")int id
+			,@RequestParam("id")int groupId
 			,RedirectAttributes redirectAttributes
 			) {
 
 		/*グループ情報を取得*/
-		Group group = groupService.findById(id);
+		Group group = groupService.findById(groupId);
 		model.addAttribute("group",group);
 		
 		return "redirect:home-group";

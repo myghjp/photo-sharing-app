@@ -52,7 +52,7 @@ public class CreateAlbumController {
 		Album album = modelMapper.map(form,Album.class);
 		
 		album.setGroupId(group.getId());
-		albumService.addAlbum(album);
+		albumService.add(album);
 		
 		return "redirect:select-album";
 	}

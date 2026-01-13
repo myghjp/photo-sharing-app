@@ -58,6 +58,7 @@ public class AddMemberController {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError2");
 		}
 		
+		/*※不要だったので確認*/
 		/*このグループの管理者のメールアドレスではないかを確認*/
 		if (memberService.is(group.getAccountId(),email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError3");

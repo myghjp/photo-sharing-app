@@ -25,20 +25,20 @@ public class DeleteMemberController {
 	
 	@GetMapping("/delete-member/{id}")
 	public String getDeleteMember(Model model
-			,@PathVariable("id")int id
+			,@PathVariable("id")int memberId
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 		
 		Member member = new Member();
-		member.setId(id);
+		member.setId(memberId);
 		
-		/*このグループの管理者であるかを確認*/
-		if (memberService.isFindGroupAdmin(member.getId(),user.getUserId())) {
+		/*このグループ利用者はグループの管理者であるかを確認*/
+		if (memberService.isAdmin(member.getId(),user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
 		/*グループ利用者IDとその名前を取得*/
-		Member memberData = memberService.getMemberName(member.getId());
+		Member memberData = memberService.findById(member.getId());
 		model.addAttribute("memberData",memberData);
 		
 		return "member/delete-member";
@@ -46,11 +46,11 @@ public class DeleteMemberController {
 	
 	@PostMapping("/delete-member")
 	public String postDeleteMember(Model model
-			,@RequestParam("id")int id
+			,@RequestParam("id")int memberId
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		memberService.delete(id);
+		memberService.delete(memberId);
 		
 		return "redirect:list-member";
 	}

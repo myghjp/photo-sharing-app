@@ -22,25 +22,18 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public void delete(int id) {
-		memberMapper.delete(id);
+	public void delete(int memberId) {
+		memberMapper.delete(memberId);
 	}
 	
-	
-	
 	@Override
-	public List<Member> getMembersList(int groupId){
+	public List<Member> findAllById(int groupId){
 		return memberMapper.selectMyGroupsMembers(groupId);
-	}
-	
-	@Override
-	public String getAdminName(int id) {
-		return memberMapper.selectAccountByUsername(id);
 	}
 	
 	/*グループ利用者IDとその名前を取得*/
 	@Override
-	public Member getMemberName(int id) {
+	public Member findById(int id) {
 		return memberMapper.selectByMembersId(id);
 	}
 	
@@ -66,8 +59,8 @@ public class MemberServiceImpl implements MemberService{
 	
 	/*このグループの管理者であるかを確認*/
 	@Override
-	public boolean isFindGroupAdmin(int memberId,int loginId) {
-		if (memberMapper.existsGroupByAccountId(memberId) == loginId) {
+	public boolean isAdmin(int memberId,int userId) {
+		if (memberMapper.existsGroupByAccountId(memberId) == userId) {
 			return false;
 		} else {
 			return true;

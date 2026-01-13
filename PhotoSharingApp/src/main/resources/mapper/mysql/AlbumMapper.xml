@@ -22,7 +22,7 @@
 	
 	<delete id="delete">
 		delete from albums
-		where id = #{id}
+		where id = #{albumId}
 	</delete>
 	
 	<select id="selectGroupAlbum" resultMap="AlbumsTable">
@@ -30,13 +30,13 @@
 		from albums
 		left join `groups`
 		on group_id = groups.id
-		where group_id = #{id}
+		where group_id = #{groupId}
 	</select>
 	
 	<select id="selectAlbum" resultMap="AlbumsTable">
 		select id,album_name
 		from albums
-		where id = #{id}
+		where id = #{albumId}
 	</select>
 	
 	<select id="existsAlbumByAccountId" resultType="Integer">
@@ -44,6 +44,6 @@
 		from albums
 			left join `groups`
 			on group_id = groups.id
-		where albums.id = #{id}
+		where albums.id = #{albumId}
 	</select>
 </mapper>
