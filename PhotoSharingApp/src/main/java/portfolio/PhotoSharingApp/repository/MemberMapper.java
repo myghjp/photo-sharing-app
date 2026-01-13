@@ -23,7 +23,7 @@ public interface MemberMapper {
 	
 	public Integer selectById2(String email,@Param("group")Group group);
 	
-	public String is(Integer adminId);
+	public String selectByEmailAddress(Integer adminId);
 	
 	public Integer selectGroupByAccountId(Integer memberId);
 }

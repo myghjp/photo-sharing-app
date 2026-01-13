@@ -19,7 +19,7 @@ public interface MemberService {
 	
 	public boolean isMember(String email,Group group);
 	
-	public boolean is(int adminId, String formEmail);
+	public boolean isOwner(int groupAdminId,String email);
 	
 	public boolean isAdmin(int memberId,int userId);
 }

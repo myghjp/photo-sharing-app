@@ -66,7 +66,7 @@
 		where groups_members.id = #{memberId}
 	</select>
 	
-	<select id="existsMembersByEmailAddress" resultType="Integer">
+	<select id="selectById2" resultType="Integer">
 		select groups_members.id
 		from groups_members
 			left join accounts
@@ -74,10 +74,9 @@
 		where accounts.email_address = #{email}
 			and (groups_members.group_id = #{group.id}
 			or groups_members.account_id = #{group.accountId})
-	</select><!-- ※↑おかしい -->
+	</select>
 	
-	<!-- ※不要になる -->
-	<select id="is" resultType="String">
+	<select id="selectByEmailAddress" resultType="String">
 		select email_address
 		from accounts
 		where id = #{adminId}

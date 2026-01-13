@@ -19,5 +19,7 @@ public interface AccountService {
 	public boolean existsByUsername(String username);
 	
 	public boolean existsByEmail(String emailAddress);
+	
+	public boolean isRegister(String emailAddress);
 
 }

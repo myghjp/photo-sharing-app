@@ -40,7 +40,6 @@ public class AccountServiceImpl implements AccountService{
 		return accountMapper.selectByUserId(emailAddress);
 	}
 	
-	/*登録済のアカウント名と重複していないかを確認*/
 	@Override
 	public boolean existsByUsername(String username) {
 		if (accountMapper.selectByUsername(username) == null) {
@@ -50,10 +49,18 @@ public class AccountServiceImpl implements AccountService{
 		}
 	}
 	
-	/*登録済のメールアドレスと重複していないかを確認*/
 	@Override
 	public boolean existsByEmail(String emailAddress) {
 		if (accountMapper.selectByEmailAddress(emailAddress) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	@Override
+	public boolean isRegister(String emailAddress) {
+		if (accountMapper.selectByUserId(emailAddress) != null) {
 			return false;
 		} else {
 			return true;

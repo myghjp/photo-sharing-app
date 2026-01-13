@@ -33,13 +33,11 @@ public class MemberServiceImpl implements MemberService{
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 
-	/*グループ利用者IDとその名前を取得*/
 	@Override
 	public Member findById(int memberId) {
 		return memberMapper.selectById(memberId);
 	}
 	
-	/*このグループに追加済のメールアドレスではないかを確認*/
 	@Override
 	public boolean isMember(String email,Group group) {
 		if (memberMapper.selectById2(email,group) == null) {
@@ -49,17 +47,15 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	
-	/*このグループの管理者のメールアドレスではないかを確認*/
 	@Override
-	public boolean is(int adminId,String formEmail) {
-		if (memberMapper.is(adminId).equals(formEmail) == formEmail.equals(formEmail)) {
+	public boolean isOwner(int groupAdminId,String email) {
+		if (memberMapper.selectByEmailAddress(groupAdminId).equals(email) == email.equals(email)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 	
-	/*このグループの管理者であるかを確認*/
 	@Override
 	public boolean isAdmin(int memberId,int userId) {
 		if (memberMapper.selectGroupByAccountId(memberId) == userId) {

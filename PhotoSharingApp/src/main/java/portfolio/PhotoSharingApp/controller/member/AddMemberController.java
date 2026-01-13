@@ -1,5 +1,6 @@
 package portfolio.PhotoSharingApp.controller.member;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,9 +48,8 @@ public class AddMemberController {
 		
 		String email = form.getEmailAddress();
 		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		/*このメールアドレスは登録されているかを確認*/
-		if (accountService.existsByEmail(email)) {
+		if (accountService.isRegister(email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError");
 		}
 		
@@ -58,12 +58,10 @@ public class AddMemberController {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError2");
 		}
 		
-		/*※不要だったので確認*/
 		/*このグループの管理者のメールアドレスではないかを確認*/
-		if (memberService.is(group.getAccountId(),email)) {
+		if (memberService.isOwner(group.getAccountId(),email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError3");
 		}
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		
 		if (bindingResult.hasErrors()) {
 			return getAddMember(model, form);
