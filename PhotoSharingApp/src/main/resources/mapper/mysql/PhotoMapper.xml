@@ -37,12 +37,6 @@
 	
 	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
-	<select id="selectPhoto" resultMap="PhotosTable">
-		select id,photo
-		from photos
-		where id = #{photoId}
-	</select>
-	
 	<select id="selectPhotos" resultMap="PhotosTable">
 		select photos.id
 			,accounts.user as accounts_user
@@ -55,6 +49,12 @@
 				on album_id = photos.id
 	    where album_id = #{albumId}
 		order by photos.id desc
+	</select>
+	
+	<select id="selectPhoto" resultMap="PhotosTable">
+		select id,photo
+		from photos
+		where id = #{photoId}
 	</select>
 	
 	<select id="selectByAlbumId" resultType="Integer">

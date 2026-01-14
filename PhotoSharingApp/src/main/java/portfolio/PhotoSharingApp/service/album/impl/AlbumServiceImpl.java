@@ -39,7 +39,7 @@ public class AlbumServiceImpl implements AlbumService{
 	
 	@Override
 	public boolean isAlbum(int albumId,int userId) {
-		if (albumMapper.selectGroupByAccountId(albumId) == userId) {
+		if (albumMapper.selectByGroupsAccountId(albumId) == userId) {
 			return false;
 		} else {
 			return true;

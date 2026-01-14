@@ -16,6 +16,6 @@ public interface CommentService {
 	
 	public Comment findById(int commentId);
 	
-	public boolean isMyComment(int commentId,int userId);
+	public boolean isComment(int commentId,int userId);
 	
 }

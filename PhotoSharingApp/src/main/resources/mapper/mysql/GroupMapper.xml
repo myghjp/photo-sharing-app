@@ -27,24 +27,22 @@
 	
 	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
-	<!-- ここを修正すると -->
 	<select id="selectGroups" resultMap="GroupsTable">
 		select distinct groups.id,group_name
 		from `groups`
 			left join groups_members
 			on groups.id = groups_members.group_id
 		where groups.account_id = #{id}
-		or groups_members.account_id = #{id}
+			or groups_members.account_id = #{id}
 	</select>
 	
-	<!-- ここも修正 -->
-	<select id="selectById" resultMap="GroupsTable">
+	<select id="selectGroup" resultMap="GroupsTable">
 		select *
 		from `groups`
 		where id = #{groupId}
 	</select>
 	
-	<select id="selectAccountByUsername" resultType="String">
+	<select id="selectByAccountsUsername" resultType="String">
 		select accounts.user
 		from `groups`
 			left join accounts
@@ -58,18 +56,16 @@
 		where group_name = #{groupName}
 	</select>
 	
-	<select id="selectGroupByAccountId" resultType="Integer">
+	<select id="selectByGroupsAccountId" resultType="Integer">
 		select account_id
 		from `groups`
 		where id = #{groupId}
 	</select>
-	
-	<!-- 修正 -->
+
 	<select id="selectByAccountId" resultType="Integer">
-		select account_id
+		select distinct account_id
 		from `groups`
 		where account_id = #{id}
-		limit 1
 	</select>
 	
 </mapper>

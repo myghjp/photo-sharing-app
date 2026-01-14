@@ -27,12 +27,11 @@ public class DeleteGroupController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 		
-		/*このグループは自身が作成したグループなのかを確認*/
+		/*自身が作成したグループなのかを確認*/
 		if (groupService.isOwner(groupId,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
-		/*グループ情報を取得*/
 		Group groupData = groupService.findById(groupId);
 		model.addAttribute("groupData",groupData);
 		

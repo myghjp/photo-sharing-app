@@ -55,12 +55,12 @@ public class SelectAlbumController {
 	
 	@PostMapping("/select-album")
 	public String postSelectAlbum(Model model
-			,@RequestParam("id")int id
+			,@RequestParam("id")int albumId
 			,RedirectAttributes redirectAttributes
 			) {
 		
 		/*アルバムIDとアルバム名を取得*/
-		Album album = albumService.findById(id);
+		Album album = albumService.findById(albumId);
 		model.addAttribute("album",album);
 		
 		return "redirect:list-photo";

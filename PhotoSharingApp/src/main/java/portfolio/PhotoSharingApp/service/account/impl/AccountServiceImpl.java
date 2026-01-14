@@ -20,7 +20,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public Account getLoginAccount(String user) {
-		return accountMapper.selectByUser(user);
+		return accountMapper.selectAccount(user);
 	}
 	
 	@Override
@@ -64,6 +64,15 @@ public class AccountServiceImpl implements AccountService{
 			return false;
 		} else {
 			return true;
+		}
+	}
+	
+	@Override
+	public boolean isOwner(int groupAdminId,String email) {
+		if (accountMapper.selectByEmailAddress2(groupAdminId).equals(email) == email.equals(email)) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

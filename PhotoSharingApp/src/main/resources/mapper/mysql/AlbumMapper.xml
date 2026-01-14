@@ -27,7 +27,6 @@
 	
 	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
-	<!-- 修正 -->
 	<select id="selectAlbums" resultMap="AlbumsTable">
 		select albums.id,album_name
 		from albums
@@ -42,8 +41,7 @@
 		where id = #{albumId}
 	</select>
 	
-	<!-- 修正 -->
-	<select id="selectGroupByAccountId" resultType="Integer">
+	<select id="selectByGroupsAccountId" resultType="Integer">
 		select groups.account_id
 		from albums
 			left join `groups`

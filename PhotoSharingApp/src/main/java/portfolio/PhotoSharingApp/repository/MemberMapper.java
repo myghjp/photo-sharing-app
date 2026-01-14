@@ -19,11 +19,9 @@ public interface MemberMapper {
 	
 	public List<Member> selectMembers(Integer groupId);
 	
-	public Member selectById(Integer memberId);
+	public Member selectMember(Integer memberId);
 	
-	public Integer selectById2(String email,@Param("group")Group group);
+	public Integer selectById(String email,@Param("group")Group group);
 	
-	public String selectByEmailAddress(Integer adminId);
-	
-	public Integer selectGroupByAccountId(Integer memberId);
+	public Integer selectByGroupsAccountId(Integer memberId);
 }

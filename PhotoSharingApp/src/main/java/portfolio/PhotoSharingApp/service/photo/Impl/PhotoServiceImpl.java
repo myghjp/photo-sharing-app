@@ -38,7 +38,7 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	@Override
-	public boolean isCurrentAlbum(int photoId,int albumId) {
+	public boolean isAlbum(int photoId,int albumId) {
 		if (photoMapper.selectByAlbumId(photoId) != albumId) {
 			return true;
 		} else {
@@ -47,7 +47,7 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	@Override
-	public boolean isCurrentPhoto(int photoId,int userId) {
+	public boolean isPhoto(int photoId,int userId) {
 		if (photoMapper.selectByAccountId(photoId) != userId) {
 			return true;
 		} else {

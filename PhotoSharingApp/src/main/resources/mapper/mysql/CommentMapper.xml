@@ -49,7 +49,7 @@
 		order by comments.id desc
 	</select>
 	
-	<select id="selectById" resultMap="CommentsTable">
+	<select id="selectComment" resultMap="CommentsTable">
 		select id,comment
 		from comments
 		where id = #{commentId}

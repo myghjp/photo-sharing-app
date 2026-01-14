@@ -34,7 +34,7 @@ public class ListMemberController {
 			,RedirectAttributes redirectAttributes
 		) {
 		
-		/*グループ内の利用者一覧を取得*/
+		/*このグループ利用者のテーブル情報とアカウント名を取得*/
 		List<Member> memberList = memberService.findAllById(group.getId());
 		model.addAttribute("memberList", memberList);
 

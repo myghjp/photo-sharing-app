@@ -53,7 +53,7 @@ public class AddMemberController {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError");
 		}
 		/*このグループの管理者のメールアドレスではないかを確認*/
-		else if (memberService.isOwner(group.getAccountId(),email)) {
+		else if (accountService.isOwner(group.getAccountId(),email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError3");
 		}
 		/*このグループに追加済のメールアドレスではないかを確認*/

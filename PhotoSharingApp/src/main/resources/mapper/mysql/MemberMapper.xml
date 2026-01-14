@@ -12,18 +12,18 @@
 		<association property="account" resultMap="AccountsTable" columnPrefix="accounts_"/>
 	</resultMap>
 	
-	<resultMap type="portfolio.PhotoSharingApp.entity.Group" id="GroupsTable">
-		<id column="id" property="id" />
-		<result column="group_name" property="groupName" />
-		<result column="account_id" property="accountId" />
-		<association property="account" resultMap="AccountsTable" columnPrefix="accounts_"/>
-	</resultMap>
-	
 	<resultMap type="portfolio.PhotoSharingApp.entity.Account" id="AccountsTable">
 		<id column="id" property="id" />
 		<result column="user" property="username" />
 		<result column="pass" property="password" />
 		<result column="email_address" property="emailAddress"/>
+	</resultMap>
+	
+	<resultMap type="portfolio.PhotoSharingApp.entity.Group" id="GroupsTable">
+		<id column="id" property="id" />
+		<result column="group_name" property="groupName" />
+		<result column="account_id" property="accountId" />
+		<association property="account" resultMap="AccountsTable" columnPrefix="accounts_"/>
 	</resultMap>
 	
 	<insert id="insert">
@@ -57,7 +57,7 @@
 		where groups.id = #{groupId}
 	</select>
 	
-	<select id="selectById" resultMap="MembersTable">
+	<select id="selectMember" resultMap="MembersTable">
 		select groups_members.id
 			,accounts.user as accounts_user
 		from groups_members
@@ -66,7 +66,7 @@
 		where groups_members.id = #{memberId}
 	</select>
 	
-	<select id="selectById2" resultType="Integer">
+	<select id="selectById" resultType="Integer">
 		select groups_members.id
 		from groups_members
 			left join accounts
@@ -76,13 +76,7 @@
 			or groups_members.account_id = #{group.accountId})
 	</select>
 	
-	<select id="selectByEmailAddress" resultType="String">
-		select email_address
-		from accounts
-		where id = #{adminId}
-	</select>
-	
-	<select id="selectGroupByAccountId" resultType="Integer">
+	<select id="selectByGroupsAccountId" resultType="Integer">
 		select groups.account_id
 		from groups_members
 			left join `groups`

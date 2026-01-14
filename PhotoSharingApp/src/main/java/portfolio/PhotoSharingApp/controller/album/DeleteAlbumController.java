@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Album;
-import portfolio.PhotoSharingApp.form.album.DeleteAlbumForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.album.AlbumService;
 
@@ -26,7 +25,6 @@ public class DeleteAlbumController {
 	public String getDeleteAlbum(Model model
 			,@PathVariable("id")int albumId
 			,@AuthenticationPrincipal LoginUserDetails user
-			,DeleteAlbumForm form
 			,RedirectAttributes redirectAttributes
 			) {
 		
@@ -42,7 +40,6 @@ public class DeleteAlbumController {
 		Album albumData = albumService.findById(album.getId());
 		
 		model.addAttribute("albumData", albumData);
-		model.addAttribute("deleteAlbumForm",form);
 		
 		return "album/delete-album";
 	}

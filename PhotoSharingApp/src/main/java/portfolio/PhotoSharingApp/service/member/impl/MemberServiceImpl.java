@@ -35,30 +35,21 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public Member findById(int memberId) {
-		return memberMapper.selectById(memberId);
+		return memberMapper.selectMember(memberId);
 	}
 	
 	@Override
 	public boolean isMember(String email,Group group) {
-		if (memberMapper.selectById2(email,group) == null) {
+		if (memberMapper.selectById(email,group) == null) {
 			return false;
 		} else {
 			return true;
-		}
-	}
-	
-	@Override
-	public boolean isOwner(int groupAdminId,String email) {
-		if (memberMapper.selectByEmailAddress(groupAdminId).equals(email) == email.equals(email)) {
-			return true;
-		} else {
-			return false;
 		}
 	}
 	
 	@Override
 	public boolean isAdmin(int memberId,int userId) {
-		if (memberMapper.selectGroupByAccountId(memberId) == userId) {
+		if (memberMapper.selectByGroupsAccountId(memberId) == userId) {
 			return false;
 		} else {
 			return true;

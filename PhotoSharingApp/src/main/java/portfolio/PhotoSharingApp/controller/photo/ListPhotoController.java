@@ -83,8 +83,6 @@ public class ListPhotoController {
 		
 		photo.setAlbumId(album.getId());
 		photo.setAccountId(user.getUserId());
-		
-		/*ファイル名をデータベースに保存*/
 		photo.setPhoto(file.getOriginalFilename());
 		
 		photoService.add(photo);

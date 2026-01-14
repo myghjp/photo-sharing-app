@@ -16,8 +16,8 @@ public interface PhotoService {
 	
 	public Photo findById(int photoId);
 	
-	public boolean isCurrentAlbum(int photoId,int albumId);
+	public boolean isAlbum(int photoId,int albumId);
 	
-	public boolean isCurrentPhoto(int photoId,int userId);
+	public boolean isPhoto(int photoId,int userId);
 	
 }

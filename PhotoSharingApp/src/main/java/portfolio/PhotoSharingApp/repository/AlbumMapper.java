@@ -20,5 +20,5 @@ public interface AlbumMapper {
 	
 	public Album selectAlbum(Integer albumId);
 	
-	public Integer selectGroupByAccountId(Integer albumId);
+	public Integer selectByGroupsAccountId(Integer albumId);
 }

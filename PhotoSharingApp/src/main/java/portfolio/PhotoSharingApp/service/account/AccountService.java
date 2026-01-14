@@ -21,5 +21,7 @@ public interface AccountService {
 	public boolean existsByEmail(String emailAddress);
 	
 	public boolean isRegister(String emailAddress);
+	
+	public boolean isOwner(int groupAdminId,String email);
 
 }

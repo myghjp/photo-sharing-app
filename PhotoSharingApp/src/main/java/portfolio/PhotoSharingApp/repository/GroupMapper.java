@@ -18,13 +18,14 @@ public interface GroupMapper {
 	
 	public List<Group> selectGroups(Integer id);
 	
+	public Group selectGroup(Integer groupId);
+	
+	public String selectByAccountsUsername(Integer id);
+	
 	public String selectByGroupName(String groupName);
 	
-	public Group selectById(Integer groupId);
-	
-	public Integer selectGroupByAccountId(Integer groupId);
+	public Integer selectByGroupsAccountId(Integer groupId);
 	
 	public Integer selectByAccountId(Integer id);
 	
-	public String selectAccountByUsername(Integer id);
 }

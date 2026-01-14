@@ -36,7 +36,7 @@
 	
 	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
-	<select id="selectByUser" resultMap="accountsTable">
+	<select id="selectAccount" resultMap="accountsTable">
 		select *
 		from accounts 
 		where user = #{username}
@@ -58,6 +58,12 @@
 		select email_address
 		from accounts
 		where email_address = #{emailAddress}
+	</select>
+	
+	<select id="selectByEmailAddress2" resultType="String">
+		select email_address
+		from accounts
+		where id = #{adminId}
 	</select>
 	
 </mapper>

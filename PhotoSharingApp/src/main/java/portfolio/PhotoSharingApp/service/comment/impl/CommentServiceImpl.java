@@ -34,11 +34,11 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Override
 	public Comment findById(int commentId) {
-		return commentMapper.selectById(commentId);
+		return commentMapper.selectComment(commentId);
 	}
 	
 	@Override
-	public boolean isMyComment(int commentId,int userId) {
+	public boolean isComment(int commentId,int userId) {
 		if (commentMapper.selectByAccountId(commentId) == userId) {
 			return false;
 		} else {

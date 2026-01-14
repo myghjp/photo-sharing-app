@@ -42,8 +42,8 @@ public class DeletePhotoController {
 			,@SessionAttribute("group")Group group
 			) {
 
-		/*このグループの写真なのかを確認*/
-		if (photoService.isCurrentAlbum(photoId, album.getId())) {
+		/*このアルバムの写真なのかを確認*/
+		if (photoService.isAlbum(photoId, album.getId())) {
 			throw new AccessDeniedException("アクセス権がありません");
 		} 
 		
@@ -51,7 +51,7 @@ public class DeletePhotoController {
 		if (group.getAccountId() != user.getUserId()) {
 			
 			/*自身が追加した写真なのかを確認*/
-			if (photoService.isCurrentPhoto(photoId,user.getUserId())){
+			if (photoService.isPhoto(photoId,user.getUserId())){
 				throw new AccessDeniedException("アクセス権がありません");
 			} 
 		}
@@ -73,7 +73,6 @@ public class DeletePhotoController {
 		Photo photoData = photoService.findById(photoId);
 		
 		Path path = Path.of(mediaDirectory + photoData.getPhoto());
-		/*ファイルを削除*/
 		Files.delete(path);
 		
 		photoService.remove(photoData.getId());

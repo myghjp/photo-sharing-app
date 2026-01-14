@@ -34,12 +34,12 @@ public class GroupServiceImpl implements GroupService{
 	
 	@Override
 	public Group findById(int groupId){
-		return groupMapper.selectById(groupId);
+		return groupMapper.selectGroup(groupId);
 	}
 	
 	@Override
 	public String findByUsername(int id) {
-		return groupMapper.selectAccountByUsername(id);
+		return groupMapper.selectByAccountsUsername(id);
 	}
 	
 	@Override
@@ -53,7 +53,7 @@ public class GroupServiceImpl implements GroupService{
 
 	@Override
 	public boolean isOwner(int groupId,int userId) {
-		if (groupMapper.selectGroupByAccountId(groupId) == userId) {
+		if (groupMapper.selectByGroupsAccountId(groupId) == userId) {
 			return false;
 		} else {
 			return true;

@@ -51,7 +51,6 @@ public class SelectGroupController {
 			,RedirectAttributes redirectAttributes
 			) {
 
-		/*グループ情報を取得*/
 		Group group = groupService.findById(groupId);
 		model.addAttribute("group",group);
 		
