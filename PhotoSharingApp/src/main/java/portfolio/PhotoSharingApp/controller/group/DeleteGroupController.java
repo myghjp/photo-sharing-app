@@ -22,7 +22,8 @@ public class DeleteGroupController {
 	private GroupService groupService;
 	
 	@GetMapping("/delete-group/{id}")
-	public String getDeleteGroup(Model model
+	public String getDeleteGroup(
+			Model model
 			,@PathVariable("id")int groupId
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {

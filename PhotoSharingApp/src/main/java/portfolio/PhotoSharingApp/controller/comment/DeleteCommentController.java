@@ -22,7 +22,8 @@ public class DeleteCommentController {
 	private CommentService commentService;
 	
 	@GetMapping("/delete-comment/{id}")
-	public String getDeleteComment(Model model
+	public String getDeleteComment(
+			Model model
 			,@PathVariable("id")int commentId
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {

@@ -24,7 +24,8 @@ public class DeleteMemberController {
 	private MemberService memberService;
 	
 	@GetMapping("/delete-member/{id}")
-	public String getDeleteMember(Model model
+	public String getDeleteMember(
+			Model model
 			,@PathVariable("id")int memberId
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
@@ -45,7 +46,8 @@ public class DeleteMemberController {
 	}
 	
 	@PostMapping("/delete-member")
-	public String postDeleteMember(Model model
+	public String postDeleteMember(
+			Model model
 			,@RequestParam("id")int memberId
 			,RedirectAttributes redirectAttributes
 			) {

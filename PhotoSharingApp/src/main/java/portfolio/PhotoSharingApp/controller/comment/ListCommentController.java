@@ -32,7 +32,8 @@ public class ListCommentController {
 	private CommentService commentService;
 	
 	@GetMapping("/list-comment")
-	public String getListComment(Model model
+	public String getListComment(
+			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
 			,ListCommentForm form
 			,@ModelAttribute("group")Group group
@@ -49,7 +50,8 @@ public class ListCommentController {
 	}
 	
 	@PostMapping("/list-comment")
-	public String postListComment(Model model
+	public String postListComment(
+			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("listCommentForm") @Validated ListCommentForm form
 			,BindingResult bindingResult

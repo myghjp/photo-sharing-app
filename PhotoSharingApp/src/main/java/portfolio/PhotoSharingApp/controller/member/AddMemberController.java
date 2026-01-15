@@ -3,7 +3,6 @@ package portfolio.PhotoSharingApp.controller.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,18 +28,16 @@ public class AddMemberController {
 	private MemberService memberService;
 	
 	@GetMapping("/add-member")
-	public String getAddMember(Model model
-			,AddMemberForm form
+	public String getAddMember(
+			@ModelAttribute("addMemberForm")AddMemberForm form
 			) {
-			
-		model.addAttribute("addMemberForm",form);
 		
 		return "member/add-member";
 	}
 	
 	@PostMapping("/add-member")
-	public String postAddMember(Model model
-			,@ModelAttribute("addMemberForm") @Validated AddMemberForm form
+	public String postAddMember(
+			@ModelAttribute("addMemberForm") @Validated AddMemberForm form
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			,@ModelAttribute("group")Group group
@@ -62,7 +59,7 @@ public class AddMemberController {
 		}
 		
 		if (bindingResult.hasErrors()) {
-			return getAddMember(model, form);
+			return getAddMember(form);
 		}
 		
 		Member member = new Member();

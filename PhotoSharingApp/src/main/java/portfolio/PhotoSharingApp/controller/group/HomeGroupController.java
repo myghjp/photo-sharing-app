@@ -16,7 +16,8 @@ import portfolio.PhotoSharingApp.security.LoginUserDetails;
 public class HomeGroupController {
 	
 	@GetMapping("/home-group")
-	public String getHomeGroup(Model model
+	public String getHomeGroup(
+			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
 			,RedirectAttributes redirectAttributes
 			,@ModelAttribute("group")Group group

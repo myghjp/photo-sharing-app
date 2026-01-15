@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,26 +31,24 @@ public class UpdateAccountController {
 	private PasswordEncoder passwordEncoder;
 
 	@GetMapping("/update-account")
-	public String getUpdateAccount(Model model
-			,UpdateAccountForm form
+	public String getUpdateAccount(
+			@ModelAttribute("updateAccountForm")UpdateAccountForm form
 			) {
-		
-		model.addAttribute("updateAccountForm", form);
 		
 		return "account/update-account";
 	}
 	
 	@PostMapping("/update-account")
-	public String postUpdateAccount(Model model
-			,HttpSession session
+	public String postUpdateAccount(
+			HttpSession session
 			,@AuthenticationPrincipal LoginUserDetails user
-			,@ModelAttribute @Validated UpdateAccountForm form
+			,@ModelAttribute("updateAccountForm") @Validated UpdateAccountForm form
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) throws Exception {
 		
 		if (bindingResult.hasErrors()) {
-			return getUpdateAccount(model,form);
+			return getUpdateAccount(form);
 		}
 		
 		Account account = modelMapper.map(form, Account.class);

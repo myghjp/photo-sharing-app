@@ -4,7 +4,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,19 +26,17 @@ public class CreateGroupController {
 	private GroupService groupService;
 	
 	@GetMapping("/create-group")
-	public String getCreateGroup(Model model
-			,CreateGroupForm form
+	public String getCreateGroup(
+			@ModelAttribute("createGroupForm")CreateGroupForm form
 			) {
-		
-		model.addAttribute("createGroupForm", form);
 		
 		return "group/create-group";
 	}
 
 	@PostMapping("/create-group")
-	public String postCreateGroup(Model model
-			,@AuthenticationPrincipal LoginUserDetails user
-			,@ModelAttribute @Validated CreateGroupForm form
+	public String postCreateGroup(
+			@AuthenticationPrincipal LoginUserDetails user
+			,@ModelAttribute("createGroupForm") @Validated CreateGroupForm form
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) {
@@ -52,7 +49,7 @@ public class CreateGroupController {
 		}
 		
 		if (bindingResult.hasErrors()) {
-			return getCreateGroup(model, form);
+			return getCreateGroup(form);
 		}
 		
 		group.setAccountId(user.getUserId());

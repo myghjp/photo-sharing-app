@@ -22,7 +22,8 @@ public class DeleteAlbumController {
 	private AlbumService albumService;
 	
 	@GetMapping("/delete-album/{id}")
-	public String getDeleteAlbum(Model model
+	public String getDeleteAlbum(
+			Model model
 			,@PathVariable("id")int albumId
 			,@AuthenticationPrincipal LoginUserDetails user
 			,RedirectAttributes redirectAttributes

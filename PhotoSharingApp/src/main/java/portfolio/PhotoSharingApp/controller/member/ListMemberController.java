@@ -28,7 +28,8 @@ public class ListMemberController {
 	private MemberService memberService;
 
 	@GetMapping("/list-member")
-	public String getListMember(Model model
+	public String getListMember(
+			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("group")Group group
 			,RedirectAttributes redirectAttributes

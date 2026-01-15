@@ -37,7 +37,8 @@ public class ListPhotoController {
 	private String mediaDirectory;
 	
 	@GetMapping("/list-photo")
-	public String getListPhoto(Model model
+	public String getListPhoto(
+			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
 			,RedirectAttributes redirectAttributes
 			,@ModelAttribute("group")Group group
@@ -59,9 +60,10 @@ public class ListPhotoController {
 	}
 	
 	@PostMapping("/list-photo")
-	public String postListPhoto(Model model
+	public String postListPhoto(
+			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
-			,@RequestParam("multipartFile")MultipartFile file
+			,@RequestParam("multipartFile") MultipartFile file
 			,RedirectAttributes redirectAttributes
 			,@SessionAttribute("album")Album album
 			)throws IOException {

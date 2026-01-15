@@ -35,7 +35,8 @@ public class DeletePhotoController {
 	private String mediaDirectory;
 
 	@GetMapping("/delete-photo/{id}")
-	public String getDeletePhoto(Model model
+	public String getDeletePhoto(
+			Model model
 			,@PathVariable("id") int photoId
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@SessionAttribute("album")Album album
@@ -64,7 +65,8 @@ public class DeletePhotoController {
 	}
 
 	@PostMapping("/delete-photo")
-	public String postDeletePhoto(Model model
+	public String postDeletePhoto(
+			Model model
 			, @RequestParam("id") int photoId
 			, RedirectAttributes redirectAttributes
 			)throws IOException {

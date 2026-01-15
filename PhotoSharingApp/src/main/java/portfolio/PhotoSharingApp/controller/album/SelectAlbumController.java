@@ -32,7 +32,8 @@ public class SelectAlbumController {
 	}
 	
 	@GetMapping("/select-album")
-	public String getSelectAlbum(Model model
+	public String getSelectAlbum(
+			Model model
 			,HttpSession httpSession
 			,@AuthenticationPrincipal LoginUserDetails user
 			,RedirectAttributes redirectAttributes
@@ -54,7 +55,8 @@ public class SelectAlbumController {
 	}
 	
 	@PostMapping("/select-album")
-	public String postSelectAlbum(Model model
+	public String postSelectAlbum(
+			Model model
 			,@RequestParam("id")int albumId
 			,RedirectAttributes redirectAttributes
 			) {

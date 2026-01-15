@@ -31,7 +31,8 @@ public class SelectGroupController {
 	}
 
 	@GetMapping("/select-group")
-	public String getSelectGroup(Model model
+	public String getSelectGroup(
+			Model model
 			,SessionStatus sessionStatus
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
@@ -46,7 +47,8 @@ public class SelectGroupController {
 	}
 
 	@PostMapping("/select-group")
-	public String postSelectGroup(Model model
+	public String postSelectGroup(
+			Model model
 			,@RequestParam("id")int groupId
 			,RedirectAttributes redirectAttributes
 			) {
