@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<title>レイアウト</title>
+</head>
+
+<body>
+	
+	<nav layout:replace="~{common/header::header}"></nav>
+
+	<div class="row">
+		<div class="d-inline-flex">
+		
+			<nav class="col-sm-2 bg-light sidebar pt-2">
+				<div layout:replace="~{common/menu::menu}"></div>
+			</nav>
+		
+			<div class="col-sm-10 offset-sm-2 main">
+				<div layout:fragment="content"></div>
+			</div>
+		
+		</div>
+	</div>
+		
+</body>
+
+</html>
