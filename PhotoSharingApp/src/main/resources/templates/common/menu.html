@@ -18,34 +18,43 @@
 		  <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
 		    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
 		      <svg class="bi me-2" width="40" height="32" aria-hidden="true"><use xlink:href="#bootstrap"/></svg>
-		      <span class="fs-4">サイドバー</span>
+		      <span class="fs-4">グループ名を表示できるか？</span>
 		    </a>
 		    <hr>
 		    <ul class="nav nav-pills flex-column mb-auto">
+				
+				
+				
+				
+			
+			  <li class="nav-item">
+		        <a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="nav-link link-body-emphasis"></a>
+		      </li>
+		      
+		      <!--ーーーーーーーー-->
 		      <li class="nav-item">
 		        <a href="#" class="nav-link active" aria-current="page">
 		          <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#home"/></svg>
 		          利用者一覧
 		        </a>
 		      </li>
-		      <li>
-		        <a href="#" class="nav-link link-body-emphasis">
-		          <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#speedometer2"/></svg>
-		          アルバムを使用する
-		        </a>
+		       <!--ーーーーーーーー-->
+		       
+		      <li class="nav-item">
+		        <a th:href="@{'/select-album'}" th:text="#{openAlbumBtn}" class="nav-link link-body-emphasis"></a>
 		      </li>
-		      <li>
-		        <a href="#" class="nav-link link-body-emphasis">
-		          <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#table"/></svg>
-		          掲示板を使用する
-		        </a>
+		      
+		      <li class="nav-item">
+		       <a th:href="@{'/list-comment'}" th:text="#{openBoardBtn}" class="nav-link link-body-emphasis"></a>
 		      </li>
-		      <li>
-		        <a href="#" class="nav-link link-body-emphasis">
-		          <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#people-circle"/></svg>
-		          グループを削除する
-		        </a>
+		      
+		      <li class="nav-item">
+		       <!-- <th:block th:if="${isAdmin}">-->
+				<a th:href="@{'/delete-group/' + ${group.id}}" th:text="#{deleteGroupBtn}" class="nav-link link-body-emphasis text-danger"></a>
+				<!--</th:block>-->
+				
 		      </li>
+		      
 		    </ul>
 		    <hr>
 		  </div>
