@@ -6,78 +6,50 @@
 	layout:decorate="~{common/layout}"
 	>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<title></title>
 </head>
 
 <body>
-  <div layout:fragment="menu">
-	 <div class="flex-shrink-0 p-3" style="width: 280px;">
-	    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
-	      <span class="fs-5 fw-semibold">共有写真アプリ</span>
-	    </a>
-	    
-	    <!--↓※選択-->
-	    <ul class="list-unstyled ps-0">
-	      <li class="mb-1">
-	        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-	          グループ
-	        </button>
-	        <div class="collapse show" id="home-collapse">
-	          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-	            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Overview</a></li>
-	            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Updates</a></li>
-	            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Reports</a></li>
-	          </ul>
-	        </div>
-	      </li>
-	      
-	      
-	      <li class="border-top my-3"></li>
-	      <li class="mb-1">
-	        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-	          アカウント
-	        </button>
-	        <div class="collapse" id="account-collapse">
-	          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-	            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">New...</a></li>
-	            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Profile</a></li>
-	            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Settings</a></li>
-	            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Sign out</a></li>
-	          </ul>
-	        </div>
-	      </li>
-	    </ul>
-	 </div>
-  </div>
+	<div layout:fragment="menu"  class="bg-light">
+		  <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
+		    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+		      <svg class="bi me-2" width="40" height="32" aria-hidden="true"><use xlink:href="#bootstrap"/></svg>
+		      <span class="fs-4">サイドバー</span>
+		    </a>
+		    <hr>
+		    <ul class="nav nav-pills flex-column mb-auto">
+		      <li class="nav-item">
+		        <a href="#" class="nav-link active" aria-current="page">
+		          <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#home"/></svg>
+		          利用者一覧
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="nav-link link-body-emphasis">
+		          <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#speedometer2"/></svg>
+		          アルバムを使用する
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="nav-link link-body-emphasis">
+		          <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#table"/></svg>
+		          掲示板を使用する
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="nav-link link-body-emphasis">
+		          <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#people-circle"/></svg>
+		          グループを削除する
+		        </a>
+		      </li>
+		    </ul>
+		    <hr>
+		  </div>
+	</div>
 </body>
-
-
-
-	<!--<nav layout:fragment="header-menu" class="navbar navbar-expand-lg bg-body-tertiary p-2 mb-3">
-		<span class="navbar-brand m-2" th:text="#{photoSharingApp}"></span>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav ms-auto align-items-center">
-				<li class="nav-link">
-					<a th:href="@{/update-account}" th:text="#{updatePasswordBtn}" class="btn btn-outline-success"></a>
-				</li>
-				<li class="nav-link">
-					<a th:href="@{/delete-account}" th:text="#{deleteAccountBtn}" class="btn btn-outline-danger"></a>
-				</li>
-				<li class="navbar-text mx-3">
-					<span sec:authentication="principal.username"></span>
-				</li>
-				<li class="nav-item">
-					<form method="post" th:action="@{/postlogout}">
-						<input type="submit" th:value="#{logoutBtn}" class="btn btn-outline-secondary m-2">
-					</form>
-				</li>
-			</ul>
-		</div>
-	</nav>-->
-
 </html>
+

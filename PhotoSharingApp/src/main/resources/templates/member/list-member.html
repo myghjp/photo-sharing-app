@@ -3,6 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layout}"
 	>
 <head>
 	<meta charset="UTF-8">
@@ -12,8 +13,13 @@
 	<title th:text="#{listMemberPage}"></title>
 </head>
 <body>
-	<nav layout:replace="~{common/header::header}"></nav>
-
+	
+	<div layout:fragment="content">
+		
+		<div class="p-3 mb-5 border-bottom">
+		    <div class="fs-3 text-center">利用者一覧</div>
+		</div>
+	
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col mx-auto text-center">
@@ -54,6 +60,8 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	
 	</div>
 </body>
 </html>

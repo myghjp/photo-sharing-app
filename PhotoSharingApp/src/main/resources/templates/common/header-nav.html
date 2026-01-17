@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layout}"
+	>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	
+	<nav layout:fragment="header-nav" class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+		<span class="navbar-brand m-2" th:text="#{photoSharingApp}"></span>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ms-auto align-items-center">
+				<li class="nav-link">
+					<a th:href="@{/update-account}" th:text="#{updatePasswordBtn}" class="btn btn-outline-success"></a>
+				</li>
+				<li class="nav-link">
+					<a th:href="@{/delete-account}" th:text="#{deleteAccountBtn}" class="btn btn-outline-danger"></a>
+				</li>
+				<li class="navbar-text mx-3">
+					<span sec:authentication="principal.username"></span>
+				</li>
+				<li class="nav-item">
+					<form method="post" th:action="@{/postlogout}">
+						<input type="submit" th:value="#{logoutBtn}" class="btn btn-outline-secondary m-2">
+					</form>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	
+</body>
+</html>

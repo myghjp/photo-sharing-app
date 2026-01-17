@@ -3,6 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layout}"
 	>
 <head>
 	<meta charset="UTF-8">
@@ -11,8 +12,14 @@
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 	<title th:text="#{listPhotoPage}"></title>
 </head>
-<body>
-	<nav layout:replace="~{common/header::header}"></nav>
+<div>
+	
+	<div layout:fragment="content">
+		
+		<div class="p-3 mb-5 border-bottom">
+		    <div class="fs-3 text-center">写真一覧</div>
+		</div>
+	
 	
 	<div class="container">
 		<div class="row justify-content-center">
@@ -80,6 +87,8 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	
 	</div>
 </body>
 </html>
