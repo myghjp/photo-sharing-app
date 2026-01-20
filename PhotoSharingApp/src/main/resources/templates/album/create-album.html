@@ -13,10 +13,9 @@
 	<title th:text=#{createAlbumPage}></title>
 </head>
 <body>
-	
 	<div layout:fragment="content">
 		
-		<div class="p-3 mb-5 border-bottom">
+		<div class="p-3 mb-4 border-bottom border-dark bg-light">
 		    <div class="fs-3 text-center">アルバム作成</div>
 		</div>
 	
@@ -35,7 +34,7 @@
 				         </div>
 					</div>
 					
-					<a th:href="@{'/select-album'}" th:text="#{cancelBtn}" class="btn btn-secondary mx-3"></a>
+					<!--<a th:href="@{'/select-album'}" th:text="#{cancelBtn}" class="btn btn-secondary mx-3"></a>-->
 				    <input type="submit" th:value="#{submitBtn}" class="btn btn-primary mx-3">
 				</form>
 			</div>

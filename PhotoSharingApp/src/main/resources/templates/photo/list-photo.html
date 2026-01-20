@@ -12,82 +12,87 @@
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 	<title th:text="#{listPhotoPage}"></title>
 </head>
-<div>
+<body>
 	
 	<div layout:fragment="content">
 		
-		<div class="p-3 mb-5 border-bottom">
+		<div class="p-3 border-bottom border-dark bg-light">
 		    <div class="fs-3 text-center">写真一覧</div>
 		</div>
+		<div class="p-3 border-bottom">
+			<div th:text="${group.groupName}" class="fs-5 text-center"></div>
+		</div>
+		<div class="p-3">
+			<div th:text="${album.albumName}" class="fs-4 text-center"></div>
+		</div>
 	
-	
-	<div class="container">
-		<div class="row justify-content-center">
-				<div class="text-center">
-					
-					<div th:text="${group.groupName}" class="col mb-3 fs-5"></div>
-					
-					<div class="col mb-3">
-						<a th:href="@{'/select-album'}"  th:text="#{backBtn}" class="btn btn-secondary"></a>
-					</div>
-					
-					<div th:text="${album.albumName}" class="col mb-3 fs-5"></div>
-					
-					<div class="col-7 mx-auto mb-3">
+		<div class="container">
+			<div class="row justify-content-center">
+					<div class="text-center">
 						
-						<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data">
+						<!--<div th:text="${group.groupName}" class="col mb-3 fs-5"></div>-->
+						
+						<!--<div class="col mb-3">
+							<a th:href="@{'/select-album'}"  th:text="#{backBtn}" class="btn btn-secondary"></a>
+						</div>-->
+						
+						<!--<div th:text="${album.albumName}" class="col mb-3 fs-5"></div>-->
+						
+						<div class="col-7 mx-auto mb-3">
 							
-							<input type="file" name="multipartFile" accept=".jpg, .jpeg, .png" class="form-control mb-3">
+							<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data">
 								
-						    <input type="submit" th:value="#{addPhotoBtn}" class="btn btn-primary mb-3">
-						    <th:block th:if="${isError}">
-								<div th:text="#{errorMessage}" class="text-danger"></div>
-							</th:block>
-						</form>
+								<input type="file" name="multipartFile" accept=".jpg, .jpeg, .png" class="form-control mb-3">
+									
+							    <input type="submit" th:value="#{addPhotoBtn}" class="btn btn-primary mb-3">
+							    <th:block th:if="${isError}">
+									<div th:text="#{errorMessage}" class="text-danger"></div>
+								</th:block>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	<div class="container">
-		<div class="row row-cols-md-3 row-cols-sm-2 justify-content-start">
-			<div th:each="list : ${photoList}" class="card">
-				<div class="card-body text-center">
-					<div th:text="'▼' + ${list.Account?.username?: 'unknown'}"></div>
-					
-					<img th:src="@{'/media/' + ${list.photo}}" th:alt="${list.photo}" height="150" style="max-width: 15rem;"
-					data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}"  class="card-img">
-					
-					<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}" ></div>
-			
-  					<a th:href="@{'/media/' + ${list.photo}}" download="" th:text="#{saveBtn}" class="btn btn-primary"></a>
+		
+		<div class="container">
+			<div class="row row-cols-md-3 row-cols-sm-2 justify-content-start">
+				<div th:each="list : ${photoList}" class="card">
+					<div class="card-body text-center">
+						<div th:text="'▼' + ${list.Account?.username?: 'unknown'}"></div>
+						
+						<img th:src="@{'/media/' + ${list.photo}}" th:alt="${list.photo}" height="150" style="max-width: 15rem;"
+						data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}"  class="card-img">
+						
+						<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}" ></div>
 				
-					<th:block th:if="${isAdmin}">
-						<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
-					</th:block>
+	  					<a th:href="@{'/media/' + ${list.photo}}" download="" th:text="#{saveBtn}" class="btn btn-primary"></a>
 					
-					<th:block th:unless="${isAdmin}">
-							<th:block th:if="${list.Account?.username != null and list.Account.username == loginUser}">
-								<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
-							</th:block>
-					</th:block>
-					
-					<!-- Modal -->
-					<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
-					       <img th:src="@{'/media/' + ${list.photo}}" 
-					       data-bs-dismiss="modal" aria-label="Close" class="img-fluid"/>
-					    </div>
-					  </div>
+						<th:block th:if="${isAdmin}">
+							<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
+						</th:block>
+						
+						<th:block th:unless="${isAdmin}">
+								<th:block th:if="${list.Account?.username != null and list.Account.username == loginUser}">
+									<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
+								</th:block>
+						</th:block>
+						
+						<!-- Modal -->
+						<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered">
+						    <div class="modal-content">
+						       <img th:src="@{'/media/' + ${list.photo}}" 
+						       data-bs-dismiss="modal" aria-label="Close" class="img-fluid"/>
+						    </div>
+						  </div>
+						</div>
+						<!-- /Modal -->
+						
 					</div>
-					<!-- /Modal -->
-					
 				</div>
 			</div>
 		</div>
-	</div>
 	
 	</div>
 </body>

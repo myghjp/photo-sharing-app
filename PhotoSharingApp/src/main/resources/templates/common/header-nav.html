@@ -19,17 +19,17 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ms-auto align-items-center">
 				<li class="nav-link">
-					<a th:href="@{/update-account}" th:text="#{updatePasswordBtn}" class="btn btn-outline-success"></a>
+					<a th:href="@{/update-account}" th:text="#{updatePasswordBtn}" class="btn btn-outline-success btn-light"></a>
 				</li>
 				<li class="nav-link">
-					<a th:href="@{/delete-account}" th:text="#{deleteAccountBtn}" class="btn btn-outline-danger"></a>
+					<a th:href="@{/delete-account}" th:text="#{deleteAccountBtn}" class="btn btn-outline-danger btn-light"></a>
 				</li>
 				<li class="navbar-text mx-3">
-					<span sec:authentication="principal.username"></span>
+					<span sec:authentication="principal.username" class="text-light"></span>
 				</li>
 				<li class="nav-item">
 					<form method="post" th:action="@{/postlogout}">
-						<input type="submit" th:value="#{logoutBtn}" class="btn btn-outline-secondary m-2">
+						<input type="submit" th:value="#{logoutBtn}" class="btn btn-outline-secondary btn-light m-2">
 					</form>
 				</li>
 			</ul>
