@@ -7,15 +7,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
 	<title th:text="#{createAccountPage}"></title>
 </head>
 <body>
 	<nav layout:replace="~{common/header::header}"></nav>
 	
-	<div class="p-3 mb-4 border-bottom border-dark bg-light">
-	    <div class="fs-3 text-center">アカウント登録</div>
-	</div>
+	<!--アカウント登録も同様に-->
 	
 	<div class="container">
 		<div class="row justify-content-center">

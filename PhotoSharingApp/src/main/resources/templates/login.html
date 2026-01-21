@@ -8,16 +8,36 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
 	<title th:text="#{loginPage}"></title>
 </head>
 <body>
 	<nav layout:replace="~{common/header::header}"></nav>
 	
-	<div class="p-3 mb-4 border-bottom border-dark bg-light">
-	    <div class="fs-3 text-center">ログイン</div>
-	</div>
+	<!--後でメールログイン変更とデザイン変更-->
 	
+	<!--
+	<body class="d-flex align-items-center py-4 bg-body-tertiary">
+  	<main class="form-signin w-100 m-auto">
+    <form class="text-center">
+      
+      
+      <h1 class="h3 mb-3 fw-normal">ログインしてください</h1>
+      
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">EmailAddress</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="パスワード">
+        <label for="floatingPassword">Password</label>
+      </div>
+
+      <button class="btn btn-primary w-100 py-2" type="submit"></button>
+   	</form>
+  	</main>
+  	-->
+
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-5 mx-auto">

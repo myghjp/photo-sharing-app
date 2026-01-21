@@ -9,19 +9,18 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
 	<title th:text="#{homeGroupPage}"></title>
 </head>
 <body>
 	
+	<!--<nav layout:replace="~{common/header-nav::header-nav}">-->
+	
 	<div layout:fragment="content">
 		
-		<div class="p-3 border-bottom border-dark bg-light">
-		    <div class="fs-3 text-center">グループホーム</div>
-		</div>
-		<div class="p-3 mb-4 border-bottom">
+		<!--<div class="p-3 mb-4 border-bottom">
 			<div th:text="${group.groupName}" class="fs-5 text-center"></div>
-		</div>
+		</div>-->
 		
 		<div class="container">
 			<div class="row justify-content-center">
@@ -33,11 +32,11 @@
 						<a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="btn btn-secondary" ></a>
 					</div>-->
 					
-					<div class="col mb-4">
+					<!--<div class="col mb-4">
 						<th:block th:if="${isAdmin}">
 							<div th:text="#{adminInfo}" class="text-primary fs-5"></div>
 						</th:block>
-					</div>
+					</div>-->
 				
 					<!--<div class="col mb-3">
 						<a th:href="@{'/list-member'}" th:text="#{memberListBtn}" class="btn btn-success"></a>
@@ -56,6 +55,7 @@
 							<a th:href="@{'/delete-group/' + ${group.id}}" th:text="#{deleteGroupBtn}" class="btn btn-danger"></a>
 						</th:block>
 					</div>
+					
 				</div>
 			</div>
 		</div>

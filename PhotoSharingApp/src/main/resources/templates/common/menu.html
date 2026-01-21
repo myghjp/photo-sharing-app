@@ -7,21 +7,21 @@
 	>
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	<title></title>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>-->
 </head>
 
 <body>
 	<div layout:fragment="menu">
-		  <div class="d-flex flex-column flex-shrink-0 p-3 vh-100">
-			  
-		    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-		      <svg class="bi me-2" width="40" height="32" aria-hidden="true"><use xlink:href="#bootstrap"/></svg>
-		      <span class="fs-3">メニュー</span>
-		    </a>
-		    
+		 <div class="d-flex flex-column flex-shrink-0 p-3 vh-100">
+			 
+			<div>↓ここで切り替えられたら</div> 
+		    <div th:text="${group.groupName}" class="fs-3 text-center"></div>
+			<th:block th:if="${isAdmin}">
+				<div th:text="#{adminInfo}" class="text-primary fs-5"></div>
+			</th:block>
+			
 		    <hr>
 		    <ul class="nav nav-pills flex-column mb-auto">
 				
