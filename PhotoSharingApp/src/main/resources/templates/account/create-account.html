@@ -10,42 +10,43 @@
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
 	<title th:text="#{createAccountPage}"></title>
 </head>
-<body>
+<body class="bg-body-tertiary">
+	
 	<nav layout:replace="~{common/header::header}"></nav>
 	
-	<!--アカウント登録も同様に-->
-	
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-md-5 mx-auto">
-				<form method="post" th:action="@{/create-account}" th:object="${createAccountForm}">
-				    <div class="row">
-				        <label for="username" th:text="#{username}" class="col-sm-4 col-form-label"></label>
-				        <div class="col-sm-8 mb-3">
-					        <input type="text" th:field="*{username}" th:errorclass="is-invalid" class="form-control">
-					        <div class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-					    </div>
-				    
-				        <label for="password" th:text="#{password}" class="col-sm-4 col-form-label"></label>
-				        <div class="col-sm-8 mb-3">
-					        <input type="password" th:field="*{password}" th:errorclass="is-invalid" class="form-control">
-					        <div class="invalid-feedback" th:errors="*{password}"></div>
-					    </div>
-				   
-				        <label for="emailAddress" th:text="#{emailAddress}" class="col-sm-4 col-form-label"></label>
-				        <div class="col-sm-8 mb-3">
-					        <input type="email" th:field="*{emailAddress}" th:errorclass="is-invalid" class="form-control">
-					        <div class="invalid-feedback" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
-					    </div>
-				    </div>
-				    
-				    <div class="text-center">
-					    <a th:href="@{'/login'}" th:text="#{cancelBtn}" class="btn btn-secondary mx-3 my-2"></a>
-					    <input type="submit" th:value="#{submitBtn}" class="btn btn-primary mx-3 my-2">
-				    </div>
-				</form>
-			</div>
+	<main class="container">
+		<div class="row align-items-center py-4">
+		  	<div class="form-signin col-md-4 mx-auto">
+			    <form method="post" th:action="@{/create-account}" th:object="${createAccountForm}">
+					
+				     <h1 th:text="#{createAccountPage}" class="h1 fw-bold text-center mb-4"></h1>
+				      
+				     <div class="form-floating mb-3">
+						<input type="text" id="username" th:field="*{username}" th:errorclass="is-invalid" class="form-control">
+						<label for="username" th:text="#{username}" class="form-label"></label>
+						<div class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+					 </div>
+					 
+					 <div class="form-floating mb-3">
+						<input type="password" th:field="*{password}" th:errorclass="is-invalid" class="form-control">
+						<label for="password" th:text="#{password}" class="form-label"></label>
+						<div class="invalid-feedback" th:errors="*{password}"></div>
+					 </div>
+					  
+					 <div class="form-floating mb-3">
+						 <input type="email" th:field="*{emailAddress}" th:errorclass="is-invalid" class="form-control">
+						 <label for="emailAddress" th:text="#{emailAddress}" class="form-label"></label>
+						 <div class="invalid-feedback" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
+					 </div>
+				     
+				     <div class="text-center">
+					     <input type="submit" th:value="#{submitBtn}" class="btn btn-primary w-50 py-2 mb-2">
+					     <div class="row"></div>
+					     <a th:href="@{'/login'}" th:text="#{cancelBtn}" class="w-50 py-2"></a>
+				     </div>
+			   	</form>
+		  	</div>
 		</div>
-	</div>
+	</main>
 </body>
 </html>
