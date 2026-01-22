@@ -9,29 +9,24 @@
 </head>
 <body>
 	<nav layout:fragment="header-nav" class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
-		<span class="navbar-brand m-2" th:text="#{photoSharingApp}"></span>
+		<span class="navbar-brand fs-4 fw-bold m-2" th:text="#{photoSharingApp}"></span>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		
-		<!--ーーーーーーーーーーグループ要素ーーーーーーーーーー-->
-		 <div class="collapse navbar-collapse" id="navbarNav">
-	      	<ul class="navbar-nav">
-		        <li class="nav-item">
-		         <!-- <a class="nav-link active" aria-current="page" href="#">グループ作成のナビ</a>-->
-		          <a th:href="@{'/create-group'}" th:text="#{createGroupBtn}" class="nav-link btn btn-success mb-3" ></a>
-		        </li>
-		        <!--<li class="nav-item">
-		          <a class="nav-link" href="#">グループ削除</a>
-		        </li>-->
-		        
-	      	</ul>
-   		 </div>
-   		 <!--ーーーーーーーーーーーーーーーーーーーー-->
+		<!--↓混ぜる-->
 		
+		<!--グループ作成-->
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a th:href="@{'/create-group'}" th:text="#{createGroupBtn}" class="btn btn-success ms-3"></a>
+				</li>
+			</ul>
+		</div>
 		
-		<!--↓justify-content-->
+		<!--ドロップダウン-->
 		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 			
 			<div class="dropdown">
@@ -40,16 +35,16 @@
 			  </button>
 			  
 			  <ul class="dropdown-menu dropdown-menu-lg-end">
-			    <li>
-					<a th:href="@{/update-account}" th:text="#{updatePasswordBtn}" class="dropdown-item text-success"></a>	
+			    <li class="dropdown-item">
+					<a th:href="@{/update-account}" th:text="#{updatePasswordBtn}" class="btn btn-success btn-sm"></a>	
 				</li>
-			    <li>
-					<a th:href="@{/delete-account}" th:text="#{deleteAccountBtn}" class="dropdown-item text-danger"></a>
+			    <li class="dropdown-item">
+					<a th:href="@{/delete-account}" th:text="#{deleteAccountBtn}" class="btn btn-danger btn-sm"></a>
 				</li>
 			    <li><hr class="dropdown-divider"></li>
-			    <li>
+			    <li class="dropdown-item">
 					<form method="post" th:action="@{/postlogout}">
-						<input type="submit" th:value="#{logoutBtn}" class="dropdown-item m-2">
+						<input type="submit" th:value="#{logoutBtn}" class="btn btn-secondary btn-sm">
 					</form>
 				</li>
 			  </ul>

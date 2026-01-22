@@ -7,56 +7,67 @@
 	>
 <head>
 	<meta charset="UTF-8">
-	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>-->
 </head>
 
 <body>
 	<div layout:fragment="menu">
 		 <div class="d-flex flex-column flex-shrink-0 p-3 vh-100">
 			 
-			<div>↓ここで切り替えられたら</div> 
-		    <div th:text="${group.groupName}" class="fs-3 text-center"></div>
+			<!--グループを選択する撤去-->
+				<!--
+				<li class="nav-item">
+					<a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="nav-link"></a>
+				</li>-->
+			<!--ーーーーーーーーーーー-->
+			
+			<form method="post" th:action="@{/select-group}">
+				<select name="id" onchange="submit(this.form)" class="form-select form-select-lg">
+					<option>
+						未選択(選択無しvalueに)
+						<!--<a th:href="@{'/create-group'}" th:text="#{createGroupBtn}"></a>-->
+					</option>
+					<div th:each="list: ${groupList}" class="form-check mb-3">
+						<th:block th:if="${list.id == group.id}">
+							<option selected th:value="${list.id}" th:text="${list.groupName}"></option>
+						</th:block>
+						<th:block th:unless="${list.id == group.id}">
+							<option th:value="${list.id}" th:text="${list.groupName}"></option>
+						</th:block>
+					</div>
+				</select>
+			</form>
+			
+			<!--<div th:text="${group.groupName}" class="fs-3 text-center"></div>-->
 			<th:block th:if="${isAdmin}">
 				<div th:text="#{adminInfo}" class="text-primary fs-5"></div>
 			</th:block>
 			
-		    <hr>
-		    <ul class="nav nav-pills flex-column mb-auto">
+			<hr>
+				<ul class="nav nav-pills flex-column mb-auto">
 				
-			  <li class="nav-item">
-		        <a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="nav-link"></a>
-		      </li>
-		      
-		      <!--ーーーーーーーー-->
-		      <li class="nav-item">
-		       <a th:href="@{'/home-group'}" class="nav-link active" aria-current="page">
-					グループホーム
-				</a>
-		      </li>
-		      	
-		       <!--ーーーーーーーー-->
-		       
-	          <li class="nav-item">
-				<a th:href="@{'/list-member'}" th:text="#{memberListBtn}" class="nav-link"></a>
-			  </li>
-		   	    
-		      <li class="nav-item">
-		        <a th:href="@{'/select-album'}" th:text="#{openAlbumBtn}" class="nav-link"></a>
-		      </li>
-		      
-		      <li class="nav-item">
-		       <a th:href="@{'/list-comment'}" th:text="#{openBoardBtn}" class="nav-link"></a>
-		      </li>
-		      
-		       <!-- <th:block th:if="${isAdmin}">-->
-				<!--<a th:href="@{'/delete-group/' + ${group.id}}" th:text="#{deleteGroupBtn}" class="nav-link link-body-emphasis text-danger"></a>-->
-				<!--</th:block>-->
-		      
-		    </ul>
-		    <hr>
-		  </div>
+				<li class="nav-item">
+					<a th:href="@{'/home-group'}" class="nav-link active" aria-current="page">グループホーム(未定)</a>
+				</li>
+				
+				<li class="nav-item">
+					<a th:href="@{'/list-member'}" th:text="#{memberListBtn}" class="nav-link"></a>
+				</li>
+				
+				<li class="nav-item">
+					<a th:href="@{'/select-album'}" th:text="#{openAlbumBtn}" class="nav-link"></a>
+				</li>
+				
+				<li class="nav-item">
+					<a th:href="@{'/list-comment'}" th:text="#{openBoardBtn}" class="nav-link"></a>
+				</li>
+				
+				<th:block th:if="${isAdmin}">
+					<a th:href="@{'/delete-group/' + ${group.id}}" th:text="#{deleteGroupBtn}" class="nav-link link-body-emphasis text-danger"></a>
+				</th:block>
+				
+				</ul>
+			<hr>
+		</div>
 	</div>
 </body>
 </html>

@@ -50,11 +50,17 @@ public class SelectGroupController {
 	public String postSelectGroup(
 			Model model
 			,@RequestParam("id")int groupId
+			,@AuthenticationPrincipal LoginUserDetails user
 			,RedirectAttributes redirectAttributes
 			) {
 
 		Group group = groupService.findById(groupId);
 		model.addAttribute("group",group);
+		/*ーーーーーー↓追加ーーーーーーーーー*/
+		/*自身が所属しているグループIDとグループ名を取得*/
+		List<Group> groupList = groupService.findAllByUserId(user.getUserId());
+		redirectAttributes.addFlashAttribute("groupList", groupList);
+		/*ーーーーーーーーーーーーーーー*/
 		
 		return "redirect:home-group";
 	}
