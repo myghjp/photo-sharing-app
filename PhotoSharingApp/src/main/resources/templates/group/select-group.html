@@ -17,18 +17,25 @@
 	
 	<div layout:fragment="content">
 		
+		<a th:href="@{'/create-group'}" th:text="#{createGroupBtn}" class="btn btn-success"></a>
 		
-		<h3>ホーム画面は必要か/利用者一覧にするか</h3>
+		<form method="post" th:action="@{/select-group}">
+			<select name="id" onchange="submit(this.form)" class="form-select form-select-lg" requred>
+				<option value="" selected disabled>
+					グループ選択
+				</option>
+				
+				<div th:each="list: ${groupList}" class="form-check mb-3">
+					<option th:value="${list.id}" th:text="${list.groupName}"></option>
+				</div>
+			</select>
+		</form>
 		
-		<h3>cardのplaceholder？</h3>
 		
-		<h3>Listがセッションじゃない</h3>
-	
 		<!--<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-auto">
 					<form method="post" th:action="@{/select-group}">
-						
 						
 						<div th:each="list, status : ${groupList}" class="form-check mb-3">
 							<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" th:checked="${status.index == 0}" class="form-check-input">

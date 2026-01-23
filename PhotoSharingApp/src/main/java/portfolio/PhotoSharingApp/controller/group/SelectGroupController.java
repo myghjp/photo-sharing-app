@@ -57,11 +57,17 @@ public class SelectGroupController {
 		Group group = groupService.findById(groupId);
 		model.addAttribute("group",group);
 		/*ーーーーーー↓追加ーーーーーーーーー*/
+		
+		
+		
+		/*ーーーーーーーーーーーーーーー*/
 		/*自身が所属しているグループIDとグループ名を取得*/
 		List<Group> groupList = groupService.findAllByUserId(user.getUserId());
 		redirectAttributes.addFlashAttribute("groupList", groupList);
 		/*ーーーーーーーーーーーーーーー*/
+		redirectAttributes.addFlashAttribute("display", groupId);
 		
+		/*ーーーーーーーーーーーーーーー*/
 		return "redirect:home-group";
 	}
 }

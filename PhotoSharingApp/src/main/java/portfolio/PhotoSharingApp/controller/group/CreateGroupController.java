@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Group;
@@ -35,7 +36,8 @@ public class CreateGroupController {
 
 	@PostMapping("/create-group")
 	public String postCreateGroup(
-			@AuthenticationPrincipal LoginUserDetails user
+			SessionStatus sessionStatus
+			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("createGroupForm") @Validated CreateGroupForm form
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
@@ -54,6 +56,10 @@ public class CreateGroupController {
 		
 		group.setAccountId(user.getUserId());
 		groupService.create(group);
+		
+		/*ーーー↓追加ーーー*/
+		sessionStatus.setComplete();
+		/*ーーーーーーーーー*/
 		
 		return "redirect:select-group";
 	}

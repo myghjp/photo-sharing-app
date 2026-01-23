@@ -15,14 +15,33 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		
-		<!--↓混ぜる-->
-		
-		<!--グループ作成-->
+		<!--グループ-->
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
+				
 				<li class="nav-item">
 					<a th:href="@{'/create-group'}" th:text="#{createGroupBtn}" class="btn btn-success ms-3"></a>
 				</li>
+				
+				<li class="nav-item">
+					<form method="post" th:action="@{/select-group}">
+						<select name="id" onchange="submit(this.form)" class="form-select" requred>
+							<option value="" selected disabled>
+								グループ選択
+							</option>
+							
+							<div th:each="list: ${groupList}" class="form-check mb-3">
+								<option th:value="${list.id}" th:text="${list.groupName}"></option>
+							</div>
+						</select>
+					</form>
+				</li>
+				<li class="nav-item">
+					<th:block th:if="${isAdmin}">
+						<a th:href="@{'/delete-group/' + ${group.id}}" th:text="#{deleteGroupBtn}" class="btn btn-danger ms-3"></a>
+					</th:block>
+				</li>
+				
 			</ul>
 		</div>
 		
