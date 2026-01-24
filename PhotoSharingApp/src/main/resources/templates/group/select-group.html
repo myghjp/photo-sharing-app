@@ -3,8 +3,8 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{common/layout}"
 	>
+	<!--layout:decorate="~{common/layout}"-->
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,47 +12,40 @@
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
 	<title th:text="#{selectGroupPage}"></title>
 </head>
-<body>
-	<!--<nav layout:replace="~{common/header-nav::header-nav}"></nav>-->
+<body class="bg-body-tertiary">
+	<nav layout:replace="~{common/header-nav::header-nav}"></nav>
 	
-	<div layout:fragment="content">
-		
-		<a th:href="@{'/create-group'}" th:text="#{createGroupBtn}" class="btn btn-success"></a>
-		
-		<form method="post" th:action="@{/select-group}">
-			<select name="id" onchange="submit(this.form)" class="form-select form-select-lg" requred>
-				<option value="" selected disabled>
-					グループ選択
-				</option>
-				
-				<div th:each="list: ${groupList}" class="form-check mb-3">
-					<option th:value="${list.id}" th:text="${list.groupName}"></option>
-				</div>
-			</select>
-		</form>
-		
-		
-		<!--<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-auto">
-					<form method="post" th:action="@{/select-group}">
-						
-						<div th:each="list, status : ${groupList}" class="form-check mb-3">
-							<input type="radio" th:id="${list.id}" name="id" th:value="${list.id}" th:checked="${status.index == 0}" class="form-check-input">
-							<label th:for="${list.id}" th:text="${list.groupName}" class="form-check-label"></label>
-						</div>
-						
-						<th:block th:unless="${groupList.isEmpty()}">
-							<div class="text-center">
-								<input type="submit" th:value="#{openGroupBtn}" class="btn btn-primary">
-							</div>
-						</th:block>
-					</form>
-				</div>
-			</div>
-		</div>-->
+	<!--<div layout:fragment="content">-->
 	
+	<div class="row align-items-center py-4">
+	  	<div class="col-md-4 mx-auto text-center">
+			 
+			<a th:href="@{'/create-group'}" th:text="#{createGroupBtn}" class="btn btn-success w-50 py-2 mb-4"></a>
+			<div>↑ボタンに見えない</div>
+			
+			<form method="post" th:action="@{/select-group}">
+				<select name="id" onchange="submit(this.form)" class="col-sm-4 form-select-lg w-50" requred>
+					<option value="" selected disabled>
+						グループ選択
+					</option>
+					
+					<div th:each="list: ${groupList}" class="form-check">
+						<option th:value="${list.id}" th:text="${list.groupName}"></option>
+					</div>
+				</select>
+			</form>
+			
+			<!--<th:block th:if="${isAdmin}">-->
+				<div th:text="#{adminInfo}" class="text-primary fs-5 mb-2"></div>
+				<a th:href="@{'/delete-group/' + ${group.id}}" th:text="#{deleteGroupBtn}" class="btn btn-danger"></a>
+			<!--</th:block>-->
+			
+			<div>↑テーブルに、cardを使う</div>
+			<div>sessionList消す</div>
+			
+		</div>
 	</div>
 	
+	<!--</div>-->
 </body>
 </html>

@@ -51,6 +51,9 @@ public class SelectAlbumController {
 			model.addAttribute("isAdmin",true);
 		}
 		
+		boolean isActive = true;
+	    model.addAttribute("isActiveAlbum", isActive);
+		
 		return "album/select-album";
 	}
 	

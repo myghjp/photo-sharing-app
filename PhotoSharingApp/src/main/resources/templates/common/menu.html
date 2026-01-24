@@ -11,68 +11,35 @@
 
 <body>
 	<div layout:fragment="menu">
-		 <div class="d-flex flex-column flex-shrink-0 p-3 vh-100">
-			 
-			<!--グループを選択する撤去-->
-				<!--
-				<li class="nav-item">
-					<a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="nav-link"></a>
-				</li>-->
-			<!--ーーーーーーーーーーー-->
+		 <div class="d-flex flex-column flex-shrink-0 p-3">
 			
-			<!--<a th:href="@{'/create-group'}" th:text="#{createGroupBtn}" class="btn btn-success mb-3"></a>
-		
-			<form method="post" th:action="@{/select-group}">
-				<select name="id" onchange="submit(this.form)" class="form-select mb-3" requred>
-					<option value="" selected disabled>
-						グループ選択
-					</option>
-					
-					<div th:each="list: ${groupList}" class="form-check mb-3">
-						<option th:value="${list.id}" th:text="${list.groupName}"></option>
-					</div>
-				</select>
-			</form>-->
-			
-			<div th:text="${group.groupName}" class="fs-4 fw-bold m-2 text-center"></div>
-			
-			<th:block th:if="${isAdmin}">
-				<div th:text="#{adminInfo}" class="text-primary fs-5 mb-3"></div>
-			</th:block>
-			
-			<!--<th:block th:if="${isAdmin}">
-				<a th:href="@{'/delete-group/' + ${group.id}}" th:text="#{deleteGroupBtn}" class="btn btn-danger"></a>
-			</th:block>-->
-			
-			<th:block th:if="${display}">
+			<div class="text-center">
+				<div th:text="${group.groupName}" class="fs-4 fw-bold"></div>
 				
+				<th:block th:if="${isAdmin}">
+					<div th:text="#{adminInfo}" class="text-primary fs-5 mb-2"></div>
+				</th:block>
+			</div>
+			
 			<hr>
 				<ul class="nav nav-pills flex-column mb-auto">
-				
-				<!--<li class="nav-item">
-					<a th:href="@{'/home-group'}" class="nav-link active" aria-current="page">グループホーム(未定)</a>
-				</li>-->
-				
 				<li class="nav-item">
-					<a th:href="@{'/list-member'}" th:text="#{memberListBtn}" class="nav-link"></a>
+					<a th:href="@{'/home-group'}" class="nav-link" th:classappend="${isActiveHome} ? 'active' : ''" aria-current="page">ホーム画面</a>
 				</li>
 				
 				<li class="nav-item">
-					<a th:href="@{'/select-album'}" th:text="#{openAlbumBtn}" class="nav-link"></a>
+					<a th:href="@{'/list-member'}" th:text="#{memberListBtn}" class="nav-link" th:classappend="${isActiveMember} ? 'active' : ''" aria-current="page"></a>
 				</li>
 				
 				<li class="nav-item">
-					<a th:href="@{'/list-comment'}" th:text="#{openBoardBtn}" class="nav-link"></a>
+					<a th:href="@{'/select-album'}" th:text="#{openAlbumBtn}" class="nav-link" th:classappend="${isActiveAlbum} ? 'active' : ''" aria-current="page"></a>
 				</li>
-				<!--
-				<th:block th:if="${isAdmin}">
-					<a th:href="@{'/delete-group/' + ${group.id}}" th:text="#{deleteGroupBtn}" class="nav-link link-body-emphasis text-danger"></a>
-				</th:block>-->
 				
+				<li class="nav-item">
+					<a th:href="@{'/list-comment'}" th:text="#{openBoardBtn}" class="nav-link" th:classappend="${isActiveComment} ? 'active' : ''" aria-current="page"></a>
+				</li>
 				</ul>
 			<hr>
-			
-			</th:block>
 		</div>
 	</div>
 </body>

@@ -46,6 +46,14 @@ public class ListCommentController {
 		List<Comment> commentList = commentService.findAllById(group.getId());
 		model.addAttribute("commentList", commentList);
 		
+		/*自身がグループの管理者であるかを確認*/
+		if (group.getAccountId() == user.getUserId()) {
+			model.addAttribute("isAdmin",true);
+		}
+		
+		boolean isActive = true;
+	    model.addAttribute("isActiveComment", isActive);
+		
 		return "comment/list-comment";
 	}
 	

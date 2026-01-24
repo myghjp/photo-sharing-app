@@ -31,8 +31,8 @@ public class ListMemberController {
 	public String getListMember(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
-			,@ModelAttribute("group")Group group
 			,RedirectAttributes redirectAttributes
+			,@ModelAttribute("group")Group group
 		) {
 		
 		/*このグループ利用者のテーブル情報とアカウント名を取得*/
@@ -47,6 +47,9 @@ public class ListMemberController {
 			String adminName = groupService.findByUsername(group.getId());
 			model.addAttribute("adminName", adminName);
 		}
+		
+		boolean isActive = true;
+	    model.addAttribute("isActiveMember", isActive);
 
 		return "member/list-member";
 	}

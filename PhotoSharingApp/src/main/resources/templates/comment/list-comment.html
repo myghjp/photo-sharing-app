@@ -15,10 +15,6 @@
 <body>
 	
 	<div layout:fragment="content">
-		
-	<div class="p-3 mb-4 border-bottom">
-		<div th:text="${group.groupName}" class="fs-5 text-center"></div>
-	</div>
 	
 	<div class="container">
 		<div class="row justify-content-center">
@@ -36,20 +32,25 @@
 					<div class="border border-dark"></div>
 				</div>-->
 				
-				<div class="col-6 mx-auto">
-					<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
-					     <div class="row mb-3">
-					        <label for="comment"></label>
-					        <div class="col-8">
-						        <input type="text" th:field="*{comment}" th:errorclass="is-invalid" class="form-control">
-						        <div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
-					        </div>
-					        <div class="col-4">
-					    		<input type="submit" th:value="#{commentBtn}" class="btn btn-primary">
-					        </div>
-					    </div>
-			    	</form>
+				<div class="m-3 border-bottom">
+					<div class="col-6 mx-auto">
+						<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
+						     <div class="row mb-3">
+						        <label for="comment"></label>
+						        <div class="col-8">
+							        <input type="text" th:field="*{comment}" th:errorclass="is-invalid" class="form-control">
+							        <div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
+						        </div>
+						        <div class="col-4">
+						    		<input type="submit" th:value="#{commentBtn}" class="btn btn-primary">
+						        </div>
+						    </div>
+				    	</form>
+					</div>
 				</div>
+				
+				
+				
 		    </div>
 			
 			<div class="col mx-auto">

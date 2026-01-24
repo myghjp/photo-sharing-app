@@ -23,10 +23,14 @@ public class HomeGroupController {
 			,@ModelAttribute("group")Group group
 			) {
 		
+		
 		/*自身がグループの管理者であるかを確認*/
 		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}
+		
+		boolean isActive = true;
+	    model.addAttribute("isActiveHome", isActive);
 		
 		return "group/home-group";
 	}

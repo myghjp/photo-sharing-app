@@ -26,10 +26,12 @@
 							<a th:href="@{'/home-group'}" th:text="#{backBtn}" class="btn btn-secondary"></a>
 						</div>-->
 						
-						<div class="col mb-3">
-							<th:block th:if="${isAdmin}">
-								<a th:href="@{'/create-album'}" th:text="#{createAlbumBtn}" class="btn btn-success"></a>
-							</th:block>
+						<div class="m-3 border-bottom">
+							<div class="col mb-3">
+								<th:block th:if="${isAdmin}">
+									<a th:href="@{'/create-album'}" th:text="#{createAlbumBtn}" class="btn btn-success"></a>
+								</th:block>
+							</div>
 						</div>
 						
 						<div th:text="#{selectAlbumMessage}" class="mb-3 fs-5"></div>
