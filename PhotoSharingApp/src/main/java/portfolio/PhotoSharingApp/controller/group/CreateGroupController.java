@@ -57,10 +57,6 @@ public class CreateGroupController {
 		group.setAccountId(user.getUserId());
 		groupService.create(group);
 		
-		/*ーーー↓追加ーーー*/
-		sessionStatus.setComplete();
-		/*ーーーーーーーーー*/
-		
 		return "redirect:select-group";
 	}
 }

@@ -13,39 +13,40 @@
 	<title th:text="#{selectGroupPage}"></title>
 </head>
 <body class="bg-body-tertiary">
+	
 	<nav layout:replace="~{common/header-nav::header-nav}"></nav>
 	
-	<!--<div layout:fragment="content">-->
-	
-	<div class="row align-items-center py-4">
-	  	<div class="col-md-4 mx-auto text-center">
-			 
-			<a th:href="@{'/create-group'}" th:text="#{createGroupBtn}" class="btn btn-success w-50 py-2 mb-4"></a>
-			<div>↑ボタンに見えない</div>
-			
-			<form method="post" th:action="@{/select-group}">
-				<select name="id" onchange="submit(this.form)" class="col-sm-4 form-select-lg w-50" requred>
-					<option value="" selected disabled>
-						グループ選択
-					</option>
-					
-					<div th:each="list: ${groupList}" class="form-check">
-						<option th:value="${list.id}" th:text="${list.groupName}"></option>
-					</div>
-				</select>
-			</form>
-			
-			<!--<th:block th:if="${isAdmin}">-->
-				<div th:text="#{adminInfo}" class="text-primary fs-5 mb-2"></div>
-				<a th:href="@{'/delete-group/' + ${group.id}}" th:text="#{deleteGroupBtn}" class="btn btn-danger"></a>
-			<!--</th:block>-->
-			
-			<div>↑テーブルに、cardを使う</div>
-			<div>sessionList消す</div>
-			
+	<div class="container">
+		
+		<div class="row">
+			<div class="text-center fs-3 m-3">グループを選択してください(仮)</div>
+		</div>
+		
+		<div class="row row-cols-1 row-cols-md-5">
+			<div th:each="list: ${groupList}">
+				<div class="card text-center p-0 g-4">
+				<form method="post" th:action="@{/select-group}">
+				
+				<div class="card-header">
+					<div class="card-title fs-5" th:text="${list.groupName}"></div>
+				</div>
+				
+				<div class="card-body">
+				    <p class="card-text">作成日とか</p>
+				    <p class="card-text">最終更新日とか</p>
+				    
+				    <button type="submit" th:value="${list.id}" name="id" th:text="#{openGroupBtn}" class="card-link btn btn-primary mb-2"></button>
+				    <div class="row"></div>
+				 	 <!--<th:block th:if="${isAdmin}">-->  
+				    <a th:href="@{'/delete-group/' + ${group.id}}" th:text="#{deleteGroupBtn}" class="card-link btn btn-danger"></a>
+				  	<!--</th:block>-->
+				</div>
+				
+				</form>
+				</div>
+				
+			</div>
 		</div>
 	</div>
-	
-	<!--</div>-->
 </body>
 </html>

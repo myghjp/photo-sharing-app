@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.group.GroupService;
@@ -34,7 +33,6 @@ public class SelectGroupController {
 	@GetMapping("/select-group")
 	public String getSelectGroup(
 			Model model
-			,HttpSession session
 			,SessionStatus sessionStatus
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
@@ -51,7 +49,6 @@ public class SelectGroupController {
 	@PostMapping("/select-group")
 	public String postSelectGroup(
 			Model model
-			,HttpSession session
 			,@RequestParam("id")int groupId
 			,@AuthenticationPrincipal LoginUserDetails user
 			,RedirectAttributes redirectAttributes

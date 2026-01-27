@@ -9,38 +9,45 @@
 </head>
 <body>
 	<nav layout:fragment="header-nav" class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
-		<span class="navbar-brand fs-4 fw-bold m-2" th:text="#{photoSharingApp}"></span>
+		<span class="navbar-brand fs-3 fw-bold m-2" th:text="#{photoSharingApp}"></span>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		
-		<a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="btn btn-secondary"></a>
-		
-		<!--ドロップダウン-->
-		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav fs-5">
+				
+		        <li class="nav-item"><!--グループ選択-->
+					<a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="nav-link active" aria-current="page"></a>
+		        </li>
+		        
+		        <li class="nav-item"><!--グループ作成-->
+					<a th:href="@{'/create-group'}" th:text="#{createGroupBtn}" class="nav-link" aria-current="page"></a>
+				</li>
 			
-			<div class="dropdown">
-			  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-			    <span sec:authentication="principal.username" class="text-light"></span>
-			  </button>
-			  
-			  <ul class="dropdown-menu dropdown-menu-lg-end">
-			    <li class="dropdown-item">
-					<a th:href="@{/update-account}" th:text="#{updatePasswordBtn}" class="nav-link text-success"></a>	
-				</li>
-			    <li class="dropdown-item">
-					<a th:href="@{/delete-account}" th:text="#{deleteAccountBtn}" class="nav-link text-danger"></a>
-				</li>
-			    <li><hr class="dropdown-divider"></li>
-			    <li class="dropdown-item">
-					<form method="post" th:action="@{/postlogout}">
-						<input type="submit" th:value="#{logoutBtn}" class="nav-link text-secondary">
-					</form>
-				</li>
-			  </ul>
-			</div>
-			
+				<li class="nav-item dropdown"><!--ドロップダウン-->
+					  <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					    <span sec:authentication="principal.username"></span>
+					  </a>
+					  
+					  <ul class="dropdown-menu dropdown-menu-end">
+					    <li class="dropdown-item">
+							<a th:href="@{/update-account}" th:text="#{updatePasswordBtn}" class="nav-link text-success"></a>	
+						</li>
+					    <li class="dropdown-item">
+							<a th:href="@{/delete-account}" th:text="#{deleteAccountBtn}" class="nav-link text-danger"></a>
+						</li>
+					    <li><hr class="dropdown-divider"></li>
+					    <li class="dropdown-item">
+							<form method="post" th:action="@{/postlogout}">
+								<input type="submit" th:value="#{logoutBtn}" class="nav-link text-secondary">
+							</form>
+						</li>
+					  </ul>
+					  
+				 </li>
+			</ul>
 		</div>
 	</nav>
 </body>
