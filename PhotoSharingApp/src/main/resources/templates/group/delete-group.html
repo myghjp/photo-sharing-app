@@ -3,7 +3,6 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{common/layout}"
 	>
 <head>
 	<meta charset="UTF-8">
@@ -14,19 +13,21 @@
 </head>
 <body>
 	
-	<div layout:fragment="content">
+	<nav layout:replace="~{common/header-nav::header-nav}"></nav>
+	
+	<!--<div layout:fragment="content">-->
 	
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-5 mx-auto">
 				<form method="post" th:action="@{/delete-group}" class="text-center">
 					
-					<h3>ポップアップとか</h3>
+					<h3>モーダル？</h3>
 				
 					<div th:text="#{deleteGroupAlert}" class="mb-3 fs-5"></div>
 					<div th:text="${groupData.groupName}" class="mb-3 fs-5"></div>
 	
-					<a th:href="@{'/home-group'}" th:text="#{cancelBtn}" class="btn btn-secondary mx-3" ></a>
+					<a th:href="@{'/select-group'}" th:text="#{cancelBtn}" class="btn btn-secondary mx-3" ></a>
 					<input type="hidden" name="id" th:value="${groupData.id}">
 				    <input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3">
 				</form>
@@ -34,6 +35,6 @@
 		</div>
 	</div>
 	
-	</div>
+	<!--</div>-->
 </body>
 </html>

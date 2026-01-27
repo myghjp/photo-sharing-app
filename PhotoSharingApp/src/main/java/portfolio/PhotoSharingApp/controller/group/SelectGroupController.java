@@ -42,6 +42,9 @@ public class SelectGroupController {
 		/*自身が所属しているグループIDとグループ名を取得*/
 		List<Group> groupList = groupService.findAllByUserId(user.getUserId());
 		model.addAttribute("groupList", groupList);
+		
+		boolean isActive = true;
+	    model.addAttribute("isActiveSelectGroup", isActive);
 
 		return "group/select-group";
 	}

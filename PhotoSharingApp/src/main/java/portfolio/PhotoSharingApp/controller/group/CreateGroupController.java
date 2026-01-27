@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,15 +29,20 @@ public class CreateGroupController {
 	
 	@GetMapping("/create-group")
 	public String getCreateGroup(
-			@ModelAttribute("createGroupForm")CreateGroupForm form
+			Model model
+			,@ModelAttribute("createGroupForm")CreateGroupForm form
 			) {
+		
+		boolean isActive = true;
+	    model.addAttribute("isActiveCreateGroup", isActive);
 		
 		return "group/create-group";
 	}
 
 	@PostMapping("/create-group")
 	public String postCreateGroup(
-			SessionStatus sessionStatus
+			Model model
+			,SessionStatus sessionStatus
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("createGroupForm") @Validated CreateGroupForm form
 			,BindingResult bindingResult
@@ -51,7 +57,7 @@ public class CreateGroupController {
 		}
 		
 		if (bindingResult.hasErrors()) {
-			return getCreateGroup(form);
+			return getCreateGroup(model,form);
 		}
 		
 		group.setAccountId(user.getUserId());
