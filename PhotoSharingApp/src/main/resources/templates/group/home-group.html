@@ -14,34 +14,16 @@
 </head>
 <body>
 	
-	<!--<nav layout:replace="~{common/header-nav::header-nav}">-->
+	<nav layout:replace="~{common/header-nav::header-nav}"></nav>
 	
 	<div layout:fragment="content">
-		
-		<!--<div class="p-3 mb-4 border-bottom">
-			<div th:text="${group.groupName}" class="fs-5 text-center"></div>
-		</div>-->
 		
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-5 mx-auto text-center">
 					
-					<h3>カード？</h3>
+					<h3>ダッシュボード？</h3>
 					
-					<!--<div th:text="${group.groupName}" class="fs-5 mb-3"></div>-->
-					
-					<!--<div class="col mb-3">
-						<a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="btn btn-secondary" ></a>
-					</div>-->
-					
-					<!--<div class="col mb-4">
-						<th:block th:if="${isAdmin}">
-							<div th:text="#{adminInfo}" class="text-primary fs-5"></div>
-						</th:block>
-					</div>-->
-					
-					
-				
 					<div class="col mb-3">
 						<a th:href="@{'/list-member'}" th:text="#{memberListBtn}" class="btn btn-success"></a>
 					</div>
@@ -54,13 +36,8 @@
 						<a th:href="@{'/list-comment'}" th:text="#{openBoardBtn}" class="btn btn-success"></a>
 					</div>
 					
-					<!--<div class="col">
-						<th:block th:if="${isAdmin}">
-							<a th:href="@{'/delete-group/' + ${group.id}}" th:text="#{deleteGroupBtn}" class="btn btn-danger"></a>
-						</th:block>
-					</div>-->
-					
 				</div>
+				
 			</div>
 		</div>
 	
