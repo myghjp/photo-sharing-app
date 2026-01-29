@@ -26,22 +26,24 @@
 			<div th:each="list: ${groupList}">
 				<div class="card text-center p-0 g-4">
 					<form method="post" th:action="@{/select-group}">
-					
-					<div class="card-header">
-						<div class="card-title fs-5 fw-bold m-0" th:text="${list.groupName}"></div>
-					</div>
-					
-					<div class="card-body">
-					    <p class="card-text">作成日とか</p>
-					    <p class="card-text">最終更新日とか</p>
-					    
-					    <button type="submit" th:value="${list.id}" name="id" th:text="#{openGroupBtn}" class="card-link btn btn-primary mb-2"></button>
-					    <div class="row"></div>
-					 	 <!--<th:block th:if="${isAdmin}">-->  
-					    <a th:href="@{'/delete-group/' + ${list.id}}" th:text="#{deleteGroupBtn}" class="card-link btn btn-danger"></a>
-					  	<!--</th:block>-->
-					</div>
-					
+						<div class="card-header">
+							<div class="card-title fs-5 fw-bold m-0" th:text="${list.groupName}"></div>
+						</div>
+						
+						<div class="card-body">
+						    <p class="card-text">作成日とか</p>
+						    <p class="card-text">最終更新日とか</p>
+						    
+						    <button type="submit" th:value="${list.id}" name="id" th:text="#{openGroupBtn}" class="card-link btn btn-primary mb-2"></button>
+						    
+						    <div class="row"></div>
+						    
+							<!--<th:block th:if="${isAdmin}">-->
+							<th:block th:if="${list.accountId == userId}">
+								<a th:href="@{'/delete-group/' + ${list.id}}" th:text="#{deleteGroupBtn}" class="card-link btn btn-danger"></a>
+							</th:block>
+							<!--</th:block>-->
+						</div>
 					</form>
 				</div>
 			</div>

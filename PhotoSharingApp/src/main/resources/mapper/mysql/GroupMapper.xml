@@ -28,7 +28,9 @@
 	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
 	<select id="selectGroups" resultMap="GroupsTable">
-		select distinct groups.id,group_name
+		select distinct groups.id
+			,group_name
+			,groups.account_id
 		from `groups`
 			left join groups_members
 			on groups.id = groups_members.group_id

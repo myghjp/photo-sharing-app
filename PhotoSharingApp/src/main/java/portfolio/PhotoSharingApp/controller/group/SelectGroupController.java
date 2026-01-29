@@ -39,9 +39,18 @@ public class SelectGroupController {
 
 		sessionStatus.setComplete();
 		
-		/*自身が所属しているグループIDとグループ名を取得*/
+		/*自身が所属しているグループIDとグループ名を取得(グループ管理者IDも追加)*/
 		List<Group> groupList = groupService.findAllByUserId(user.getUserId());
 		model.addAttribute("groupList", groupList);
+		
+		/*ーーーーーーーーーーーーーーーーーーーーーー*/
+		/*自身がグループの管理者であるかを確認*/
+		/*if (group.getAccountId() == user.getUserId()) {
+			model.addAttribute("isAdmin",true);
+		}*/
+		/*ーーーーーーーーーーーーーーーーーーーーーー*/
+		
+		model.addAttribute("userId",user.getUserId());
 		
 		boolean isActive = true;
 	    model.addAttribute("isActiveSelectGroup", isActive);
