@@ -16,8 +16,7 @@
 		</button>
 		
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav fs-5">
-				
+			<ul class="navbar-nav fs-5 me-auto">
 		        <li class="nav-item"><!--グループ選択-->
 					<a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="nav-link" th:classappend="${isActiveSelectGroup} ? 'active' : ''" aria-current="page"></a>
 		        </li>
@@ -26,17 +25,14 @@
 					<a th:href="@{'/create-group'}" th:text="#{createGroupBtn}" class="nav-link" th:classappend="${isActiveCreateGroup} ? 'active' : ''" aria-current="page"></a>
 				</li>
 			</ul>
-		</div>
 			
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav fs-5">
-			
 				<li class="nav-item dropdown"><!--ドロップダウン-->
-					  <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					 <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					    <span sec:authentication="principal.username"></span>
-					  </a>
+					 </a>
 					  
-					  <ul class="dropdown-menu dropdown-menu-end">
+					 <ul class="dropdown-menu dropdown-menu-end">
 					    <li class="dropdown-item">
 							<a th:href="@{/update-account}" th:text="#{updatePasswordBtn}" class="nav-link text-success"></a>	
 						</li>
@@ -49,11 +45,9 @@
 								<input type="submit" th:value="#{logoutBtn}" class="nav-link text-secondary">
 							</form>
 						</li>
-					  </ul>
-					  
+					 </ul>
 				 </li>
 			</ul>
-			
 		</div>
 	</nav>
 </body>

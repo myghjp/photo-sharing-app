@@ -13,28 +13,27 @@
 	<title th:text="#{listMemberPage}"></title>
 </head>
 <body>
-	
 	<div layout:fragment="content">
-	
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col mx-auto text-center">
-					
-					<!--<div th:text="${group.groupName}" class="col mb-3 fs-5"></div>-->
-					
-					<!--<div class="col mb-3">
-						<a th:href="@{'/home-group'}" th:text="#{backBtn}" class="btn btn-secondary"></a>
-					</div>-->
-					
-					<div class="m-3 border-bottom">
-						<div class="col mb-3">
-							<th:block th:if="${isAdmin}">
-								<a th:href="@{'/add-member'}" th:text="#{addMemberBtn}" class="btn btn-success"></a>
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
+				        <div class="fs-2" th:text="#{listMembers}"></div>
+				        
+				        <div class="btn-toolbar mb-2 mb-md-0">
+				          <div class="btn-group me-2">
+				           <!--<button type="button" class="btn btn-sm btn-outline-secondary">Share</button>-->
+				            <th:block th:if="${isAdmin}">
+								<h6>テキストボックス</h6>
+								<a th:href="@{'/add-member'}" th:text="#{addMemberBtn}" class="btn btn-outline-secondary"></a>
 							</th:block>
-						</div>
-					</div>
-					
-					<div th:text="#{listMembers}" class="col mb-3 fs-5"></div>
+				          </div>
+				          <!--<button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
+				           <svg class="bi"><use xlink:href="#calendar3"></use></svg>
+				            This week
+				          </button>-->
+				        </div>
+				    </div>
 					
 					<th:block th:unless="${isAdmin}">
 						<div class="row mb-3">

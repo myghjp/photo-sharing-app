@@ -17,25 +17,19 @@
 		
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-auto">
-					<div class="text-center">
-						
-						<!--<div th:text="${group.groupName}" class="mb-3 fs-5"></div>-->
-						
-						<!--<div class="col mb-3">
-							<a th:href="@{'/home-group'}" th:text="#{backBtn}" class="btn btn-secondary"></a>
-						</div>-->
-						
-						<div class="m-3 border-bottom">
-							<div class="col mb-3">
-								<th:block th:if="${isAdmin}">
-									<a th:href="@{'/create-album'}" th:text="#{createAlbumBtn}" class="btn btn-success"></a>
-								</th:block>
-							</div>
-						</div>
-						
-						<div th:text="#{selectAlbumMessage}" class="mb-3 fs-5"></div>
-					</div>
+				<div class="col mx-auto text-center">
+					
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
+				        <div class="fs-2" th:text="#{openAlbumBtn}"></div>
+				        
+				        <div class="btn-toolbar mb-2 mb-md-0">
+				          <div class="btn-group me-2">
+				            <th:block th:if="${isAdmin}">
+								<a th:href="@{'/create-album'}" th:text="#{createAlbumBtn}" class="btn btn-outline-secondary"></a>
+							</th:block>
+				          </div>
+				        </div>
+				    </div>
 					
 					<form method="post" th:action="@{/select-album}">
 						<div th:each="list, status :${albumList}" class="mb-3">
