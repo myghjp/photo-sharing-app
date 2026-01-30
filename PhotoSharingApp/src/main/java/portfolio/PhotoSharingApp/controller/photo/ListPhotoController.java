@@ -56,6 +56,9 @@ public class ListPhotoController {
 		List<Photo> photoList = photoService.findAllById(album.getId());
 		model.addAttribute("photoList", photoList);
 		
+		boolean isActive = true;
+	    model.addAttribute("isActiveAlbum", isActive);
+		
 		return "photo/list-photo";
 	}
 	

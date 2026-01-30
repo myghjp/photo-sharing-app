@@ -18,30 +18,37 @@
 	
 		<div class="container">
 			<div class="row justify-content-center">
-					<div class="text-center">
-						
-						<!--<div th:text="${group.groupName}" class="col mb-3 fs-5"></div>-->
-						
-						<!--<div class="col mb-3">
-							<a th:href="@{'/select-album'}"  th:text="#{backBtn}" class="btn btn-secondary"></a>
-						</div>-->
-						
-						<!--<div th:text="${album.albumName}" class="col mb-3 fs-5"></div>-->
-						
-						<div class="col-7 mx-auto mb-3">
+				<div class="text-center">
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
+			        
+						<nav aria-label="breadcrumb">
+						  <ol class="breadcrumb fs-2 m-0">
 							
-							<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data">
+						    <li class="breadcrumb-item"><a th:href="@{'/select-album'}">アルバム</a></li>
+						    <li class="breadcrumb-item active" aria-current="page">写真</li>
+							
+						  </ol>
+						</nav>
+					
+				        <div th:text="${album.albumName}" class="col fs-4 fw-bold"></div>
+						
+				        <div class="btn-toolbar mb-2 mb-md-0">
+				          <div class="btn-group me-2">
+				            
+				          	<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data" class="d-inline-flex">
 								
-								<input type="file" name="multipartFile" accept=".jpg, .jpeg, .png" class="form-control mb-3">
+								<input type="file" name="multipartFile" accept=".jpg, .jpeg, .png" class="form-control me-2">
 									
-							    <input type="submit" th:value="#{addPhotoBtn}" class="btn btn-primary mb-3">
+							    <input type="submit" th:value="#{addPhotoBtn}" class="btn btn-outline-secondary">
 							    <th:block th:if="${isError}">
 									<div th:text="#{errorMessage}" class="text-danger"></div>
 								</th:block>
 							</form>
-						</div>
-					</div>
-				</div>
+				            
+				          </div>
+				        </div>  
+				     </div>
+			     </div>
 			</div>
 		</div>
 		

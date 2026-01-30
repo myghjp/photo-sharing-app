@@ -18,13 +18,36 @@
 			<div class="row justify-content-center">
 				<div class="col mx-auto text-center">
 					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
-				        <div class="fs-2" th:text="#{listMembers}"></div>
+				        <div class="fs-2" th:text="#{groupMembers}"></div>
 				        
 				        <div class="btn-toolbar mb-2 mb-md-0">
 				          <div class="btn-group me-2">
 				            <th:block th:if="${isAdmin}">
-								<a th:href="@{'/add-member'}" th:text="#{addMemberBtn}" class="btn btn-outline-secondary"></a>
+								<!--ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
+								<!--<a th:href="@{'/add-member'}" th:text="#{addMemberBtn}" class="btn btn-outline-secondary"></a>-->
+								
+								<!--POST-->
+								<form method="post" th:action="@{/list-member}" th:object="${addMemberForm}" class="rowtext-center">
+					
+									<!--<div th:text="#{addMemberMessage}" class="mb-3 fs-5"></div>-->
+									<div th:text="#{addMemberMessage}" class="fs-6"></div>
+								   	<div class="row">
+								       <!-- <label for="emailAddress" th:text=#{emailAddress}  class="col-sm-4 col-form-label"></label>-->
+								       <div class="col-sm-9">
+									   <input type="email" th:field="*{emailAddress}" th:errorclass="is-invalid" class="form-control" th:placeholder="#{emailAddress}">
+									   <div class="invalid-feedback" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
+									   </div>
+								       
+								       <div class="col-sm-3">
+								       <input type="submit" th:value="#{addBtn}" class="btn btn-outline-secondary">
+								       </div>
+								       
+								    </div>
+							    	
+								</form>
+								<!--ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
 							</th:block>
+							
 							<th:block th:unless="${isAdmin}">
 								<div class="row">
 									<div class="d-flex justify-content-center fs-5">
@@ -33,6 +56,7 @@
 									</div>
 								</div>
 							</th:block>
+							
 				          </div>
 				        </div>
 				    </div>
@@ -49,15 +73,15 @@
 						</thead>
 						
 						<tbody>
-							<tr>
-								<div th:each="list:${memberList}">
+							<tr th:each="list:${memberList}">
+								<!--<div >-->
 									<td class="align-middle py-2" th:text="${list.account?.username?: 'unknown'}"></td>
 									<th:block th:if="${isAdmin}">
 										<td class="align-middle button">
 											<a th:href="@{'/delete-member/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
 										</td>
 									</th:block>
-								</div>
+								<!--</div>-->
 							</tr>
 						</tbody>
 					</table>

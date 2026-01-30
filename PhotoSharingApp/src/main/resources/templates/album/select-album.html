@@ -20,7 +20,11 @@
 				<div class="col mx-auto text-center">
 					
 					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
-				        <div class="fs-2" th:text="#{openAlbumBtn}"></div>
+				        <nav aria-label="breadcrumb">
+						  <ol class="breadcrumb fs-2 m-0">
+						    <li class="breadcrumb-item active" aria-current="page">アルバム</li>
+						  </ol>
+						</nav>
 				        
 				        <div class="btn-toolbar mb-2 mb-md-0">
 				          <div class="btn-group me-2">
@@ -44,16 +48,15 @@
 									    <p class="card-text">作成日とか</p>
 									    <p class="card-text">最終更新日とか</p>
 									    
-									    <button type="submit" th:value="${list.id}" name="id" th:text="#{openAlbumBtn2}" class="card-link btn btn-primary mb-2"></button>
-									   
-									    <div class="row"></div>
-									   
-									    
-										<th:block th:if="${isAdmin}">
-											<a th:href="@{'/delete-album/' + ${list.id}}" th:text="#{deleteBtn}" class="card-link btn btn-danger"></a>
-										</th:block>
-									
+									    <div class="d-inline-flex">
+										    <button type="submit" th:value="${list.id}" name="id" th:text="#{openopen}" class="card-link btn btn-primary"></button>
+										   
+											<th:block th:if="${isAdmin}">
+												<a th:href="@{'/delete-album/' + ${list.id}}" th:text="#{deleteBtn}" class="card-link btn btn-danger"></a>
+											</th:block>
+									    </div>
 									</div>
+									
 								</form>
 							</div>
 						</div>
@@ -62,6 +65,7 @@
 				</div>
 			</div>
 		</div>
+	
 	</div>
 </body>
 </html>

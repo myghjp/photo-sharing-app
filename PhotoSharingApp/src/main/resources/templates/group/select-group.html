@@ -19,7 +19,7 @@
 	<div class="container">
 		
 		<div class="row">
-			<div class="text-center fs-3 m-3">グループを選択してください(仮)</div>
+			<div class="text-center fs-3 m-3">グループ0の場合の表記</div>
 		</div>
 		
 		<div class="row row-cols-1 row-cols-md-5">
@@ -34,15 +34,16 @@
 						    <p class="card-text">作成日とか</p>
 						    <p class="card-text">最終更新日とか</p>
 						    
-						    <button type="submit" th:value="${list.id}" name="id" th:text="#{openGroupBtn}" class="card-link btn btn-primary mb-2"></button>
-						    
-						    <div class="row"></div>
-						    
-							<!--<th:block th:if="${isAdmin}">-->
-							<th:block th:if="${list.accountId == userId}">
-								<a th:href="@{'/delete-group/' + ${list.id}}" th:text="#{deleteGroupBtn}" class="card-link btn btn-danger"></a>
-							</th:block>
-							<!--</th:block>-->
+						    <div class="d-inline-flex">
+							    <button type="submit" th:value="${list.id}" name="id" th:text="#{openopen}" class="card-link btn btn-primary"></button>
+							    
+								<!--<th:block th:if="${isAdmin}">-->
+								<th:block th:if="${list.accountId == userId}">
+									<a th:href="@{'/delete-group/' + ${list.id}}" th:text="#{deleteBtn}" class="card-link btn btn-danger"></a>
+								</th:block>
+								<!--</th:block>-->
+							</div>
+							
 						</div>
 					</form>
 				</div>
