@@ -70,4 +70,15 @@ public class SelectAlbumController {
 		
 		return "redirect:list-photo";
 	}
+	
+	@PostMapping("/delete-album")
+	public String postDeleteAlbum(
+			@RequestParam("id") int albumId
+			,RedirectAttributes redirectAttributes
+			) {
+
+		albumService.delete(albumId);
+
+		return "redirect:select-album";
+	}
 }

@@ -25,12 +25,10 @@
 						  <ol class="breadcrumb fs-2 m-0">
 							
 						    <li class="breadcrumb-item"><a th:href="@{'/select-album'}">アルバム</a></li>
-						    <li class="breadcrumb-item active" aria-current="page">写真</li>
+						    <li class="breadcrumb-item active" aria-current="page" th:text="${album.albumName}"></li>
 							
 						  </ol>
 						</nav>
-					
-				        <div th:text="${album.albumName}" class="col fs-4 fw-bold"></div>
 						
 				        <div class="btn-toolbar mb-2 mb-md-0">
 				          <div class="btn-group me-2">
@@ -66,13 +64,21 @@
 	  					<a th:href="@{'/media/' + ${list.photo}}" download="" th:text="#{saveBtn}" class="btn btn-primary"></a>
 					
 						<th:block th:if="${isAdmin}">
-							<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
+							<!--<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>-->
+							<!--管理者-->
+							<!-- Button trigger modal -->
+								<button type="button" th:text="#{deleteBtn}" data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}" class="card-link btn btn-danger"></button>
+							<!--<a th:href="@{'/delete-group/' + ${list.id}}" th:text="#{deleteBtn}" class="card-link btn btn-danger"></a>-->
 						</th:block>
 						
 						<th:block th:unless="${isAdmin}">
-								<th:block th:if="${list.Account?.username != null and list.Account.username == loginUser}">
-									<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
-								</th:block>
+							<th:block th:if="${list.Account?.username != null and list.Account.username == loginUser}">
+							<!--<a th:href="@{'/delete-photo/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>-->
+							<!--管理者以外-->
+							<!-- Button trigger modal -->
+								<button type="button" th:text="#{deleteBtn}" data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}" class="card-link btn btn-danger"></button>
+							<!--<a th:href="@{'/delete-group/' + ${list.id}}" th:text="#{deleteBtn}" class="card-link btn btn-danger"></a>-->
+							</th:block>
 						</th:block>
 						
 						<!-- Modal -->
@@ -86,11 +92,35 @@
 						</div>
 						<!-- /Modal -->
 						
+						<!-- Modal -->
+						<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h1 class="modal-title fs-5" id="exampleModalLabel">
+									<img th:src="@{'/media/' + ${list.photo}}">
+								</h1>
+						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      </div>
+						      <div class="modal-body">
+						        <div th:text="#{deleteGroupAlert}"></div>
+						      </div>
+						      <div class="modal-footer">
+								<form method="post" th:action="@{/delete-photo}">
+									<a th:href="@{'/list-photo'}" th:text="#{cancelBtn}" data-bs-dismiss="modal" class="btn btn-secondary"></a>
+									<input type="hidden" name="id" th:value="${list.id}" >
+									<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger">
+								</form>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						<!-- /Modal -->
+						
 					</div>
 				</div>
 			</div>
 		</div>
-	
 	</div>
 </body>
 </html>

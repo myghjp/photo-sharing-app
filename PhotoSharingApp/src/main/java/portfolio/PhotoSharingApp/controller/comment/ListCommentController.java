@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -78,6 +79,17 @@ public class ListCommentController {
 		
 		commentService.add(comment);
 	
+		return "redirect:list-comment";
+	}
+	
+	@PostMapping("/delete-comment")
+	public String getDeleteComment(
+			@RequestParam("id") int id
+			,RedirectAttributes redirectAttributes
+			) {
+
+		commentService.delete(id);
+
 		return "redirect:list-comment";
 	}
 }

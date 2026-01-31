@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -67,15 +68,14 @@ public class ListMemberController {
 	
 	@PostMapping("/list-member")
 	public String postListMember(
-		Model model
-		,@AuthenticationPrincipal LoginUserDetails user
-		,@ModelAttribute("addMemberForm") @Validated AddMemberForm form
-		,BindingResult bindingResult
-		,RedirectAttributes redirectAttributes
-		,@ModelAttribute("group")Group group
+			Model model
+			,@AuthenticationPrincipal LoginUserDetails user
+			,@ModelAttribute("addMemberForm") @Validated AddMemberForm form
+			,BindingResult bindingResult
+			,RedirectAttributes redirectAttributes
+			,@ModelAttribute("group")Group group
 		) {
 	
-		/*↓postAddMember()と以下同じ*/		
 		String email = form.getEmailAddress();
 		
 		/*このメールアドレスは登録されているかを確認*/
@@ -104,5 +104,17 @@ public class ListMemberController {
 		
 		return "redirect:list-member";
 	
+	}
+	
+	@PostMapping("/delete-member")
+	public String postDeleteMember(
+			Model model
+			,@RequestParam("id") int memberId
+			,RedirectAttributes redirectAttributes
+			) {
+
+		memberService.delete(memberId);
+
+		return "redirect:list-member";
 	}
 }

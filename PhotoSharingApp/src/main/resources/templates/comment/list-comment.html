@@ -15,64 +15,85 @@
 <body>
 	
 	<div layout:fragment="content">
-	
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="mx-auto text-center">
-				
-				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
-			        <div class="fs-2" th:text="#{board}"></div>
-			        
-			        <div class="btn-toolbar mb-2 mb-md-0">
-			          <div class="btn-group me-2">
-			            
-						<!--<a th:href="@{'/create-album'}" th:text="#{createAlbumBtn}" class="btn btn-sm btn-outline-secondary"></a>-->
-						
-						<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
-						     <div class="row">
-						        <label for="comment"></label>
-						        <div class="col-8">
-							        <input type="text" th:field="*{comment}" th:errorclass="is-invalid" class="form-control">
-							        <div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
-						        </div>
-						        <div class="col-4">
-						    		<input type="submit" th:value="#{commentBtn}" class="btn btn-outline-secondary">
-						        </div>
-						    </div>
-				    	</form>
-						
-			          </div>
-			        </div>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="mx-auto text-center">
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
+				        
+				        <div class="fs-2" th:text="#{board}"></div>
+				        
+				        <div class="btn-toolbar mb-2 mb-md-0">
+				        	<div class="btn-group me-2">
+				            
+								<!--<a th:href="@{'/create-album'}" th:text="#{createAlbumBtn}" class="btn btn-sm btn-outline-secondary"></a>-->
+								
+								<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
+								     <div class="row">
+								        <label for="comment"></label>
+								        <div class="col-8">
+									        <input type="text" th:field="*{comment}" th:errorclass="is-invalid" class="form-control">
+									        <div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
+								        </div>
+								        <div class="col-4">
+								    		<input type="submit" th:value="#{commentBtn}" class="btn btn-outline-secondary">
+								        </div>
+								    </div>
+						    	</form>
+				        	</div>
+				        </div>
+				    </div>	
 			    </div>
-				
-		    </div>
-			
-			<div class="col mx-auto">
-				<div th:each="list:${commentList}" class="card mb-3">
-					<div class="card-body">
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="d-inline-flex my-2">
-								<div th:text="${list.id} + '.'" class="me-3"></div>
-								<div th:text="'▼' + ${list.Account?.username?: 'unknown'}" class="me-3"></div>
-								<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}" class="me-3"></div>
+				<div class="col mx-auto">
+					<div th:each="list:${commentList}" class="card mb-3">
+						<div class="card-body">
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="d-inline-flex my-2">
+									<div th:text="${list.id} + '.'" class="me-3"></div>
+									<div th:text="'▼' + ${list.Account?.username?: 'unknown'}" class="me-3"></div>
+									<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}" class="me-3"></div>
+								</div>
+								
+								<div class="row me-1">
+									<th:block th:if="${list.Account?.username != null and list.Account.username == loginUser}">
+										<!-- Button trigger modal -->
+										<button type="button" th:text="#{deleteBtn}" data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}" class="btn btn-danger"></button>
+										<!-- /Button trigger modal -->
+									</th:block>
+								</div>
 							</div>
 							
-							<div class="row me-1">
-								<th:block th:if="${list.Account?.username != null and list.Account.username == loginUser}">
-									<a th:href="@{'/delete-comment/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
-								</th:block>
+							<div class="row">
+								<div th:text="${list.comment}" class="card-text fs-5"></div>
 							</div>
 						</div>
 						
-						<div class="row">
-							<div th:text="${list.comment}" class="card-text fs-5"></div>
+						<!-- Modal -->
+						<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h1 class="modal-title fs-5" id="exampleModalLabel" th:text="${list.comment}"></h1>
+						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      </div>
+						      <div class="modal-body">
+						        <div th:text="#{deleteCommentAlert}"></div>
+						      </div>
+						      <div class="modal-footer">
+								<form method="post" th:action="@{/delete-comment}">
+									<a th:href="@{'/list-comment'}" th:text="#{cancelBtn}" data-bs-dismiss="modal" class="btn btn-secondary"></a>
+									<input type="hidden" name="id" th:value="${list.id}" >
+									<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger">
+								</form>
+						      </div>
+						    </div>
+						  </div>
 						</div>
+						<!-- /Modal -->
+						
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
 	</div>
 </body>
 </html>

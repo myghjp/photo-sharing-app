@@ -71,4 +71,14 @@ public class SelectGroupController {
 		
 		return "redirect:home-group";
 	}
+	
+	@PostMapping("/delete-group")
+	public String postDeleteGroup(
+			@RequestParam("id") int groupId
+			,RedirectAttributes redirectAttributes) {
+
+		groupService.delete(groupId);
+
+		return "redirect:select-group";
+	}
 }
