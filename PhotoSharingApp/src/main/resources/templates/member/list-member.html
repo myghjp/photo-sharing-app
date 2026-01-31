@@ -74,14 +74,39 @@
 						
 						<tbody>
 							<tr th:each="list:${memberList}">
-								<!--<div >-->
-									<td class="align-middle py-2" th:text="${list.account?.username?: 'unknown'}"></td>
+								
+								<td class="align-middle py-2" th:text="${list.account?.username?: 'unknown'}"></td>
 									<th:block th:if="${isAdmin}">
 										<td class="align-middle button">
-											<a th:href="@{'/delete-member/' + ${list.id}}" th:text="#{deleteBtn}" class="btn btn-danger"></a>
+											<!-- Button trigger modal -->
+											<button type="button" class="btn btn-danger" th:text="#{deleteBtn}" data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}"></button>
+											<!-- /Button trigger modal -->
 										</td>
 									</th:block>
-								<!--</div>-->
+								</td>
+								
+								<!-- Modal -->
+								<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h1 class="modal-title fs-5" id="exampleModalLabel" th:text="${list.Account?.username?: 'unknown'}"></h1>
+								        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								      </div>
+								      <div class="modal-body">
+								        <div th:text="#{deleteMemberAlert}"></div>
+								      </div>
+								      <div class="modal-footer">
+										<form method="post" th:action="@{/delete-member}">
+											<a th:href="@{'/list-member'}" th:text="#{cancelBtn}" data-bs-dismiss="modal" class="btn btn-secondary"></a>
+											<input type="hidden" name="id" th:value="${list.id}" >
+											<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger">
+										</form>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+								<!-- Modal -->
 							</tr>
 						</tbody>
 					</table>

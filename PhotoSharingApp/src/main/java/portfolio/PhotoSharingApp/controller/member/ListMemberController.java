@@ -75,36 +75,34 @@ public class ListMemberController {
 		,@ModelAttribute("group")Group group
 		) {
 	
-	/*↓postAddMember()と以下同じ*/
-			
-			
-	String email = form.getEmailAddress();
-	
-	/*このメールアドレスは登録されているかを確認*/
-	if (accountService.isRegister(email)) {
-		bindingResult.rejectValue("emailAddress", "addMemberEmailError");
-	}
-	/*このグループの管理者のメールアドレスではないかを確認*/
-	else if (accountService.isOwner(group.getAccountId(),email)) {
-		bindingResult.rejectValue("emailAddress", "addMemberEmailError3");
-	}
-	/*このグループに追加済のメールアドレスではないかを確認*/
-	else if (memberService.isMember(email,group)) {
-		bindingResult.rejectValue("emailAddress", "addMemberEmailError2");
-	}
-	
-	if (bindingResult.hasErrors()) {
-		return getListMember(model,form,user,group);
-	}
-	
-	Member member = new Member();
-	
-	member.setGroupId(group.getId());
-	member.setAccountId(accountService.findById(email));
-	
-	memberService.insert(member);
-	
-	return "redirect:list-member";
+		/*↓postAddMember()と以下同じ*/		
+		String email = form.getEmailAddress();
+		
+		/*このメールアドレスは登録されているかを確認*/
+		if (accountService.isRegister(email)) {
+			bindingResult.rejectValue("emailAddress", "addMemberEmailError");
+		}
+		/*このグループの管理者のメールアドレスではないかを確認*/
+		else if (accountService.isOwner(group.getAccountId(),email)) {
+			bindingResult.rejectValue("emailAddress", "addMemberEmailError3");
+		}
+		/*このグループに追加済のメールアドレスではないかを確認*/
+		else if (memberService.isMember(email,group)) {
+			bindingResult.rejectValue("emailAddress", "addMemberEmailError2");
+		}
+		
+		if (bindingResult.hasErrors()) {
+			return getListMember(model,form,user,group);
+		}
+		
+		Member member = new Member();
+		
+		member.setGroupId(group.getId());
+		member.setAccountId(accountService.findById(email));
+		
+		memberService.insert(member);
+		
+		return "redirect:list-member";
 	
 	}
 }
