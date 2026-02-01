@@ -10,37 +10,35 @@
 </head>
 
 <body>
-	<div layout:fragment="sidebar">
-		 <div class="d-flex flex-column flex-shrink-0 p-3">
+	<div layout:fragment="sidebar" class="p-3">
+		<div class="text-center">
+			<div th:text="${group.groupName}" class="fs-4 fw-bold"></div>
 			
-			<div class="text-center">
-				<div th:text="${group.groupName}" class="fs-4 fw-bold"></div>
-				
-				<th:block th:if="${isAdmin}">
-					<div th:text="#{adminInfo}" class="text-primary fs-5"></div>
-				</th:block>
-			</div>
-			
-			<hr>
-				<ul class="nav nav-pills flex-column mb-auto">
-				<li class="nav-item">
-					<a th:href="@{'/home-group'}" class="nav-link" th:classappend="${isActiveHome} ? 'active' : ''" aria-current="page">ホーム画面</a>
-				</li>
-				
-				<li class="nav-item">
-					<a th:href="@{'/list-member'}" th:text="#{groupMembers}" class="nav-link" th:classappend="${isActiveMember} ? 'active' : ''" aria-current="page"></a>
-				</li>
-				
-				<li class="nav-item">
-					<a th:href="@{'/select-album'}" th:text="#{openAlbumBtn}" class="nav-link" th:classappend="${isActiveAlbum} ? 'active' : ''" aria-current="page"></a>
-				</li>
-				
-				<li class="nav-item">
-					<a th:href="@{'/list-comment'}" th:text="#{openBoardBtn}" class="nav-link" th:classappend="${isActiveComment} ? 'active' : ''" aria-current="page"></a>
-				</li>
-				</ul>
-			<hr>
+			<th:block th:if="${isAdmin}">
+				<div th:text="#{adminInfo}" class="text-primary fs-5"></div>
+			</th:block>
 		</div>
+		
+		<hr>
+			<ul class="nav nav-pills flex-column mb-auto">
+			<li class="nav-item">
+				<a th:href="@{'/home-group'}" class="nav-link" th:classappend="${isActiveHome} ? 'active' : ''" aria-current="page">ホーム画面</a>
+			</li>
+			
+			<li class="nav-item">
+				<a th:href="@{'/list-member'}" th:text="#{groupMembers}" class="nav-link" th:classappend="${isActiveMember} ? 'active' : ''" aria-current="page"></a>
+			</li>
+			
+			<li class="nav-item">
+				<a th:href="@{'/select-album'}" th:text="#{openAlbumBtn}" class="nav-link" th:classappend="${isActiveAlbum} ? 'active' : ''" aria-current="page"></a>
+			</li>
+			
+			<li class="nav-item">
+				<a th:href="@{'/list-comment'}" th:text="#{openBoardBtn}" class="nav-link" th:classappend="${isActiveComment} ? 'active' : ''" aria-current="page"></a>
+			</li>
+			</ul>
+		<hr>
+		
 	</div>
 </body>
 </html>

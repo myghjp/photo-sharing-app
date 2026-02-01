@@ -29,7 +29,24 @@
 				        <div class="btn-toolbar mb-2 mb-md-0">
 				          <div class="btn-group me-2">
 				            <th:block th:if="${isAdmin}">
-								<a th:href="@{'/create-album'}" th:text="#{createAlbumBtn}" class="btn btn-outline-secondary"></a>
+				           <!--  ーーーーーーーーーーーーー -->
+				            
+				            <form method="post" th:action="@{/create-album}" th:object="${createAlbumForm}" class="text-center">
+					
+								<div th:text="#{createAlbumMessage}" class="fs-6"></div>
+								<div class="row">
+							       <div class="col-sm-9">
+								        <input type="text" th:field="*{albumName}" th:errorclass="is-invalid" th:placeholder="#{albumName}" class="form-control">
+							        	<div class="invalid-feedback" th:if="${#fields.hasErrors('albumName')}" th:errors="*{albumName}"></div>
+							       </div>
+							       <div class="col-sm-3">
+							       		<input type="submit" th:value="#{submitBtn}" class="btn btn-outline-secondary">
+							       </div>
+								</div>
+								
+							</form>
+				           <!--  ーーーーーーーーーーーーー -->
+								<!-- <a th:href="@{'/create-album'}" th:text="#{createAlbumBtn}" class="btn btn-outline-secondary"></a> -->
 							</th:block>
 				          </div>
 				        </div>

@@ -7,17 +7,17 @@
 	<meta charset="UTF-8">
 </head>
 
-<body>
+<body class="d-flex flex-column vh-100">
 	
 	<nav layout:replace="~{common/header-nav::header-nav}"></nav>
 
-	<div class="container-fluid">
+	<div class="container-fluid flex-grow-1">
 		
-		<div class="row">
-			<nav class="col-sm-2 bg-body-secondary sidebar">
+		<div class="row h-100">
+			<nav class="col-sm-2 flex-shrink-0 bg-body-secondary">
 				<div layout:replace="~{common/sidebar::sidebar}"></div>
 			</nav>
-			<div class="col-sm-10 bg-body-tertiary main">
+			<div class="col-sm-10 overflow-y-auto bg-body-tertiary">
 				<div layout:fragment="content"></div>
 			</div>
 		</div>
