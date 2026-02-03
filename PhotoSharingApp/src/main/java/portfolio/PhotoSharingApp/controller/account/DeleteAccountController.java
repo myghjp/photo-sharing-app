@@ -44,6 +44,9 @@ public class DeleteAccountController {
 		/*自身が作成したグループが存在するかを確認*/
 		if (groupService.existsByUserId(user.getUserId())) {
 			return getDeleteAccount(model,true);
+			
+			/*bindingResult*/
+			
 		}
 		
 		accountService.remove(user.getUserId());

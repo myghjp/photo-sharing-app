@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<nav layout:fragment="header-nav" class="navbar navbar-expand-lg bg-body-secondary p-2" data-bs-theme="dark">
+	<nav layout:fragment="header-nav" class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
 		<span class="navbar-brand fs-3 fw-bold m-2" th:text="#{photoSharingApp}"></span>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,13 +32,17 @@
 					    <span sec:authentication="principal.username"></span>
 					 </a>
 					  
-					 <ul class="dropdown-menu dropdown-menu-end bg-body-secondary" data-bs-theme="dark">
+					 <ul class="dropdown-menu dropdown-menu-end">
 					    <li class="dropdown-item">
 							<a th:href="@{/update-account}" th:text="#{updatePasswordBtn}" class="nav-link text-success-emphasis"></a>	
 						</li>
 					    <li class="dropdown-item">
-							<a th:href="@{/delete-account}" th:text="#{deleteAccountBtn}" class="nav-link text-danger-emphasis"></a>
+							<!-- Button trigger modal -->
+							<button type="button" th:text="#{deleteAccountBtn}" 
+							data-bs-toggle="modal" data-bs-target="#delete" class="nav-link text-danger-emphasis"></button>
+							<!-- /Button trigger modal -->
 						</li>
+						
 					    <li><hr class="dropdown-divider"></li>
 					    <li class="dropdown-item">
 							<form method="post" th:action="@{/postlogout}">
@@ -49,6 +53,39 @@
 				 </li>
 			</ul>
 		</div>
+		
+		<!-- Modal --><!--delete-->
+		<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+				
+		      <div class="modal-header">
+		        <h1 th:text="#{deleteAccountAlert}" class="modal-title fs-5" id="exampleModalLabel"></h1>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		       	
+		      </div>
+		      
+		      <div class="modal-body">
+				<p th:text="#{deleteAccountMessage}" class="fs-5"></p>
+				
+		        <th:block th:if="${isError}">
+					<div class="alert alert-danger alert-dismissible fade show">
+						<span th:text="#{deleteAccountError}" class="text-danger"></span>
+					</div>
+				</th:block>
+		      </div>
+		      
+		      <div class="modal-footer">
+				  <form method="post" th:action="@{/delete-account}">
+					<a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="btn btn-secondary mx-3 my-2"></a>
+			    	<input type="submit" th:value="#{deleteBtn}" class="btn btn-danger mx-3 my-2">
+				  </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- /Modal -->
+		
 	</nav>
 </body>
 </html>
