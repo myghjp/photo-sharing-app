@@ -94,4 +94,21 @@ public class ListPhotoController {
 	
 		return "redirect:list-photo";
 	}
+	
+	@PostMapping("/delete-photo")
+	public String postDeletePhoto(
+			Model model, @RequestParam("id") int photoId
+			,RedirectAttributes redirectAttributes
+			) throws IOException {
+
+		/*この写真のIDとパス情報を取得*/
+		Photo photoData = photoService.findById(photoId);
+
+		Path path = Path.of(mediaDirectory + photoData.getPhoto());
+		Files.delete(path);
+
+		photoService.remove(photoData.getId());
+
+		return "redirect:list-photo";
+	}
 }
