@@ -45,8 +45,6 @@ public class DeleteAccountController {
 		if (groupService.existsByUserId(user.getUserId())) {
 			return getDeleteAccount(model,true);
 			
-			/*bindingResult*/
-			
 		}
 		
 		accountService.remove(user.getUserId());

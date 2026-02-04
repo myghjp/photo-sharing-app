@@ -10,25 +10,28 @@
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
 	<title th:text="#{errorPage}"></title>
 </head>
-<body>
+<body class="bg-body-tertiary">
 	<nav layout:replace="~{common/header::header}"></nav>
 	
-	<div class="container mb-4">
+	<div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+		
 		<div class="row justify-content-center">
 			<div class="col-md mx-auto text-center">
-				<p th:text="${status} + ' ' + ${error}" class="fs-3"></p>
+				
+				<h1 th:text="${status} + ' ' + ${error}" class="fs-2 mb-3"></h1>
 					
 				<div class="col-6 mx-auto">
 					<div class="alert alert-danger alert-dismissible fade show">
-						<span th:text="${message}" class="text-danger fs-4"></span>
+						<p th:text="${message}" class="lead text-danger fs-3 m-0"></p>
 					</div>
 				</div>
 				
 				<form th:action="@{/postlogout}" method="post">
-					<input type="button" onclick="location.href='/login'" th:value="#{backLoginBtn}" class="btn btn-secondary">
+					<input type="button" onclick="location.href='/login'" th:value="#{backLoginBtn}" class="btn btn-lg btn-secondary">
 				</form>
 			</div>
 		</div>
 	</div>
+	
 </body>
 </html>

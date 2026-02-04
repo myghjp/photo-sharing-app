@@ -17,15 +17,258 @@
 	<nav layout:replace="~{common/header-nav::header-nav}"></nav>
 	
 	<div layout:fragment="content">
-		
-		<div class="container">
-			<div class="row justify-content-center">
+
+	<div class="py-4 container-fluid">
+	<div class="row mb-3">
+		<div class="col-lg-12 position-relative z-index-2">
+			<div class="row">
 				
-				<div>dashboard</div>
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="card mb-2">
+						<div class="card-header p-3 pt-2">
+							<div class="pt-1 text-end">
+								<p class="text-sm mb-0 text-capitalize">グループメンバ数</p>
+								<h4 class="mb-0">ここにグループの人数</h4>
+							</div>
+						</div>
+						<hr class="dark horizontal my-0">
+						<div class="card-footer p-3 text-end">
+							<p class="mb-0">
+								<span class="text-success text-sm font-weight-bolder">未定 このCardを無くすA</span>
+							</p>
+						</div>
+					</div>
+				</div>
 				
+				<div class="col-lg-6 col-md-6 col-sm-6 mt-lg-0 mt-4">
+					<div class="card mb-2">
+						<div class="card-header p-3 pt-2">
+							<div class="pt-1 text-end">
+								<p class="text-sm mb-0 text-capitalize">ログ系？</p>
+								<h4 class="mb-0">●●●</h4>
+							</div>
+						</div>
+						<hr class="dark horizontal my-0">
+						<div class="card-footer p-3 text-end">
+							<p class="mb-0">
+								<span class="text-danger text-sm font-weight-bolder">新規投稿通知？</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
+					<div class="card mb-2">
+						<div class="card-header p-3 pt-2">
+							<div class="pt-1 text-end">
+								<p class="text-sm mb-0 text-capitalize">アルバム数</p>
+								<h4 class="mb-0">ここにアルバムの数</h4>
+							</div>
+						</div>
+						<hr class="dark horizontal my-0">
+						<div class="card-footer p-3 text-end">
+							<p class="mb-0">
+								<span class="text-success text-sm font-weight-bolder">未定 このCardを無くすB</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-5 col-md-6">
+			<div class="card h-100">
+				<div class="pb-0 card-header">
+					<h6 class="">メンバー系(枠固定)</h6>
+					<p class="text-sm m-0">
+						<i class="fa fa-arrow-up text-success" aria-hidden="true"></i> 
+						<span class="font-weight-bold">メンバー一覧</span>
+					</p>
+				</div>
+				<div class="p-3 card-body">
+					<div class="timeline timeline-one-side"
+						data-timeline-axis-style="dotted">
+						<!---->
+						<div class="mb-3 timeline-block">
+							
+							<div class="timeline-content">
+								<h6 class="mb-0 text-sm font-weight-bold text-dark">日</h6>
+								<p class="mt-1 mb-0 text-xs text-secondary font-weight-normal"></p>
+								
+							</div>
+						</div>
+						<!---->
+						<div class="mb-3 timeline-block">
+							
+							<div class="timeline-content">
+								<h6 class="mb-0 text-sm font-weight-bold text-dark">日</h6>
+								<p class="mt-1 mb-0 text-xs text-secondary font-weight-normal"></p>
+							</div>
+						</div>
+						<!---->
+						<div class="mb-3 timeline-block">
+							
+							<div class="timeline-content">
+								<h6 class="mb-0 text-sm font-weight-bold text-dark">日</h6>
+								<p class="mt-1 mb-0 text-xs text-secondary font-weight-normal"></p>
+							</div>
+						</div>
+						<!---->
+						<div class="mb-3 timeline-block">
+							
+							<div class="timeline-content">
+								<h6 class="mb-0 text-sm font-weight-bold text-dark">日</h6>
+								<p class="mt-1 mb-0 text-xs text-secondary font-weight-normal"></p>
+							</div>
+						</div>
+						<!---->
+					</div>
+				</div>
 			</div>
 		</div>
-	
+		
+		<div class="col-lg-7 col-md-6 mb-md-0 mb-4">
+			<div class="card">
+				<div class="card-header pb-0">
+					<div class="row">
+						<div class="col-lg-6 col-7">
+							<h6>掲示板系(枠固定)</h6>
+							<p class="text-sm mb-0">
+								<i class="fa fa-check text-info" aria-hidden="true"></i> <span
+									class="font-weight-bold ms-1">最新？↓</span>
+							</p>
+						</div>
+						<div class="col-lg-6 col-5 my-auto text-end">
+							<div class="dropdown float-lg-end pe-4">
+								<a class="cursor-pointer" id="dropdownTable"
+									data-bs-toggle="dropdown" aria-expanded="false"><i
+									class="fa fa-ellipsis-v text-secondary" aria-hidden="true"></i></a>
+								<ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5"
+									aria-labelledby="dropdownTable" style="">
+									<li><a class="dropdown-item border-radius-md"
+										href="javascript:;"> Action </a></li>
+									<li><a class="dropdown-item border-radius-md"
+										href="javascript:;"> AnotherAction </a></li>
+									<li><a class="dropdown-item border-radius-md"
+										href="javascript:;"> SomethingElse </a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-body px-0 pb-1">
+					<div class="table-responsive">
+						<table class="table align-items-center mb-0">
+							<thead>
+								<tr>
+									
+									<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">日付</th>
+									<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">コメント</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									
+									
+									
+									<td class="align-middle text-center text-sm"><span
+										class="text-xs font-weight-bold">名前</span></td>
+									<td class="align-middle d-flex justify-content-end"><div
+											class="progress-wrapper w-75 mx-auto">
+											<div class="progress-info">
+												<div class="progress-percentage">
+													<span class="text-xs font-weight-bold">% </span>
+												</div>
+											</div>
+											<div class="progress">
+												<div class="progress-bar w-60  bg-gradient-info"
+													role="progressbar" aria-valuenow="60" aria-valuemin="0"
+													aria-valuemax="100"></div>
+											</div>
+										</div></td>
+								</tr>
+								<tr>
+									
+									
+									
+									<td class="align-middle text-center text-sm"><span
+										class="text-xs font-weight-bold">名前</span></td>
+									<td class="align-middle d-flex justify-content-end"><div
+											class="progress-wrapper w-75 mx-auto">
+											<div class="progress-info">
+												<div class="progress-percentage">
+													<span class="text-xs font-weight-bold">% </span>
+												</div>
+											</div>
+											<div class="progress">
+												<div class="progress-bar w-10  bg-gradient-info"
+													role="progressbar" aria-valuenow="10" aria-valuemin="0"
+													aria-valuemax="100"></div>
+											</div>
+										</div></td>
+								</tr>
+								<tr>
+									
+									
+									
+									<td class="align-middle text-center text-sm"><span
+										class="text-xs font-weight-bold">名前</span></td>
+									<td class="align-middle d-flex justify-content-end"><div
+											class="progress-wrapper w-75 mx-auto">
+											<div class="progress-info">
+												<div class="progress-percentage">
+													<span class="text-xs font-weight-bold">% </span>
+												</div>
+											</div>
+											<div class="progress">
+												
+											</div>
+										</div></td>
+								</tr>
+								<tr>
+									
+									
+									<td class="align-middle text-center text-sm"><span
+										class="text-xs font-weight-bold">名前</span></td>
+									<td class="align-middle d-flex justify-content-end"><div
+											class="progress-wrapper w-75 mx-auto">
+											<div class="progress-info">
+												<div class="progress-percentage">
+													<span class="text-xs font-weight-bold">% </span>
+												</div>
+											</div>
+											<div class="progress">
+												
+											</div>
+										</div></td>
+								</tr>
+								<tr>
+									
+									
+									<td class="align-middle text-center text-sm"><span
+										class="text-xs font-weight-bold">名前</span></td>
+									<td class="align-middle d-flex justify-content-end"><div
+											class="progress-wrapper w-75 mx-auto">
+											<div class="progress-info">
+												<div class="progress-percentage">
+													<span class="text-xs font-weight-bold">% </span>
+												</div>
+											</div>
+											<div class="progress">
+												
+											</div>
+										</div></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 	</div>
 </body>
 </html>

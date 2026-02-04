@@ -11,29 +11,32 @@
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
 	<title th:text="#{updateAccountPage}"></title>
 </head>
-<body>
+<body class="bg-body-tertiary">
 	<nav layout:replace="~{common/header-nav::header-nav}"></nav>
 
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-md-5 mx-auto">
-				<form method="post" th:action="@{/update-account}" th:object="${updateAccountForm}" class="text-center">
-				
-			    	<div th:text="#{updatePasswordAlert}" class="mb-3 fs-5"></div>
+	<main class="container">
+		<div class="row align-items-center">
+			
+		<h1 th:text="#{updateAccountPage}" class="h1 fw-bold text-center border-bottom py-3 mb-3"></h1>
+		
+			<div class="col-md-6 mx-auto">
+				<form method="post" th:action="@{/update-account}" th:object="${updateAccountForm}">
+					
+			    	<div th:text="#{updatePasswordAlert}" class="fs-3 fw-bold text-center mb-4"></div>
 			    	
-				    <div class="row mb-3">
-				        <label for="password" th:text="#{password}" class="col-sm-4 col-form-label"></label>
-				         <div class="col-sm-8">
-					         <input type="password" th:field="*{password}" th:errorclass="is-invalid" class="form-control">
-					         <div class="invalid-feedback" th:errors="*{password}"></div>
-					     </div>
+				    <div class="form-floating mb-3">
+				         <input type="password" th:field="*{password}" placeholder="" th:errorclass="is-invalid" class="form-control">
+				         <div class="invalid-feedback" th:errors="*{password}"></div>
+				         <label th:text="#{password}" class="col-sm-4 col-form-label"></label>
 				    </div>
-				    
-				    <a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="btn btn-secondary mx-3 my-2"></a>
-				    <input type="submit" th:value="#{editBtn}" class="btn btn-primary mx-3 my-2">
+				  
+				   <div class="text-center">
+					<!-- <a th:href="@{'/select-group'}" th:text="#{cancelGroupBtn}" class="btn btn-secondary mx-3 my-2"></a>-->
+				    <input type="submit" th:value="#{editBtn}" class="btn btn-primary w-50">
+				   </div>
 			    </form>
 			 </div>
     	</div>
-	</div>
+	</main>
 </body>
 </html>

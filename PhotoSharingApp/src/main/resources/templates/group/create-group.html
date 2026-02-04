@@ -22,9 +22,9 @@
 					<h1 th:text="#{createGroupPage}" class="h1 fw-bold text-center mb-4"></h1>
 					
 					<div class="form-floating mb-3">
-						<input type="text" th:field="*{groupName}" th:errorclass="is-invalid" class="form-control">
-				        <label for="groupName" th:text="#{groupName}" class="col-sm-4 col-form-label"></label>
+						<input type="text" th:field="*{groupName}" placeholder="" th:errorclass="is-invalid" class="form-control">
 				        <div class="invalid-feedback" th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}"></div>
+				        <label for="groupName" th:text="#{groupName}" class="col-sm-4 col-form-label"></label>
 			        </div>
 			        
 			        <div class="text-center">
