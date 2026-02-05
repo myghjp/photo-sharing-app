@@ -1,5 +1,8 @@
 package portfolio.PhotoSharingApp.controller.group;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,12 +11,27 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import portfolio.PhotoSharingApp.entity.Album;
+import portfolio.PhotoSharingApp.entity.Comment;
 import portfolio.PhotoSharingApp.entity.Group;
+import portfolio.PhotoSharingApp.entity.Member;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
+import portfolio.PhotoSharingApp.service.album.AlbumService;
+import portfolio.PhotoSharingApp.service.comment.CommentService;
+import portfolio.PhotoSharingApp.service.member.MemberService;
 
 @Controller
 @SessionAttributes(value = {"group"})
 public class HomeGroupController {
+	
+	@Autowired
+	private MemberService memberService;
+	
+	@Autowired
+	private AlbumService albumService;
+	
+	@Autowired
+	private CommentService commentService;
 	
 	@GetMapping("/home-group")
 	public String getHomeGroup(
@@ -31,7 +49,21 @@ public class HomeGroupController {
 		
 		boolean isActive = true;
 	    model.addAttribute("isActiveHome", isActive);
-		
+	    
+		/*ーーーーーーーーーーーーーーー*/
+	    /*このグループ利用者のテーブル情報とアカウント名を取得*/
+		List<Member> memberList = memberService.findAllById(group.getId());
+		model.addAttribute("memberList", memberList);
+		/*ーーーーーーーーーーーーーーー*/
+		/*このグループのアルバムIDとアルバム名を取得*/
+		List<Album> albumList = albumService.findAllById(group.getId());
+		model.addAttribute("albumList", albumList);
+		/*ーーーーーーーーーーーーーーー*/
+		/*このグループのコメントのテーブル情報とアカウント名を取得*/
+		List<Comment> commentList = commentService.findAllById(group.getId());
+		model.addAttribute("commentList", commentList);
+		/*ーーーーーーーーーーーーーーー*/
+	    
 		return "group/home-group";
 	}
 }

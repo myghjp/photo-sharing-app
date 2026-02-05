@@ -31,11 +31,11 @@
 								     <div class="row">
 								        <label for="comment"></label>
 								        <div class="col-8">
-									        <input type="text" th:field="*{comment}" th:errorclass="is-invalid" class="form-control">
+									        <input type="text" th:field="*{comment}" th:placeholder="#{comment}" th:errorclass="is-invalid" class="form-control">
 									        <div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
 								        </div>
 								        <div class="col-4">
-								    		<input type="submit" th:value="#{commentBtn}" class="btn btn-outline-secondary">
+								    		<input type="submit" th:value="#{commentBtn}" class="btn btn-outline-primary">
 								        </div>
 								    </div>
 						    	</form>
@@ -56,7 +56,7 @@
 								<div class="row me-1">
 									<th:block th:if="${list.Account?.username != null and list.Account.username == loginUser}">
 										<!-- Button trigger modal -->
-										<button type="button" th:text="#{deleteBtn}" data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}" class="btn btn-danger"></button>
+										<button type="button" th:text="#{deleteBtn}" data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}" class="btn btn-outline-danger"></button>
 										<!-- /Button trigger modal -->
 									</th:block>
 								</div>
