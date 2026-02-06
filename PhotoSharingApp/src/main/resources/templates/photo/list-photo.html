@@ -65,13 +65,13 @@
 									
 									<a th:href="@{'/media/' + ${list.photo}}" download="" th:text="#{saveBtn}" class="btn btn-sm btn-outline-primary"></a>
 				
-									<th:block th:if="${isAdmin}"><!--管理者-->
+									<th:block th:if="${isAdmin}">
 										<!-- Button trigger modal -->
 											<button type="button" th:text="#{deleteBtn}" data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}" class="card-link btn btn-sm btn-outline-danger"></button>
 										<!-- /Button trigger modal -->
 									</th:block>
 									
-									<th:block th:unless="${isAdmin}"><!--管理者以外-->
+									<th:block th:unless="${isAdmin}">
 										<th:block th:if="${list.Account?.username != null and list.Account.username == loginUser}">
 										<!-- Button trigger modal -->
 											<button type="button" th:text="#{deleteBtn}" data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}"  class="card-link btn btn-sm btn-outline-danger"></button>
@@ -79,7 +79,7 @@
 										</th:block>
 									</th:block>
 								
-									<!-- Modal --><!--photo-->
+									<!-- Modal photo-->
 									<div class="modal fade" th:id="${list.id} + ${list.photo}" tabindex="-1" aria-hidden="true">
 									  <div class="modal-dialog modal-dialog-centered">
 									    <div class="modal-content">
@@ -90,7 +90,7 @@
 									</div>
 									<!-- /Modal -->
 									
-									<!-- Modal --><!--delete-->
+									<!-- Modal delete-->
 									<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 									  <div class="modal-dialog">
 									    <div class="modal-content rounded-4 shadow" style="width: fit-content">

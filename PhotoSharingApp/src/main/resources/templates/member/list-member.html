@@ -23,29 +23,19 @@
 				        <div class="btn-toolbar mb-2 mb-md-0">
 				          <div class="btn-group me-2">
 				            <th:block th:if="${isAdmin}">
-								<!--ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
-								<!--<a th:href="@{'/add-member'}" th:text="#{addMemberBtn}" class="btn btn-outline-secondary"></a>-->
-								
-								<!--POST-->
 								<form method="post" th:action="@{/list-member}" th:object="${addMemberForm}" class="text-center">
-					
-									<!--<div th:text="#{addMemberMessage}" class="mb-3 fs-5"></div>-->
 									<div th:text="#{addMemberMessage}" class="fs-6"></div>
 								   	<div class="row">
-								       <!-- <label for="emailAddress" th:text=#{emailAddress}  class="col-sm-4 col-form-label"></label>-->
 								       <div class="col-sm-9">
-									   <input type="email" th:field="*{emailAddress}" th:placeholder="#{emailAddress}" th:errorclass="is-invalid" class="form-control" >
-									   <div class="invalid-feedback" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
+										   <input type="email" th:field="*{emailAddress}" th:placeholder="#{emailAddress}" th:errorclass="is-invalid" class="form-control" >
+										   <div class="invalid-feedback" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
 									   </div>
 								       
 								       <div class="col-sm-3">
-								       <input type="submit" th:value="#{addBtn}" class="btn btn-outline-primary">
+								       		<input type="submit" th:value="#{addBtn}" class="btn btn-outline-primary">
 								       </div>
-								       
 								    </div>
-							    	
 								</form>
-								<!--ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
 							</th:block>
 							
 							<th:block th:unless="${isAdmin}">

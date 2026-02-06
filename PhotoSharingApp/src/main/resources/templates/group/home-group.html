@@ -14,78 +14,33 @@
 </head>
 <body>
 	
-	<nav layout:replace="~{common/header-nav::header-nav}"></nav>
-	
-	<div layout:fragment="content">
+	<div layout:fragment="content" class="overflow-hidden">
 
-	<div class="py-4 container-fluid">
-		<div class="row mb-3">
-			<div class="col-lg-6 col-md-6">
-				<div class="card h-100">
-					<div class="pb-0 card-header">
-						<h6 class="">お知らせ</h6>
-						
-					</div>
-					<div class="p-3 card-body">
-						<div class="timeline timeline-one-side"
-							data-timeline-axis-style="dotted">
-							<!---->
-							<div class="mb-3 timeline-block">
-								
-								<div class="timeline-content">
-									<h6 class="mb-0 text-sm font-weight-bold text-dark">何かの通知？</h6>
-									<p class="mt-1 mb-0 text-xs text-secondary font-weight-normal"></p>
-									
-								</div>
+		<div class="py-4 container-fluid">
+			<!--<div class="row mb-3">
+				<div class="col-lg col-md-6">
+					<div class="card h-100">
+						<div class="pb-0 card-header">
+							<h6 class="">お知らせ</h6>
+						</div>
+						<div class="p-3 card-body">
+							<div class="timeline timeline-one-side"
+								data-timeline-axis-style="dotted">
+								<div class="mb-3 timeline-block">
+									<div class="timeline-content">
+										<h6 class="mb-0 text-sm font-weight-bold text-dark">※不要</h6>
+										<p class="mt-1 mb-0 text-xs text-secondary font-weight-normal"></p>
+									</div>
+								</div>	
 							</div>
-							<!---->
-							
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			
-			<div class="col-lg-3 col-md-6">
-				<div class="card h-100">
-					<div class="pb-0 card-header">
-						<h6 class="">メンバー数</h6>
-					</div>
-					<div class="p-3 card-body">
-						<div class="timeline timeline-one-side" data-timeline-axis-style="dotted">
-							<div class="mb-3 timeline-block">
-								<div class="timeline-content">
-									<h1 class="mb-0 text-sm font-weight-bold text-dark">50</h1>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-lg-3 col-md-6">
-				<div class="card h-100">
-					<div class="pb-0 card-header">
-						<h6 class="">アルバム数</h6>
-						
-					</div>
-					<div class="p-3 card-body">
-						<div class="timeline timeline-one-side" data-timeline-axis-style="dotted">
-							<div class="mb-3 timeline-block">
-								<div class="timeline-content">
-									<h1 class="mb-0 text-sm font-weight-bold text-dark">50</h1>
-									<p class="mt-1 mb-0 text-xs text-secondary font-weight-normal"></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-lg-3 col-md-6 mb-md-0 mb-4">
-				<div class="card">
-					
+			<div class="row">
+				<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
+					<div class="card h-100">
 						<div class="card-header pb-0">
 							<div class="row">
 								<div class="col-lg-6 col-7">
@@ -93,86 +48,51 @@
 								</div>
 							</div>
 						</div>
-						<div class="card-body px-0 pb-1">
+						<div class="card-body px-0 py-0 pb-1 overflow-y-auto" style="height: 520px;">
 							<div class="table-responsive">
 								<table class="table align-items-center mb-0">
-									<thead>
-										<tr>
-											<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">メンバー名</th>
-										</tr>
-									</thead>
 									<tbody>
 										<tr th:each="list:${memberList}">
-											<td class="align-middle text-center text-sm"><span
-												class="text-xs font-weight-bold" th:text="${list.Account?.username?: 'unknown'}"></span></td>
+											<td class="align-middle text-center text-sm">
+												<span class="text-xs font-weight-bold" th:text="${list.Account?.username?: 'unknown'}"></span>
+											</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 						</div>
-					
-				</div>
-			</div>
-			
-			<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
-				<div class="card">
-					<div class="card-header pb-0">
-						<div class="row">
-							<div class="col-lg-6 col-7">
-								<h6>掲示板</h6>
-							</div>
-						</div>
-					</div>
-					<div class="card-body px-0 pb-1">
-						<div class="table-responsive">
-							<table class="table align-items-center mb-0">
-								<thead>
-									<tr>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">日付</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">名前</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">コメント</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr th:each="list:${commentList}" class="text-center">
-										<td th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}"></td>
-										<td th:text="${list.Account?.username?: 'unknown'}"></td>
-										<td th:text="${list.comment}"></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
 					</div>
 				</div>
-			</div>
-			
-			<div class="col-lg-3 col-md-6 mb-md-0 mb-4">
-				<div class="card">
-					<div class="card-header pb-0">
-						<div class="row">
-							<div class="col-lg-6 col-7">
-								<h6>アルバム</h6>
-								
+				
+				<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
+					<div class="card h-100">
+						<div class="card-header pb-0">
+							<div class="row">
+								<div class="col-lg-6 col-7">
+									<h6>アルバム</h6>	
+								</div>
 							</div>
-							
 						</div>
-					</div>
-					<div class="card-body px-0 pb-1">
-						<div class="table-responsive">
-							<table class="table align-items-center mb-0">
-								<thead>
-									<tr>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">アルバム一覧</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr th:each="list:${albumList}">
-										<td class="align-middle text-center text-sm"><span
-											class="text-xs font-weight-bold" th:text="${list.albumName}"></span></td>
-									</tr>
-								</tbody>
-							</table>
+						<div class="card-body px-0 py-0 pb-1 overflow-y-auto" style="height: 520px;">
+							<div class="table-responsive">
+								<table class="table align-items-center mb-0">
+									<tbody>
+										<tr th:each="list:${albumList}">
+											<td class="align-middle text-center text-sm">
+												<span class="text-xs font-weight-bold" th:text="${list.albumName}"></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
+						<!--ーーーーーーーー-->
+						
+						<!--<div th:each="list:${albumList}" class="list-group text-center">
+							<a href="#" th:text="${list.albumName}" class="list-group-item list-group-item-action"></a>
+						</div>-->
+						
+						<!--ーーーーーーーー-->
 					</div>
 				</div>
 			</div>

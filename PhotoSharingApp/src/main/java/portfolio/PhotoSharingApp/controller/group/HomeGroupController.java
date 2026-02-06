@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Album;
-import portfolio.PhotoSharingApp.entity.Comment;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.entity.Member;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.album.AlbumService;
-import portfolio.PhotoSharingApp.service.comment.CommentService;
 import portfolio.PhotoSharingApp.service.member.MemberService;
 
 @Controller
@@ -30,9 +28,6 @@ public class HomeGroupController {
 	@Autowired
 	private AlbumService albumService;
 	
-	@Autowired
-	private CommentService commentService;
-	
 	@GetMapping("/home-group")
 	public String getHomeGroup(
 			Model model
@@ -40,7 +35,6 @@ public class HomeGroupController {
 			,RedirectAttributes redirectAttributes
 			,@ModelAttribute("group")Group group
 			) {
-		
 		
 		/*自身がグループの管理者であるかを確認*/
 		if (group.getAccountId() == user.getUserId()) {
@@ -59,11 +53,7 @@ public class HomeGroupController {
 		List<Album> albumList = albumService.findAllById(group.getId());
 		model.addAttribute("albumList", albumList);
 		/*ーーーーーーーーーーーーーーー*/
-		/*このグループのコメントのテーブル情報とアカウント名を取得*/
-		List<Comment> commentList = commentService.findAllById(group.getId());
-		model.addAttribute("commentList", commentList);
-		/*ーーーーーーーーーーーーーーー*/
-	    
+		
 		return "group/home-group";
 	}
 }
