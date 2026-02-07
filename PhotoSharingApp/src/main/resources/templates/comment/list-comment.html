@@ -48,7 +48,7 @@
 								<div class="d-inline-flex my-2">
 									<div th:text="${list.id} + '.'" class="me-3"></div>
 									<div th:text="'▼' + ${list.Account?.username?: 'unknown'}" class="me-3"></div>
-									<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd HH:MM:SS')}" class="me-3"></div>
+									<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}" class="me-3"></div>
 								</div>
 								
 								<div class="row me-1">

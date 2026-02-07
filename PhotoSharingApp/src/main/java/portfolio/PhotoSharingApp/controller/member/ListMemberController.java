@@ -3,6 +3,7 @@ package portfolio.PhotoSharingApp.controller.member;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -110,9 +111,18 @@ public class ListMemberController {
 	public String postDeleteMember(
 			Model model
 			,@RequestParam("id") int memberId
+			,@AuthenticationPrincipal LoginUserDetails user
 			,RedirectAttributes redirectAttributes
 			) {
-
+		
+		Member member = new Member();
+		member.setId(memberId);
+		
+		/*このグループ利用者はグループの管理者であるかを確認*/
+		if (memberService.isAdmin(member.getId(),user.getUserId())) {
+			throw new AccessDeniedException("不正なIDです");
+		}
+		
 		memberService.delete(memberId);
 
 		return "redirect:list-member";

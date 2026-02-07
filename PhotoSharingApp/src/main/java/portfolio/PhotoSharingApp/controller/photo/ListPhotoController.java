@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -97,9 +98,27 @@ public class ListPhotoController {
 	
 	@PostMapping("/delete-photo")
 	public String postDeletePhoto(
-			Model model, @RequestParam("id") int photoId
+			Model model
+			,@RequestParam("id") int photoId
+			,@AuthenticationPrincipal LoginUserDetails user
+			,@SessionAttribute("album")Album album
+			,@SessionAttribute("group")Group group
 			,RedirectAttributes redirectAttributes
 			) throws IOException {
+		
+		/*このアルバムの写真なのかを確認*/
+		if (photoService.isAlbum(photoId, album.getId())) {
+			throw new AccessDeniedException("アクセス権がありません");
+		} 
+		
+		/*自身がグループの管理者ではないかを確認*/
+		if (group.getAccountId() != user.getUserId()) {
+			
+			/*自身が追加した写真なのかを確認*/
+			if (photoService.isPhoto(photoId,user.getUserId())){
+				throw new AccessDeniedException("アクセス権がありません");
+			} 
+		}
 
 		/*この写真のIDとパス情報を取得*/
 		Photo photoData = photoService.findById(photoId);

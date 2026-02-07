@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -84,11 +85,20 @@ public class ListCommentController {
 	
 	@PostMapping("/delete-comment")
 	public String getDeleteComment(
-			@RequestParam("id") int id
+			@RequestParam("id") int commentId
+			,@AuthenticationPrincipal LoginUserDetails user
 			,RedirectAttributes redirectAttributes
 			) {
+		
+		Comment comment = new Comment();
+		comment.setId(commentId);
+		
+		/*自身が投稿したコメントかを確認*/
+		if (commentService.isComment(comment.getId(),user.getUserId())) {
+			throw new AccessDeniedException("不正なIDです");
+		}
 
-		commentService.delete(id);
+		commentService.delete(comment.getId());
 
 		return "redirect:list-comment";
 	}

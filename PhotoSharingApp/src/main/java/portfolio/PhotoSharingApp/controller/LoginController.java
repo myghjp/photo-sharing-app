@@ -10,4 +10,10 @@ public class LoginController {
 	public String getLogin() {
 		return "login";
 	}
+	
+	/*Password変更テキスト*/
+	/*group数が0の時*/
+	/*dashboardの数sql*/
+	/*画面設計書修正の後ファイル名とclass名変更*/
+	
 }

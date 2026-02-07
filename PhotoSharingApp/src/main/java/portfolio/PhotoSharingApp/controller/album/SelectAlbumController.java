@@ -2,10 +2,9 @@ package portfolio.PhotoSharingApp.controller.album;
 
 import java.util.List;
 
-import jakarta.servlet.http.HttpSession;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Album;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.form.album.CreateAlbumForm;
@@ -45,7 +45,6 @@ public class SelectAlbumController {
 			,CreateAlbumForm form
 			,HttpSession httpSession
 			,@AuthenticationPrincipal LoginUserDetails user
-			/*,RedirectAttributes redirectAttributes*/
 			,@ModelAttribute("group")Group group
 			) {
 		
@@ -107,10 +106,19 @@ public class SelectAlbumController {
 	@PostMapping("/delete-album")
 	public String postDeleteAlbum(
 			@RequestParam("id") int albumId
+			,@AuthenticationPrincipal LoginUserDetails user
 			,RedirectAttributes redirectAttributes
 			) {
-
-		albumService.delete(albumId);
+		
+		Album album = new Album();
+		album.setId(albumId);
+		
+		/*自身が作成したアルバムであるかを確認*/
+		if (albumService.isAlbum(album.getId(),user.getUserId())) {
+			throw new AccessDeniedException("不正なIDです");
+		}
+		
+		albumService.delete(album.getId());
 
 		return "redirect:select-album";
 	}
