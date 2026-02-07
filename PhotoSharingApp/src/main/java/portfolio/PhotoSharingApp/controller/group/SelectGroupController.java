@@ -3,6 +3,7 @@ package portfolio.PhotoSharingApp.controller.group;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,7 +76,13 @@ public class SelectGroupController {
 	@PostMapping("/delete-group")
 	public String postDeleteGroup(
 			@RequestParam("id") int groupId
+			,@AuthenticationPrincipal LoginUserDetails user
 			,RedirectAttributes redirectAttributes) {
+		
+		/*自身が作成したグループなのかを確認*/
+		if (groupService.isOwner(groupId,user.getUserId())) {
+			throw new AccessDeniedException("不正なIDです");
+		}
 
 		groupService.delete(groupId);
 
