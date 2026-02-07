@@ -6,7 +6,7 @@ public interface AccountService {
 	
 	public void create(Account account);
 	
-	public Account getLoginAccount(String user);
+	public Account getLoginAccount(String email);
 	
 	public void edit(Account account);
 	

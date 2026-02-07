@@ -40,7 +40,7 @@ public class SecurityConfig {
 				.loginProcessingUrl("/postlogin")
 				.loginPage("/login")
 				.failureUrl("/login")
-				.usernameParameter("username")
+				.usernameParameter("emailAddress")
 				.passwordParameter("password")
 				.defaultSuccessUrl("/select-group", true)
 				.permitAll()

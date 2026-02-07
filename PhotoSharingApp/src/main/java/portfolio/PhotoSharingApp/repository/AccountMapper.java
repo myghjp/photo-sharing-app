@@ -16,7 +16,7 @@ public interface AccountMapper {
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	public Account selectAccount(String user);
+	public Account selectAccount(String email);
 	
 	public Integer selectByUserId(String emailAddress);
 	

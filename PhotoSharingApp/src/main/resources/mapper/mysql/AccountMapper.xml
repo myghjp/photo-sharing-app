@@ -39,7 +39,7 @@
 	<select id="selectAccount" resultMap="accountsTable">
 		select *
 		from accounts 
-		where user = #{username}
+		where email_address = #{email}
 	</select>
 	
 	<select id="selectByUserId" resultType="Integer">

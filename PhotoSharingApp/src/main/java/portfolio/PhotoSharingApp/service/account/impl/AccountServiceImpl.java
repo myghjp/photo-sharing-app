@@ -19,8 +19,8 @@ public class AccountServiceImpl implements AccountService{
 	}
 	
 	@Override
-	public Account getLoginAccount(String user) {
-		return accountMapper.selectAccount(user);
+	public Account getLoginAccount(String email) {
+		return accountMapper.selectAccount(email);
 	}
 	
 	@Override
