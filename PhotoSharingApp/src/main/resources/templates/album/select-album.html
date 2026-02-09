@@ -1,98 +1,116 @@
 <!DOCTYPE html>
-<html lang="ja"
-	xmlns:th="http://www.thymeleaf.org"
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{common/layout}"
-	>
+	layout:decorate="~{common/layout}">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
-	<title th:text=#{selectAlbumPage}></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
+<title th:text=#{selectAlbumPage}></title>
 </head>
 <body>
 	<div layout:fragment="content">
-		
+
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col mx-auto">
-					
-					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center text-center border-bottom py-3 mb-3">
-				        <nav aria-label="breadcrumb">
-						  <ol class="breadcrumb fs-2 m-0">
-						    <li class="breadcrumb-item active" aria-current="page">アルバム</li>
-						  </ol>
+
+					<div
+						class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center text-center border-bottom py-3 mb-3">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb fs-2 m-0">
+								<li class="breadcrumb-item active" aria-current="page">アルバム</li>
+							</ol>
 						</nav>
-				        
-				        <div class="btn-toolbar mb-2 mb-md-0">
-				          <div class="btn-group me-2">
-				            <th:block th:if="${isAdmin}">
-								<form method="post" th:action="@{/create-album}" th:object="${createAlbumForm}" class="text-center">
-									<div th:text="#{createAlbumMessage}" class="fs-6"></div>
-									<div class="row">
-								       <div class="col-sm-9">
-									        <input type="text" th:field="*{albumName}" th:errorclass="is-invalid" th:placeholder="#{albumName}" class="form-control">
-								        	<div class="invalid-feedback" th:if="${#fields.hasErrors('albumName')}" th:errors="*{albumName}"></div>
-								       </div>
-								       <div class="col-sm-3">
-								       		<input type="submit" th:value="#{submitBtn}" class="btn btn-outline-primary">
-								       </div>
-									</div>
-								</form>
-							</th:block>
-				          </div>
-				        </div>
-				    </div>
-					
+
+						<div class="btn-toolbar mb-2 mb-md-0">
+							<div class="btn-group me-2">
+								<th:block th:if="${isAdmin}">
+									<form method="post" th:action="@{/create-album}"
+										th:object="${createAlbumForm}" class="text-center">
+										<div th:text="#{createAlbumMessage}" class="fs-6"></div>
+										<div class="row">
+											<div class="col-sm-9">
+												<input type="text" th:field="*{albumName}"
+													th:errorclass="is-invalid" th:placeholder="#{albumName}"
+													class="form-control">
+												<div class="invalid-feedback"
+													th:if="${#fields.hasErrors('albumName')}"
+													th:errors="*{albumName}"></div>
+											</div>
+											<div class="col-sm-3">
+												<input type="submit" th:value="#{submitBtn}"
+													class="btn btn-outline-primary">
+											</div>
+										</div>
+									</form>
+								</th:block>
+							</div>
+						</div>
+					</div>
+
 					<div class="row row-cols-1 row-cols-md-5">
 						<div th:each="list:${albumList}">
 							<div class="card p-0 g-4">
-								<form method="post" th:action="@{/select-album}" class="text-center">
-								
+								<form method="post" th:action="@{/select-album}"
+									class="text-center">
+
 									<div class="card-header">
-										<div class="card-title fs-5 fw-bold m-0" th:text="${list.albumName}"></div>
+										<div class="card-title fs-5 fw-bold m-0"
+											th:text="${list.albumName}"></div>
 									</div>
-									
+
 									<div class="card-body">
-									    <p class="card-text">作成日とか</p>
-									    <p class="card-text">最終更新日とか</p>
-									    
-									    <div class="d-inline-flex">
-										    <button type="submit" th:value="${list.id}" name="id" th:text="#{openopen}" class="card-link btn btn-outline-primary"></button>
-										   
+										<p class="card-text">作成日</p>
+										<p class="card-text" th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></p>
+
+										<div class="d-inline-flex">
+											<button type="submit" th:value="${list.id}" name="id"
+												th:text="#{openopen}"
+												class="card-link btn btn-outline-primary"></button>
+
 											<th:block th:if="${isAdmin}">
 												<!-- Button trigger modal -->
-												<button type="button" th:text="#{deleteBtn}" data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}" class="card-link btn btn-outline-danger"></button>
+												<button type="button" th:text="#{deleteBtn}"
+													data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}"
+													class="card-link btn btn-outline-danger"></button>
 												<!-- /Button trigger modal -->
 											</th:block>
-											
-									    </div>
+
+										</div>
 									</div>
 								</form>
-								
+
 								<!-- Modal -->
-								<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								  <div class="modal-dialog">
-								    <div class="modal-content rounded-4 shadow">
-								      <div class="modal-header border-bottom-0">
-								        <h1 class="modal-title fs-5" id="exampleModalLabel" th:text="${list.albumName}"></h1>
-								        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								      </div>
-								      <div class="modal-body py-0">
-								        <div th:text="#{deleteAlbumAlert}"></div>
-								      </div>
-								      
-								      <form method="post" th:action="@{/delete-album}">
-									      <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
-											<input type="hidden" name="id" th:value="${list.id}" >
-											<input type="submit" th:value="#{deleteBtn}" class="btn btn-lg btn-danger">
-											<a th:href="@{'/select-album'}" th:text="#{cancelBtn}" data-bs-dismiss="modal" class="btn btn-lg btn-secondary"></a>
-									      </div>
-								      </form>
-								    </div>
-								  </div>
+								<div class="modal fade" th:id="${list.id}" tabindex="-1"
+									aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content rounded-4 shadow">
+											<div class="modal-header border-bottom-0">
+												<h1 class="modal-title fs-5" id="exampleModalLabel"
+													th:text="${list.albumName}"></h1>
+												<button type="button" class="btn-close"
+													data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body py-0">
+												<div th:text="#{deleteAlbumAlert}"></div>
+											</div>
+
+											<form method="post" th:action="@{/delete-album}">
+												<div
+													class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+													<input type="hidden" name="id" th:value="${list.id}">
+													<input type="submit" th:value="#{deleteBtn}"
+														class="btn btn-lg btn-danger"> <a
+														th:href="@{'/select-album'}" th:text="#{cancelBtn}"
+														data-bs-dismiss="modal" class="btn btn-lg btn-secondary"></a>
+												</div>
+											</form>
+										</div>
+									</div>
 								</div>
 								<!-- /Modal -->
 							</div>

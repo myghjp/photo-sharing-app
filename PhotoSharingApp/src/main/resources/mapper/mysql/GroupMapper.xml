@@ -8,6 +8,7 @@
 		<id column="id" property="id" />
 		<result column="group_name" property="groupName" />
 		<result column="account_id" property="accountId" />
+		<result column="create_date_time" property="createDateTime" />
 	</resultMap>
 	
 	<insert id="insert">
@@ -31,6 +32,7 @@
 		select distinct groups.id
 			,group_name
 			,groups.account_id
+			,groups.create_date_time
 		from `groups`
 			left join groups_members
 			on groups.id = groups_members.group_id

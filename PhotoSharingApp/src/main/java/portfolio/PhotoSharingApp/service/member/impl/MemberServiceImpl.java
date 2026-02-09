@@ -27,6 +27,14 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public int countMembersById(int groupId){
+		int members = memberMapper.selectCountMembers(groupId);
+		
+		/*管理者分を一つ追加*/
+		return members + 1;
+	}
+	
+	@Override
 	public void delete(int memberId) {
 		memberMapper.delete(memberId);
 	}

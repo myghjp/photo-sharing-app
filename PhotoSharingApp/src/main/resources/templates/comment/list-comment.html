@@ -1,93 +1,111 @@
 <!DOCTYPE html>
-<html lang="ja"
-	xmlns:th="http://www.thymeleaf.org"
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{common/layout}"
-	>
+	layout:decorate="~{common/layout}">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
-	<title th:text=#{listCommentPage}></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
+<title th:text=#{listCommentPage}></title>
 </head>
 <body>
-	
+
 	<div layout:fragment="content">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="mx-auto text-center">
-					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
-				        
-				        <div class="fs-2" th:text="#{board}"></div>
-				        
-				        <div class="btn-toolbar mb-2 mb-md-0">
-				        	<div class="btn-group me-2">
-								
-								<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
-								     <div class="row">
-								        <label for="comment"></label>
-								        <div class="col-8">
-									        <input type="text" th:field="*{comment}" th:placeholder="#{comment}" th:errorclass="is-invalid" class="form-control">
-									        <div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
-								        </div>
-								        <div class="col-4">
-								    		<input type="submit" th:value="#{commentBtn}" class="btn btn-outline-primary">
-								        </div>
-								    </div>
-						    	</form>
-				        	</div>
-				        </div>
-				    </div>	
-			    </div>
+					<div
+						class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
+
+						<div class="fs-2" th:text="#{board}"></div>
+
+						<div class="btn-toolbar mb-2 mb-md-0">
+							<div class="btn-group me-2">
+
+								<form method="post" th:action="@{/list-comment}"
+									th:object="${listCommentForm}">
+									<div class="row">
+										<label for="comment"></label>
+										<div class="col-8">
+											<input type="text" th:field="*{comment}"
+												th:placeholder="#{comment}" th:errorclass="is-invalid"
+												class="form-control">
+											<div class="invalid-feedback"
+												th:if="${#fields.hasErrors('comment')}"
+												th:errors="*{comment}"></div>
+										</div>
+										<div class="col-4">
+											<input type="submit" th:value="#{commentBtn}"
+												class="btn btn-outline-primary">
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="col mx-auto">
 					<div th:each="list:${commentList}" class="card mb-3">
 						<div class="card-body">
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="d-inline-flex my-2">
 									<div th:text="${list.id} + '.'" class="me-3"></div>
-									<div th:text="'▼' + ${list.Account?.username?: 'unknown'}" class="me-3"></div>
-									<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}" class="me-3"></div>
+									<div th:text="'▼' + ${list.Account?.username?: 'unknown'}"
+										class="me-3"></div>
+									<div
+										th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"
+										class="me-3"></div>
 								</div>
-								
+
 								<div class="row me-1">
-									<th:block th:if="${list.Account?.username != null and list.Account.username == loginUser}">
+									<th:block
+										th:if="${list.Account?.username != null and list.Account.username == loginUser}">
 										<!-- Button trigger modal -->
-										<button type="button" th:text="#{deleteBtn}" data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}" class="btn btn-outline-danger"></button>
+										<button type="button" th:text="#{deleteBtn}"
+											data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}"
+											class="btn btn-outline-danger"></button>
 										<!-- /Button trigger modal -->
 									</th:block>
 								</div>
 							</div>
-							
+
 							<div class="row">
 								<div th:text="${list.comment}" class="card-text fs-5"></div>
 							</div>
 						</div>
-						
+
 						<!-- Modal -->
-						<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						  <div class="modal-dialog">
-						    <div class="modal-content rounded-4 shadow">
-						      <div class="modal-header border-bottom-0">
-						        <h1 class="modal-title fs-5" id="exampleModalLabel" th:text="${list.comment}"></h1>
-						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						      </div>
-						      <div class="modal-body py-0">
-						        <div th:text="#{deleteCommentAlert}"></div>
-						      </div>
-						      <form method="post" th:action="@{/delete-comment}">
-							      <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
-										<input type="hidden" name="id" th:value="${list.id}" >
-										<input type="submit" th:value="#{deleteBtn}" class="btn btn-lg btn-danger">
-										<a th:href="@{'/list-comment'}" th:text="#{cancelBtn}" data-bs-dismiss="modal" class="btn btn-lg btn-secondary"></a>
-							      </div>
-						      </form>
-						    </div>
-						  </div>
+						<div class="modal fade" th:id="${list.id}" tabindex="-1"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content rounded-4 shadow">
+									<div class="modal-header border-bottom-0">
+										<h1 class="modal-title fs-5" id="exampleModalLabel"
+											th:text="${list.comment}"></h1>
+										<button type="button" class="btn-close"
+											data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body py-0">
+										<div th:text="#{deleteCommentAlert}"></div>
+									</div>
+									<form method="post" th:action="@{/delete-comment}">
+										<div
+											class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+											<input type="hidden" name="id" th:value="${list.id}">
+											<input type="submit" th:value="#{deleteBtn}"
+												class="btn btn-lg btn-danger"> <a
+												th:href="@{'/list-comment'}" th:text="#{cancelBtn}"
+												data-bs-dismiss="modal" class="btn btn-lg btn-secondary"></a>
+										</div>
+									</form>
+								</div>
+							</div>
 						</div>
 						<!-- /Modal -->
-						
+
 					</div>
 				</div>
 			</div>

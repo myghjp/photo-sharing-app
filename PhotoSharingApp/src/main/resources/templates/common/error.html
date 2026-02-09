@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="ja" 
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
->
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
-	<title th:text="#{errorPage}"></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
+<title th:text="#{errorPage}"></title>
 </head>
 <body class="bg-body-tertiary">
 	<nav layout:replace="~{common/header::header}"></nav>
-	
+
 	<div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
-		
+
 		<div class="row justify-content-center">
 			<div class="col-md mx-auto text-center">
-				
+
 				<h1 th:text="${status} + ' ' + ${error}" class="fs-2 mb-3"></h1>
-					
+
 				<div class="col-6 mx-auto">
 					<div class="alert alert-danger alert-dismissible fade show">
 						<p th:text="${message}" class="lead text-danger fs-3 m-0"></p>
 					</div>
 				</div>
-				
+
 				<form th:action="@{/postlogout}" method="post">
-					<input type="button" onclick="location.href='/login'" th:value="#{backLoginBtn}" class="btn btn-lg btn-secondary">
+					<input type="button" onclick="location.href='/login'"
+						th:value="#{backLoginBtn}" class="btn btn-lg btn-secondary">
 				</form>
 			</div>
 		</div>

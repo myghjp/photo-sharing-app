@@ -2,6 +2,8 @@ package portfolio.PhotoSharingApp.controller.album;
 
 import java.util.List;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Album;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.form.album.CreateAlbumForm;
@@ -51,7 +52,7 @@ public class SelectAlbumController {
 		httpSession.removeAttribute("album");
 		model.addAttribute("createAlbumForm", form);
 		
-		/*このグループのアルバムIDとアルバム名を取得*/
+		/*このグループのアルバム情報を取得*/
 		List<Album> albumList = albumService.findAllById(group.getId());
 		model.addAttribute("albumList", albumList);
 		

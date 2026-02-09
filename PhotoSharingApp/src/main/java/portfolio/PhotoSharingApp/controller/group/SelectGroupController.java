@@ -40,7 +40,7 @@ public class SelectGroupController {
 
 		sessionStatus.setComplete();
 		
-		/*自身が所属しているグループIDとグループ名を取得(グループ管理者IDも追加)*/
+		/*自身が所属しているグループ情報を取得*/
 		List<Group> groupList = groupService.findAllByUserId(user.getUserId());
 		model.addAttribute("groupList", groupList);
 		

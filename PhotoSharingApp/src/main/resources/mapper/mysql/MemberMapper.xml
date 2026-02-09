@@ -57,6 +57,17 @@
 		where groups.id = #{groupId}
 	</select>
 	
+	<select id="selectCountMembers" resultType="Integer">
+		select count(accounts.user)
+		from groups_members
+			left join `groups`
+				on groups_members.group_id = groups.id
+			left join accounts
+				on groups_members.account_id = accounts.id
+		where groups.id = #{groupId}
+	</select>
+	
+	
 	<select id="selectMember" resultMap="MembersTable">
 		select groups_members.id
 			,accounts.user as accounts_user
@@ -65,6 +76,8 @@
 			on groups_members.account_id = accounts.id
 		where groups_members.id = #{memberId}
 	</select>
+	
+	
 	
 	<select id="selectById" resultType="Integer">
 		select groups_members.id

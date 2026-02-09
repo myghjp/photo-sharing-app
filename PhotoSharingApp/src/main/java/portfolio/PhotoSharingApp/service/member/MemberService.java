@@ -11,6 +11,8 @@ public interface MemberService {
 	
 	public List<Member> findAllById(int groupId);
 	
+	public int countMembersById(int groupId);
+	
 	public void delete(int memberId);
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/

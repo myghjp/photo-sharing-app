@@ -1,63 +1,72 @@
 <!DOCTYPE html>
-<html lang="ja"
-	xmlns:th="http://www.thymeleaf.org"
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{common/layout}"
-	>
+	layout:decorate="~{common/layout}">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
-	<title th:text="#{homeGroupPage}"></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
+<title th:text="#{homeGroupPage}"></title>
 </head>
 <body>
-	
-	<div layout:fragment="content" class="overflow-hidden">
 
+	<div layout:fragment="content" class="overflow-hidden">
 		<div class="py-4 container-fluid">
-			
 			<div class="row">
 				<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
 					<div class="card h-100">
-						<div class="card-header pb-0">
+						<div class="card-header">
 							<div class="row">
 								<div class="col-lg-6 col-7">
-									<h6>グループメンバー</h6>
+									<div class="fs-6 fw-bold">グループメンバー</div>
+								</div>
+								<div class="col-lg-6 col-7">
+									<div th:text="'メンバー数 計' + ${countMembers} + '名'"  class="text-end"></div>
 								</div>
 							</div>
 						</div>
-						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 520px;"><!--←固定中-->
-							<div th:each="list,status:${memberList}" class="list-group text-center">
+						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 720px;">
+							
+							<div th:each="list,status:${memberList}"
+								class="list-group text-center">
 								<div class="list-group-item"
-								th:classappend="${status.index % 2 == 0} ? 'list-group-item-secondary' : ''">
+									th:classappend="${status.index % 2 == 0} ? 'list-group-item bg-body-secondary' : ''">
 									<div th:text="${list.Account?.username?: 'unknown'}"></div>
 								</div>
-							</div>	
+							</div>
 						</div>
 					</div>
 				</div>
-				
+		
+
 				<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
 					<div class="card h-100">
-						<div class="card-header pb-0">
+						<div class="card-header">
 							<div class="row">
 								<div class="col-lg-6 col-7">
-									<h6>アルバム</h6>	
+									<div class="fs-6 fw-bold">アルバム</div>
+								</div>
+								<div class="col-lg-6 col-7">
+									<div th:text="'アルバム数 計' + ${countAlbums} + '枚'"  class="text-end"></div>
 								</div>
 							</div>
 						</div>
-						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 520px;">
-							<div th:each="list,status:${albumList}" class="list-group text-center">
+						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 720px;">
+							<div th:each="list,status:${albumList}"
+								class="list-group text-center">
 								<form method="post" th:action="@{/select-album}">
-									<button type="submit" th:text="${list.albumName}" name="id" th:value="${list.id}"
-									class="rounded list-group-item list-group-item-action" th:classappend="${status.index % 2 == 0} ? 'list-group-item-secondary' : ''">
+									<button type="submit" th:text="${list.albumName}" name="id"
+										th:value="${list.id}"
+										class="rounded list-group-item list-group-item-action"
+										th:classappend="${status.index % 2 == 0} ? 'list-group-item bg-body-secondary' : ''">
 									</button>
 								</form>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>

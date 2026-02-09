@@ -8,6 +8,7 @@
 		<id column="id" property="id" />
 		<result column="group_id" property="groupId" />
 		<result column="album_name" property="albumName" />
+		<result column="create_date_time" property="createDateTime"/>
 	</resultMap>
 	
 	<insert id="insert">
@@ -28,7 +29,17 @@
 	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
 	<select id="selectAlbums" resultMap="AlbumsTable">
-		select albums.id,album_name
+		select albums.id
+			,album_name
+			,albums.create_date_time
+		from albums
+			left join `groups`
+			on group_id = groups.id
+		where group_id = #{groupId}
+	</select>
+	
+	<select id="selectCountAlbums" resultType="Integer">
+		select count(*)
 		from albums
 			left join `groups`
 			on group_id = groups.id

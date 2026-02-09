@@ -18,6 +18,8 @@ public interface AlbumMapper {
 	
 	public List<Album> selectAlbums(Integer groupId);
 	
+	public Integer selectCountAlbums(Integer groupId);
+	
 	public Album selectAlbum(Integer albumId);
 	
 	public Integer selectByGroupsAccountId(Integer albumId);

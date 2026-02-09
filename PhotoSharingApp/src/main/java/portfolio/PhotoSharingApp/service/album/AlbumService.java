@@ -10,6 +10,8 @@ public interface AlbumService {
 	
 	public List<Album> findAllById(int groupId);
 	
+	public int countAlbumsById(int groupId);
+	
 	public void delete(int albumId);
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
