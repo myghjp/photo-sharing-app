@@ -44,13 +44,6 @@ public class SelectGroupController {
 		List<Group> groupList = groupService.findAllByUserId(user.getUserId());
 		model.addAttribute("groupList", groupList);
 		
-		/*ーーーーーーーーーーーーーーーーーーーーーー*/
-		/*自身がグループの管理者であるかを確認*/
-		/*if (group.getAccountId() == user.getUserId()) {
-			model.addAttribute("isAdmin",true);
-		}*/
-		/*ーーーーーーーーーーーーーーーーーーーーーー*/
-		
 		model.addAttribute("userId",user.getUserId());
 		
 		boolean isActive = true;
@@ -70,7 +63,7 @@ public class SelectGroupController {
 		Group group = groupService.findById(groupId);
 		model.addAttribute("group",group);
 		
-		return "redirect:home-group";
+		return "redirect:dashboard";
 	}
 	
 	@PostMapping("/delete-group")

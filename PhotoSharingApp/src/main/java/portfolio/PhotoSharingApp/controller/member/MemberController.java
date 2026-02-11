@@ -26,7 +26,7 @@ import portfolio.PhotoSharingApp.service.member.MemberService;
 
 @Controller
 @SessionAttributes(value = {"group"})
-public class ListMemberController {
+public class MemberController {
 
 	@Autowired
 	private AccountService accountService;
@@ -42,7 +42,6 @@ public class ListMemberController {
 			Model model
 			,AddMemberForm form
 			,@AuthenticationPrincipal LoginUserDetails user
-			/*,RedirectAttributes redirectAttributes*/
 			,@ModelAttribute("group")Group group
 		) {
 		

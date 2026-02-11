@@ -29,7 +29,7 @@ import portfolio.PhotoSharingApp.service.photo.PhotoService;
 
 @Controller
 @SessionAttributes(value = {"group","album"})
-public class ListPhotoController { 
+public class PhotoController { 
 	
 	@Autowired
 	private PhotoService photoService;

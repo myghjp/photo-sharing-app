@@ -27,7 +27,7 @@ import portfolio.PhotoSharingApp.service.album.AlbumService;
 
 @Controller
 @SessionAttributes(value = {"group","album"})
-public class SelectAlbumController {
+public class AlbumController {
 	
 	@Autowired
 	private ModelMapper modelMapper;

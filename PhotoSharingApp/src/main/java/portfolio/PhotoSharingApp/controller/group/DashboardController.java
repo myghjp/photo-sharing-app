@@ -16,11 +16,15 @@ import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.entity.Member;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.album.AlbumService;
+import portfolio.PhotoSharingApp.service.group.GroupService;
 import portfolio.PhotoSharingApp.service.member.MemberService;
 
 @Controller
 @SessionAttributes(value = {"group"})
-public class HomeGroupController {
+public class DashboardController {
+	
+	@Autowired
+	private GroupService groupService;
 	
 	@Autowired
 	private MemberService memberService;
@@ -28,8 +32,8 @@ public class HomeGroupController {
 	@Autowired
 	private AlbumService albumService;
 	
-	@GetMapping("/home-group")
-	public String getHomeGroup(
+	@GetMapping("/dashboard")
+	public String getDashboard(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
 			,RedirectAttributes redirectAttributes
@@ -44,6 +48,10 @@ public class HomeGroupController {
 		boolean isActive = true;
 	    model.addAttribute("isActiveHome", isActive);
 	    
+	    /*ーーーーーーーーーーーーーーー*/
+	    /*このグループの管理者名を取得*/
+		String adminName = groupService.findByUsername(group.getId());
+		model.addAttribute("adminName", adminName);
 		/*ーーーーーーーーーーーーーーー*/
 	    /*このグループ利用者のテーブル情報とアカウント名を取得*/
 		List<Member> memberList = memberService.findAllById(group.getId());
@@ -62,6 +70,6 @@ public class HomeGroupController {
 		model.addAttribute("countAlbums", countAlbums);
 		/*ーーーーーーーーーーーーーーー*/
 		
-		return "group/home-group";
+		return "group/dashboard";
 	}
 }

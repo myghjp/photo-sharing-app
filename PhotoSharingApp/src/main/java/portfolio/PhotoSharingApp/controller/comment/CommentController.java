@@ -25,7 +25,7 @@ import portfolio.PhotoSharingApp.service.comment.CommentService;
 
 @Controller
 @SessionAttributes(value = {"group"})
-public class ListCommentController {
+public class CommentController {
 	
 	@Autowired
 	private ModelMapper modelMapper;
