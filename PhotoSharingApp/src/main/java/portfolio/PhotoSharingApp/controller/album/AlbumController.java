@@ -2,8 +2,6 @@ package portfolio.PhotoSharingApp.controller.album;
 
 import java.util.List;
 
-import jakarta.servlet.http.HttpSession;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Album;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.form.album.CreateAlbumForm;
@@ -111,16 +110,16 @@ public class AlbumController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		Album album = new Album();
-		album.setId(albumId);
+		/*Album album = new Album();
+		album.setId(albumId);*/
 		
 		/*自身が作成したアルバムであるかを確認*/
-		if (albumService.isAlbum(album.getId(),user.getUserId())) {
+		if (albumService.isAlbum(albumId,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		
-		albumService.delete(album.getId());
-
+		albumService.delete(albumId);
+		
 		return "redirect:select-album";
 	}
 }

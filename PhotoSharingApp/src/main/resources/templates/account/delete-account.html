@@ -19,10 +19,13 @@
 
 			<h1 th:text="#{deleteAccountPage}" class="h1 fw-bold mb-4"></h1>
 
-			<div th:text="#{deleteAccountAlert}" class="fs-5 fw-bold mb-2"></div>
-			<div th:text="#{deleteAccountMessage}" class="fs-5 mb-4"></div>
-
 			<div class="col-md-4 mx-auto">
+				
+				<div class="alert alert-warning" role="alert">
+  					<div th:text="#{deleteAccountAlert}" class="fw-bold"></div>
+				</div>
+				<div th:text="#{deleteAccountMessage}" class="text-danger mb-4"></div>
+				
 				<form method="post" th:action="@{/delete-account}">
 
 					<th:block th:if="${isError}">

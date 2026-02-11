@@ -42,7 +42,7 @@
 													th:errors="*{albumName}"></div>
 											</div>
 											<div class="col-sm-3">
-												<input type="submit" th:value="#{submitBtn}"
+												<input type="submit" th:value="#{createBtn}"
 													class="btn btn-outline-primary">
 											</div>
 										</div>
@@ -69,7 +69,7 @@
 
 										<div class="d-inline-flex">
 											<button type="submit" th:value="${list.id}" name="id"
-												th:text="#{openopen}"
+												th:text="#{openBtn}"
 												class="card-link btn btn-outline-primary"></button>
 
 											<th:block th:if="${isAdmin}">

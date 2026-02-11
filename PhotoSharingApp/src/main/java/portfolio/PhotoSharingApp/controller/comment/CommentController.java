@@ -90,15 +90,15 @@ public class CommentController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		Comment comment = new Comment();
-		comment.setId(commentId);
+				/*Comment comment = new Comment();
+				comment.setId(commentId);*/
 		
 		/*自身が投稿したコメントかを確認*/
-		if (commentService.isComment(comment.getId(),user.getUserId())) {
+		if (commentService.isComment(commentId,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 
-		commentService.delete(comment.getId());
+		commentService.delete(commentId);
 
 		return "redirect:list-comment";
 	}

@@ -114,11 +114,11 @@ public class MemberController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		Member member = new Member();
-		member.setId(memberId);
+			/*Member member = new Member();
+			member.setId(memberId);*/
 		
 		/*このグループ利用者はグループの管理者であるかを確認*/
-		if (memberService.isAdmin(member.getId(),user.getUserId())) {
+		if (memberService.isAdmin(memberId,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		

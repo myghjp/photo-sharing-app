@@ -9,16 +9,16 @@
 <link rel="stylesheet"
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
-<title th:text="#{homeGroupPage}"></title>
+<title th:text="#{dashboardPage}"></title>
 </head>
 <body>
 
 	<div layout:fragment="content" class="overflow-hidden">
 		<div class="container">
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom py-3 mb-3">
+				<div class="fs-2" th:text="#{dashboard}"></div>
+			</div>
 			<div class="row">
-				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom py-3 mb-3">
-					<div class="fs-2" th:text="#{dashboard}"></div>
-				</div>
 				<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
 					<div class="card h-100">
 						<div class="card-header">
@@ -35,7 +35,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 720px;">
+						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 300px;">
 							
 							<div th:each="list,status:${memberList}"
 								class="list-group text-center">
@@ -61,7 +61,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 720px;">
+						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 300px;">
 							<div th:each="list,status:${albumList}"
 								class="list-group text-center">
 								<form method="post" th:action="@{/select-album}">
