@@ -22,20 +22,20 @@
 				<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
 					<div class="card h-100">
 						<div class="card-header">
-							<div class="row d-flex justify-content-center">
-								<div class="col-lg-4 col-7">
-									<div class="fs-6 fw-bold">グループメンバー</div>
+							<div class="d-flex justify-content-between">
+								<div class="col-sm-4">
+									<div class="fs-6 fw-bold" th:text="#{listMemberPage}"></div>
 								</div>
-								<div class="col-lg-4 col-7 text-center">
+								<div class="col-sm-4 text-center">
 									<span th:text="#{admin}" class="text-primary"></span>
 									<span th:text="${adminName}"></span>
 								</div>	
-								<div class="col-lg-4 col-7">
-									<div th:text="'メンバー数 計' + ${countMembers} + '名'"  class="text-end"></div>
+								<div class="col-sm-4 text-end">
+									<div th:text="'メンバー数 計' + ${countMembers} + '名'"></div>
 								</div>
 							</div>
 						</div>
-						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 300px;">
+						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 250px;">
 							
 							<div th:each="list,status:${memberList}"
 								class="list-group text-center">
@@ -52,16 +52,16 @@
 				<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
 					<div class="card h-100">
 						<div class="card-header">
-							<div class="row">
-								<div class="col-lg-6 col-7">
-									<div class="fs-6 fw-bold">アルバム</div>
+							<div class="d-flex justify-content-between">
+								<div class="col-lg-6">
+									<div class="fs-6 fw-bold" th:text="#{selectAlbumPage}"></div>
 								</div>
-								<div class="col-lg-6 col-7">
-									<div th:text="'アルバム数 計' + ${countAlbums} + '枚'"  class="text-end"></div>
+								<div class="col-lg-6 text-end">
+									<div th:text="'アルバム数 計' + ${countAlbums} + '枚'"></div>
 								</div>
 							</div>
 						</div>
-						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 300px;">
+						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 250px;">
 							<div th:each="list,status:${albumList}"
 								class="list-group text-center">
 								<form method="post" th:action="@{/select-album}">

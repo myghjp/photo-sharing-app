@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<nav layout:fragment="header-nav"
-		class="navbar navbar-expand-lg sticky-top bg-body-secondary p-2"
-		data-bs-theme="dark">
-		<span class="navbar-brand fs-3 fw-bold m-2"
-			th:text="#{photoSharingApp}"></span>
+	
+	<nav layout:fragment="header-nav" class="navbar navbar-expand-lg 
+	sticky-top bg-body-secondary p-2" data-bs-theme="dark"
+	>
+		<span class="navbar-brand fs-3 fw-bold m-2" th:text="#{photoSharingApp}"></span>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -18,7 +18,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<div class="collapse navbar-collapse px-2" id="navbarSupportedContent">
 			<ul class="navbar-nav fs-5 me-auto">
 				<li class="nav-item"><a th:href="@{'/select-group'}"
 					th:text="#{cancelGroupBtn}" class="nav-link"

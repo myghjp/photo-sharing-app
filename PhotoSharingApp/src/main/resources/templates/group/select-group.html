@@ -16,8 +16,8 @@
 
 	<div class="container">
 
-		<div class="row mb-5">
-			<div th:if="${#lists.isEmpty(groupList)}"class="text-center fs-2 m-3">グループを作成してください。</div>
+		<div class="row mb-3">
+			<div th:if="${#lists.isEmpty(groupList)}" th:text="#{selectGroupMessage}" class="text-center fs-2 m-3"></div>
 		</div>
 
 		<div class="row row-cols-1 row-cols-md-5">
@@ -26,12 +26,11 @@
 					<form method="post" th:action="@{/select-group}"
 						class="text-center">
 						<div class="card-header">
-							<div class="card-title fs-5 fw-bold m-0"
-								th:text="${list.groupName}"></div>
+							<div class="card-title fs-5 fw-bold m-0" th:text="${list.groupName}"></div>
 						</div>
 
 						<div class="card-body">
-							<p class="card-text">作成日</p>
+							<p class="card-text" th:text="#{createDate}"></p>
 							<p class="card-text" th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></p>
 
 							<div class="d-inline-flex">

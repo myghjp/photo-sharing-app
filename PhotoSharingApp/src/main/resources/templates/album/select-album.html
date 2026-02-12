@@ -18,20 +18,18 @@
 			<div class="row justify-content-center">
 				<div class="col mx-auto">
 
-					<div
-						class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center text-center border-bottom py-3 mb-3">
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center text-center border-bottom py-3 mb-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb fs-2 m-0">
-								<li class="breadcrumb-item active" aria-current="page">アルバム</li>
+								<li class="breadcrumb-item active" aria-current="page" th:text="#{selectAlbumPage}"></li>
 							</ol>
 						</nav>
 
 						<div class="btn-toolbar mb-2 mb-md-0">
-							<div class="btn-group me-2">
+							<div class="btn-group">
 								<th:block th:if="${isAdmin}">
 									<form method="post" th:action="@{/create-album}"
 										th:object="${createAlbumForm}" class="text-center">
-										<div th:text="#{createAlbumMessage}" class="fs-6"></div>
 										<div class="row">
 											<div class="col-sm-9">
 												<input type="text" th:field="*{albumName}"
@@ -64,7 +62,7 @@
 									</div>
 
 									<div class="card-body">
-										<p class="card-text">作成日</p>
+										<p class="card-text" th:text="#{createDate}"></p>
 										<p class="card-text" th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></p>
 
 										<div class="d-inline-flex">

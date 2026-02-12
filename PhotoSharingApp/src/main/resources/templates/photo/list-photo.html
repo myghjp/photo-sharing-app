@@ -24,7 +24,7 @@
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb fs-2 m-0">
 
-								<li class="breadcrumb-item"><a th:href="@{'/select-album'}">アルバム</a></li>
+								<li class="breadcrumb-item"><a th:href="@{'/select-album'}" th:text="#{selectAlbumPage}"></a></li>
 								<li class="breadcrumb-item active" aria-current="page"
 									th:text="${album.albumName}"></li>
 
@@ -141,7 +141,8 @@
 
 								</div>
 								<small class="text-body-secondary">
-									<div th:text="'投稿者:' + ${list.Account?.username?: 'unknown'}"></div>
+									<div th:text="#{poster}"></div>
+									<div th:text="${list.Account?.username?: 'unknown'}"></div>
 								</small>
 							</div>
 						</div>
