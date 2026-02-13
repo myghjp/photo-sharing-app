@@ -6,14 +6,12 @@
 どの写真を共有できます(仮)
 
 ## 使用技術
-↓どこまで
 
-+ プログラミング言語 Java v21
-+ フレームワーク springboot v3.3.1 / MyBatis v3.0.3 /bootstrap v5.3.3
-+ データベース MySQL
-+ html/css
++ フロントエンド html / css / bootstrap v5.3.3  
++ バックエンド Java v21 / Springboot v3.3.1 / MyBatis v3.0.3  
++ データベース MySQL v8.0.42  
++ ビルドツール Maven
   
-
 ## 機能一覧? 機能　使用　
 ↓多くなる
 
