@@ -28,6 +28,9 @@ public class DeleteAccountController {
 			,boolean error
 			) {
 		
+		boolean isActive = true;
+	    model.addAttribute("isActiveDropdown", isActive);
+		
 		model.addAttribute("isError",error);
 
 		return "account/delete-account";

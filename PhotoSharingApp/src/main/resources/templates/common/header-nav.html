@@ -21,7 +21,7 @@
 		<div class="collapse navbar-collapse px-2" id="navbarSupportedContent">
 			<ul class="navbar-nav fs-5 me-auto">
 				<li class="nav-item"><a th:href="@{'/select-group'}"
-					th:text="#{cancelGroupBtn}" class="nav-link"
+					th:text="#{selectGroupBtn}" class="nav-link"
 					th:classappend="${isActiveSelectGroup} ? 'active' : ''"
 					aria-current="page"></a></li>
 
@@ -33,9 +33,10 @@
 
 			<ul class="navbar-nav fs-5">
 				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" role="button"
-					data-bs-toggle="dropdown" aria-expanded="false"> <span
-						sec:authentication="principal.username"></span>
+					class="nav-link dropdown-toggle" th:classappend="${isActiveDropdown} ? 'active' : ''"
+					role="button"
+					data-bs-toggle="dropdown" aria-expanded="false">
+					<span sec:authentication="principal.username"></span>
 				</a>
 
 					<ul class="dropdown-menu dropdown-menu-end">

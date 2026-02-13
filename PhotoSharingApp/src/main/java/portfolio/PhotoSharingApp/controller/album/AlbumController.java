@@ -110,9 +110,6 @@ public class AlbumController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-		/*Album album = new Album();
-		album.setId(albumId);*/
-		
 		/*自身が作成したアルバムであるかを確認*/
 		if (albumService.isAlbum(albumId,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");

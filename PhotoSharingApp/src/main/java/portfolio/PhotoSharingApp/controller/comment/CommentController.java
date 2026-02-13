@@ -90,9 +90,6 @@ public class CommentController {
 			,RedirectAttributes redirectAttributes
 			) {
 		
-				/*Comment comment = new Comment();
-				comment.setId(commentId);*/
-		
 		/*自身が投稿したコメントかを確認*/
 		if (commentService.isComment(commentId,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,15 +33,20 @@ public class UpdateAccountController {
 
 	@GetMapping("/update-account")
 	public String getUpdateAccount(
-			@ModelAttribute("updateAccountForm")UpdateAccountForm form
+			Model model
+			,@ModelAttribute("updateAccountForm")UpdateAccountForm form
 			) {
+		
+		boolean isActive = true;
+	    model.addAttribute("isActiveDropdown", isActive);
 		
 		return "account/update-account";
 	}
 	
 	@PostMapping("/update-account")
 	public String postUpdateAccount(
-			HttpSession session
+			Model model
+			,HttpSession session
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("updateAccountForm") @Validated UpdateAccountForm form
 			,BindingResult bindingResult
@@ -48,7 +54,7 @@ public class UpdateAccountController {
 			) throws Exception {
 		
 		if (bindingResult.hasErrors()) {
-			return getUpdateAccount(form);
+			return getUpdateAccount(model,form);
 		}
 		
 		Account account = modelMapper.map(form, Account.class);

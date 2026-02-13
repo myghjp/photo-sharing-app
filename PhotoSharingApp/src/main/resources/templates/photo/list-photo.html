@@ -18,16 +18,12 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="text-center">
-					<div
-						class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
 
 						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb fs-2 m-0">
-
+							<ol class="breadcrumb fs-2 m-2">
 								<li class="breadcrumb-item"><a th:href="@{'/select-album'}" th:text="#{selectAlbumPage}"></a></li>
-								<li class="breadcrumb-item active" aria-current="page"
-									th:text="${album.albumName}"></li>
-
+								<li class="breadcrumb-item active" aria-current="page" th:text="${album.albumName}"></li>
 							</ol>
 						</nav>
 
@@ -41,7 +37,7 @@
 										accept=".jpg, .jpeg, .png" class="form-control me-2">
 
 									<input type="submit" th:value="#{addBtn}"
-										class="btn btn-outline-secondary">
+										class="btn btn-outline-primary">
 									<th:block th:if="${isError}">
 										<div th:text="#{errorMessage}" class="text-danger"></div>
 									</th:block>
