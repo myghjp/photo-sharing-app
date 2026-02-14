@@ -33,12 +33,37 @@ Webアプリを使用してコミュニケーションをとるために作成�
     
 ## 注意事項
 
-+ このWebアプリはブラウザでの使用かつMySQLがインストール済であることを想定しています
++ このWebアプリはブラウザでの使用かつMySQLがインストール済であることを想定しています  
 
-  + Webアプリ起動時
+  + Webアプリ起動時  
   
     + MySQLにデータベースが作成されます DB名: photo_app  
-    + 写真保存用のフォルダが作成されます C:/Users/user/PhotoSharingApp/photo/
+    + 写真保存用のフォルダが作成されます C:/Users/user/PhotoSharingApp/photo/[←任意のディレクトリに変更]  
+
+
+ーーーーーーーーーパターンの確認javac/dirーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー  
+    1.本リポジトリを任意のディレクトリにクローンする  
+    git clone https://github.com/myghjp/photo-sharing-app.git  
+    フォルダがフォルダの中にファイルやフォルダがあるとcloneできない。←確認  
+
+    2.写真をした画像の保存先として任意のディレクトリを用意し、  
+    そのパスを application.properties (内) の app.media.directory に設定する  
+    [application.properties]  
+    # 投稿画像保存先ディレクトリ(末尾に'/'を入れる
+    app.media.directory=C:/`任意のディレクトリ`/←書き換え可
+
+    3.クローンしたリポジトリ内のプロジェクトを Eclipse 等の IDE で開き、Spring Boot アプリとして実行する。
+    またはプロジェクトのルートディレクトリでコマンドラインから下記のように maven で実行する。
+
+    cd C:/Users/user/photo-sharing-app/PhotoSharingApp  
+
+    ./mvnw spring-boot:run
+    mvnw.cmd spring-boot:run[Windowsでの起動]  
+
+    Windows11での確認を記入  
+
+    4.ブラウザから http://localhost:8080/ を開く
+    
 
 
 
