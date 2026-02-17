@@ -43,8 +43,12 @@ Webアプリを使用してコミュニケーションをとるために作成�
     application.properties の app.media.directory に設定します。
     
     [application.properties]
-    
-    任意のディレクトリに変更し、写真保存用のフォルダを作成してください。   
+
+    デフォルトではWebアプリ起動時に投稿画像保存先が下記のディレクトリに生成されます。
+    ```
+    app.media.directory=C:/Users/user/PhotoSharingApp/photo/
+    ```
+    環境に合わせて任意のディレクトリに変更し、写真保存用のフォルダを作成してください。   
     #投稿画像保存先ディレクトリ(末尾に'/'を入れる)
     ```
     app.media.directory=C:/`任意のディレクトリ`/
