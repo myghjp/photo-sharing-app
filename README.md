@@ -28,45 +28,43 @@ Webアプリを使用してコミュニケーションをとるために作成�
 
     + グループの削除
     + メールアドレスを使用したメンバーの追加 メンバーの削除
-    + アルバム管理  
+    + アルバム管理
     + アルバム内にメンバーが追加した写真を削除
     
 ## 注意事項
 
-+ このWebアプリはブラウザでの使用かつMySQLがインストール済であることを想定しています  
-
-  + Webアプリ起動時  
++ **このWebアプリはブラウザでの使用かつMySQLがインストール済であることを想定しています**
+ 
+  1.本リポジトリを任意のディレクトリにクローンする
+    ```
+    git clone https://github.com/myghjp/photo-sharing-app.git
+    ```  
   
-    + MySQLにデータベースが作成されます DB名: photo_app  
-    + 写真保存用のフォルダが作成されます C:/Users/user/PhotoSharingApp/photo/[←任意のディレクトリに変更]  
-
-
-ーーーーーーーーーパターンの確認javac/dirーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー  
-    1.本リポジトリを任意のディレクトリにクローンする  
-    git clone https://github.com/myghjp/photo-sharing-app.git  
-    フォルダがフォルダの中にファイルやフォルダがあるとcloneできない。←確認  
-
-    2.写真をした画像の保存先として任意のディレクトリを用意し、  
-    そのパスを application.properties (内) の app.media.directory に設定する  
-    [application.properties]  
-    # 投稿画像保存先ディレクトリ(末尾に'/'を入れる
-    app.media.directory=C:/`任意のディレクトリ`/←書き換え可
-
-    3.クローンしたリポジトリ内のプロジェクトを Eclipse 等の IDE で開き、Spring Boot アプリとして実行する。
-    またはプロジェクトのルートディレクトリでコマンドラインから下記のように maven で実行する。
-
-    cd C:/Users/user/photo-sharing-app/PhotoSharingApp  
-
-    ./mvnw spring-boot:run
-    mvnw.cmd spring-boot:run[Windowsでの起動]  
-
-    Windows11での確認を記入  
-
-    4.ブラウザから http://localhost:8080/ を開く
+  2.写真をした画像の保存先として任意のディレクトリを用意し、そのパスを application.properties の app.media.directory に設定する
     
+    [application.properties]
+    
+    任意のディレクトリに変更し、写真保存用のフォルダを作成してください  
+    #投稿画像保存先ディレクトリ(末尾に'/'を入れる)
+    ```
+    app.media.directory=C:/`任意のディレクトリ`/
+    ```  
+    
+  3.クローンしたリポジトリ内のプロジェクトを Eclipse 等の IDE で開き、Spring Boot アプリとして実行する。  
+    またはプロジェクトのルートディレクトリでコマンドラインから下記のように maven で実行する。  
+  
+    ```
+    cd C:/Users/user/photo-sharing-app/PhotoSharingApp  
+    ```
+    ```
+    ./mvnw spring-boot:run
+    ```
+ 
+  4.上記のSpring Bootアプリを実行するとMySQLにデータベースが作成されます
+    データベース名: photo_app  
 
+  5.ブラウザから http://localhost:8080/ を開く
 
-
-
+    Windows11での確認を記入
 
 
