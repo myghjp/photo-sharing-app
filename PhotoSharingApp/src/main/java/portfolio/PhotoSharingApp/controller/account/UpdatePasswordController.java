@@ -15,12 +15,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Account;
-import portfolio.PhotoSharingApp.form.account.UpdateAccountForm;
+import portfolio.PhotoSharingApp.form.account.UpdatePasswordForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.account.AccountService;
 
 @Controller
-public class UpdateAccountController {
+public class UpdatePasswordController {
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -31,30 +31,30 @@ public class UpdateAccountController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@GetMapping("/update-account")
-	public String getUpdateAccount(
+	@GetMapping("/update-password")
+	public String getUpdatePassword(
 			Model model
-			,@ModelAttribute("updateAccountForm")UpdateAccountForm form
+			,@ModelAttribute("updatePasswordForm")UpdatePasswordForm form
 			) {
 		
 		boolean isActive = true;
 	    model.addAttribute("isActiveDropdown", isActive);
 		
-		return "account/update-account";
+		return "account/update-password";
 	}
 	
-	@PostMapping("/update-account")
-	public String postUpdateAccount(
+	@PostMapping("/update-password")
+	public String postUpdatePassword(
 			Model model
 			,HttpSession session
 			,@AuthenticationPrincipal LoginUserDetails user
-			,@ModelAttribute("updateAccountForm") @Validated UpdateAccountForm form
+			,@ModelAttribute("updatePasswordForm") @Validated UpdatePasswordForm form
 			,BindingResult bindingResult
 			,RedirectAttributes redirectAttributes
 			) throws Exception {
 		
 		if (bindingResult.hasErrors()) {
-			return getUpdateAccount(model,form);
+			return getUpdatePassword(model,form);
 		}
 		
 		Account account = modelMapper.map(form, Account.class);
