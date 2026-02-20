@@ -51,9 +51,9 @@
 
   3.Spring Bootアプリを実行するとMySQLにデータベースが作成されます。
   
-    + データベース名: photo_app  
-    + 同じデータベース名が既に登録されている場合や状況に合わせて  
-      application.properties の spring.datasource 以降を書き換えてください。  
+    + データベース名: photo_app
+    + データベース内にphoto_appが既に存在していると削除されます。
+    + 状況に合わせてapplication.properties の spring.datasource 以降を書き換えてください。←修正予定  
 
   4.クローンしたリポジトリ内のプロジェクトを Eclipse 等の IDE で開き、Spring Boot アプリとして実行  
     またはプロジェクトのルートディレクトリでコマンドラインから下記のように maven で実行します。
