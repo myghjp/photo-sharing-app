@@ -62,6 +62,7 @@
 						<thead>
 							<tr>
 								<th scope="col" th:text="#{userTable}"></th>
+								<th scope="col">メールアドレス(unknown)</th>
 								<th:block th:if="${isAdmin}">
 									<th scope="col" th:text="#{operationTable}"></th>
 								</th:block>
@@ -72,7 +73,10 @@
 							<tr th:each="list:${memberList}">
 
 								<td class="align-middle py-2"
-									th:text="${list.account?.username?: 'unknown'}"></td>
+									th:text="${list.account?.username?: 'unknown'}">
+								</td>
+								<td></td>
+								
 								<th:block th:if="${isAdmin}">
 									<td class="align-middle button">
 										<!-- Button trigger modal -->
