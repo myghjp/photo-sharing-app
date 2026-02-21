@@ -26,8 +26,11 @@
 			</div>
 			-->
 			
-			<div th:text="'メンバー数 計' + ${countMembers} + '名'"></div>
-			<div th:text="'アルバム数 計' + ${countAlbums} + '冊'"></div>
+			<div class="d-flex justify-content-between">
+				<div class="col-4">管理者の名前(未定)</div>
+				<div class="col-4" th:text="'メンバー数 計' + ${countMembers} + '名'"></div>
+				<div class="col-4" th:text="'アルバム数 計' + ${countAlbums} + '冊'"></div>
+			</div>
 			
 			<div class="row">
 				<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
@@ -41,11 +44,26 @@
 						</thead>
 						
 						<tbody class="d-block overflow-y-scroll" style="height: 250px;">
-							<tr th:each="list:${memberList}" class="d-block">
+							
+							<!--<tr th:each="list:${memberList}" class="d-block">
 								<td class="d-block align-middle py-2"
 									th:text="${list.account?.username?: 'unknown'}"></td>
 								</td>
+							</tr>-->
+							
+							<tr class="d-block">
+								
+								<td class="d-block align-middle py-2">
+									<div th:text="${adminName}"></div>
+								</td>
+								
+								<div th:each="list:${memberList}" class="d-block">
+									<td class="d-block align-middle py-2">
+										<div th:text="${list.account?.username?: 'unknown'}"></div>
+									</td>
+								</div>
 							</tr>
+							
 						</tbody>
 					</table>
 				</div>
