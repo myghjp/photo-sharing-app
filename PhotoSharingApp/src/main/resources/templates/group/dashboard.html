@@ -18,63 +18,62 @@
 			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom py-3 mb-3">
 				<div class="fs-2" th:text="#{dashboardPage}"></div>
 			</div>
+			
+			<!--
+			<div class="col-sm-4 text-center">
+				<span th:text="#{admin}" class="text-info"></span>
+				<span th:text="${adminName}"></span>
+			</div>
+			-->
+			
+			<div th:text="'メンバー数 計' + ${countMembers} + '名'"></div>
+			<div th:text="'アルバム数 計' + ${countAlbums} + '冊'"></div>
+			
 			<div class="row">
 				<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
-					<div class="card h-100">
-						<div class="card-header">
-							<div class="d-flex justify-content-between">
-								<div class="col-sm-4">
-									<div class="fs-6 fw-bold" th:text="#{listMemberPage}"></div>
-								</div>
-								<div class="col-sm-4 text-center">
-									<span th:text="#{admin}" class="text-primary"></span>
-									<span th:text="${adminName}"></span>
-								</div>	
-								<div class="col-sm-4 text-end">
-									<div th:text="'メンバー数 計' + ${countMembers} + '名'"></div>
-								</div>
-							</div>
-						</div>
-						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 250px;">
-							
-							<div th:each="list,status:${memberList}"
-								class="list-group text-center">
-								<div class="list-group-item"
-									th:classappend="${status.index % 2 == 0} ? 'list-group-item bg-body-secondary' : ''">
-									<div th:text="${list.Account?.username?: 'unknown'}"></div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<table class="table table-striped border my-2">
+						<thead>
+							<tr class="text-center">
+								<th scope="col">
+									<div th:text="#{userTable}"></div>
+								</th>
+							</tr>
+						</thead>
+						
+						<tbody class="d-block overflow-y-scroll" style="height: 250px;">
+							<tr th:each="list:${memberList}" class="d-block">
+								<td class="d-block align-middle py-2"
+									th:text="${list.account?.username?: 'unknown'}"></td>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 				
 				<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
-					<div class="card h-100">
-						<div class="card-header">
-							<div class="d-flex justify-content-between">
-								<div class="col-lg-6">
-									<div class="fs-6 fw-bold" th:text="#{selectAlbumPage}"></div>
-								</div>
-								<div class="col-lg-6 text-end">
-									<div th:text="'アルバム数 計' + ${countAlbums} + '枚'"></div>
-								</div>
-							</div>
-						</div>
-						<div class="card-body px-0 py-0 pb-1 overflow-y-scroll" style="height: 250px;">
-							<div th:each="list,status:${albumList}"
-								class="list-group text-center">
-								<form method="post" th:action="@{/select-album}">
-									<button type="submit" th:text="${list.albumName}" name="id"
-										th:value="${list.id}"
-										class="rounded list-group-item list-group-item-action"
-										th:classappend="${status.index % 2 == 0} ? 'list-group-item bg-body-secondary' : ''">
-									</button>
-								</form>
-							</div>
-						</div>
-
-					</div>
+					<table class="table table-striped border my-2">
+						<thead>
+							<tr class="text-center">
+								<th scope="col">
+									<div th:text="#{selectAlbumPage}"></div>
+								</th>
+							</tr>
+						</thead>
+						
+						<tbody class="d-block overflow-y-scroll" style="height: 250px;">
+							<tr th:each="list:${albumList}" class="d-block">
+								<td class="d-block align-middle py-2">
+									<form method="post" th:action="@{/select-album}">
+										<button type="submit" th:text="${list.albumName}" name="id" th:value="${list.id}"
+											class="rounded list-group-item list-group-item-action text-primary">
+										</button>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
+				
 			</div>
 		</div>
 	</div>

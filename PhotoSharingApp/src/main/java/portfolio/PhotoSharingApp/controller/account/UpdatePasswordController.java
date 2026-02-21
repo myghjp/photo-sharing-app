@@ -53,6 +53,8 @@ public class UpdatePasswordController {
 			,RedirectAttributes redirectAttributes
 			) throws Exception {
 		
+		/*controllerかform*/
+		
 		if (bindingResult.hasErrors()) {
 			return getUpdatePassword(model,form);
 		}
