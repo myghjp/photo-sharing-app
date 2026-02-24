@@ -48,11 +48,11 @@ public class MemberController {
 		/*自身がグループの管理者であるかを確認*/
 		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin", true);
-		} else {
-			/*このグループの管理者名を取得*/
-			String adminName = groupService.findByUsername(group.getId());
-			model.addAttribute("adminName", adminName);
-		}
+		} /*←修正*/
+		
+		/*このグループの管理者名を取得*/
+		String adminName = groupService.findByUsername(group.getId());
+		model.addAttribute("adminName", adminName);
 		
 		/*このグループ利用者のテーブル情報とアカウント名とメールアドレスを取得*/
 		List<Member> memberList = memberService.findAllById(group.getId());
