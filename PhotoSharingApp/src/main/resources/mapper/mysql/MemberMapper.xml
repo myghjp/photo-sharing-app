@@ -47,6 +47,7 @@
 		select groups_members.id
 			,groups.group_name as groups_group_name
 			,accounts.user as accounts_user
+			,accounts.email_address as accounts_email_address
 		from groups_members
 			left join `groups`
 				on groups_members.group_id = groups.id

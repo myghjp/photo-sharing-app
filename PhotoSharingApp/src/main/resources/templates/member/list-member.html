@@ -25,8 +25,11 @@
 
 						<div class="btn-toolbar mb-2 mb-md-0">
 							<div class="btn-group">
+							
+							<!-- ーーーー↓修正予定ーーーー -->
+							
+							<div class="fs-4" th:text="'メンバー数 計' + ${countMembers} + '名'"></div>
 								
-								<!-- ーーーー↓修正予定ーーーー -->
 								<th:block th:unless="${isAdmin}">
 									<div class="row">
 										<div class="d-flex justify-content-center fs-5">
@@ -35,9 +38,10 @@
 										</div>
 									</div>
 								</th:block>
-								<!-- ーーーーーーーーーーーーーー -->
 								
 							</div>
+							
+							<!-- ーーーーーーーーーーーーーー -->
 						</div>
 					</div>
 					
@@ -70,7 +74,7 @@
 						<thead>
 							<tr>
 								<th scope="col" th:text="#{userTable}"></th>
-								<th scope="col">メールアドレス(unknown)</th>
+								<th scope="col" th:text="#{addressInfo}"></th>
 								<th:block th:if="${isAdmin}">
 									<th scope="col" th:text="#{operationTable}"></th>
 								</th:block>
@@ -84,7 +88,9 @@
 									th:text="${list.account?.username?: 'unknown'}">
 								</td>
 								
-								<td></td>
+								<td class="align-middle"
+									th:text="${list.account?.emailAddress?: null}">
+								</td>
 								
 								<th:block th:if="${isAdmin}">
 									<td class="align-middle button">
@@ -96,7 +102,8 @@
 									</td>
 								</th:block>
 								
-
+								
+								
 								<!-- Modal -->
 								<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 									<div class="modal-dialog">

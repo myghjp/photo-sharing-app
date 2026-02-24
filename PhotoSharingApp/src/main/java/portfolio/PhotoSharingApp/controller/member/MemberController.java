@@ -40,17 +40,11 @@ public class MemberController {
 	@GetMapping("/list-member")
 	public String getListMember(
 			Model model
-			,AddMemberForm form
+			,@ModelAttribute("addMemberForm")AddMemberForm form
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("group")Group group
 		) {
 		
-		model.addAttribute("addMemberForm", form);
-		
-		/*このグループ利用者のテーブル情報とアカウント名を取得*/
-		List<Member> memberList = memberService.findAllById(group.getId());
-		model.addAttribute("memberList", memberList);
-
 		/*自身がグループの管理者であるかを確認*/
 		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin", true);
@@ -59,6 +53,14 @@ public class MemberController {
 			String adminName = groupService.findByUsername(group.getId());
 			model.addAttribute("adminName", adminName);
 		}
+		
+		/*このグループ利用者のテーブル情報とアカウント名とメールアドレスを取得*/
+		List<Member> memberList = memberService.findAllById(group.getId());
+		model.addAttribute("memberList", memberList);
+		
+		/*このグループのメンバーの数を取得*/
+		int countMembers = memberService.countMembersById(group.getId());
+		model.addAttribute("countMembers", countMembers);
 		
 		boolean isActive = true;
 	    model.addAttribute("isActiveMember", isActive);
