@@ -14,37 +14,34 @@
 <body>
 
 	<div layout:fragment="content">
-
+		
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="text-center">
-					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
-
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom py-3 mb-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb fs-2 m-2">
 								<li class="breadcrumb-item"><a th:href="@{'/select-album'}" th:text="#{selectAlbumPage}"></a></li>
 								<li class="breadcrumb-item active" aria-current="page" th:text="${album.albumName}"></li>
 							</ol>
 						</nav>
-
-						<div class="btn-toolbar mb-2 mb-md-0">
-							<div class="btn-group me-2">
-
-								<form method="post" th:action="@{/list-photo}"
-									enctype="multipart/form-data" class="d-inline-flex">
-
-									<input type="file" name="multipartFile"
-										accept=".jpg, .jpeg, .png" class="form-control me-2">
-
-									<input type="submit" th:value="#{addBtn}"
-										class="btn btn-outline-primary">
+					</div>
+					
+					<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3 mx-0">
+						<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data" class="text-center">
+						
+							<div class="d-flex justify-content-center">
+								<div class="col-sm-5">
+									<input type="file" name="multipartFile" accept=".jpg, .jpeg, .png" class="form-control">
+								</div>
+								<div class="col-sm-2">
+									<input type="submit" th:value="#{addBtn}" class="btn btn-outline-primary">
 									<th:block th:if="${isError}">
 										<div th:text="#{errorMessage}" class="text-danger"></div>
 									</th:block>
-								</form>
-
+								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>

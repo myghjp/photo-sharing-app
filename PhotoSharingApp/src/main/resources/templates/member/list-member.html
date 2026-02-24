@@ -30,8 +30,8 @@
 								<th:block th:unless="${isAdmin}">
 									<div class="row">
 										<div class="d-flex justify-content-center fs-5">
-											<span th:text="#{admin}" class="text-primary"></span> <span
-												th:text="${adminName}"></span>
+											<span th:text="#{admin}" class="text-primary"></span>
+											<span th:text="${adminName}"></span>
 										</div>
 									</div>
 								</th:block>
@@ -42,7 +42,7 @@
 					</div>
 					
 					<th:block th:if="${isAdmin}">
-						<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3">
+						<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3 mx-0">
 							<form method="post" th:action="@{/list-member}" th:object="${addMemberForm}" class="text-center">
 							
 								<div th:text="#{addMember}" class="fw-bold fs-5"></div>
