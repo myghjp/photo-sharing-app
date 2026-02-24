@@ -25,39 +25,36 @@
 								<li class="breadcrumb-item active" aria-current="page" th:text="#{board}"></li>
 							</ol>
 						</nav>
-
-						<div class="btn-toolbar mb-md-0">
-							<div class="btn-group">
-
-								<form method="post" th:action="@{/list-comment}"
-									th:object="${listCommentForm}">
-									<div class="row">
-										<label for="comment"></label>
-										<div class="col-sm-9">
-											<input type="text" th:field="*{comment}"
-												th:placeholder="#{comment}" th:errorclass="is-invalid"
-												class="form-control">
-											<div class="invalid-feedback"
-												th:if="${#fields.hasErrors('comment')}"
-												th:errors="*{comment}"></div>
-										</div>
-										<div class="col-sm-3">
-											<input type="submit" th:value="#{uploadBtn}"
-												class="btn btn-outline-primary">
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
 					</div>
+					
+					<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3 mx-0">
+					
+						<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
+							<div class="row mb-3">
+								<!--th:value="${comment}"-->
+								<textarea th:field="*{comment}" th:placeholder="#{comment}" 
+									th:errorclass="is-invalid" class="form-control">
+								</textarea>
+							
+								<div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" 
+									th:errors="*{comment}">
+								</div>
+								
+							</div>
+							<div class="row">
+								<input type="submit" th:value="#{uploadBtn}"
+									class="btn btn-outline-primary">
+							</div>
+						</form>
+					</div>
+				
 				</div>
 				<div class="col mx-auto">
 					<div th:each="list:${commentList}" class="card mb-3">
 						<div class="card-body">
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="d-inline-flex my-2">
-									<div th:text="${list.id} + '.'" class="me-3"></div>
-									<div th:text="'▼' + ${list.Account?.username?: 'unknown'}"
+									<div th:text="'▼ ' + ${list.Account?.username?: 'unknown'}"
 										class="me-3"></div>
 									<div
 										th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"
