@@ -19,26 +19,40 @@
 				<div class="fs-2" th:text="#{dashboardPage}"></div>
 			</div>
 			
-			<div class="d-flex justify-content-between">
-				
-				
-				<!--ーーーー↓修正予定(controllerも)ーーーー-->
-				
-				<div class="col-4">管理者の名前(未定)</div>
-				<!--
-				ーーーーーーーーーーーーーーーーーーーーーー
-				<div class="col-sm-4 text-center">
-					<span th:text="#{admin}" class="text-info"></span>
-					<span th:text="${adminName}"></span>
-				</div>
-				ーーーーーーーーーーーーーーーーーーーーーー
-				-->
-				
-				<!--ーーーーーーーーーーーーーーーーーーーーーーー-->
-				
-				<div class="col-4" th:text="'メンバー数 計' + ${countMembers} + '名'"></div>
-				<div class="col-4" th:text="'アルバム数 計' + ${countAlbums} + '冊'"></div>
-			</div>
+			<div class="row mb-2">
+	        	<div class="col-lg-4 col-sm-6">
+	            	<div class="card">
+                		<div class="card-header">
+					    	<div class="text-center fw-bold" th:text="#{admin}"></div>
+						</div>
+						<div class="card-body" style="height: 100px;">
+					    	<div class="card-text text-start fs-4" th:text="${adminInfo.account.username}"></div>
+						</div>
+	                </div>
+	            </div>
+	        
+		        <div class="col-lg-4 col-sm-6">
+		            <div class="card">
+	                	<div class="card-header">
+							<div class="text-center fw-bold" th:text="#{memberCount}"></div>
+						</div>
+						<div class="card-body" style="height: 100px;">
+							<div class="card-text text-end fw-bold fs-1" th:text="${countMembers}"></div>
+						</div>
+		            </div>
+		        </div>
+		         
+		        <div class="col-lg-4 col-sm-6">
+		            <div class="card">
+						<div class="card-header">
+						    <div class="text-center fw-bold" th:text="#{albumCount}"></div>
+						</div>
+						<div class="card-body" style="height: 100px;">
+						    <div class="card-text text-end fw-bold fs-1" th:text="${countAlbums}"></div>
+						</div>
+					</div>
+		        </div>
+		    </div>
 			
 			<div class="row">
 				<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
