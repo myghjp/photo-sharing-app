@@ -83,11 +83,21 @@
 											<!-- /Button trigger modal -->
 										</th:block>
 									</th:block>
+									
+									<!--ーーーーーーーーーーーーーーーーーーーーーーーーー-->
+									<!--大画面-->
+									<!--<div class="modal-dialog modal-xl">...</div>-->
+									
+									<!--はみ出し-->
+									<!--<div class="modal-dialog modal-dialog-centered">-->
+									
+									<!--ーーーーーーーーーーーーーーーーーーーーーーーーー-->
+									
 
 									<!-- Modal photo-->
 									<div class="modal fade" th:id="${list.id} + ${list.photo}"
 										tabindex="-1" aria-hidden="true">
-										<div class="modal-dialog modal-dialog-centered">
+										<div class="modal-dialog modal-lg">
 											<div class="modal-content">
 												<img th:src="@{'/media/' + ${list.photo}}"
 													data-bs-dismiss="modal" aria-label="Close"
@@ -101,9 +111,7 @@
 									<div class="modal fade" th:id="${list.id}" tabindex="-1"
 										aria-labelledby="exampleModalLabel" aria-hidden="true">
 										<div class="modal-dialog">
-											<div class="modal-content rounded-4 shadow"
-												style="width: fit-content">
-
+											<div class="modal-content rounded-4 shadow">
 												<div class="modal-header border-bottom-0">
 													<div th:text="#{deletePhotoAlert}"></div>
 													<button type="button" class="btn-close"
@@ -112,7 +120,7 @@
 
 												<div class="modal-body py-0">
 													<h1 class="modal-title fs-5" id="exampleModalLabel">
-														<img th:src="@{'/media/' + ${list.photo}}">
+														<img th:src="@{'/media/' + ${list.photo}}" style="height: 300px;">
 													</h1>
 												</div>
 
