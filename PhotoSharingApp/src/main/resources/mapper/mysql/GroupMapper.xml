@@ -9,7 +9,15 @@
 		<result column="group_name" property="groupName" />
 		<result column="account_id" property="accountId" />
 		<result column="create_date_time" property="createDateTime" />
+		<association property="account" resultMap="AccountsTable" columnPrefix="accounts_"/>
 	</resultMap>
+	
+	<resultMap type="portfolio.PhotoSharingApp.entity.Account" id="AccountsTable">
+		<id column="id" property="id" />
+		<result column="user" property="username" />
+		<result column="email_address" property="emailAddress" />
+	</resultMap>
+	
 	
 	<insert id="insert">
 		insert into `groups`(
@@ -46,12 +54,13 @@
 		where id = #{groupId}
 	</select>
 	
-	<select id="selectByAccountsUsername" resultType="String">
-		select accounts.user
+	<select id="selectByAccounts" resultMap="GroupsTable">
+		select accounts.user as accounts_user
+			,accounts.email_address as accounts_email_address
 		from `groups`
 			left join accounts
 			on groups.account_id = accounts.id
-		where groups.id = #{id}
+		where groups.id = #{groupId}
 	</select>
 	
 	<select id="selectByGroupName" resultType="String">

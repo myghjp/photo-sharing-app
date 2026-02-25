@@ -16,7 +16,7 @@ public interface GroupService {
 	
 	public Group findById(int groupId);
 	
-	public String findByUsername(int id);
+	public Group findByAdminInfo(int groupId);
 	
 	public boolean existsByGroupName(String groupName);
 	

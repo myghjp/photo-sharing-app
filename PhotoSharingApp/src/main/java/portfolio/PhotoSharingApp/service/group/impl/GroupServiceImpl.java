@@ -38,8 +38,8 @@ public class GroupServiceImpl implements GroupService{
 	}
 	
 	@Override
-	public String findByUsername(int id) {
-		return groupMapper.selectByAccountsUsername(id);
+	public Group findByAdminInfo(int groupId) {
+		return groupMapper.selectByAccounts(groupId);
 	}
 	
 	@Override

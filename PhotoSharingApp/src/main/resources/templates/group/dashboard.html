@@ -51,7 +51,7 @@
 						
 						<tbody class="d-block overflow-y-scroll" style="height: 250px;">
 							<tr class="d-block">
-								<td class="d-block align-middle w-100 py-2" th:text="${adminName}"></td>
+								<td class="d-block align-middle w-100 py-2" th:text="${adminInfo.account.username}"></td>
 							</tr>
 							<tr th:each="list,status:${memberList}" class="d-block">
 								<td th:text="${list.account?.username?: 'unknown'}" class="d-block py-2"></td>

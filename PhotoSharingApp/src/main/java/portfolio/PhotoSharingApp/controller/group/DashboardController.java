@@ -47,10 +47,11 @@ public class DashboardController {
 		
 		boolean isActive = true;
 	    model.addAttribute("isActiveHome", isActive);
-	    
-	    /*このグループの管理者名を取得*/
-		String adminName = groupService.findByUsername(group.getId());
-		model.addAttribute("adminName", adminName);
+		
+		/*このグループの管理者のアカウント情報を取得*/
+		Group adminInfo = groupService.findByAdminInfo(group.getId());
+		System.out.println(adminInfo);
+		model.addAttribute("adminInfo", adminInfo);
 		
 		/*このグループ利用者のテーブル情報とアカウント名を取得*/
 		List<Member> memberList = memberService.findAllById(group.getId());

@@ -20,7 +20,7 @@ public interface GroupMapper {
 	
 	public Group selectGroup(Integer groupId);
 	
-	public String selectByAccountsUsername(Integer id);
+	public Group selectByAccounts(Integer groupId);
 	
 	public String selectByGroupName(String groupName);
 	
