@@ -64,8 +64,9 @@
 									</div>
 
 									<div class="card-body">
-										<p class="card-text" th:text="#{createDate}"></p>
-										<p class="card-text" th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></p>
+										<p class="card-text" th:text="#{createDate} + ': ' + ${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></p>
+										<!--<p class="card-text" th:text="${list.photo}"></p>-->
+										<p class="card-text" th:text="それ以外は写真無し"></p>
 
 										<div class="d-inline-flex">
 											<button type="submit" th:value="${list.id}" name="id"

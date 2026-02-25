@@ -50,7 +50,6 @@ public class DashboardController {
 		
 		/*このグループの管理者のアカウント情報を取得*/
 		Group adminInfo = groupService.findByAdminInfo(group.getId());
-		System.out.println(adminInfo);
 		model.addAttribute("adminInfo", adminInfo);
 		
 		/*このグループ利用者のテーブル情報とアカウント名を取得*/
@@ -59,6 +58,7 @@ public class DashboardController {
 		
 		/*このグループのアルバムIDとアルバム名を取得*/
 		List<Album> albumList = albumService.findAllById(group.getId());
+		System.out.println(albumList);
 		model.addAttribute("albumList", albumList);
 		
 		/*このグループのメンバーの数を取得*/

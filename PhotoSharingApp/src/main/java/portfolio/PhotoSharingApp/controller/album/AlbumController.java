@@ -42,20 +42,28 @@ public class AlbumController {
 	@GetMapping("/select-album")
 	public String getSelectAlbum(
 			Model model
-			,CreateAlbumForm form
+			,@ModelAttribute("createAlbumForm")CreateAlbumForm form
 			,HttpSession httpSession
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("group")Group group
 			) {
 		
 		httpSession.removeAttribute("album");
-		model.addAttribute("createAlbumForm", form);
 		
+		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 		/*このグループのアルバム情報を取得*/
+		
+		/*写真枚数を追加*/
 		List<Album> albumList = albumService.findAllById(group.getId());
 		model.addAttribute("albumList", albumList);
 		
-		/*自身がグループの管理者であるかを確認*/
+		
+		
+		
+		
+		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+	    
+	    /*自身がグループの管理者であるかを確認*/
 		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}

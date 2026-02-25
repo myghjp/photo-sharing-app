@@ -20,9 +20,9 @@
 			<div th:if="${#lists.isEmpty(groupList)}" th:text="#{selectGroupMessage}" class="text-center fs-2 m-3"></div>
 		</div>
 
-		<div class="row row-cols-1 row-cols-md-5">
+		<div class="row row-cols-1 row-cols-md-5 g-4">
 			<div th:each="list: ${groupList}">
-				<div class="card p-0 g-4">
+				<div class="card p-0">
 					<form method="post" th:action="@{/select-group}"
 						class="text-center">
 						<div class="card-header">
@@ -30,8 +30,8 @@
 						</div>
 
 						<div class="card-body">
-							<p class="card-text" th:text="#{createDate}"></p>
-							<p class="card-text" th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></p>
+							<p class="card-text" th:text="#{createDate} + ': ' + ${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></p>
+							<p class="card-text"></p>
 
 							<div class="d-inline-flex">
 								<button type="submit" th:value="${list.id}" name="id"

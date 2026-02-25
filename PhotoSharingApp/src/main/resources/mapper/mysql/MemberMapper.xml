@@ -4,26 +4,26 @@
 	
 <mapper namespace="portfolio.PhotoSharingApp.repository.MemberMapper">
 
-	<resultMap type="portfolio.PhotoSharingApp.entity.Member" id="MembersTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Member" id="membersTable">
 		<id column="id" property="id" />
 		<result column="group_id" property="groupId" />
 		<result column="account_id" property="accountId" />
-		<association property="group" resultMap="GroupsTable" columnPrefix="groups_"/>
-		<association property="account" resultMap="AccountsTable" columnPrefix="accounts_"/>
+		<association property="group" resultMap="groupsTable" columnPrefix="groups_"/>
+		<association property="account" resultMap="accountsTable" columnPrefix="accounts_"/>
 	</resultMap>
 	
-	<resultMap type="portfolio.PhotoSharingApp.entity.Account" id="AccountsTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Account" id="accountsTable">
 		<id column="id" property="id" />
 		<result column="user" property="username" />
 		<result column="pass" property="password" />
 		<result column="email_address" property="emailAddress"/>
 	</resultMap>
 	
-	<resultMap type="portfolio.PhotoSharingApp.entity.Group" id="GroupsTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Group" id="groupsTable">
 		<id column="id" property="id" />
 		<result column="group_name" property="groupName" />
 		<result column="account_id" property="accountId" />
-		<association property="account" resultMap="AccountsTable" columnPrefix="accounts_"/>
+		<association property="account" resultMap="accountsTable" columnPrefix="accounts_"/>
 	</resultMap>
 	
 	<insert id="insert">
@@ -43,7 +43,7 @@
 	
 	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
-	<select id="selectMembers" resultMap="MembersTable">
+	<select id="selectMembers" resultMap="membersTable">
 		select groups_members.id
 			,groups.group_name as groups_group_name
 			,accounts.user as accounts_user
@@ -68,7 +68,7 @@
 		where groups.id = #{groupId}
 	</select>
 	
-	<select id="selectMember" resultMap="MembersTable">
+	<select id="selectMember" resultMap="membersTable">
 		select groups_members.id
 			,accounts.user as accounts_user
 		from groups_members

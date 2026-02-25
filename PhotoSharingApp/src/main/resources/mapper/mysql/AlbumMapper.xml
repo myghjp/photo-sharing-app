@@ -4,12 +4,18 @@
 	
 <mapper namespace="portfolio.PhotoSharingApp.repository.AlbumMapper">
 
-	<resultMap type="portfolio.PhotoSharingApp.entity.Album" id="AlbumsTable">
+	<resultMap type="portfolio.PhotoSharingApp.entity.Album" id="albumsTable">
 		<id column="id" property="id" />
 		<result column="group_id" property="groupId" />
 		<result column="album_name" property="albumName" />
 		<result column="create_date_time" property="createDateTime"/>
+		<!-- <association property="photo" resultMap="photosTable" columnPrefix="photos_"/> -->
 	</resultMap>
+	
+	<!-- <resultMap type="portfolio.PhotoSharingApp.entity.Photo" id="photosTable">
+		<id column="id" property="id"/>
+		<result column="album_id" property="albumId"/>
+	</resultMap> -->
 	
 	<insert id="insert">
 		insert into albums(
@@ -26,17 +32,23 @@
 		where id = #{albumId}
 	</delete>
 	
-	<!-- ーーーーーーーーーーーーーーーーーーーー -->
+	<!-- ーーアルバムのリストの中にフォト枚数ーー -->
 	
-	<select id="selectAlbums" resultMap="AlbumsTable">
+	<select id="selectAlbums" resultMap="albumsTable">
 		select albums.id
 			,album_name
 			,albums.create_date_time
+			<!-- ,count(photos.album_id) -->
 		from albums
 			left join `groups`
-			on group_id = groups.id
+				on group_id = groups.id
+			<!-- left join `photos`
+				on albums.id = photos.album_id -->
 		where group_id = #{groupId}
+		<!-- group by photos.album_id; -->
 	</select>
+	
+	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
 	<select id="selectCountAlbums" resultType="Integer">
 		select count(*)
@@ -46,7 +58,7 @@
 		where group_id = #{groupId}
 	</select>
 	
-	<select id="selectAlbum" resultMap="AlbumsTable">
+	<select id="selectAlbum" resultMap="albumsTable">
 		select id,album_name
 		from albums
 		where id = #{albumId}

@@ -11,4 +11,6 @@ public class Album {
 	private Integer groupId;
 	private String albumName;
 	private Date createDateTime;
+	
+	/*private Photo photo;*/
 }
