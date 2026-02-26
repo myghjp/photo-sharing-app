@@ -50,11 +50,7 @@ public class AlbumController {
 		
 		httpSession.removeAttribute("album");
 		
-		/*このグループのアルバム情報と写真枚数を取得*/
-		List<Album> albumList = albumService.findAllById(group.getId());
-		model.addAttribute("albumList", albumList);
-	    
-	    /*自身がグループの管理者であるかを確認*/
+		 /*自身がグループの管理者であるかを確認*/
 		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}
@@ -62,6 +58,14 @@ public class AlbumController {
 		boolean isActive = true;
 	    model.addAttribute("isActiveAlbum", isActive);
 		
+		/*このグループのアルバム情報と写真枚数を取得*/
+		List<Album> albumList = albumService.findAllById(group.getId());
+		model.addAttribute("albumList", albumList);
+		
+		/*このグループのアルバムの数を取得*/
+		int countAlbums =  albumService.countAlbumsById(group.getId());
+		model.addAttribute("countAlbums", countAlbums);
+	    
 		return "album/select-album";
 	}
 	

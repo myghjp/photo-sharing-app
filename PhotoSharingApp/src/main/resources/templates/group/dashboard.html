@@ -16,10 +16,14 @@
 	<div layout:fragment="content" class="overflow-hidden">
 		<div class="container">
 			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom py-3 mb-3">
-				<div class="fs-2" th:text="#{dashboardPage}"></div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb fs-2 m-0">
+						<li class="breadcrumb-item active" aria-current="page" th:text="#{dashboardPage}"></li>
+					</ol>
+				</nav>
 			</div>
 			
-			<div class="row mb-2">
+			<div class="row mb-4 g-4">
 	        	<div class="col-lg-4 col-sm-6">
 	            	<div class="card">
                 		<div class="card-header">
@@ -54,9 +58,9 @@
 		        </div>
 		    </div>
 			
-			<div class="row">
-				<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
-					<table class="table table-striped border my-2">
+			<div class="row g-4">
+				<div class="col-lg-6 col-md-6 mb-md-0">
+					<table class="table table-striped border">
 						<thead>
 							<tr class="text-center">
 								<th scope="col" th:text="#{userTable}"></th>
@@ -74,8 +78,8 @@
 					</table>
 				</div>
 				
-				<div class="col-lg-6 col-md-6 mb-md-0 mb-4">
-					<table class="table table-striped border my-2">
+				<div class="col-lg-6 col-md-6 mb-md-0">
+					<table class="table table-striped border">
 						<thead>
 							<tr class="text-center">
 								<th scope="col" th:text="#{selectAlbumPage}"></th>

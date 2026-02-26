@@ -25,6 +25,12 @@
 								<li class="breadcrumb-item active" aria-current="page" th:text="#{selectAlbumPage}"></li>
 							</ol>
 						</nav>
+						
+						<div class="btn-toolbar mb-2 mb-md-0">
+							<div class="btn-group">
+								<div class="fs-4" th:text="#{albumCount} + ' 計' + ${countAlbums} + '冊'"></div>
+							</div>
+						</div>
 					</div>
 					
 					<th:block th:if="${isAdmin}">
@@ -52,9 +58,9 @@
 						</div>
 					</th:block>
 					
-					<div class="row row-cols-1 row-cols-md-5">
+					<div class="row row-cols-1 row-cols-md-5 g-4">
 						<div th:each="list:${albumList}">
-							<div class="card p-0 g-4">
+							<div class="card p-0">
 								<form method="post" th:action="@{/select-album}"
 									class="text-center">
 
@@ -67,10 +73,10 @@
 										<p class="card-text" th:text="#{createDate} + ': ' + ${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></p>
 										
 										<th:block th:if="${list.photo.albumId == 0}">
-											<p class="card-text" th:text="写真が追加されていません"></p>
+											<p class="card-text" th:text="#{selectAlbumMessage}"></p>
 										</th:block>
 										<th:block th:unless="${list.photo.albumId == 0}">
-											<p class="card-text" th:text="'写真枚数' + ': ' + ${list.photo.albumId} +'枚'"></p>
+											<p class="card-text" th:text="#{photoCount} + ': ' + ${list.photo.albumId} +'枚'"></p>
 										</th:block>
 										
 										<div class="d-inline-flex">

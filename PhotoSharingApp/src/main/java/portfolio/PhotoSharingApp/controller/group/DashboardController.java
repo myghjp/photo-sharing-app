@@ -56,13 +56,13 @@ public class DashboardController {
 		List<Member> memberList = memberService.findAllById(group.getId());
 		model.addAttribute("memberList", memberList);
 		
-		/*このグループのアルバムIDとアルバム名を取得*/
-		List<Album> albumList = albumService.findAllById(group.getId());
-		model.addAttribute("albumList", albumList);
-		
 		/*このグループのメンバーの数を取得*/
 		int countMembers = memberService.countMembersById(group.getId());
 		model.addAttribute("countMembers", countMembers);
+		
+		/*このグループのアルバムIDとアルバム名を取得*/
+		List<Album> albumList = albumService.findAllById(group.getId());
+		model.addAttribute("albumList", albumList);
 		
 		/*このグループのアルバムの数を取得*/
 		int countAlbums =  albumService.countAlbumsById(group.getId());

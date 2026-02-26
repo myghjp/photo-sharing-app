@@ -74,7 +74,9 @@
 									<span th:text="${adminInfo.account.username}"></span>
 								</td>
 								<td class="align-middle py-2" th:text="${adminInfo.account.emailAddress}"></td>
-								<td class="align-middle py-2"></td>
+								<th:block th:if="${isAdmin}">
+									<td class="align-middle py-2"></td>
+								</th:block>
 							</tr>
 							
 							<tr th:each="list:${memberList}">
@@ -96,8 +98,6 @@
 										<!-- /Button trigger modal -->
 									</td>
 								</th:block>
-								
-								
 								
 								<!-- Modal -->
 								<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
