@@ -53,7 +53,10 @@ public class UpdatePasswordController {
 			,RedirectAttributes redirectAttributes
 			) throws Exception {
 		
-		/*controllerかform*/
+		/*パスワード再設定の相関チェック*/
+		if (form.isPasswordValid()) {
+			bindingResult.rejectValue("passwordConfirmation", "updatePasswordError");
+		}
 		
 		if (bindingResult.hasErrors()) {
 			return getUpdatePassword(model,form);
