@@ -32,12 +32,13 @@
 			</ul>
 
 			<ul class="navbar-nav fs-5">
-				<li class="nav-item dropdown"><a
+				<li class="nav-item dropdown">
+					<a
 					class="nav-link dropdown-toggle" th:classappend="${isActiveDropdown} ? 'active' : ''"
 					role="button"
 					data-bs-toggle="dropdown" aria-expanded="false">
 					<span sec:authentication="principal.username"></span>
-				</a>
+					</a>
 
 					<ul class="dropdown-menu dropdown-menu-end">
 						<li class="dropdown-item"><a th:href="@{/update-password}"
@@ -54,7 +55,8 @@
 									class="nav-link text-light-emphasis">
 							</form>
 						</li>
-					</ul></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</nav>

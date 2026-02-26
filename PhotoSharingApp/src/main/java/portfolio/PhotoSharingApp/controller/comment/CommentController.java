@@ -37,16 +37,9 @@ public class CommentController {
 	public String getListComment(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
-			,ListCommentForm form
+			,@ModelAttribute("listCommentForm")ListCommentForm form
 			,@ModelAttribute("group")Group group
 			) {
-		
-		model.addAttribute("listCommentForm",form);
-		model.addAttribute("loginUser",user.getUsername());
-		
-		/*このグループのコメントのテーブル情報とアカウント名を取得*/
-		List<Comment> commentList = commentService.findAllById(group.getId());
-		model.addAttribute("commentList", commentList);
 		
 		/*自身がグループの管理者であるかを確認*/
 		if (group.getAccountId() == user.getUserId()) {
@@ -55,6 +48,12 @@ public class CommentController {
 		
 		boolean isActive = true;
 	    model.addAttribute("isActiveComment", isActive);
+		
+		model.addAttribute("loginUser",user.getUsername());
+		
+		/*このグループのコメントのテーブル情報とアカウント名を取得*/
+		List<Comment> commentList = commentService.findAllById(group.getId());
+		model.addAttribute("commentList", commentList);
 		
 		return "comment/list-comment";
 	}

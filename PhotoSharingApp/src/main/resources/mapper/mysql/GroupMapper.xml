@@ -18,7 +18,6 @@
 		<result column="email_address" property="emailAddress" />
 	</resultMap>
 	
-	
 	<insert id="insert">
 		insert into `groups`(
 			 group_name

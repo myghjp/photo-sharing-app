@@ -13,7 +13,6 @@
 		<association property="account" resultMap="accountsTable" columnPrefix="accounts_"/>
 	</resultMap>
 	
-	<!-- ↓ユーザ名で必要 -->
 	<resultMap type="portfolio.PhotoSharingApp.entity.Account" id="accountsTable">
 		<id column="id" property="id" />
 		<result column="user" property="username"/>
