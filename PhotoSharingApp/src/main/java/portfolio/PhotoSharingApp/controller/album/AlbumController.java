@@ -50,18 +50,9 @@ public class AlbumController {
 		
 		httpSession.removeAttribute("album");
 		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
-		/*このグループのアルバム情報を取得*/
-		
-		/*写真枚数を追加*/
+		/*このグループのアルバム情報と写真枚数を取得*/
 		List<Album> albumList = albumService.findAllById(group.getId());
 		model.addAttribute("albumList", albumList);
-		
-		
-		
-		
-		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 	    
 	    /*自身がグループの管理者であるかを確認*/
 		if (group.getAccountId() == user.getUserId()) {

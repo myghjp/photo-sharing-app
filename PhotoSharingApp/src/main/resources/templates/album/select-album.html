@@ -65,9 +65,14 @@
 
 									<div class="card-body">
 										<p class="card-text" th:text="#{createDate} + ': ' + ${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></p>
-										<!--<p class="card-text" th:text="${list.photo}"></p>-->
-										<p class="card-text" th:text="それ以外は写真無し"></p>
-
+										
+										<th:block th:if="${list.photo.albumId == 0}">
+											<p class="card-text" th:text="写真が追加されていません"></p>
+										</th:block>
+										<th:block th:unless="${list.photo.albumId == 0}">
+											<p class="card-text" th:text="'写真枚数' + ': ' + ${list.photo.albumId} +'枚'"></p>
+										</th:block>
+										
 										<div class="d-inline-flex">
 											<button type="submit" th:value="${list.id}" name="id"
 												th:text="#{openBtn}"
@@ -80,7 +85,6 @@
 													class="card-link btn btn-outline-danger"></button>
 												<!-- /Button trigger modal -->
 											</th:block>
-
 										</div>
 									</div>
 								</form>

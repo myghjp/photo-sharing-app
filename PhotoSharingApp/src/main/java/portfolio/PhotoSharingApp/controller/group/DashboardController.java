@@ -58,7 +58,6 @@ public class DashboardController {
 		
 		/*このグループのアルバムIDとアルバム名を取得*/
 		List<Album> albumList = albumService.findAllById(group.getId());
-		System.out.println(albumList);
 		model.addAttribute("albumList", albumList);
 		
 		/*このグループのメンバーの数を取得*/
