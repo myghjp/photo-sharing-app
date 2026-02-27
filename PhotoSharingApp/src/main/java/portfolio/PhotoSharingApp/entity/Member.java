@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class Member {
 	
-	private int id;
-	private int groupId;
-	private int accountId;
+	private Integer id;
+	private Integer groupId;
+	private Integer accountId;
 	
 	private Group group;
 	private Account account;

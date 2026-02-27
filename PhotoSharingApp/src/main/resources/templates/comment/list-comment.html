@@ -59,8 +59,7 @@
 								</div>
 
 								<div class="row me-1">
-									<th:block
-										th:if="${list.Account?.username != null and list.Account.username == loginUser}">
+									<th:block th:if="${list.Account?.username != null and list.Account.username == loginUser}">
 										<!-- Button trigger modal -->
 										<button type="button" th:text="#{deleteBtn}"
 											data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}"

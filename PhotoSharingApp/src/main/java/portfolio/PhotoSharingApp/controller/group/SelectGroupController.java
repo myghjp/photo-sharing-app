@@ -40,14 +40,14 @@ public class SelectGroupController {
 
 		sessionStatus.setComplete();
 		
-		/*自身が所属しているグループ情報を取得*/
-		List<Group> groupList = groupService.findAllByUserId(user.getUserId());
-		model.addAttribute("groupList", groupList);
-		
-		model.addAttribute("userId",user.getUserId());
-		
 		boolean isActive = true;
 	    model.addAttribute("isActiveSelectGroup", isActive);
+	    
+	    model.addAttribute("userId",user.getUserId());
+	    
+	    /*自身が所属しているグループ情報を取得*/
+		List<Group> groupList = groupService.findAllByUserId(user.getUserId());
+		model.addAttribute("groupList", groupList);
 
 		return "group/select-group";
 	}
