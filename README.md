@@ -17,7 +17,7 @@
 同じグループ内のメンバーと写真の共有やダウンロードが可能で、  
 掲示板を使ってコミュニケーションがとれます。  
 
-グループ管理者はメールアドレスを指定したメンバーの追加ができます。  
+グループ管理者はメールアドレスを使用して指定したメンバーの追加ができます。  
 写真を共有するためのアルバムをグループ管理者が作成します。  
 このようにグループやアルバムを管理し、削除することができます。  
 
@@ -34,8 +34,7 @@
     git clone https://github.com/myghjp/photo-sharing-app.git
     ```
 
-  2.画像の保存先として任意のディレクトリを用意し、そのパスを  
-    application.properties の app.media.directory に設定します。
+  2.画像の保存先として任意のディレクトリを用意し、そのパスを application.properties の app.media.directory に設定します。
 
     デフォルトではWebアプリ起動時に投稿画像保存先が下記のディレクトリに生成されます。
 
@@ -53,10 +52,10 @@
   
     + データベース名: photo_app
     + データベース内にphoto_appが既に存在していると削除されます。
-    + 状況に合わせてapplication.properties の spring.datasource 以降を書き換えてください。←修正予定  
-
-  4.クローンしたリポジトリ内のプロジェクトを Eclipse 等の IDE で開き、Spring Boot アプリとして実行  
-    またはプロジェクトのルートディレクトリでコマンドラインから下記のように maven で実行します。
+    + application.properties の spring.datasource 以降の usernameとpasswordをご自身のMySQLの設定に合わせて変更してください。
+  
+  4.クローンしたリポジトリ内のプロジェクトを Eclipse 等の IDE で開き、Spring Boot アプリとして実行 または  
+    プロジェクトのルートディレクトリでコマンドラインから下記のように maven で実行します。
   
     ```
     cd C:/Users/user/photo-sharing-app/PhotoSharingApp  
@@ -70,7 +69,7 @@
 ## Webアプリの使用方法  
   
   ```
-  ログインに使用するメールアドレスとパスワードです。(仮)
+  ログインに使用するダミーデータ
 
   アカウント名：ユーザ１
   メールアドレス：user1@example.com
@@ -80,6 +79,7 @@
   メールアドレス：user4@example.com
   パスワード：00000000
   ```
+  上記のアカウントを
  
 
  
