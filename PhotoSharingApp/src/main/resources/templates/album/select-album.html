@@ -37,21 +37,19 @@
 						<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3 mx-0">
 							<form method="post" th:action="@{/create-album}" th:object="${createAlbumForm}" class="text-center">
 							
-								<div th:text="#{createAlbum}" class="fw-bold fs-5"></div>
-							
 								<div class="d-flex justify-content-center">
-								
 									<div class="col-sm-5">
-										<input type="text" th:field="*{albumName}"
-											th:placeholder="#{albumName}" th:errorclass="is-invalid"
-											class="form-control">
-										<div class="invalid-feedback"
-											th:if="${#fields.hasErrors('albumName')}"
-											th:errors="*{albumName}"></div>
-									</div>
-									<div class="col-sm-2">
-										<input type="submit" th:value="#{createBtn}"
-											class="btn btn-outline-primary">
+										<div class="input-group">
+											<span th:text="#{createAlbum}" id="group-text" class="input-group-text text-secondary"></span>
+											
+											<input type="text" th:field="*{albumName}"
+												th:placeholder="#{albumName}" th:errorclass="is-invalid"
+												class="form-control" aria-describedby="group-text">
+											<input type="submit" th:value="#{createBtn}" id="group-text" 
+												class="btn btn-outline-primary rounded-end">
+												
+											<div class="invalid-feedback" th:if="${#fields.hasErrors('albumName')}" th:errors="*{albumName}"></div>
+										</div>
 									</div>
 								</div>
 							</form>

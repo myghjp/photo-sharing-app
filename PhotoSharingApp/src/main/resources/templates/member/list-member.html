@@ -34,38 +34,21 @@
 						<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3 mx-0">
 							<form method="post" th:action="@{/list-member}" th:object="${addMemberForm}" class="text-center">
 							
-								<div th:text="#{addMember}" class="fw-bold fs-5"></div>
-							
 								<div class="d-flex justify-content-center">
-									<div class="input-group">
 									<div class="col-sm-5">
-										 <span class="input-group-text" id="basic-addon1">@</span>
-										<input type="email" th:field="*{emailAddress}"
-											th:placeholder="#{emailAddress}" th:errorclass="is-invalid"
-											class="form-control">
-										<div class="invalid-feedback"
-											th:if="${#fields.hasErrors('emailAddress')}"
-											th:errors="*{emailAddress}"></div>
-									</div>
-									<div class="col-sm-2">
-										<input type="submit" th:value="#{addBtn}" class="btn btn-outline-primary">
-									</div>
+										<div class="input-group">
+											<span th:text="#{addMember}" id="group-email" class="input-group-text text-secondary"></span>
+											
+											<input type="email" th:field="*{emailAddress}"
+												th:placeholder="#{emailAddress}" th:errorclass="is-invalid"
+												class="form-control" aria-describedby="group-email">
+											<input type="submit" th:value="#{addBtn}" id="group-email" 
+												class="btn btn-outline-primary rounded-end">
+												
+											<div class="invalid-feedback" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
+										</div>
 									</div>
 								</div>
-								
-									<!--ーーーーラップーーーーーーーーーーーーーーーーーーーーーーー-->
-									<div class="input-group">
-									  <span class="input-group-text" id="basic-addon1">@</span>
-									  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-									</div>
-									<!--ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
-									<!--ーーーーボタンーーーーーーーーーーーーーーーーーーーーーーー-->
-									<div class="input-group">
-									  <input type="text" class="form-control" placeholder="Recipient’s username" aria-label="Recipient’s username" aria-describedby="button-addon2">
-									  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
-									</div>
-									<!--ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
-									
 							</form>
 						</div>
 					</th:block>

@@ -27,24 +27,28 @@
 						</nav>
 					</div>
 					
-					<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3 mx-0">
+					<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3">
 					
 						<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
-							<div class="row mb-3">
-								<textarea th:field="*{comment}" th:placeholder="#{comment}" 
-									th:errorclass="is-invalid" class="form-control">
-								</textarea>
-							
-								<div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" 
-									th:errors="*{comment}">
-								</div>
-							</div>
 							<div class="row">
-								<input type="submit" th:value="#{uploadBtn}" class="btn btn-outline-primary">
+								
+								<div class="input-group">
+									<span th:text="#{comment}" id="group-text" class="input-group-text text-secondary"></span>
+									
+									<textarea th:field="*{comment}" 
+										th:errorclass="is-invalid" class="form-control" aria-describedby="group-text">
+									</textarea>
+								
+									<input type="submit" th:value="#{uploadBtn}" id="group-text" class="btn btn-outline-primary rounded-end">
+									
+									<div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" 
+										th:errors="*{comment}">
+									</div>
+								
+								</div>
 							</div>
 						</form>
 					</div>
-				
 				</div>
 				<div class="col mx-auto">
 					<div th:each="list:${commentList}" class="card mb-3">

@@ -30,17 +30,17 @@
 					<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3 mx-0">
 						<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data" class="text-center">
 							
-							<div th:text="#{addPhoto}" class="fw-bold fs-5"></div>
-						
 							<div class="d-flex justify-content-center">
 								<div class="col-sm-5">
-									<input type="file" name="multipartFile" accept=".jpg, .jpeg, .png" class="form-control">
-								</div>
-								<div class="col-sm-2">
-									<input type="submit" th:value="#{addBtn}" class="btn btn-outline-primary">
-									<th:block th:if="${isError}">
-										<div th:text="#{errorMessage}" class="text-danger"></div>
-									</th:block>
+									<div class="input-group">
+										<label th:text="#{addPhoto}" class="input-group-text text-secondary" for="group-file"></label>
+										<input type="file" name="multipartFile" accept=".jpg, .jpeg, .png" id="group-file" class="form-control">
+									
+										<input type="submit" th:value="#{addBtn}" class="btn btn-outline-primary rounded-end" aria-describedby="group-file">
+										<th:block th:if="${isError}">
+											<div th:text="#{errorMessage}" class="text-danger"></div>
+										</th:block>
+									</div>
 								</div>
 							</div>
 						</form>
