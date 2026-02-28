@@ -59,7 +59,7 @@
 	</select>
 	
 	<select id="selectCountMembers" resultType="Integer">
-		select count(accounts.user)
+		select count(*)
 		from groups_members
 			left join `groups`
 				on groups_members.group_id = groups.id

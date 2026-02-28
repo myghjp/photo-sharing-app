@@ -22,7 +22,7 @@
 					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb fw-bold fs-2 m-0">
-								<li class="breadcrumb-item active" aria-current="page" th:text="#{board}"></li>
+								<li class="breadcrumb-item active" aria-current="page" th:text="#{listCommentPage}"></li>
 							</ol>
 						</nav>
 					</div>
@@ -31,7 +31,6 @@
 					
 						<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
 							<div class="row">
-								
 								<div class="input-group input-group-lg">
 									<span th:text="#{comment}" id="group-text" class="input-group-text text-secondary"></span>
 									
@@ -44,7 +43,6 @@
 									<div class="invalid-feedback" th:if="${#fields.hasErrors('comment')}" 
 										th:errors="*{comment}">
 									</div>
-								
 								</div>
 							</div>
 						</form>
