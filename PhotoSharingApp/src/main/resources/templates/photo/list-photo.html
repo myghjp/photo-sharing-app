@@ -20,7 +20,7 @@
 				<div class="text-center">
 					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom py-3 mb-3">
 						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb fs-2 m-2">
+							<ol class="breadcrumb fw-bold fs-2 m-0">
 								<li class="breadcrumb-item"><a th:href="@{'/select-album'}" th:text="#{selectAlbumPage}"></a></li>
 								<li class="breadcrumb-item active" aria-current="page" th:text="${album.albumName}"></li>
 							</ol>
@@ -31,8 +31,8 @@
 						<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data" class="text-center">
 							
 							<div class="d-flex justify-content-center">
-								<div class="col-sm-5">
-									<div class="input-group">
+								<div class="col-sm-6">
+									<div class="input-group input-group-lg">
 										<label th:text="#{addPhoto}" class="input-group-text text-secondary" for="group-file"></label>
 										<input type="file" name="multipartFile" accept=".jpg, .jpeg, .png" id="group-file" class="form-control">
 									
@@ -113,7 +113,7 @@
 	
 													<div class="modal-body py-0">
 														<h1 class="modal-title fs-5" id="exampleModalLabel">
-															<img th:src="@{'/media/' + ${list.photo}}" style="height: 300px;">
+															<img th:src="@{'/media/' + ${list.photo}}" style="width: 300px; height: 300px;">
 														</h1>
 													</div>
 	

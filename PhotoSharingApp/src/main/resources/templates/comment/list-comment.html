@@ -21,7 +21,7 @@
 					
 					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
 						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb fs-2 m-0">
+							<ol class="breadcrumb fw-bold fs-2 m-0">
 								<li class="breadcrumb-item active" aria-current="page" th:text="#{board}"></li>
 							</ol>
 						</nav>
@@ -32,11 +32,11 @@
 						<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
 							<div class="row">
 								
-								<div class="input-group">
+								<div class="input-group input-group-lg">
 									<span th:text="#{comment}" id="group-text" class="input-group-text text-secondary"></span>
 									
 									<textarea th:field="*{comment}" 
-										th:errorclass="is-invalid" class="form-control" aria-describedby="group-text">
+										th:errorclass="is-invalid" class="form-control text-wrap" aria-describedby="group-text">
 									</textarea>
 								
 									<input type="submit" th:value="#{uploadBtn}" id="group-text" class="btn btn-outline-primary rounded-end">
@@ -57,8 +57,7 @@
 								<div class="d-inline-flex my-2">
 									<div th:text="'▼ ' + ${list.Account?.username?: 'unknown'}"
 										class="me-3"></div>
-									<div
-										th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"
+									<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"
 										class="me-3"></div>
 								</div>
 
@@ -74,7 +73,7 @@
 							</div>
 
 							<div class="row">
-								<div th:text="${list.comment}" class="card-text fs-5"></div>
+								<pre th:text="${list.comment}" class="card-text fs-5"></pre>
 							</div>
 						</div>
 
@@ -93,8 +92,7 @@
 										<div th:text="#{deleteCommentAlert}"></div>
 									</div>
 									<form method="post" th:action="@{/delete-comment}">
-										<div
-											class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+										<div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
 											<input type="hidden" name="id" th:value="${list.id}">
 											<input type="submit" th:value="#{deleteBtn}"
 												class="btn btn-lg btn-danger"> <a
