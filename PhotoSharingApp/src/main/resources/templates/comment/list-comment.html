@@ -6,20 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
 <title th:text=#{listCommentPage}></title>
 </head>
 <body>
-
 	<div layout:fragment="content">
 		
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="mx-auto text-center">
-					
-					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-3 mb-3 border-bottom">
+				<div class="mx-auto">
+					<div class="d-flex justify-content-between align-items-center border-bottom py-3 mb-3 ">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb fw-bold fs-2 m-0">
 								<li class="breadcrumb-item active" aria-current="page" th:text="#{listCommentPage}"></li>
@@ -27,7 +24,7 @@
 						</nav>
 					</div>
 					
-					<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3">
+					<div class="row d-flex justify-content-center align-items-center border-bottom pb-3 mb-3">
 					
 						<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
 							<div class="row">
@@ -92,10 +89,8 @@
 									<form method="post" th:action="@{/delete-comment}">
 										<div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
 											<input type="hidden" name="id" th:value="${list.id}">
-											<input type="submit" th:value="#{deleteBtn}"
-												class="btn btn-lg btn-danger"> <a
-												th:href="@{'/list-comment'}" th:text="#{cancelBtn}"
-												data-bs-dismiss="modal" class="btn btn-lg btn-secondary"></a>
+											<input type="submit" th:value="#{deleteBtn}" class="btn btn-lg btn-danger">
+											<a th:href="@{'/list-comment'}" th:text="#{cancelBtn}" data-bs-dismiss="modal" class="btn btn-lg btn-secondary"></a>
 										</div>
 									</form>
 								</div>

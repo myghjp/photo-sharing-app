@@ -6,16 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
 <title th:text="#{groupInfoPage}"></title>
 </head>
 <body>
-
 	<div layout:fragment="content" class="overflow-hidden">
+		
 		<div class="container">
-			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom py-3 mb-3">
+			<div class="d-flex justify-content-between align-items-center border-bottom py-3 mb-3">
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb fw-bold fs-2 m-0">
 						<li class="breadcrumb-item active" aria-current="page" th:text="#{groupInfoPage}"></li>
