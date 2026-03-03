@@ -20,10 +20,19 @@
 
 		<div class="collapse navbar-collapse px-2" id="navbarSupportedContent">
 			<ul class="navbar-nav fs-5 me-auto">
-				<li class="nav-item"><a th:href="@{'/select-group'}"
+				<li class="nav-item">
+					<a th:href="@{'/select-group'}"
 					th:text="#{selectGroupBtn}" class="nav-link"
-					th:classappend="${isActiveSelectGroup} ? 'active' : ''"
-					aria-current="page"></a></li>
+					th:classappend="${active} ? 'active' : ''"
+					aria-current="page">
+					</a>
+					
+				</li>
+				
+					<!--location.href-->
+					
+					<!--th:classappend="${active} ? 'active' : ''"-->
+					
 
 				<li class="nav-item"><a th:href="@{'/create-group'}"
 					th:text="#{createGroupBtn}" class="nav-link"
