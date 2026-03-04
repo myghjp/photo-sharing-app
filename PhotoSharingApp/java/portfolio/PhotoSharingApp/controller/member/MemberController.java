@@ -49,9 +49,6 @@ public class MemberController {
 		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin", true);
 		}
-	
-		boolean isActive = true;
-	    model.addAttribute("isActiveMember", isActive);
 		
 		/*このグループ管理者のアカウント名とメールアドレスを取得*/
 		Group adminInfo = groupService.findByAdminInfo(group.getId());

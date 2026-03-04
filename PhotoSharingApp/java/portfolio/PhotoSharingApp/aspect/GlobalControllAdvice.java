@@ -26,16 +26,13 @@ public class GlobalControllAdvice {
 		return "common/error";
 	}
 	
-	/*(value = "(bean(*Controller)")*/
 	@ModelAttribute
-	public void active(Model model,HttpServletRequest active) {
+	public void currentURL(Model model,HttpServletRequest httpServletRequest) {
 		
-		/*現在のURL?*/
+		/*System.out.println("コンテキストパス→" + httpServletRequest.getServletPath());*/
+		System.out.println("サーブレットパス→" + httpServletRequest.getServletPath());
 		
-		/*ControllerAdviceの共有ModelAttribute*/
+		model.addAttribute("currentURL", httpServletRequest.getServletPath());
 		
-		/*↓セット*/
-		model.addAttribute("active", active);
-		/*return active;*/
 	}
 }

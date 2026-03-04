@@ -37,9 +37,6 @@ public class UpdatePasswordController {
 			,@ModelAttribute("updatePasswordForm")UpdatePasswordForm form
 			) {
 		
-		boolean isActive = true;
-	    model.addAttribute("isActiveDropdown", isActive);
-		
 		return "account/update-password";
 	}
 	

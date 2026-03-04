@@ -46,9 +46,6 @@ public class CommentController {
 			model.addAttribute("isAdmin",true);
 		}
 		
-		boolean isActive = true;
-	    model.addAttribute("isActiveComment", isActive);
-		
 		model.addAttribute("loginUser",user.getUsername());
 		
 		/*このグループのコメントのテーブル情報とアカウント名を取得*/

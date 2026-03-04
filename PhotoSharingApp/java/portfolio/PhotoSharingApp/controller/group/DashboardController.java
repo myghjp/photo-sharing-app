@@ -45,9 +45,6 @@ public class DashboardController {
 			model.addAttribute("isAdmin",true);
 		}
 		
-		boolean isActive = true;
-	    model.addAttribute("isActiveHome", isActive);
-		
 		/*このグループの管理者のアカウント情報を取得*/
 		Group adminInfo = groupService.findByAdminInfo(group.getId());
 		model.addAttribute("adminInfo", adminInfo);

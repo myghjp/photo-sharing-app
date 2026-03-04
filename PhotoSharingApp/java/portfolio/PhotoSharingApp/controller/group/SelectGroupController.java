@@ -30,28 +30,15 @@ public class SelectGroupController {
 	public Group group() {
 		return new Group();
 	}
-	
-	
-	
 
 	@GetMapping("/select-group")
 	public String getSelectGroup(
 			Model model
-			
 			,SessionStatus sessionStatus
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 
 		sessionStatus.setComplete();
-		
-		
-		
-		
-		
-		/*boolean isActive = true;
-		model.addAttribute("isActiveSelectGroup", isActive);*/
-	    
-	    
 	    
 	    model.addAttribute("userId",user.getUserId());
 	    

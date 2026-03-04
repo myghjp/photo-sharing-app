@@ -21,23 +21,24 @@
 		<ul class="nav nav-pills flex-column mb-auto">
 			<li class="nav-item"><a th:href="@{'/dashboard'}"
 				th:text="#{groupInfoPage}" class="nav-link" 
-				th:classappend="${isActiveHome} ? 'active' : ''"
+				th:classappend="${currentURL == '/dashboard'} ? 'active' : ''"
 				aria-current="page"></a>
 			</li>
 
 			<li class="nav-item"><a th:href="@{'/list-member'}"
 				th:text="#{listMemberPage}" class="nav-link"
-				th:classappend="${isActiveMember} ? 'active' : ''"
+				th:classappend="${currentURL == '/list-member'} ? 'active' : ''"
 				aria-current="page"></a></li>
 
 			<li class="nav-item"><a th:href="@{'/select-album'}"
 				th:text="#{selectAlbumPage}" class="nav-link"
-				th:classappend="${isActiveAlbum} ? 'active' : ''"
+				th:classappend="${(currentURL == '/select-album' ? 'active' : '') 
+				+ (currentURL == '/list-photo' ? 'active' : '')}|"
 				aria-current="page"></a></li>
 
 			<li class="nav-item"><a th:href="@{'/list-comment'}"
 				th:text="#{listCommentPage}" class="nav-link"
-				th:classappend="${isActiveComment} ? 'active' : ''"
+				th:classappend="${currentURL == '/list-comment'} ? 'active' : ''"
 				aria-current="page"></a></li>
 		</ul>
 		<hr>

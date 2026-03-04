@@ -55,9 +55,6 @@ public class AlbumController {
 			model.addAttribute("isAdmin",true);
 		}
 		
-		boolean isActive = true;
-	    model.addAttribute("isActiveAlbum", isActive);
-		
 		/*このグループのアルバム情報と写真枚数を取得*/
 		List<Album> albumList = albumService.findAllById(group.getId());
 		model.addAttribute("albumList", albumList);

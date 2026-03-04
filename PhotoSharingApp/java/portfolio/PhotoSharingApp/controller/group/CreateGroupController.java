@@ -33,10 +33,6 @@ public class CreateGroupController {
 			,@ModelAttribute("createGroupForm")CreateGroupForm form
 			) {
 		
-		
-			/*boolean isActive = true;
-			model.addAttribute("isActiveCreateGroup", isActive);*/
-		
 		return "group/create-group";
 	}
 

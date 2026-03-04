@@ -23,29 +23,25 @@
 				<li class="nav-item">
 					<a th:href="@{'/select-group'}"
 					th:text="#{selectGroupBtn}" class="nav-link"
-					th:classappend="${active} ? 'active' : ''"
+					th:classappend="${currentURL == '/select-group'} ? 'active' : ''"
 					aria-current="page">
 					</a>
-					
 				</li>
-				
-					<!--location.href-->
-					
-					<!--th:classappend="${active} ? 'active' : ''"-->
-					
-
-				<li class="nav-item"><a th:href="@{'/create-group'}"
+				<li class="nav-item">
+					<a th:href="@{'/create-group'}"
 					th:text="#{createGroupBtn}" class="nav-link"
-					th:classappend="${isActiveCreateGroup} ? 'active' : ''"
-					aria-current="page"></a></li>
+					th:classappend="${currentURL == '/create-group'} ? 'active' : ''"
+					aria-current="page">
+					</a>
+				</li>
 			</ul>
 
 			<ul class="navbar-nav fs-5">
 				<li class="nav-item dropdown">
-					<a
-					class="nav-link dropdown-toggle" th:classappend="${isActiveDropdown} ? 'active' : ''"
-					role="button"
-					data-bs-toggle="dropdown" aria-expanded="false">
+					<a class="nav-link dropdown-toggle"
+					th:classappend="${(currentURL == '/update-password' ? 'active' : '') 
+					+ (currentURL == '/delete-account' ? 'active' : '')}|"
+					role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					<span sec:authentication="principal.username"></span>
 					</a>
 
