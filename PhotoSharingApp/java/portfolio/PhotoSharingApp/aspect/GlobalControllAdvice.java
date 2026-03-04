@@ -30,6 +30,6 @@ public class GlobalControllAdvice {
 	public void currentURL(Model model,HttpServletRequest request) {
 		
 		model.addAttribute("currentURL", request.getServletPath());
-		
 	}
+	
 }

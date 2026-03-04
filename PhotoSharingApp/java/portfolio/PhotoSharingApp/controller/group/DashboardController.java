@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -64,5 +65,12 @@ public class DashboardController {
 		model.addAttribute("countAlbums", countAlbums);
 		
 		return "group/dashboard";
+	}
+	
+	/*"１"*/
+	/*SessionAttributesのgroupの変数に値が含まれていない時(仮)*/
+	@ExceptionHandler(IllegalStateException.class)
+	public String test() {
+	   return "redirect:select-group";
 	}
 }
