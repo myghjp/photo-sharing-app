@@ -9,7 +9,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Account;
@@ -42,9 +41,8 @@ public class CreateAccountController {
 	@PostMapping("/create-account")
 	public String postCreateAcount(
 			HttpSession session
-			,@ModelAttribute("createAccountForm") @Validated CreateAccountForm form
+			,@ModelAttribute("createAccountForm")@Validated CreateAccountForm form
 			,BindingResult bindingResult
-			,RedirectAttributes redirectAttributes
 			) {
 		
 		Account account = modelMapper.map(form, Account.class);

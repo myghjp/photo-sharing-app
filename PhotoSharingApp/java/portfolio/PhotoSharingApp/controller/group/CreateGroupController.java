@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.form.group.CreateGroupForm;
@@ -29,8 +28,7 @@ public class CreateGroupController {
 	
 	@GetMapping("/create-group")
 	public String getCreateGroup(
-			Model model
-			,@ModelAttribute("createGroupForm")CreateGroupForm form
+			@ModelAttribute("createGroupForm")CreateGroupForm form
 			) {
 		
 		return "group/create-group";
@@ -43,7 +41,6 @@ public class CreateGroupController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("createGroupForm") @Validated CreateGroupForm form
 			,BindingResult bindingResult
-			,RedirectAttributes redirectAttributes
 			) {
 		
 		Group group = modelMapper.map(form, Group.class);
@@ -54,7 +51,7 @@ public class CreateGroupController {
 		}
 		
 		if (bindingResult.hasErrors()) {
-			return getCreateGroup(model,form);
+			return getCreateGroup(form);
 		}
 		
 		group.setAccountId(user.getUserId());

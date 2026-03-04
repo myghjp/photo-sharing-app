@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Album;
 import portfolio.PhotoSharingApp.entity.Group;
@@ -41,7 +40,6 @@ public class PhotoController {
 	public String getListPhoto(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
-			,RedirectAttributes redirectAttributes
 			,@ModelAttribute("group")Group group
 			,@ModelAttribute("album")Album album
 		) {
@@ -65,7 +63,6 @@ public class PhotoController {
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@RequestParam("multipartFile") MultipartFile file
-			,RedirectAttributes redirectAttributes
 			,@SessionAttribute("album")Album album
 			)throws IOException {
 		
@@ -100,7 +97,6 @@ public class PhotoController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@SessionAttribute("album")Album album
 			,@SessionAttribute("group")Group group
-			,RedirectAttributes redirectAttributes
 			) throws IOException {
 		
 		/*このアルバムの写真なのかを確認*/

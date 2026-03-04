@@ -27,12 +27,9 @@ public class GlobalControllAdvice {
 	}
 	
 	@ModelAttribute
-	public void currentURL(Model model,HttpServletRequest httpServletRequest) {
+	public void currentURL(Model model,HttpServletRequest request) {
 		
-		/*System.out.println("コンテキストパス→" + httpServletRequest.getServletPath());*/
-		System.out.println("サーブレットパス→" + httpServletRequest.getServletPath());
-		
-		model.addAttribute("currentURL", httpServletRequest.getServletPath());
+		model.addAttribute("currentURL", request.getServletPath());
 		
 	}
 }

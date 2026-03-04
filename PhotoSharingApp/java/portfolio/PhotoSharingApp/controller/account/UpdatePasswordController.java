@@ -11,7 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Account;
@@ -45,9 +44,8 @@ public class UpdatePasswordController {
 			Model model
 			,HttpSession session
 			,@AuthenticationPrincipal LoginUserDetails user
-			,@ModelAttribute("updatePasswordForm") @Validated UpdatePasswordForm form
+			,@ModelAttribute("updatePasswordForm")@Validated UpdatePasswordForm form
 			,BindingResult bindingResult
-			,RedirectAttributes redirectAttributes
 			) throws Exception {
 		
 		/*パスワード再設定の相関チェック*/

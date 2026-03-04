@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Comment;
 import portfolio.PhotoSharingApp.entity.Group;
@@ -61,7 +60,6 @@ public class CommentController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("listCommentForm") @Validated ListCommentForm form
 			,BindingResult bindingResult
-			,RedirectAttributes redirectAttributes
 			,@ModelAttribute("group")Group group
 			) {
 		
@@ -83,7 +81,6 @@ public class CommentController {
 	public String getDeleteComment(
 			@RequestParam("id") int commentId
 			,@AuthenticationPrincipal LoginUserDetails user
-			,RedirectAttributes redirectAttributes
 			) {
 		
 		/*自身が投稿したコメントかを確認*/

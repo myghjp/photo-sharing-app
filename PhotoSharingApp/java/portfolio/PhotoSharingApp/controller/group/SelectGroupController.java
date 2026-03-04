@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
@@ -54,7 +53,6 @@ public class SelectGroupController {
 			Model model
 			,@RequestParam("id")int groupId
 			,@AuthenticationPrincipal LoginUserDetails user
-			,RedirectAttributes redirectAttributes
 			) {
 
 		Group group = groupService.findById(groupId);
@@ -67,7 +65,7 @@ public class SelectGroupController {
 	public String postDeleteGroup(
 			@RequestParam("id") int groupId
 			,@AuthenticationPrincipal LoginUserDetails user
-			,RedirectAttributes redirectAttributes) {
+			) {
 		
 		/*自身が作成したグループなのかを確認*/
 		if (groupService.isOwner(groupId,user.getUserId())) {

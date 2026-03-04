@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Album;
@@ -70,7 +69,6 @@ public class AlbumController {
 	public String postSelectAlbum(
 			Model model
 			,@RequestParam("id")int albumId
-			,RedirectAttributes redirectAttributes
 			) {
 		
 		/*アルバムIDとアルバム名を取得*/
@@ -87,7 +85,6 @@ public class AlbumController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("createAlbumForm") @Validated CreateAlbumForm form
 			,BindingResult bindingResult
-			,RedirectAttributes redirectAttributes
 			,@ModelAttribute("group")Group group
 			) {
 		
@@ -107,7 +104,6 @@ public class AlbumController {
 	public String postDeleteAlbum(
 			@RequestParam("id") int albumId
 			,@AuthenticationPrincipal LoginUserDetails user
-			,RedirectAttributes redirectAttributes
 			) {
 		
 		/*自身が作成したアルバムであるかを確認*/

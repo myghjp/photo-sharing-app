@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Album;
 import portfolio.PhotoSharingApp.entity.Group;
@@ -36,7 +35,6 @@ public class DashboardController {
 	public String getDashboard(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
-			,RedirectAttributes redirectAttributes
 			,@ModelAttribute("group")Group group
 			) {
 		

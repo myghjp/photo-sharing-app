@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.entity.Member;
@@ -69,9 +68,8 @@ public class MemberController {
 	public String postListMember(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
-			,@ModelAttribute("addMemberForm") @Validated AddMemberForm form
+			,@ModelAttribute("addMemberForm")@Validated AddMemberForm form
 			,BindingResult bindingResult
-			,RedirectAttributes redirectAttributes
 			,@ModelAttribute("group")Group group
 		) {
 	
@@ -110,7 +108,6 @@ public class MemberController {
 			Model model
 			,@RequestParam("id") int memberId
 			,@AuthenticationPrincipal LoginUserDetails user
-			,RedirectAttributes redirectAttributes
 			) {
 		
 		/*このグループ利用者はグループの管理者であるかを確認*/
