@@ -26,10 +26,18 @@ public class GlobalControllAdvice {
 		return "common/error";
 	}
 	
+	/*SessionAttributesの変数に値が存在しない場合はグループ選択画面にリダイレクト*/
+	@ExceptionHandler(IllegalStateException.class)
+	public String handleIllegalStateException(IllegalStateException e) {
+		
+        if (e.getMessage().contains("Expected session attribute")) {
+			return "redirect:select-group";
+        }
+        throw e;
+    }
+	
 	@ModelAttribute
 	public void currentURL(Model model,HttpServletRequest request) {
-		
 		model.addAttribute("currentURL", request.getServletPath());
 	}
-	
 }

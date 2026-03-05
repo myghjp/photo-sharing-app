@@ -78,8 +78,7 @@
 										</th:block>
 	
 										<th:block th:unless="${isAdmin}">
-											<th:block
-												th:if="${list.Account?.username != null and list.Account.username == loginUser}">
+											<th:block th:if="${list.Account?.username != null and list.Account.username == principal.username}">
 												<!-- Button trigger modal -->
 												<button type="button" th:text="#{deleteBtn}"
 													data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}"

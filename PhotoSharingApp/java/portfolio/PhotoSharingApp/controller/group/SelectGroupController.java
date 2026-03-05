@@ -56,7 +56,6 @@ public class SelectGroupController {
 			) {
 
 		Group group = groupService.findById(groupId);
-		
 		model.addAttribute("group",group);
 		
 		return "redirect:dashboard";

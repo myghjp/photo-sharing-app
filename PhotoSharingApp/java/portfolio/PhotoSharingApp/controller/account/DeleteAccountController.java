@@ -27,6 +27,8 @@ public class DeleteAccountController {
 			,boolean error
 			) {
 		
+				/*修正前*/
+		
 		model.addAttribute("isError",error);
 
 		return "account/delete-account";
