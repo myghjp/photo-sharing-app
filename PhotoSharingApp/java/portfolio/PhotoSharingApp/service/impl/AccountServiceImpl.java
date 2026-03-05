@@ -35,8 +35,26 @@ public class AccountServiceImpl implements AccountService{
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
+	/*データベースから特定のレコードの特定のカラムだけを取得する場合(idなど)*/
+	
+	/*findByIdメソッドを再利用(コントローラで再利用)*/
+	
+	/*レコード取得後に必要なフィールドだけ使用(各entityクラスからget)*/
+	
+	/*それ専用のメソッドを多数用意する必要がない(サービス？マッパー？)*/
+	
+	/*役割(サービスメソッド名)*/
+	
+	/*findByIdで１レコードに変更(マッパー？)*/
+	/*findBy〇〇でまとめる？*/
+	/*selectAccount*/
+	
+	/*findByIdの再利用/コントローラで選ぶ*/
+	/*サービスとマッパーの両方*/
+	
+	
 	@Override
-	public int findById(String emailAddress) {
+	public int findIdByEmail(String emailAddress) {
 		return accountMapper.selectByUserId(emailAddress);
 	}
 	

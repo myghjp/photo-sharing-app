@@ -14,12 +14,16 @@ public interface AccountService {
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	public int findById(String emailAddress);
+	/*メールでIDを探す*/
+	public int findIdByEmail(String emailAddress);
 	
+	/*名前と重複*/
 	public boolean existsByUsername(String username);
 	
+	/*メールと重複*/
 	public boolean existsByEmail(String emailAddress);
 	
+	/*登録*/
 	public boolean isRegister(String emailAddress);
 	
 	public boolean isOwner(int groupAdminId,String email);

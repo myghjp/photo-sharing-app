@@ -95,7 +95,8 @@ public class MemberController {
 		Member member = new Member();
 		
 		member.setGroupId(group.getId());
-		member.setAccountId(accountService.findById(email));
+		
+		member.setAccountId(accountService.findIdByEmail(email));
 		
 		memberService.insert(member);
 		

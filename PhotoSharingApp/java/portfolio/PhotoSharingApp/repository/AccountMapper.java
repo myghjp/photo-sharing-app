@@ -17,13 +17,13 @@ public interface AccountMapper {
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
 	public Account selectAccount(String email);
-	
 	public Integer selectByUserId(String emailAddress);
-	
-	public String selectByUsername(String username);
-	
 	public String selectByEmailAddress(String emailAddress);
 	
+	
+	
+	
+	public String selectByUsername(String username);
 	public String selectByEmailAddress2(Integer adminId);
 	
 }
