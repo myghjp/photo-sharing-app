@@ -50,7 +50,7 @@
 	</select>
 	
 	<select id="selectComment" resultMap="commentsTable">
-		select id,comment
+		select id,comment,account_id
 		from comments
 		where id = #{commentId}
 	</select>

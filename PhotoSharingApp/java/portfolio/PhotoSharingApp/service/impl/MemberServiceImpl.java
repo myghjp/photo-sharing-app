@@ -22,12 +22,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public List<Member> findAllById(int groupId){
+	public List<Member> getMemberListByGroupsId(int groupId){
 		return memberMapper.selectMembers(groupId);
 	}
 	
 	@Override
-	public int countMembersById(int groupId){
+	public int getCountMembersByGroupsId(int groupId){
 		int members = memberMapper.selectCountMembers(groupId);
 		
 		/*管理者分を一つ追加*/

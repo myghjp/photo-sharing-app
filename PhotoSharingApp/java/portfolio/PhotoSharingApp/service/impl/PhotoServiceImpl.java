@@ -21,7 +21,7 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	@Override
-	public List<Photo> findAllById(int albumId){
+	public List<Photo> getPhotoListByAlbumsId(int albumId){
 		return photoMapper.selectPhotos(albumId);
 	}
 	

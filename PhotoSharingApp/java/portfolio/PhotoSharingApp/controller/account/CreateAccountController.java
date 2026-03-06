@@ -48,12 +48,12 @@ public class CreateAccountController {
 		Account account = modelMapper.map(form, Account.class);
 
 		/*登録済のアカウント名と重複していないかを確認*/
-		if (accountService.existsByUsername(account.getUsername())) {
+		if (accountService.usernameExists(account.getUsername())) {
 			bindingResult.rejectValue("username", "entryAccountNameError");
 		}
 		
 		/*登録済のメールアドレスと重複していないかを確認*/
-		if (accountService.existsByEmail(account.getEmailAddress())) {
+		if (accountService.emailExists(account.getEmailAddress())) {
 			bindingResult.rejectValue("emailAddress", "entryAccountEmailError");
 		}
 		

@@ -42,7 +42,7 @@ public class SelectGroupController {
 	    model.addAttribute("userId",user.getUserId());
 	    
 	    /*自身が所属しているグループ情報を取得*/
-		List<Group> groupList = groupService.findAllByUserId(user.getUserId());
+		List<Group> groupList = groupService.getGroupListByUserId(user.getUserId());
 		model.addAttribute("groupList", groupList);
 
 		return "group/select-group";
@@ -55,7 +55,7 @@ public class SelectGroupController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 
-		Group group = groupService.findById(groupId);
+		Group group = groupService.findGroupById(groupId);
 		model.addAttribute("group",group);
 		
 		return "redirect:dashboard";
@@ -67,6 +67,7 @@ public class SelectGroupController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 		
+		/*？*/
 		/*自身が作成したグループなのかを確認*/
 		if (groupService.isOwner(groupId,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");

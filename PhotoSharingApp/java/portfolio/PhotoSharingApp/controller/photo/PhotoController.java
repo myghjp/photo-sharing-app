@@ -55,7 +55,7 @@ public class PhotoController {
 		}
 		
 		/*写真のテーブル情報とアカウント名を取得*/
-		List<Photo> photoList = photoService.findAllById(album.getId());
+		List<Photo> photoList = photoService.getPhotoListByAlbumsId(album.getId());
 		model.addAttribute("photoList", photoList);
 		
 		return "photo/list-photo";

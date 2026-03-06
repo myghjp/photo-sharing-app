@@ -43,34 +43,14 @@
 		where email_address = #{email}
 	</select>
 	
-	<!-- email -->
-	<select id="selectByUserId" resultType="Integer">
-		select id
-		from accounts
-		where email_address = #{emailAddress}
-	</select>
-	
-	<!-- email -->
-	<select id="selectByEmailAddress" resultType="String">
-		select email_address
-		from accounts
-		where email_address = #{emailAddress}
-	</select>
-	
-	
-	
-	
-	
 	<select id="selectByUsername" resultType="String">
 		select user
 		from accounts
 		where user = #{username}
 	</select>
 	
-	
-	
 	<!-- ※ -->
-	<select id="selectByEmailAddress2" resultType="String">
+	<select id="selectByEmailAddress" resultType="String">
 		select email_address
 		from accounts
 		where id = #{adminId}

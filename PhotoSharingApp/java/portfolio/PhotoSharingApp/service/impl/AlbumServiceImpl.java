@@ -21,12 +21,12 @@ public class AlbumServiceImpl implements AlbumService{
 	}
 	
 	@Override
-	public List<Album> findAllById(int groupId) {
+	public List<Album> getAlbumListByGroupsId(int groupId) {
 		return albumMapper.selectAlbums(groupId);
 	}
 	
 	@Override
-	public int countAlbumsById(int groupId) {
+	public int getCountAlbumsByGroupsId(int groupId) {
 		return albumMapper.selectCountAlbums(groupId);
 	}
 	@Override

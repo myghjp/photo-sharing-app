@@ -35,31 +35,13 @@ public class AccountServiceImpl implements AccountService{
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	/*データベースから特定のレコードの特定のカラムだけを取得する場合(idなど)*/
-	
-	/*findByIdメソッドを再利用(コントローラで再利用)*/
-	
-	/*レコード取得後に必要なフィールドだけ使用(各entityクラスからget)*/
-	
-	/*それ専用のメソッドを多数用意する必要がない(サービス？マッパー？)*/
-	
-	/*役割(サービスメソッド名)*/
-	
-	/*findByIdで１レコードに変更(マッパー？)*/
-	/*findBy〇〇でまとめる？*/
-	/*selectAccount*/
-	
-	/*findByIdの再利用/コントローラで選ぶ*/
-	/*サービスとマッパーの両方*/
-	
-	
 	@Override
-	public int findIdByEmail(String emailAddress) {
-		return accountMapper.selectByUserId(emailAddress);
+	public Account findByEmail(String emailAddress) {
+		return accountMapper.selectAccount(emailAddress);
 	}
 	
 	@Override
-	public boolean existsByUsername(String username) {
+	public boolean usernameExists(String username) {
 		if (accountMapper.selectByUsername(username) == null) {
 			return false;
 		} else {
@@ -68,8 +50,8 @@ public class AccountServiceImpl implements AccountService{
 	}
 	
 	@Override
-	public boolean existsByEmail(String emailAddress) {
-		if (accountMapper.selectByEmailAddress(emailAddress) == null) {
+	public boolean emailExists(String emailAddress) {
+		if (accountMapper.selectAccount(emailAddress) == null) {
 			return false;
 		} else {
 			return true;
@@ -78,7 +60,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public boolean isRegister(String emailAddress) {
-		if (accountMapper.selectByUserId(emailAddress) != null) {
+		if (accountMapper.selectAccount(emailAddress) != null) {
 			return false;
 		} else {
 			return true;
@@ -87,7 +69,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public boolean isOwner(int groupAdminId,String email) {
-		if (accountMapper.selectByEmailAddress2(groupAdminId).equals(email) == email.equals(email)) {
+		if (accountMapper.selectByEmailAddress(groupAdminId).equals(email) == email.equals(email)) {
 			return true;
 		} else {
 			return false;

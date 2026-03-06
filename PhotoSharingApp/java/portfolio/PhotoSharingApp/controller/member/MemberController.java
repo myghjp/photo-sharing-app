@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import portfolio.PhotoSharingApp.entity.Account;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.entity.Member;
 import portfolio.PhotoSharingApp.form.member.AddMemberForm;
@@ -50,15 +51,15 @@ public class MemberController {
 		}
 		
 		/*このグループ管理者のアカウント名とメールアドレスを取得*/
-		Group adminInfo = groupService.findByAdminInfo(group.getId());
+		Group adminInfo = groupService.getAdminInfoById(group.getId());
 		model.addAttribute("adminInfo", adminInfo);
 		
 		/*このグループ利用者のテーブル情報とアカウント名とメールアドレスを取得*/
-		List<Member> memberList = memberService.findAllById(group.getId());
+		List<Member> memberList = memberService.getMemberListByGroupsId(group.getId());
 		model.addAttribute("memberList", memberList);
 		
 		/*このグループのメンバーの数を取得*/
-		int countMembers = memberService.countMembersById(group.getId());
+		int countMembers = memberService.getCountMembersByGroupsId(group.getId());
 		model.addAttribute("countMembers", countMembers);
 		
 		return "member/list-member";
@@ -93,11 +94,11 @@ public class MemberController {
 		}
 		
 		Member member = new Member();
-		
 		member.setGroupId(group.getId());
 		
-		member.setAccountId(accountService.findIdByEmail(email));
-		
+		Account account = accountService.findByEmail(email);
+		member.setAccountId(account.getId());
+
 		memberService.insert(member);
 		
 		return "redirect:list-member";

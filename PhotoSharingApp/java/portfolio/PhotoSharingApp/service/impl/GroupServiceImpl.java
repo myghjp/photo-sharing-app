@@ -21,7 +21,7 @@ public class GroupServiceImpl implements GroupService{
 	}
 	
 	@Override
-	public List<Group> findAllByUserId(int id) {
+	public List<Group> getGroupListByUserId(int id) {
 		return groupMapper.selectGroups(id);
 	}
 	
@@ -32,18 +32,19 @@ public class GroupServiceImpl implements GroupService{
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
+	
 	@Override
-	public Group findById(int groupId){
+	public Group findGroupById(int groupId){
 		return groupMapper.selectGroup(groupId);
 	}
 	
 	@Override
-	public Group findByAdminInfo(int groupId) {
+	public Group getAdminInfoById(int groupId) {
 		return groupMapper.selectByAccounts(groupId);
 	}
 	
 	@Override
-	public boolean existsByGroupName(String groupName) {
+	public boolean groupNameExists(String groupName) {
 		if (groupMapper.selectByGroupName(groupName) == null) {
 			return false;
 		} else {
@@ -61,7 +62,7 @@ public class GroupServiceImpl implements GroupService{
 	}
 	
 	@Override
-	public boolean existsByUserId(int id) {
+	public boolean groupExists(int id) {
 		if (groupMapper.selectByAccountId(id) == null) {
 			return false;
 		} else {

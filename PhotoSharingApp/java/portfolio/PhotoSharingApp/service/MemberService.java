@@ -9,9 +9,9 @@ public interface MemberService {
 	
 	public void insert(Member member);
 	
-	public List<Member> findAllById(int groupId);
+	public List<Member> getMemberListByGroupsId(int groupId);
 	
-	public int countMembersById(int groupId);
+	public int getCountMembersByGroupsId(int groupId);
 	
 	public void delete(int memberId);
 	

@@ -55,11 +55,11 @@ public class AlbumController {
 		}
 		
 		/*このグループのアルバム情報と写真枚数を取得*/
-		List<Album> albumList = albumService.findAllById(group.getId());
+		List<Album> albumList = albumService.getAlbumListByGroupsId(group.getId());
 		model.addAttribute("albumList", albumList);
 		
 		/*このグループのアルバムの数を取得*/
-		int countAlbums =  albumService.countAlbumsById(group.getId());
+		int countAlbums = albumService.getCountAlbumsByGroupsId(group.getId());
 		model.addAttribute("countAlbums", countAlbums);
 	    
 		return "album/select-album";
@@ -106,6 +106,7 @@ public class AlbumController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 		
+		/*※has*/
 		/*自身が作成したアルバムであるかを確認*/
 		if (albumService.isAlbum(albumId,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
