@@ -37,7 +37,7 @@ public class DeleteAccountController {
 		/*自身が作成したグループが存在するかを確認*/
 		if (groupService.hasCreateGroup(user.getUserId())) {
 			boolean error = true;
-			model.addAttribute("isError", error);
+			model.addAttribute("hasError", error);
 			return "account/delete-account";
 		}
 		

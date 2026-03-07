@@ -28,7 +28,7 @@
 				
 				<form method="post" th:action="@{/delete-account}">
 
-					<th:block th:if="${isError}">
+					<th:block th:if="${hasError}">
 						<div class="alert alert-danger alert-dismissible fade show">
 							<span th:text="#{deleteAccountError}" class="text-danger"></span>
 						</div>
