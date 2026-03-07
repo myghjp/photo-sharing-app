@@ -35,7 +35,7 @@
 	
 	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
-	<select id="selectGroups" resultMap="groupsTable">
+	<select id="getSelectGroups" resultMap="groupsTable">
 		select distinct groups.id
 			,group_name
 			,groups.account_id
@@ -47,13 +47,13 @@
 			or groups_members.account_id = #{id}
 	</select>
 	
-	<select id="selectGroup" resultMap="groupsTable">
+	<select id="getSelectGroup" resultMap="groupsTable">
 		select *
 		from `groups`
 		where id = #{groupId}
 	</select>
 	
-	<select id="selectByAccounts" resultMap="groupsTable">
+	<select id="getSelectAccount" resultMap="groupsTable">
 		select accounts.user as accounts_user
 			,accounts.email_address as accounts_email_address
 		from `groups`
@@ -62,19 +62,19 @@
 		where groups.id = #{groupId}
 	</select>
 	
-	<select id="selectByGroupName" resultType="String">
+	<select id="getSelectGroupName" resultType="String">
 		select group_name
 		from `groups`
 		where group_name = #{groupName}
 	</select>
 	
-	<select id="selectByGroupsAccountId" resultType="Integer">
+	<select id="getSelectGroupsAccountId" resultType="Integer">
 		select account_id
 		from `groups`
 		where id = #{groupId}
 	</select>
 
-	<select id="selectByAccountId" resultType="Integer">
+	<select id="getSelectAccountId" resultType="Integer">
 		select distinct account_id
 		from `groups`
 		where account_id = #{id}

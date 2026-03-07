@@ -37,7 +37,7 @@
 	
 	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
-	<select id="selectPhotos" resultMap="photosTable">
+	<select id="getSelectPhotos" resultMap="photosTable">
 		select photos.id
 			,accounts.user as accounts_user
 			,photo
@@ -51,19 +51,19 @@
 		order by photos.id desc
 	</select>
 	
-	<select id="selectPhoto" resultMap="photosTable">
+	<select id="getSelectPhoto" resultMap="photosTable">
 		select id,photo
 		from photos
 		where id = #{photoId}
 	</select>
 	
-	<select id="selectByAlbumId" resultType="Integer">
+	<select id="getSelectAlbumId" resultType="Integer">
 		select album_id
 		from photos
 		where id = #{photoId}
 	</select>
 	
-	<select id="selectByAccountId" resultType="Integer">
+	<select id="getSelectAccountId" resultType="Integer">
 		select account_id
 		from photos
 		where id = #{photoId}

@@ -22,7 +22,7 @@ public class PhotoServiceImpl implements PhotoService{
 	
 	@Override
 	public List<Photo> getPhotoList(int albumId){
-		return photoMapper.selectPhotos(albumId);
+		return photoMapper.getSelectPhotos(albumId);
 	}
 	
 	@Override
@@ -34,12 +34,12 @@ public class PhotoServiceImpl implements PhotoService{
 	
 	@Override
 	public Photo findById(int photoId) {
-		return photoMapper.selectPhoto(photoId);
+		return photoMapper.getSelectPhoto(photoId);
 	}
 	
 	@Override
 	public boolean hasAlbumPhoto(int photoId,int albumId) {
-		if (photoMapper.selectByAlbumId(photoId) != albumId) {
+		if (photoMapper.getSelectAlbumId(photoId) != albumId) {
 			return true;
 		} else {
 			return false;
@@ -48,7 +48,7 @@ public class PhotoServiceImpl implements PhotoService{
 	
 	@Override
 	public boolean hasAddPhoto(int photoId,int userId) {
-		if (photoMapper.selectByAccountId(photoId) != userId) {
+		if (photoMapper.getSelectAccountId(photoId) != userId) {
 			return true;
 		} else {
 			return false;

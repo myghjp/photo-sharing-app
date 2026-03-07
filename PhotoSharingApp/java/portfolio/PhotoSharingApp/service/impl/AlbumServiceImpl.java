@@ -22,12 +22,12 @@ public class AlbumServiceImpl implements AlbumService{
 	
 	@Override
 	public List<Album> getAlbumList(int groupId) {
-		return albumMapper.selectAlbums(groupId);
+		return albumMapper.getSelectAlbums(groupId);
 	}
 	
 	@Override
 	public int getCountAlbums(int groupId) {
-		return albumMapper.selectCountAlbums(groupId);
+		return albumMapper.getSelectCountAlbum(groupId);
 	}
 	@Override
 	public void delete(int albumId) {
@@ -38,12 +38,12 @@ public class AlbumServiceImpl implements AlbumService{
 	
 	@Override
 	public Album findById(int albumId) {
-		return albumMapper.selectAlbum(albumId);
+		return albumMapper.getSelectAlbum(albumId);
 	}
 	
 	@Override
 	public boolean hasCreateAlbum(int albumId,int userId) {
-		if (albumMapper.selectByGroupsAccountId(albumId) == userId) {
+		if (albumMapper.getSelectGroupsAccountId(albumId) == userId) {
 			return false;
 		} else {
 			return true;

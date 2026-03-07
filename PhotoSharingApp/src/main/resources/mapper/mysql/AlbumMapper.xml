@@ -34,7 +34,7 @@
 	
 	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
-	<select id="selectAlbums" resultMap="albumsTable">
+	<select id="getSelectAlbums" resultMap="albumsTable">
 		select albums.id
 			,album_name
 			,albums.create_date_time
@@ -51,7 +51,7 @@
 			,photos.album_id;
 	</select>
 	
-	<select id="selectCountAlbums" resultType="Integer">
+	<select id="getSelectCountAlbum" resultType="Integer">
 		select count(*)
 		from albums
 			left join `groups`
@@ -59,13 +59,13 @@
 		where group_id = #{groupId}
 	</select>
 	
-	<select id="selectAlbum" resultMap="albumsTable">
+	<select id="getSelectAlbum" resultMap="albumsTable">
 		select id,album_name
 		from albums
 		where id = #{albumId}
 	</select>
 	
-	<select id="selectByGroupsAccountId" resultType="Integer">
+	<select id="getSelectGroupsAccountId" resultType="Integer">
 		select groups.account_id
 		from albums
 			left join `groups`

@@ -16,11 +16,11 @@ public interface PhotoMapper {
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	public List<Photo> selectPhotos(Integer albumId);
+	public List<Photo> getSelectPhotos(Integer albumId);
 	
-	public Photo selectPhoto(Integer photoId);
+	public Photo getSelectPhoto(Integer photoId);
 	
-	public Integer selectByAlbumId(Integer photoId);
+	public Integer getSelectAlbumId(Integer photoId);
 	
-	public Integer selectByAccountId(Integer photoId);
+	public Integer getSelectAccountId(Integer photoId);
 }

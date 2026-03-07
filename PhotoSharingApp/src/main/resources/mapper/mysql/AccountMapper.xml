@@ -36,21 +36,25 @@
 	
 	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
-	<!-- ※email -->
-	<select id="selectAccount" resultMap="accountsTable">
+	<select id="getSelectAccount" resultMap="accountsTable">
 		select *
-		from accounts 
+		from accounts
 		where email_address = #{email}
 	</select>
 	
-	<select id="selectByUsername" resultType="String">
+	<select id="getSelectId" resultType="Integer">
+		select id
+		from accounts
+		where email_address = #{email}
+	</select>
+	
+	<select id="getSelectUsername" resultType="String">
 		select user
 		from accounts
 		where user = #{username}
 	</select>
 	
-	<!-- ※ -->
-	<select id="selectByEmailAddress" resultType="String">
+	<select id="getSelectEmailAddress" resultType="String">
 		select email_address
 		from accounts
 		where id = #{adminId}

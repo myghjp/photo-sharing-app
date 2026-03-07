@@ -20,7 +20,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public Account getLoginAccount(String email) {
-		return accountMapper.selectAccount(email);
+		return accountMapper.getSelectAccount(email);
 	}
 	
 	@Override
@@ -36,13 +36,13 @@ public class AccountServiceImpl implements AccountService{
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
 	@Override
-	public Account findByEmail(String emailAddress) {
-		return accountMapper.selectAccount(emailAddress);
+	public int findIdByEmail(String emailAddress) {
+		return accountMapper.getSelectId(emailAddress);
 	}
 	
 	@Override
 	public boolean existsUsername(String username) {
-		if (accountMapper.selectByUsername(username) == null) {
+		if (accountMapper.getSelectUsername(username) == null) {
 			return false;
 		} else {
 			return true;
@@ -51,7 +51,16 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public boolean existsEmail(String emailAddress) {
-		if (accountMapper.selectAccount(emailAddress) == null) {
+		if (accountMapper.getSelectAccount(emailAddress) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	@Override
+	public boolean emailRegistered(String emailAddress) {
+		if (accountMapper.getSelectId(emailAddress) != null) {
 			return false;
 		} else {
 			return true;
@@ -60,7 +69,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public boolean hasGroupOwnerEmail(int groupAdminId,String email) {
-		if (accountMapper.selectByEmailAddress(groupAdminId).equals(email) == email.equals(email)) {
+		if (accountMapper.getSelectEmailAddress(groupAdminId).equals(email) == email.equals(email)) {
 			return true;
 		} else {
 			return false;

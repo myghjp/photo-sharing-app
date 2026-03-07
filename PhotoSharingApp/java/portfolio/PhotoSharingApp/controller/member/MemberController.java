@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import portfolio.PhotoSharingApp.entity.Account;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.entity.Member;
 import portfolio.PhotoSharingApp.form.member.AddMemberForm;
@@ -76,9 +75,9 @@ public class MemberController {
 	
 		String email = form.getEmailAddress();
 		
-		/*登録済のメールアドレスと重複していないかを確認*/
-		if (accountService.existsEmail(email)) {
-			bindingResult.rejectValue("emailAddress", "entryAccountEmailError");
+		/*このメールアドレスは登録されているかを確認*/
+		if (accountService.emailRegistered(email)) {
+			bindingResult.rejectValue("emailAddress", "addMemberEmailError");
 		}
 		/*このグループの管理者のメールアドレスではないかを確認*/
 		else if (accountService.hasGroupOwnerEmail(group.getAccountId(),email)) {
@@ -95,9 +94,7 @@ public class MemberController {
 		
 		Member member = new Member();
 		member.setGroupId(group.getId());
-		
-		Account account = accountService.findByEmail(email);
-		member.setAccountId(account.getId());
+		member.setAccountId(accountService.findIdByEmail(email));
 
 		memberService.insert(member);
 		
