@@ -2,7 +2,8 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{common/layout}">
+	layout:decorate="~{common/layout}"
+	>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,20 +25,17 @@
 							</ol>
 						</nav>
 					</div>
-					
 					<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3 mx-0">
 						<form method="post" th:action="@{/list-photo}" enctype="multipart/form-data" class="text-center">
-							
 							<div class="d-flex justify-content-center">
 								<div class="col-sm-6">
 									<div class="input-group input-group-lg">
 										<label th:text="#{addPhoto}" class="input-group-text text-secondary" for="group-file"></label>
 										
-										<input type="file" name="multipartFile" accept=".jpg, .jpeg, .png" id="group-file" 
-										class="form-control" aria-describedby="group-file">
-										
+										<input type="file" name="multipartFile" accept=".jpg, .jpeg, .png" 
+											id="group-file" class="form-control" aria-describedby="group-file"
+										>
 										<input type="submit" th:value="#{addBtn}" class="btn btn-outline-primary rounded-end">
-										
 										<th:block th:if="${isError}">
 											<div th:text="#{errorMessage}" class="text-danger"></div>
 										</th:block>
@@ -48,27 +46,18 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
 				<div th:each="list : ${photoList}">
 					<div class="card shadow-sm p-0">
 						<div class="col">
-							<img th:src="@{'/media/' + ${list.photo}}" th:alt="${list.photo}"
-								data-bs-toggle="modal"
-								th:data-bs-target="'#' + ${list.id} + ${list.photo}"
-								class="card-img-top" height="225" width="100%">
-	
+							<img th:src="@{'/media/' + ${list.photo}}" th:alt="${list.photo}" data-bs-toggle="modal"
+								th:data-bs-target="'#' + ${list.id} + ${list.photo}" class="card-img-top" height="225" width="100%"
+							>
 							<div class="card-body text-center">
-	
-								<div class="card-text"
-									th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></div>
-	
+								<div class="card-text" th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></div>
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="btn-group">
-	
-										<a th:href="@{'/media/' + ${list.photo}}" download=""
-											th:text="#{saveBtn}" class="btn btn-sm btn-outline-primary"></a>
-	
+										<a th:href="@{'/media/' + ${list.photo}}" download="" th:text="#{saveBtn}" class="btn btn-sm btn-outline-primary"></a>
 										<th:block th:if="${isAdmin}">
 											<!-- Button trigger modal -->
 											<button type="button" th:text="#{deleteBtn}"
@@ -76,63 +65,56 @@
 												class="card-link btn btn-sm btn-outline-danger rounded-end"></button>
 											<!-- /Button trigger modal -->
 										</th:block>
-	
 										<th:block th:unless="${isAdmin}">
 											<th:block th:if="${list.Account?.username != null and list.Account.username == principal.username}">
 												<!-- Button trigger modal -->
-												<button type="button" th:text="#{deleteBtn}"
-													data-bs-toggle="modal" th:data-bs-target="'#' + ${list.id}"
-													class="card-link btn btn-sm btn-outline-danger"></button>
+												<button type="button" th:text="#{deleteBtn}" data-bs-toggle="modal"
+													th:data-bs-target="'#' + ${list.id}" class="card-link btn btn-sm btn-outline-danger">
+												</button>
 												<!-- /Button trigger modal -->
 											</th:block>
 										</th:block>
-	
 										<!-- Modal photo-->
 										<div class="modal fade" th:id="${list.id} + ${list.photo}"
 											tabindex="-1" aria-hidden="true">
 											<div class="modal-dialog modal-lg">
 												<div class="modal-content">
-													<img th:src="@{'/media/' + ${list.photo}}"
-														data-bs-dismiss="modal" aria-label="Close"
-														class="img-fluid" />
+													<img th:src="@{'/media/' + ${list.photo}}" data-bs-dismiss="modal"
+														aria-label="Close" class="img-fluid" 
+													>
 												</div>
 											</div>
 										</div>
 										<!-- /Modal -->
-	
 										<!-- Modal delete-->
 										<div class="modal fade" th:id="${list.id}" tabindex="-1"
-											aria-labelledby="exampleModalLabel" aria-hidden="true">
+											aria-labelledby="modalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content rounded-4 shadow">
 													<div class="modal-header border-bottom-0">
 														<div th:text="#{deletePhotoAlert}"></div>
-														<button type="button" class="btn-close"
-															data-bs-dismiss="modal" aria-label="Close"></button>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" 
+															aria-label="Close">
+														</button>
 													</div>
-	
 													<div class="modal-body py-0">
-														<h1 class="modal-title fs-5" id="exampleModalLabel">
+														<h1 class="modal-title fs-5" id="modalLabel">
 															<img th:src="@{'/media/' + ${list.photo}}" style="width: 300px; height: 300px;">
 														</h1>
 													</div>
-	
 													<form method="post" th:action="@{/delete-photo}">
-														<div
-															class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+														<div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
 															<input type="hidden" name="id" th:value="${list.id}">
-															<input type="submit" th:value="#{deleteBtn}"
-																class="btn btn-lg btn-danger"> <a
-																th:href="@{'/list-photo'}" th:text="#{cancelBtn}"
-																data-bs-dismiss="modal" class="btn btn-lg btn-secondary"></a>
+															<input type="submit" th:value="#{deleteBtn}" class="btn btn-lg btn-danger">
+															<a th:href="@{'/list-photo'}" th:text="#{cancelBtn}"
+																data-bs-dismiss="modal" class="btn btn-lg btn-secondary">
+															</a>
 														</div>
 													</form>
-	
 												</div>
 											</div>
 										</div>
 										<!-- /Modal -->
-	
 									</div>
 									<small class="text-body-secondary">
 										<div th:text="#{poster}"></div>

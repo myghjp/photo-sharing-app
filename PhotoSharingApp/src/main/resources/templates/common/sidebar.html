@@ -2,7 +2,8 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{common/layout}">
+	layout:decorate="~{common/layout}"
+	>
 <head>
 <meta charset="UTF-8">
 </head>
@@ -11,38 +12,35 @@
 	<div layout:fragment="sidebar" class="p-3">
 		<div class="text-center">
 			<div th:text="${group.groupName}" class="fs-4 fw-bold"></div>
-
 			<th:block th:if="${isAdmin}">
 				<div th:text="#{adminInfo}" class="text-info fs-5"></div>
 			</th:block>
 		</div>
-
 		<hr>
 		<ul class="nav nav-pills flex-column mb-auto">
-			<li class="nav-item"><a th:href="@{'/dashboard'}"
-				th:text="#{groupInfoPage}" class="nav-link" 
-				th:classappend="${currentURL == '/dashboard'} ? 'active' : ''"
-				aria-current="page"></a>
+			<li class="nav-item">
+				<a th:href="@{'/dashboard'}" th:text="#{groupInfoPage}" class="nav-link" 
+				th:classappend="${currentURL == '/dashboard'} ? 'active' : ''" aria-current="page">
+				</a>
 			</li>
-
-			<li class="nav-item"><a th:href="@{'/list-member'}"
-				th:text="#{listMemberPage}" class="nav-link"
-				th:classappend="${currentURL == '/list-member'} ? 'active' : ''"
-				aria-current="page"></a></li>
-
-			<li class="nav-item"><a th:href="@{'/select-album'}"
-				th:text="#{selectAlbumPage}" class="nav-link"
+			<li class="nav-item">
+				<a th:href="@{'/list-member'}" th:text="#{listMemberPage}" class="nav-link"
+				th:classappend="${currentURL == '/list-member'} ? 'active' : ''" aria-current="page">
+				</a>
+			</li>
+			<li class="nav-item">
+				<a th:href="@{'/select-album'}" th:text="#{selectAlbumPage}" class="nav-link"
 				th:classappend="${(currentURL == '/select-album' ? 'active' : '') 
-				+ (currentURL == '/list-photo' ? 'active' : '')}|"
-				aria-current="page"></a></li>
-
-			<li class="nav-item"><a th:href="@{'/list-comment'}"
-				th:text="#{listCommentPage}" class="nav-link"
-				th:classappend="${currentURL == '/list-comment'} ? 'active' : ''"
-				aria-current="page"></a></li>
+				+ (currentURL == '/list-photo' ? 'active' : '')}|" aria-current="page">
+				</a>
+			</li>
+			<li class="nav-item">
+				<a th:href="@{'/list-comment'}" th:text="#{listCommentPage}" class="nav-link"
+				th:classappend="${currentURL == '/list-comment'} ? 'active' : ''" aria-current="page">
+				</a>
+			</li>
 		</ul>
 		<hr>
-
 	</div>
 </body>
 </html>

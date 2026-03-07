@@ -2,7 +2,8 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{common/layout}">
+	layout:decorate="~{common/layout}"
+	>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,30 +23,25 @@
 								<li class="breadcrumb-item active" aria-current="page" th:text="#{listMemberPage}"></li>
 							</ol>
 						</nav>
-					
 						<div class="btn-toolbar mb-2 mb-md-0">
 							<div class="btn-group">
 								<div class="fs-4" th:text="#{memberCount} + ' 計' + ${countMembers} + '名'"></div>
 							</div>
 						</div>
 					</div>
-					
 					<th:block th:if="${isAdmin}">
 						<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3 mx-0">
 							<form method="post" th:action="@{/list-member}" th:object="${addMemberForm}" class="text-center">
-							
 								<div class="d-flex justify-content-center">
 									<div class="col-sm-5">
 										<div class="input-group input-group-lg">
 											<span th:text="#{addMember}" id="group-email" class="input-group-text text-secondary"></span>
-											
-											<input type="email" th:field="*{emailAddress}"
-												th:placeholder="#{emailAddress}" th:errorclass="is-invalid"
-												class="form-control" aria-describedby="group-email">
-												
+											<input type="email" th:field="*{emailAddress}" th:placeholder="#{emailAddress}"
+												th:errorclass="is-invalid" class="form-control" aria-describedby="group-email"
+											>
 											<input type="submit" th:value="#{addBtn}" id="group-email" 
-												class="btn btn-outline-primary rounded-end">
-												
+												class="btn btn-outline-primary rounded-end"
+											>
 											<div class="invalid-feedback" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
 										</div>
 									</div>
@@ -64,9 +60,7 @@
 								</th:block>
 							</tr>
 						</thead>
-
 						<tbody>
-							
 							<tr>
 								<td class="align-middle py-2">
 									<span th:text="#{admin}  + ':'" class="text-info"></span>
@@ -77,17 +71,13 @@
 									<td class="align-middle py-2"></td>
 								</th:block>
 							</tr>
-							
 							<tr th:each="list:${memberList}">
-
 								<td class="align-middle py-2"
 									th:text="${list.account?.username?: 'unknown'}">
 								</td>
-								
 								<td class="align-middle py-2"
 									th:text="${list.account?.emailAddress?: null}">
 								</td>
-								
 								<th:block th:if="${isAdmin}">
 									<td class="align-middle button">
 										<!-- Button trigger modal -->
@@ -99,11 +89,11 @@
 								</th:block>
 								
 								<!-- Modal -->
-								<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal fade" th:id="${list.id}" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content rounded-4 shadow">
 											<div class="modal-header border-bottom-0">
-												<h1 class="modal-title fs-5" id="exampleModalLabel"
+												<h1 class="modal-title fs-5" id="modalLabel"
 													th:text="${list.Account?.username?: 'unknown'}"></h1>
 												<button type="button" class="btn-close"
 													data-bs-dismiss="modal" aria-label="Close"></button>
@@ -111,14 +101,13 @@
 											<div class="modal-body text-start py-0">
 												<div th:text="#{deleteMemberAlert}"></div>
 											</div>
-
 											<form method="post" th:action="@{/delete-member}">
-												<div
-													class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+												<div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
 													<input type="hidden" name="id" th:value="${list.id}">
 													<input type="submit" th:value="#{deleteBtn}"class="btn btn-lg btn-danger">
 													<a th:href="@{'/list-member'}" th:text="#{cancelBtn}"
-														data-bs-dismiss="modal" class="btn btn-lg btn-secondary"></a>
+														data-bs-dismiss="modal" class="btn btn-lg btn-secondary">
+													</a>
 												</div>
 											</form>
 										</div>

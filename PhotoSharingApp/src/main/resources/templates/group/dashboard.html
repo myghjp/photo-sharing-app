@@ -2,7 +2,8 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{common/layout}">
+	layout:decorate="~{common/layout}"
+	>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +22,6 @@
 					</ol>
 				</nav>
 			</div>
-			
 			<div class="row mb-4 g-4">
 	        	<div class="col-lg-4 col-sm-6">
 	            	<div class="card">
@@ -33,7 +33,6 @@
 						</div>
 	                </div>
 	            </div>
-	        
 		        <div class="col-lg-4 col-sm-6">
 		            <div class="card">
 	                	<div class="card-header">
@@ -44,7 +43,6 @@
 						</div>
 		            </div>
 		        </div>
-		         
 		        <div class="col-lg-4 col-sm-6">
 		            <div class="card">
 						<div class="card-header">
@@ -56,7 +54,6 @@
 					</div>
 		        </div>
 		    </div>
-			
 			<div class="row g-4">
 				<div class="col-lg-6 col-md-6 mb-md-0">
 					<table class="table table-striped border">
@@ -76,7 +73,6 @@
 						</tbody>
 					</table>
 				</div>
-				
 				<div class="col-lg-6 col-md-6 mb-md-0">
 					<table class="table table-striped table-hover border">
 						<thead>
@@ -84,7 +80,6 @@
 								<th scope="col" th:text="#{selectAlbumPage}"></th>
 							</tr>
 						</thead>
-						
 						<tbody class="d-block overflow-y-scroll" style="height: 250px;">
 							<tr th:each="list:${albumList}" class="d-block">
 								<td class="d-block align-middle py-2">
@@ -98,7 +93,6 @@
 						</tbody>
 					</table>
 				</div>
-				
 			</div>
 		</div>
 	</div>
