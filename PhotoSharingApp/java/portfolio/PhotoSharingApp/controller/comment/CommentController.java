@@ -48,7 +48,7 @@ public class CommentController {
 		model.addAttribute("loginUser",user.getUsername());
 		
 		/*このグループのコメントのテーブル情報とアカウント名を取得*/
-		List<Comment> commentList = commentService.findAllById(group.getId());
+		List<Comment> commentList = commentService.getCommentList(group.getId());
 		model.addAttribute("commentList", commentList);
 		
 		return "comment/list-comment";
@@ -84,7 +84,7 @@ public class CommentController {
 			) {
 		
 		/*自身が投稿したコメントかを確認*/
-		if (commentService.isComment(commentId,user.getUserId())) {
+		if (commentService.hasPostComment(commentId,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 

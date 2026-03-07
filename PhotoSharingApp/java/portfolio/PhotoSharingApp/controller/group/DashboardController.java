@@ -44,23 +44,23 @@ public class DashboardController {
 		}
 		
 		/*このグループの管理者のアカウント情報を取得*/
-		Group adminInfo = groupService.getAdminInfoById(group.getId());
+		Group adminInfo = groupService.getGroupAdminInfo(group.getId());
 		model.addAttribute("adminInfo", adminInfo);
 		
 		/*このグループ利用者のテーブル情報とアカウント名を取得*/
-		List<Member> memberList = memberService.getMemberListByGroupsId(group.getId());
+		List<Member> memberList = memberService.getMemberList(group.getId());
 		model.addAttribute("memberList", memberList);
 		
 		/*このグループのメンバーの数を取得*/
-		int countMembers = memberService.getCountMembersByGroupsId(group.getId());
+		int countMembers = memberService.getCountMembers(group.getId());
 		model.addAttribute("countMembers", countMembers);
 		
 		/*このグループのアルバムIDとアルバム名を取得*/
-		List<Album> albumList = albumService.getAlbumListByGroupsId(group.getId());
+		List<Album> albumList = albumService.getAlbumList(group.getId());
 		model.addAttribute("albumList", albumList);
 		
 		/*このグループのアルバムの数を取得*/
-		int countAlbums =  albumService.getCountAlbumsByGroupsId(group.getId());
+		int countAlbums =  albumService.getCountAlbums(group.getId());
 		model.addAttribute("countAlbums", countAlbums);
 		
 		return "group/dashboard";

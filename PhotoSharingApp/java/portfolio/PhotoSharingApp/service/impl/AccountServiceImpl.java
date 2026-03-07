@@ -41,7 +41,7 @@ public class AccountServiceImpl implements AccountService{
 	}
 	
 	@Override
-	public boolean usernameExists(String username) {
+	public boolean existsUsername(String username) {
 		if (accountMapper.selectByUsername(username) == null) {
 			return false;
 		} else {
@@ -50,7 +50,7 @@ public class AccountServiceImpl implements AccountService{
 	}
 	
 	@Override
-	public boolean emailExists(String emailAddress) {
+	public boolean existsEmail(String emailAddress) {
 		if (accountMapper.selectAccount(emailAddress) == null) {
 			return false;
 		} else {
@@ -59,16 +59,7 @@ public class AccountServiceImpl implements AccountService{
 	}
 	
 	@Override
-	public boolean isRegister(String emailAddress) {
-		if (accountMapper.selectAccount(emailAddress) != null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
-	@Override
-	public boolean isOwner(int groupAdminId,String email) {
+	public boolean hasGroupOwnerEmail(int groupAdminId,String email) {
 		if (accountMapper.selectByEmailAddress(groupAdminId).equals(email) == email.equals(email)) {
 			return true;
 		} else {

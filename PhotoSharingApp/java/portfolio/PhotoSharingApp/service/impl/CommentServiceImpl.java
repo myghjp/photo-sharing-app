@@ -21,7 +21,7 @@ public class CommentServiceImpl implements CommentService{
 	}
 	
 	@Override
-	public List<Comment> findAllById(int groupId){
+	public List<Comment> getCommentList(int groupId){
 		return commentMapper.selectComments(groupId);
 	}
 	
@@ -38,7 +38,7 @@ public class CommentServiceImpl implements CommentService{
 	}
 	
 	@Override
-	public boolean isComment(int commentId,int userId) {
+	public boolean hasPostComment(int commentId,int userId) {
 		if (commentMapper.selectByAccountId(commentId) == userId) {
 			return false;
 		} else {

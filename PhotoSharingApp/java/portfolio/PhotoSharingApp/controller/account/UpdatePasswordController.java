@@ -48,7 +48,7 @@ public class UpdatePasswordController {
 			,BindingResult bindingResult
 			) throws Exception {
 		
-		/*パスワード再設定の相関チェック*/
+		/*パスワードの相関チェック*/
 		if (form.isPasswordValid()) {
 			bindingResult.rejectValue("passwordConfirmation", "updatePasswordError");
 		}

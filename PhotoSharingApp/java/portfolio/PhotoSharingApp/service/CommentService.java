@@ -8,7 +8,7 @@ public interface CommentService {
 	
 	public void add(Comment comment);
 	
-	public List<Comment> findAllById(int groupId);
+	public List<Comment> getCommentList(int groupId);
 	
 	public void delete(int commentId);
 	
@@ -16,6 +16,6 @@ public interface CommentService {
 	
 	public Comment findById(int commentId);
 	
-	public boolean isComment(int commentId,int userId);
+	public boolean hasPostComment(int commentId,int userId);
 	
 }

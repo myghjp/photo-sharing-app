@@ -8,20 +8,20 @@ public interface GroupService {
 	
 	public void create(Group group);
 	
-	public List<Group> getGroupListByUserId(int id);
+	public List<Group> getGroupList(int id);
 	
 	public void delete(int groupId);
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	public Group findGroupById(int groupId);
+	public Group findById(int groupId);
 	
-	public Group getAdminInfoById(int groupId);
+	public Group getGroupAdminInfo(int groupId);
 	
-	public boolean groupNameExists(String groupName);
+	public boolean existsGroupName(String groupName);
 	
-	public boolean isOwner(int groupId,int userId);
+	public boolean hasGroupOwner(int groupId,int userId);
 	
-	public boolean groupExists(int userId);
+	public boolean hasCreateGroup(int userId);
 	
 }

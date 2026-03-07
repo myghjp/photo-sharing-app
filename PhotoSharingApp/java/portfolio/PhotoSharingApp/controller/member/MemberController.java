@@ -51,15 +51,15 @@ public class MemberController {
 		}
 		
 		/*このグループ管理者のアカウント名とメールアドレスを取得*/
-		Group adminInfo = groupService.getAdminInfoById(group.getId());
+		Group adminInfo = groupService.getGroupAdminInfo(group.getId());
 		model.addAttribute("adminInfo", adminInfo);
 		
 		/*このグループ利用者のテーブル情報とアカウント名とメールアドレスを取得*/
-		List<Member> memberList = memberService.getMemberListByGroupsId(group.getId());
+		List<Member> memberList = memberService.getMemberList(group.getId());
 		model.addAttribute("memberList", memberList);
 		
 		/*このグループのメンバーの数を取得*/
-		int countMembers = memberService.getCountMembersByGroupsId(group.getId());
+		int countMembers = memberService.getCountMembers(group.getId());
 		model.addAttribute("countMembers", countMembers);
 		
 		return "member/list-member";
@@ -76,16 +76,16 @@ public class MemberController {
 	
 		String email = form.getEmailAddress();
 		
-		/*このメールアドレスは登録されているかを確認*/
-		if (accountService.isRegister(email)) {
-			bindingResult.rejectValue("emailAddress", "addMemberEmailError");
+		/*登録済のメールアドレスと重複していないかを確認*/
+		if (accountService.existsEmail(email)) {
+			bindingResult.rejectValue("emailAddress", "entryAccountEmailError");
 		}
 		/*このグループの管理者のメールアドレスではないかを確認*/
-		else if (accountService.isOwner(group.getAccountId(),email)) {
+		else if (accountService.hasGroupOwnerEmail(group.getAccountId(),email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError3");
 		}
 		/*このグループに追加済のメールアドレスではないかを確認*/
-		else if (memberService.isMember(email,group)) {
+		else if (memberService.hasEmail(email,group)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError2");
 		}
 		
@@ -113,7 +113,7 @@ public class MemberController {
 			) {
 		
 		/*このグループ利用者はグループの管理者であるかを確認*/
-		if (memberService.isAdmin(memberId,user.getUserId())) {
+		if (memberService.hasGroupAdmin(memberId,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		

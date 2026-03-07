@@ -55,7 +55,7 @@ public class PhotoController {
 		}
 		
 		/*写真のテーブル情報とアカウント名を取得*/
-		List<Photo> photoList = photoService.getPhotoListByAlbumsId(album.getId());
+		List<Photo> photoList = photoService.getPhotoList(album.getId());
 		model.addAttribute("photoList", photoList);
 		
 		return "photo/list-photo";
@@ -103,7 +103,7 @@ public class PhotoController {
 			) throws IOException {
 		
 		/*このアルバムの写真なのかを確認*/
-		if (photoService.isAlbum(photoId, album.getId())) {
+		if (photoService.hasAlbumPhoto(photoId, album.getId())) {
 			throw new AccessDeniedException("アクセス権がありません");
 		} 
 		
@@ -111,7 +111,7 @@ public class PhotoController {
 		if (group.getAccountId() != user.getUserId()) {
 			
 			/*自身が追加した写真なのかを確認*/
-			if (photoService.isPhoto(photoId,user.getUserId())){
+			if (photoService.hasAddPhoto(photoId,user.getUserId())){
 				throw new AccessDeniedException("アクセス権がありません");
 			} 
 		}
