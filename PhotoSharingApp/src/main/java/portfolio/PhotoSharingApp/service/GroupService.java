@@ -8,7 +8,7 @@ public interface GroupService {
 	
 	public void create(Group group);
 	
-	public List<Group> getGroupList(int id);
+	public List<Group> getAffiliationGroupInfo(int id);
 	
 	public void delete(int groupId);
 	
@@ -16,12 +16,12 @@ public interface GroupService {
 	
 	public Group findById(int groupId);
 	
-	public Group getGroupAdminInfo(int groupId);
+	public Group getAdminInfo(int groupId);
 	
-	public boolean existsGroupName(String groupName);
+	public boolean isGroupNameDuplicate(String groupName);
 	
-	public boolean hasGroupOwner(int groupId,int userId);
+	public boolean isGroupCreator(int groupId,int userId);
 	
-	public boolean hasCreateGroup(int userId);
+	public boolean createdGroupExists(int userId);
 	
 }

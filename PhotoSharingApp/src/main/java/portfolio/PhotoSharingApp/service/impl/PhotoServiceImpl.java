@@ -21,7 +21,7 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	@Override
-	public List<Photo> getPhotoList(int albumId){
+	public List<Photo> getPhotoInfo(int albumId){
 		return photoMapper.getSelectPhotos(albumId);
 	}
 	
@@ -38,7 +38,7 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	@Override
-	public boolean hasAlbumPhoto(int photoId,int albumId) {
+	public boolean isAlbumPhoto(int photoId,int albumId) {
 		if (photoMapper.getSelectAlbumId(photoId) != albumId) {
 			return true;
 		} else {
@@ -47,7 +47,7 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	@Override
-	public boolean hasAddPhoto(int photoId,int userId) {
+	public boolean isUploader(int photoId,int userId) {
 		if (photoMapper.getSelectAccountId(photoId) != userId) {
 			return true;
 		} else {

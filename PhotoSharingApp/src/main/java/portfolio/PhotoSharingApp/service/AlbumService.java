@@ -8,9 +8,9 @@ public interface AlbumService {
 	
 	public void add(Album album);
 	
-	public List<Album> getAlbumList(int groupId);
+	public List<Album> getGroupAlbumInfo(int groupId);
 	
-	public int getCountAlbums(int groupId);
+	public int getGroupAlbumCount(int groupId);
 	
 	public void delete(int albumId);
 	
@@ -18,6 +18,6 @@ public interface AlbumService {
 	
 	public Album findById(int albumId);
 	
-	public boolean hasCreateAlbum(int albumId,int userId);
+	public boolean isAlbumCreator(int albumId,int userId);
 	
 }

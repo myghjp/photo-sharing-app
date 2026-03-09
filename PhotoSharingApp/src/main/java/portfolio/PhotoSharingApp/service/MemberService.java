@@ -9,9 +9,9 @@ public interface MemberService {
 	
 	public void insert(Member member);
 	
-	public List<Member> getMemberList(int groupId);
+	public List<Member> getGroupMemberInfo(int groupId);
 	
-	public int getCountMembers(int groupId);
+	public int getGroupMemberCount(int groupId);
 	
 	public void delete(int memberId);
 	
@@ -19,7 +19,7 @@ public interface MemberService {
 	
 	public Member findById(int memberId);
 	
-	public boolean hasEmail(String email,Group group);
+	public boolean isEmailAddressAdded(String email,Group group);
 	
-	public boolean hasGroupAdmin(int memberId,int userId);
+	public boolean isGroupAdmin(int memberId,int userId);
 }

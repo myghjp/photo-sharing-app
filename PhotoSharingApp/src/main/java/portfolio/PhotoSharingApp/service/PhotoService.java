@@ -8,7 +8,7 @@ public interface PhotoService {
 	
 	public void add(Photo photo);
 	
-	public List<Photo> getPhotoList(int albumId);
+	public List<Photo> getPhotoInfo(int albumId);
 	
 	public void remove(int photoId);
 	
@@ -16,8 +16,8 @@ public interface PhotoService {
 	
 	public Photo findById(int photoId);
 	
-	public boolean hasAlbumPhoto(int photoId,int albumId);
+	public boolean isAlbumPhoto(int photoId,int albumId);
 	
-	public boolean hasAddPhoto(int photoId,int userId);
+	public boolean isUploader(int photoId,int userId);
 	
 }

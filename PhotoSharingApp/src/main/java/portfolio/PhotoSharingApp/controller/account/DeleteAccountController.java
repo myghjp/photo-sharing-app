@@ -1,5 +1,7 @@
 package portfolio.PhotoSharingApp.controller.account;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -7,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.AccountService;
 import portfolio.PhotoSharingApp.service.GroupService;
@@ -34,8 +35,8 @@ public class DeleteAccountController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 		
-		/*自身が作成したグループが存在するかを確認*/
-		if (groupService.hasCreateGroup(user.getUserId())) {
+		/*作成したグループが存在しているか*/
+		if (groupService.createdGroupExists(user.getUserId())) {
 			boolean error = true;
 			model.addAttribute("hasError", error);
 			return "account/delete-account";

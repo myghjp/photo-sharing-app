@@ -44,22 +44,22 @@ public class MemberController {
 			,@ModelAttribute("group")Group group
 		) {
 		
-		/*自身がグループの管理者であるかを確認*/
+		/*グループ管理者か*/
 		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin", true);
 		}
 		
-		/*このグループ管理者のアカウント名とメールアドレスを取得*/
-		Group adminInfo = groupService.getGroupAdminInfo(group.getId());
+		/*グループ管理者情報を取得*/
+		Group adminInfo = groupService.getAdminInfo(group.getId());
 		model.addAttribute("adminInfo", adminInfo);
 		
-		/*このグループ利用者のテーブル情報とアカウント名とメールアドレスを取得*/
-		List<Member> memberList = memberService.getMemberList(group.getId());
+		/*グループメンバーの情報を取得*/
+		List<Member> memberList = memberService.getGroupMemberInfo(group.getId());
 		model.addAttribute("memberList", memberList);
 		
-		/*このグループのメンバーの数を取得*/
-		int countMembers = memberService.getCountMembers(group.getId());
-		model.addAttribute("countMembers", countMembers);
+		/*グループのメンバー数を取得*/
+		int memberCount = memberService.getGroupMemberCount(group.getId());
+		model.addAttribute("memberCount", memberCount);
 		
 		return "member/list-member";
 	}
@@ -75,16 +75,16 @@ public class MemberController {
 	
 		String email = form.getEmailAddress();
 		
-		/*このメールアドレスは登録されているかを確認*/
-		if (accountService.emailRegistered(email)) {
+		/*メールアドレスは登録されているか*/
+		if (accountService.isEmailAddressRegistered(email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError");
 		}
-		/*このグループの管理者のメールアドレスではないかを確認*/
-		else if (accountService.hasGroupOwnerEmail(group.getAccountId(),email)) {
+		/*グループ管理者のメールアドレスか*/
+		else if (accountService.isGroupAdminEmailAddress(group.getAccountId(),email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError3");
 		}
-		/*このグループに追加済のメールアドレスではないかを確認*/
-		else if (memberService.hasEmail(email,group)) {
+		/*メールアドレスは追加済か*/
+		else if (memberService.isEmailAddressAdded(email,group)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError2");
 		}
 		
@@ -109,8 +109,8 @@ public class MemberController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 		
-		/*このグループ利用者はグループの管理者であるかを確認*/
-		if (memberService.hasGroupAdmin(memberId,user.getUserId())) {
+		/*グループ管理者か*/
+		if (memberService.isGroupAdmin(memberId,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		

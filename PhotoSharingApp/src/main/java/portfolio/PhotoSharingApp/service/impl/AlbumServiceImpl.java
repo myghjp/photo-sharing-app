@@ -21,12 +21,12 @@ public class AlbumServiceImpl implements AlbumService{
 	}
 	
 	@Override
-	public List<Album> getAlbumList(int groupId) {
+	public List<Album> getGroupAlbumInfo(int groupId) {
 		return albumMapper.getSelectAlbums(groupId);
 	}
 	
 	@Override
-	public int getCountAlbums(int groupId) {
+	public int getGroupAlbumCount(int groupId) {
 		return albumMapper.getSelectCountAlbum(groupId);
 	}
 	@Override
@@ -42,7 +42,7 @@ public class AlbumServiceImpl implements AlbumService{
 	}
 	
 	@Override
-	public boolean hasCreateAlbum(int albumId,int userId) {
+	public boolean isAlbumCreator(int albumId,int userId) {
 		if (albumMapper.getSelectGroupsAccountId(albumId) == userId) {
 			return false;
 		} else {

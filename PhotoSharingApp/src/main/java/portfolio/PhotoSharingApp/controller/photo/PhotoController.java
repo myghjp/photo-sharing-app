@@ -44,18 +44,18 @@ public class PhotoController {
 			,@ModelAttribute("album")Album album
 		) {
 		
-		/*アルバムが選択されていないとリダイレクト*/
+		/*アルバム不選択だとリダイレクト*/
 		if (album.getId() == null) {
 			return "redirect:select-album";
 		}
 		
-		/*自身がグループの管理者であるかを確認*/
+		/*グループ管理者か*/
 		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		
-		/*写真のテーブル情報とアカウント名を取得*/
-		List<Photo> photoList = photoService.getPhotoList(album.getId());
+		/*写真の情報を取得*/
+		List<Photo> photoList = photoService.getPhotoInfo(album.getId());
 		model.addAttribute("photoList", photoList);
 		
 		return "photo/list-photo";
@@ -75,9 +75,9 @@ public class PhotoController {
 		
 		/*元のファイル名を取得*/
 		String originalFilename = file.getOriginalFilename();
-		/*画像保存先フォルダに保存する*/
+		/*画像保存先フォルダに保存*/
 		Path destPath = Paths.get(mediaDirectory, originalFilename);
-		/*保存先ディレクトリがなければ作成する*/
+		/*保存先ディレクトリがなければ作成*/
 		Files.createDirectories(destPath.getParent());
 		/*アップロードしたファイルを保存*/
 		Files.write(destPath, file.getBytes());
@@ -102,16 +102,16 @@ public class PhotoController {
 			,@SessionAttribute("group")Group group
 			) throws IOException {
 		
-		/*このアルバムの写真なのかを確認*/
-		if (photoService.hasAlbumPhoto(photoId, album.getId())) {
+		/*アルバムの写真か*/
+		if (photoService.isAlbumPhoto(photoId, album.getId())) {
 			throw new AccessDeniedException("アクセス権がありません");
 		} 
 		
-		/*自身がグループの管理者ではないかを確認*/
+		/*グループ管理者ではないか*/
 		if (group.getAccountId() != user.getUserId()) {
 			
-			/*自身が追加した写真なのかを確認*/
-			if (photoService.hasAddPhoto(photoId,user.getUserId())){
+			/*写真追加者か*/
+			if (photoService.isUploader(photoId,user.getUserId())){
 				throw new AccessDeniedException("アクセス権がありません");
 			} 
 		}

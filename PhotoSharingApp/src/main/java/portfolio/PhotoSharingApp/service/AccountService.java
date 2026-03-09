@@ -16,12 +16,12 @@ public interface AccountService {
 	
 	public int findIdByEmail(String emailAddress);
 	
-	public boolean existsUsername(String username);
+	public boolean isUsernameDuplicate(String username);
 	
-	public boolean existsEmail(String emailAddress);
+	public boolean isEmailAddressDuplicate(String emailAddress);
 	
-	public boolean emailRegistered(String emailAddress);
+	public boolean isEmailAddressRegistered(String emailAddress);
 	
-	public boolean hasGroupOwnerEmail(int groupAdminId,String email);
+	public boolean isGroupAdminEmailAddress(int groupAdminId,String email);
 
 }

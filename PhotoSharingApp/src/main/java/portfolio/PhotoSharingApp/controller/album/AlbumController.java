@@ -2,6 +2,8 @@ package portfolio.PhotoSharingApp.controller.album;
 
 import java.util.List;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Album;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.form.album.CreateAlbumForm;
@@ -49,18 +50,18 @@ public class AlbumController {
 		
 		httpSession.removeAttribute("album");
 		
-		 /*自身がグループの管理者であるかを確認*/
+		/*グループ管理者か*/
 		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		
-		/*このグループのアルバム情報と写真枚数を取得*/
-		List<Album> albumList = albumService.getAlbumList(group.getId());
+		/*グループアルバムの情報を取得*/
+		List<Album> albumList = albumService.getGroupAlbumInfo(group.getId());
 		model.addAttribute("albumList", albumList);
 		
-		/*このグループのアルバムの数を取得*/
-		int countAlbums = albumService.getCountAlbums(group.getId());
-		model.addAttribute("countAlbums", countAlbums);
+		/*グループのアルバム数を取得*/
+		int albumCount =  albumService.getGroupAlbumCount(group.getId());
+		model.addAttribute("albumCount", albumCount);
 	    
 		return "album/select-album";
 	}
@@ -71,7 +72,6 @@ public class AlbumController {
 			,@RequestParam("id")int albumId
 			) {
 		
-		/*アルバムIDとアルバム名を取得*/
 		Album album = albumService.findById(albumId);
 		model.addAttribute("album",album);
 		
@@ -106,8 +106,8 @@ public class AlbumController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 		
-		/*自身が作成したアルバムであるかを確認*/
-		if (albumService.hasCreateAlbum(albumId,user.getUserId())) {
+		/*アルバム作成者か*/
+		if (albumService.isAlbumCreator(albumId,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 		

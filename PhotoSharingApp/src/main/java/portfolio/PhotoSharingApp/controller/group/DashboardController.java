@@ -38,30 +38,30 @@ public class DashboardController {
 			,@ModelAttribute("group")Group group
 			) {
 		
-		/*自身がグループの管理者であるかを確認*/
+		/*グループ管理者か*/
 		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		
-		/*このグループの管理者のアカウント情報を取得*/
-		Group adminInfo = groupService.getGroupAdminInfo(group.getId());
+		/*グループ管理者情報を取得*/
+		Group adminInfo = groupService.getAdminInfo(group.getId());
 		model.addAttribute("adminInfo", adminInfo);
 		
-		/*このグループ利用者のテーブル情報とアカウント名を取得*/
-		List<Member> memberList = memberService.getMemberList(group.getId());
+		/*グループメンバーの情報を取得*/
+		List<Member> memberList = memberService.getGroupMemberInfo(group.getId());
 		model.addAttribute("memberList", memberList);
 		
-		/*このグループのメンバーの数を取得*/
-		int countMembers = memberService.getCountMembers(group.getId());
-		model.addAttribute("countMembers", countMembers);
+		/*グループのメンバー数を取得*/
+		int memberCount = memberService.getGroupMemberCount(group.getId());
+		model.addAttribute("memberCount", memberCount);
 		
-		/*このグループのアルバムIDとアルバム名を取得*/
-		List<Album> albumList = albumService.getAlbumList(group.getId());
+		/*グループアルバムの情報を取得*/
+		List<Album> albumList = albumService.getGroupAlbumInfo(group.getId());
 		model.addAttribute("albumList", albumList);
 		
-		/*このグループのアルバムの数を取得*/
-		int countAlbums =  albumService.getCountAlbums(group.getId());
-		model.addAttribute("countAlbums", countAlbums);
+		/*グループのアルバム数を取得*/
+		int albumCount =  albumService.getGroupAlbumCount(group.getId());
+		model.addAttribute("albumCount", albumCount);
 		
 		return "group/dashboard";
 	}

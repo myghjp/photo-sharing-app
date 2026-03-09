@@ -40,15 +40,15 @@ public class CommentController {
 			,@ModelAttribute("group")Group group
 			) {
 		
-		/*自身がグループの管理者であるかを確認*/
+		/*グループ管理者か*/
 		if (group.getAccountId() == user.getUserId()) {
 			model.addAttribute("isAdmin",true);
 		}
 		
 		model.addAttribute("loginUser",user.getUsername());
 		
-		/*このグループのコメントのテーブル情報とアカウント名を取得*/
-		List<Comment> commentList = commentService.getCommentList(group.getId());
+		/*グループのコメント情報を取得*/
+		List<Comment> commentList = commentService.getGroupCommentInfo(group.getId());
 		model.addAttribute("commentList", commentList);
 		
 		return "comment/list-comment";
@@ -83,8 +83,8 @@ public class CommentController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 		
-		/*自身が投稿したコメントかを確認*/
-		if (commentService.hasPostComment(commentId,user.getUserId())) {
+		/*投稿者か*/
+		if (commentService.isCommenter(commentId,user.getUserId())) {
 			throw new AccessDeniedException("不正なIDです");
 		}
 
