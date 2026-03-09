@@ -16,16 +16,16 @@ public interface GroupMapper {
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	public List<Group> getSelectGroups(Integer id);
+	public List<Group> selectGroupById(Integer id);
 	
-	public Group getSelectGroup(Integer groupId);
+	public Group selectByGroupId(Integer groupId);
 	
-	public Group getSelectAccount(Integer groupId);
+	public Group selectAccountByGroupId(Integer groupId);
 	
-	public String getSelectGroupName(String groupName);
+	public String selectGroupNameByGroupName(String groupName);
 	
-	public Integer getSelectGroupsAccountId(Integer groupId);
+	public Integer selectAccountIdByGroupId(Integer groupId);
 	
-	public Integer getSelectAccountId(Integer id);
+	public Integer selectAccountIdById(Integer id);
 	
 }

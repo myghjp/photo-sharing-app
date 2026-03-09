@@ -22,7 +22,7 @@ public class GroupServiceImpl implements GroupService{
 	
 	@Override
 	public List<Group> getAffiliationGroupInfo(int id) {
-		return groupMapper.getSelectGroups(id);
+		return groupMapper.selectGroupById(id);
 	}
 	
 	@Override
@@ -35,17 +35,17 @@ public class GroupServiceImpl implements GroupService{
 	
 	@Override
 	public Group findById(int groupId){
-		return groupMapper.getSelectGroup(groupId);
+		return groupMapper.selectByGroupId(groupId);
 	}
 	
 	@Override
 	public Group getAdminInfo(int groupId) {
-		return groupMapper.getSelectAccount(groupId);
+		return groupMapper.selectAccountByGroupId(groupId);
 	}
 	
 	@Override
 	public boolean isGroupNameDuplicate(String groupName) {
-		if (groupMapper.getSelectGroupName(groupName) == null) {
+		if (groupMapper.selectGroupNameByGroupName(groupName) == null) {
 			return false;
 		} else {
 			return true;
@@ -54,7 +54,7 @@ public class GroupServiceImpl implements GroupService{
 
 	@Override
 	public boolean isGroupCreator(int groupId,int userId) {
-		if (groupMapper.getSelectGroupsAccountId(groupId) == userId) {
+		if (groupMapper.selectAccountIdByGroupId(groupId) == userId) {
 			return false;
 		} else {
 			return true;
@@ -63,7 +63,7 @@ public class GroupServiceImpl implements GroupService{
 	
 	@Override
 	public boolean createdGroupExists(int id) {
-		if (groupMapper.getSelectAccountId(id) == null) {
+		if (groupMapper.selectAccountIdById(id) == null) {
 			return false;
 		} else {
 			return true;

@@ -20,7 +20,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public Account getLoginAccount(String email) {
-		return accountMapper.getSelectAccount(email);
+		return accountMapper.selectByEmail(email);
 	}
 	
 	@Override
@@ -37,12 +37,12 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public int findIdByEmail(String emailAddress) {
-		return accountMapper.getSelectId(emailAddress);
+		return accountMapper.selectIdByEmail(emailAddress);
 	}
 	
 	@Override
 	public boolean isUsernameDuplicate(String username) {
-		if (accountMapper.getSelectUsername(username) == null) {
+		if (accountMapper.selectUserByUser(username) == null) {
 			return false;
 		} else {
 			return true;
@@ -51,7 +51,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public boolean isEmailAddressDuplicate(String emailAddress) {
-		if (accountMapper.getSelectAccount(emailAddress) == null) {
+		if (accountMapper.selectByEmail(emailAddress) == null) {
 			return false;
 		} else {
 			return true;
@@ -60,7 +60,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public boolean isEmailAddressRegistered(String emailAddress) {
-		if (accountMapper.getSelectId(emailAddress) != null) {
+		if (accountMapper.selectIdByEmail(emailAddress) != null) {
 			return false;
 		} else {
 			return true;
@@ -69,7 +69,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public boolean isGroupAdminEmailAddress(int groupAdminId,String email) {
-		if (accountMapper.getSelectEmailAddress(groupAdminId).equals(email) == email.equals(email)) {
+		if (accountMapper.selectEmailByAdminId(groupAdminId).equals(email) == email.equals(email)) {
 			return true;
 		} else {
 			return false;

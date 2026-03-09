@@ -16,12 +16,12 @@ public interface AccountMapper {
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	public Account getSelectAccount(String email);
+	public Account selectByEmail(String email);
 	
-	public Integer getSelectId(String email);
+	public Integer selectIdByEmail(String email);
 	
-	public String getSelectUsername(String username);
+	public String selectUserByUser(String username);
 	
-	public String getSelectEmailAddress(Integer adminId);
+	public String selectEmailByAdminId(Integer adminId);
 	
 }
