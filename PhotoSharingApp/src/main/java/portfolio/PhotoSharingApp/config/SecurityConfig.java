@@ -42,7 +42,7 @@ public class SecurityConfig {
 				.failureUrl("/login")
 				.usernameParameter("emailAddress")
 				.passwordParameter("password")
-				.defaultSuccessUrl("/select-group", true)
+				.defaultSuccessUrl("/list-group", true)
 				.permitAll()
 			).logout(logout -> logout
 				.logoutUrl("/postlogout")

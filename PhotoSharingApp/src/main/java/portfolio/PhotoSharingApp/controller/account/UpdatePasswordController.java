@@ -36,7 +36,7 @@ public class UpdatePasswordController {
 			,@ModelAttribute("updatePasswordForm")UpdatePasswordForm form
 			) {
 		
-		return "account/update-password";
+		return "account/update";
 	}
 	
 	@PostMapping("/update-password")

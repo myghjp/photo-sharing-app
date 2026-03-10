@@ -51,7 +51,7 @@ public class CommentController {
 		List<Comment> commentList = commentService.getGroupCommentInfo(group.getId());
 		model.addAttribute("commentList", commentList);
 		
-		return "comment/list-comment";
+		return "comment/list";
 	}
 	
 	@PostMapping("/list-comment")

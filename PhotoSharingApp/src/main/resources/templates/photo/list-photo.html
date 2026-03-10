@@ -56,7 +56,7 @@
 							<div class="card-body text-center">
 								<div class="card-text" th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></div>
 								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn btn-group btn-rounded">
+									<div class="btn btn-group btn-rounded p-0">
 										<a th:href="@{'/media/' + ${list.photo}}" download="" th:text="#{saveBtn}" class="btn btn-sm btn-outline-primary"></a>
 										<th:block th:if="${isAdmin}">
 											<!-- Button trigger modal -->
@@ -67,9 +67,6 @@
 										</th:block>
 										<th:block th:unless="${isAdmin}">
 											<th:block th:if="${list.Account?.username != null and list.Account.username == loginUser}">
-												
-												<!--<span sec:authentication="principal.username"></span>-->
-												
 												<!-- Button trigger modal -->
 												<button type="button" th:text="#{deleteBtn}" data-bs-toggle="modal"
 													th:data-bs-target="'#' + ${list.id}" class="card-link btn btn-sm btn-outline-danger">

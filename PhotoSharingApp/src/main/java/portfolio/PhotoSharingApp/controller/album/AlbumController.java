@@ -2,8 +2,6 @@ package portfolio.PhotoSharingApp.controller.album;
 
 import java.util.List;
 
-import jakarta.servlet.http.HttpSession;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Album;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.form.album.CreateAlbumForm;
@@ -39,8 +38,8 @@ public class AlbumController {
 		return new Album();
 	}
 	
-	@GetMapping("/select-album")
-	public String getSelectAlbum(
+	@GetMapping("/list-album")
+	public String getListAlbum(
 			Model model
 			,@ModelAttribute("createAlbumForm")CreateAlbumForm form
 			,HttpSession httpSession
@@ -63,11 +62,11 @@ public class AlbumController {
 		int albumCount =  albumService.getGroupAlbumCount(group.getId());
 		model.addAttribute("albumCount", albumCount);
 	    
-		return "album/select-album";
+		return "album/list";
 	}
 	
-	@PostMapping("/select-album")
-	public String postSelectAlbum(
+	@PostMapping("/list-album")
+	public String postListAlbum(
 			Model model
 			,@RequestParam("id")int albumId
 			) {
@@ -89,7 +88,7 @@ public class AlbumController {
 			) {
 		
 		if (bindingResult.hasErrors()) {
-			return getSelectAlbum(model,form,httpSession,user,group);
+			return getListAlbum(model,form,httpSession,user,group);
 		}
 		
 		Album album = modelMapper.map(form,Album.class);
@@ -97,7 +96,7 @@ public class AlbumController {
 		album.setGroupId(group.getId());
 		albumService.add(album);
 		
-		return "redirect:select-album";
+		return "redirect:list-album";
 	}
 	
 	@PostMapping("/delete-album")
@@ -113,6 +112,6 @@ public class AlbumController {
 		
 		albumService.delete(albumId);
 		
-		return "redirect:select-album";
+		return "redirect:list-album";
 	}
 }

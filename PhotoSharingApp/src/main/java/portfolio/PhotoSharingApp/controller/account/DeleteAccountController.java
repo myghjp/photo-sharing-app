@@ -1,7 +1,5 @@
 package portfolio.PhotoSharingApp.controller.account;
 
-import jakarta.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -9,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.AccountService;
 import portfolio.PhotoSharingApp.service.GroupService;
@@ -25,7 +24,7 @@ public class DeleteAccountController {
 	@GetMapping("/delete-account")
 	public String getDeleteAccount() {
 		
-		return "account/delete-account";
+		return "account/delete";
 	}
 	
 	@PostMapping("/delete-account")

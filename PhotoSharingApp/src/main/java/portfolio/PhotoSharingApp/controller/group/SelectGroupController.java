@@ -30,8 +30,8 @@ public class SelectGroupController {
 		return new Group();
 	}
 
-	@GetMapping("/select-group")
-	public String getSelectGroup(
+	@GetMapping("/list-group")
+	public String getListGroup(
 			Model model
 			,SessionStatus sessionStatus
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -48,8 +48,8 @@ public class SelectGroupController {
 		return "group/select-group";
 	}
 
-	@PostMapping("/select-group")
-	public String postSelectGroup(
+	@PostMapping("/list-group")
+	public String postListGroup(
 			Model model
 			,@RequestParam("id")int groupId
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -74,6 +74,6 @@ public class SelectGroupController {
 
 		groupService.delete(groupId);
 
-		return "redirect:select-group";
+		return "redirect:list-group";
 	}
 }

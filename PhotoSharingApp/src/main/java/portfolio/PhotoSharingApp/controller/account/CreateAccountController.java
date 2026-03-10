@@ -1,7 +1,5 @@
 package portfolio.PhotoSharingApp.controller.account;
 
-import jakarta.servlet.http.HttpSession;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Account;
 import portfolio.PhotoSharingApp.form.account.CreateAccountForm;
 import portfolio.PhotoSharingApp.service.AccountService;
@@ -36,7 +35,7 @@ public class CreateAccountController {
 		
 		session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 		
-		return "account/create-account";
+		return "account/create";
 	}
 	
 	@PostMapping("/create-account")

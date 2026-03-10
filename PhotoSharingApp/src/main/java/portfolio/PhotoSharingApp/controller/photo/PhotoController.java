@@ -58,6 +58,7 @@ public class PhotoController {
 		List<Photo> photoList = photoService.getPhotoInfo(album.getId());
 		model.addAttribute("photoList", photoList);
 		
+		/*※*/
 		model.addAttribute("loginUser",user.getUsername());
 		
 		return "photo/list-photo";

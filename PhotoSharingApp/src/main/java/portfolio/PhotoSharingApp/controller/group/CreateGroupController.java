@@ -31,7 +31,7 @@ public class CreateGroupController {
 			@ModelAttribute("createGroupForm")CreateGroupForm form
 			) {
 		
-		return "group/create-group";
+		return "group/create";
 	}
 
 	@PostMapping("/create-group")

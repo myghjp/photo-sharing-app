@@ -52,7 +52,7 @@
 					<div class="row row-cols-1 row-cols-md-5 g-4">
 						<div th:each="list:${albumList}">
 							<div class="card p-0">
-								<form method="post" th:action="@{/select-album}" class="text-center">
+								<form method="post" th:action="@{/list-album}" class="text-center">
 									<div class="card-header">
 										<div class="card-title fs-5 fw-bold m-0" th:text="${list.albumName}"></div>
 									</div>
@@ -96,7 +96,7 @@
 												<div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
 													<input type="hidden" name="id" th:value="${list.id}">
 													<input type="submit" th:value="#{deleteBtn}" class="btn btn-lg btn-danger">
-													<a th:href="@{'/select-album'}" th:text="#{cancelBtn}"
+													<a th:href="@{'/list-album'}" th:text="#{cancelBtn}"
 														data-bs-dismiss="modal" class="btn btn-lg btn-secondary">
 													</a>
 												</div>
