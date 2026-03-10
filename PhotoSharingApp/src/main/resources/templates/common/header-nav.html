@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{common/layout}">
+	layout:decorate="~{common/layout}"
+	>
 <head>
 <meta charset="UTF-8">
 </head>
 <body>
-	<nav layout:fragment="header-nav" class="navbar navbar-expand-lg 
-	sticky-top bg-body-secondary p-2" data-bs-theme="dark"
+	<nav layout:fragment="header-nav" 
+		class="navbar navbar-expand-lg sticky-top bg-body-secondary p-2"
+		data-bs-theme="dark"
 	>
 		<span class="navbar-brand fs-3 fw-bold m-2" th:text="#{photoSharingApp}"></span>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
+			aria-label="Toggle navigation"
+		>
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
@@ -21,16 +24,16 @@
 			<ul class="navbar-nav fs-5 me-auto">
 				<li class="nav-item">
 					<a th:href="@{'/select-group'}"
-					th:text="#{selectGroupBtn}" class="nav-link"
-					th:classappend="${currentURL == '/select-group'} ? 'active' : ''"
-					aria-current="page">
+						th:text="#{selectGroupBtn}" class="nav-link"
+						th:classappend="${currentURL == '/select-group'} ? 'active' : ''"
+						aria-current="page">
 					</a>
 				</li>
 				<li class="nav-item">
 					<a th:href="@{'/create-group'}"
-					th:text="#{createGroupBtn}" class="nav-link"
-					th:classappend="${currentURL == '/create-group'} ? 'active' : ''"
-					aria-current="page">
+						th:text="#{createGroupBtn}" class="nav-link"
+						th:classappend="${currentURL == '/create-group'} ? 'active' : ''"
+						aria-current="page">
 					</a>
 				</li>
 			</ul>
@@ -38,25 +41,28 @@
 			<ul class="navbar-nav fs-5">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle"
-					th:classappend="${(currentURL == '/update-password' ? 'active' : '') 
-					+ (currentURL == '/delete-account' ? 'active' : '')}|"
-					role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					<span sec:authentication="principal.username"></span>
+						th:classappend="${(currentURL == '/update-password' ? 'active' : '') 
+						+ (currentURL == '/delete-account' ? 'active' : '')}|"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false"
+					>
+						<span sec:authentication="principal.username"></span>
 					</a>
 
 					<ul class="dropdown-menu dropdown-menu-end">
 						<li class="dropdown-item"><a th:href="@{/update-password}"
 							th:text="#{updatePasswordBtn}"
-							class="nav-link text-success-emphasis"></a></li>
+							class="nav-link text-success-emphasis"></a>
+						</li>
 						<li class="dropdown-item"><a th:href="@{/delete-account}"
 							th:text="#{deleteAccountBtn}"
-							class="nav-link text-danger-emphasis"></a></li>
-
+							class="nav-link text-danger-emphasis"></a>
+						</li>
 						<li><hr class="dropdown-divider"></li>
 						<li class="dropdown-item">
 							<form method="post" th:action="@{/postlogout}">
-								<input type="submit" th:value="#{logoutBtn}"
-									class="nav-link text-light-emphasis">
+								<input type="submit" th:value="#{logoutBtn}" 
+									class="nav-link text-light-emphasis"
+								>
 							</form>
 						</li>
 					</ul>
