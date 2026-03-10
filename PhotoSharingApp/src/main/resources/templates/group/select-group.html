@@ -28,7 +28,6 @@
 						</div>
 						<div class="card-body">
 							<p class="card-text" th:text="#{createDate} + ': ' + ${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></p>
-							<p class="card-text"></p>
 							<div class="d-inline-flex">
 								<button type="submit" th:value="${list.id}" name="id" 
 									th:text="#{openBtn}" class="card-link btn btn-outline-primary">

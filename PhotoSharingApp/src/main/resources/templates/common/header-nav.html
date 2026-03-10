@@ -19,7 +19,6 @@
 		>
 			<span class="navbar-toggler-icon"></span>
 		</button>
-
 		<div class="collapse navbar-collapse px-2" id="navbarSupportedContent">
 			<ul class="navbar-nav fs-5 me-auto">
 				<li class="nav-item">
@@ -37,7 +36,6 @@
 					</a>
 				</li>
 			</ul>
-
 			<ul class="navbar-nav fs-5">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle"
@@ -47,15 +45,16 @@
 					>
 						<span sec:authentication="principal.username"></span>
 					</a>
-
 					<ul class="dropdown-menu dropdown-menu-end">
-						<li class="dropdown-item"><a th:href="@{/update-password}"
-							th:text="#{updatePasswordBtn}"
-							class="nav-link text-success-emphasis"></a>
+						<li class="dropdown-item">
+							<a th:href="@{/update-password}" th:text="#{updatePasswordBtn}"
+								class="nav-link text-success-emphasis">
+							</a>
 						</li>
-						<li class="dropdown-item"><a th:href="@{/delete-account}"
-							th:text="#{deleteAccountBtn}"
-							class="nav-link text-danger-emphasis"></a>
+						<li class="dropdown-item">
+							<a th:href="@{/delete-account}" th:text="#{deleteAccountBtn}"
+								class="nav-link text-danger-emphasis">
+							</a>
 						</li>
 						<li><hr class="dropdown-divider"></li>
 						<li class="dropdown-item">
