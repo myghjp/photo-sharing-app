@@ -37,7 +37,7 @@
 	
 	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
-	<select id="getSelectComments" resultMap="commentsTable">
+	<select id="selectByGroupId" resultMap="commentsTable">
 		select comments.id
 			,accounts.user as accounts_user
 			,comments.create_date_time
@@ -49,13 +49,13 @@
 		order by comments.id desc
 	</select>
 	
-	<select id="getSelectComment" resultMap="commentsTable">
+	<select id="selectByCommentId" resultMap="commentsTable">
 		select id,comment,account_id
 		from comments
 		where id = #{commentId}
 	</select>
 	
-	<select id="getSelectAccountId" resultType="Integer">
+	<select id="selectAccountIdByCommentId" resultType="Integer">
 		select account_id
 		from comments
 		where id = #{commentId}

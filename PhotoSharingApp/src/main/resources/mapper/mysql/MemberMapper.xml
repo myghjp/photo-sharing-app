@@ -43,7 +43,7 @@
 	
 	<!-- ーーーーーーーーーーーーーーーーーーーー -->
 	
-	<select id="getSelectMembers" resultMap="membersTable">
+	<select id="selectByGroupId" resultMap="membersTable">
 		select groups_members.id
 			,groups.group_name as groups_group_name
 			,accounts.user as accounts_user
@@ -58,7 +58,7 @@
 		where groups.id = #{groupId}
 	</select>
 	
-	<select id="getSelectCountMember" resultType="Integer">
+	<select id="countByGroupId" resultType="Integer">
 		select count(*)
 		from groups_members
 			left join `groups`
@@ -68,7 +68,7 @@
 		where groups.id = #{groupId}
 	</select>
 	
-	<select id="getSelectMember" resultMap="membersTable">
+	<select id="selectByMemberId" resultMap="membersTable">
 		select groups_members.id
 			,accounts.user as accounts_user
 		from groups_members
@@ -77,7 +77,7 @@
 		where groups_members.id = #{memberId}
 	</select>
 	
-	<select id="getSelectId" resultType="Integer">
+	<select id="selectIdByEmailAndGroup" resultType="Integer">
 		select groups_members.id
 		from groups_members
 			left join accounts
@@ -87,7 +87,7 @@
 			or groups_members.account_id = #{group.accountId})
 	</select>
 	
-	<select id="getSelectGroupsAccountId" resultType="Integer">
+	<select id="selectAccountIdByMemberId" resultType="Integer">
 		select groups.account_id
 		from groups_members
 			left join `groups`

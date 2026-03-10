@@ -16,9 +16,9 @@ public interface CommentMapper {
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	public List<Comment> getSelectComments(Integer groupId);
+	public List<Comment> selectByGroupId(Integer groupId);
 	
-	public Comment getSelectComment(Integer commentId);
+	public Comment selectByCommentId(Integer commentId);
 	
-	public Integer getSelectAccountId(Integer commentId);
+	public Integer selectAccountIdByCommentId(Integer commentId);
 }

@@ -17,13 +17,13 @@ public interface MemberMapper {
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	public List<Member> getSelectMembers(Integer groupId);
+	public List<Member> selectByGroupId(Integer groupId);
 	
-	public Integer getSelectCountMember(Integer groupId);
+	public Integer countByGroupId(Integer groupId);
 	
-	public Member getSelectMember(Integer memberId);
+	public Member selectByMemberId(Integer memberId);
 	
-	public Integer getSelectId(String email,@Param("group")Group group);
+	public Integer selectIdByEmailAndGroup(String email,@Param("group")Group group);
 	
-	public Integer getSelectGroupsAccountId(Integer memberId);
+	public Integer selectAccountIdByMemberId(Integer memberId);
 }

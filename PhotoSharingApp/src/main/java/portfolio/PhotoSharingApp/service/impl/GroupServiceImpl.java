@@ -22,7 +22,7 @@ public class GroupServiceImpl implements GroupService{
 	
 	@Override
 	public List<Group> getAffiliationGroupInfo(int id) {
-		return groupMapper.selectGroupById(id);
+		return groupMapper.selectById(id);
 	}
 	
 	@Override

@@ -23,12 +23,12 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public List<Member> getGroupMemberInfo(int groupId){
-		return memberMapper.getSelectMembers(groupId);
+		return memberMapper.selectByGroupId(groupId);
 	}
 	
 	@Override
 	public int getGroupMemberCount(int groupId){
-		int members = memberMapper.getSelectCountMember(groupId);
+		int members = memberMapper.countByGroupId(groupId);
 		
 		/*管理者分を一つ追加*/
 		return members + 1;
@@ -43,12 +43,12 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public Member findById(int memberId) {
-		return memberMapper.getSelectMember(memberId);
+		return memberMapper.selectByMemberId(memberId);
 	}
 	
 	@Override
 	public boolean isEmailAddressAdded(String email,Group group) {
-		if (memberMapper.getSelectId(email,group) == null) {
+		if (memberMapper.selectIdByEmailAndGroup(email,group) == null) {
 			return false;
 		} else {
 			return true;
@@ -57,7 +57,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public boolean isGroupAdmin(int memberId,int userId) {
-		if (memberMapper.getSelectGroupsAccountId(memberId) == userId) {
+		if (memberMapper.selectAccountIdByMemberId(memberId) == userId) {
 			return false;
 		} else {
 			return true;

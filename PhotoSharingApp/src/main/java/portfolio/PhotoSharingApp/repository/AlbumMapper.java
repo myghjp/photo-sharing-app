@@ -16,11 +16,11 @@ public interface AlbumMapper {
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	public List<Album> getSelectAlbums(Integer groupId);
+	public List<Album> selectByGroupId(Integer groupId);
 	
-	public Integer getSelectCountAlbum(Integer groupId);
+	public Integer countByGroupId(Integer groupId);
 	
-	public Album getSelectAlbum(Integer albumId);
+	public Album selectByAlbumId(Integer albumId);
 	
-	public Integer getSelectGroupsAccountId(Integer albumId);
+	public Integer selectAccountIdByAlbumId(Integer albumId);
 }

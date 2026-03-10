@@ -16,7 +16,7 @@ public interface GroupMapper {
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	public List<Group> selectGroupById(Integer id);
+	public List<Group> selectById(Integer id);
 	
 	public Group selectByGroupId(Integer groupId);
 	

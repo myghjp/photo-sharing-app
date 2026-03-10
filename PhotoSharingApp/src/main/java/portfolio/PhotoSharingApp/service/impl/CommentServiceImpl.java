@@ -22,7 +22,7 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Override
 	public List<Comment> getGroupCommentInfo(int groupId){
-		return commentMapper.getSelectComments(groupId);
+		return commentMapper.selectByGroupId(groupId);
 	}
 	
 	@Override
@@ -34,12 +34,12 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Override
 	public Comment findById(int commentId) {
-		return commentMapper.getSelectComment(commentId);
+		return commentMapper.selectByCommentId(commentId);
 	}
 	
 	@Override
 	public boolean isCommenter(int commentId,int userId) {
-		if (commentMapper.getSelectAccountId(commentId) == userId) {
+		if (commentMapper.selectAccountIdByCommentId(commentId) == userId) {
 			return false;
 		} else {
 			return true;
