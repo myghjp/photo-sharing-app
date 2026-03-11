@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.controller.album;
+package portfolio.PhotoSharingApp.controller;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Album;
 import portfolio.PhotoSharingApp.entity.Group;
-import portfolio.PhotoSharingApp.form.album.CreateAlbumForm;
+import portfolio.PhotoSharingApp.form.CreateAlbumForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.AlbumService;
 

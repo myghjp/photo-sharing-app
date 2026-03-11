@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.form.account;
+package portfolio.PhotoSharingApp.form;
 
 import org.hibernate.validator.constraints.Length;
 

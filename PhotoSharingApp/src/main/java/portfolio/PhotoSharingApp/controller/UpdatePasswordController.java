@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.controller.account;
+package portfolio.PhotoSharingApp.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Account;
-import portfolio.PhotoSharingApp.form.account.UpdatePasswordForm;
+import portfolio.PhotoSharingApp.form.UpdatePasswordForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.AccountService;
 

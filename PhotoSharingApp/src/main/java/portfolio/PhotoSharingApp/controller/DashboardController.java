@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.controller.group;
+package portfolio.PhotoSharingApp.controller;
 
 import java.util.List;
 

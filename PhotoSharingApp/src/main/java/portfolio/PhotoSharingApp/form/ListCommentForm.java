@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.form.group;
+package portfolio.PhotoSharingApp.form;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -6,9 +6,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class CreateGroupForm {
+public class ListCommentForm {
 	
 	@NotBlank
-	@Length(max = 20)
-	private String groupName;
+	@Length(max = 50)
+	private String comment;
 }

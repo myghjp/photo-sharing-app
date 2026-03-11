@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.controller.photo;
+package portfolio.PhotoSharingApp.controller;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -46,7 +46,7 @@ public class PhotoController {
 		
 		/*アルバム不選択だとリダイレクト*/
 		if (album.getId() == null) {
-			return "redirect:select-album";
+			return "redirect:list-album";
 		}
 		
 		/*グループ管理者か*/
@@ -61,7 +61,7 @@ public class PhotoController {
 		/*※*/
 		model.addAttribute("loginUser",user.getUsername());
 		
-		return "photo/list-photo";
+		return "photo/list";
 	}
 	
 	@PostMapping("/list-photo")

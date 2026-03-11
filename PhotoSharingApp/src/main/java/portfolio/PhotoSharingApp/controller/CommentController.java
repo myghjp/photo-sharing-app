@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.controller.comment;
+package portfolio.PhotoSharingApp.controller;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import portfolio.PhotoSharingApp.entity.Comment;
 import portfolio.PhotoSharingApp.entity.Group;
-import portfolio.PhotoSharingApp.form.comment.ListCommentForm;
+import portfolio.PhotoSharingApp.form.ListCommentForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.CommentService;
 

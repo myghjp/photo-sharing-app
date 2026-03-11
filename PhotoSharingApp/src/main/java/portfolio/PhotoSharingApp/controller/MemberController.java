@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.controller.member;
+package portfolio.PhotoSharingApp.controller;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.entity.Member;
-import portfolio.PhotoSharingApp.form.member.AddMemberForm;
+import portfolio.PhotoSharingApp.form.AddMemberForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.AccountService;
 import portfolio.PhotoSharingApp.service.GroupService;
@@ -61,7 +61,7 @@ public class MemberController {
 		int memberCount = memberService.getGroupMemberCount(group.getId());
 		model.addAttribute("memberCount", memberCount);
 		
-		return "member/list-member";
+		return "member/list";
 	}
 	
 	@PostMapping("/list-member")

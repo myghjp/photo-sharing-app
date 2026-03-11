@@ -83,7 +83,7 @@
 						<tbody class="d-block overflow-y-scroll" style="height: 250px;">
 							<tr th:each="list:${albumList}" class="d-block">
 								<td class="d-block align-middle py-2">
-									<form method="post" th:action="@{/select-album}">
+									<form method="post" th:action="@{/list-album}">
 										<button type="submit" th:text="${list.albumName}" name="id" th:value="${list.id}"
 											class="rounded list-group-item list-group-item-action text-primary">
 										</button>

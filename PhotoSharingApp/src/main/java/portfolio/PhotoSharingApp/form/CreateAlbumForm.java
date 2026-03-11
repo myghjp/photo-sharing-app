@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.form.comment;
+package portfolio.PhotoSharingApp.form;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -6,9 +6,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class ListCommentForm {
+public class CreateAlbumForm {
 	
 	@NotBlank
-	@Length(max = 50)
-	private String comment;
+	@Length(max = 20)
+	private String albumName;
 }

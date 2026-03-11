@@ -1,4 +1,4 @@
-package portfolio.PhotoSharingApp.form.member;
+package portfolio.PhotoSharingApp.form;
 
 import jakarta.validation.constraints.Email;
 import lombok.Data;
