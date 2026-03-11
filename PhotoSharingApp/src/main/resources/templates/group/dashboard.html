@@ -39,7 +39,7 @@
 							<div class="text-center fw-bold" th:text="#{memberCount}"></div>
 						</div>
 						<div class="card-body" style="height: 100px;">
-							<div class="card-text text-end fw-bold fs-1" th:text="${memberCount}"></div>
+							<div class="card-text text-end fw-bold fs-1" th:text="${memberList.size() + 1}"></div>
 						</div>
 		            </div>
 		        </div>
@@ -49,7 +49,7 @@
 						    <div class="text-center fw-bold" th:text="#{albumCount}"></div>
 						</div>
 						<div class="card-body" style="height: 100px;">
-						    <div class="card-text text-end fw-bold fs-1" th:text="${albumCount}"></div>
+						    <div class="card-text text-end fw-bold fs-1" th:text="${albumList.size()}"></div>
 						</div>
 					</div>
 		        </div>

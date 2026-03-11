@@ -57,10 +57,6 @@ public class AlbumController {
 		/*グループアルバムの情報を取得*/
 		List<Album> albumList = albumService.getGroupAlbumInfo(group.getId());
 		model.addAttribute("albumList", albumList);
-		
-		/*グループのアルバム数を取得*/
-		int albumCount =  albumService.getGroupAlbumCount(group.getId());
-		model.addAttribute("albumCount", albumCount);
 	    
 		return "album/list";
 	}

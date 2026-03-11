@@ -26,10 +26,6 @@ public class AlbumServiceImpl implements AlbumService{
 	}
 	
 	@Override
-	public int getGroupAlbumCount(int groupId) {
-		return albumMapper.countByGroupId(groupId);
-	}
-	@Override
 	public void delete(int albumId) {
 		albumMapper.delete(albumId);
 	}

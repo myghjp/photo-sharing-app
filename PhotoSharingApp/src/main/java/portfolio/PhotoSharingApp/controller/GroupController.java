@@ -92,7 +92,6 @@ public class GroupController {
 	public String postListGroup(
 			Model model
 			,@RequestParam("id")int groupId
-			,@AuthenticationPrincipal LoginUserDetails user
 			) {
 
 		Group group = groupService.findById(groupId);

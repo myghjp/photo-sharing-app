@@ -51,14 +51,6 @@
 			,photos.album_id;
 	</select>
 	
-	<select id="countByGroupId" resultType="Integer">
-		select count(*)
-		from albums
-			left join `groups`
-			on group_id = groups.id
-		where group_id = #{groupId}
-	</select>
-	
 	<select id="selectByAlbumId" resultMap="albumsTable">
 		select id,album_name
 		from albums

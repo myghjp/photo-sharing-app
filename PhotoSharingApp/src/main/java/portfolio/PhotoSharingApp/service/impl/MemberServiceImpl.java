@@ -23,15 +23,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public List<Member> getGroupMemberInfo(int groupId){
-		return memberMapper.selectByGroupId(groupId);
-	}
-	
-	@Override
-	public int getGroupMemberCount(int groupId){
-		int members = memberMapper.countByGroupId(groupId);
-		
-		/*管理者分を一つ追加*/
-		return members + 1;
+		return  memberMapper.selectByGroupId(groupId);
 	}
 	
 	@Override

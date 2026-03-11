@@ -10,8 +10,6 @@ public interface AlbumService {
 	
 	public List<Album> getGroupAlbumInfo(int groupId);
 	
-	public int getGroupAlbumCount(int groupId);
-	
 	public void delete(int albumId);
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/

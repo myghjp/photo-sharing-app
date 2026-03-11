@@ -11,8 +11,6 @@ public interface MemberService {
 	
 	public List<Member> getGroupMemberInfo(int groupId);
 	
-	public int getGroupMemberCount(int groupId);
-	
 	public void delete(int memberId);
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/

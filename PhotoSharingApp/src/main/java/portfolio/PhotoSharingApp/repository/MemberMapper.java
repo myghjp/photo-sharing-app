@@ -19,8 +19,6 @@ public interface MemberMapper {
 	
 	public List<Member> selectByGroupId(Integer groupId);
 	
-	public Integer countByGroupId(Integer groupId);
-	
 	public Member selectByMemberId(Integer memberId);
 	
 	public Integer selectIdByEmailAndGroup(String email,@Param("group")Group group);

@@ -51,17 +51,9 @@ public class DashboardController {
 		List<Member> memberList = memberService.getGroupMemberInfo(group.getId());
 		model.addAttribute("memberList", memberList);
 		
-		/*グループのメンバー数を取得*/
-		int memberCount = memberService.getGroupMemberCount(group.getId());
-		model.addAttribute("memberCount", memberCount);
-		
 		/*グループアルバムの情報を取得*/
 		List<Album> albumList = albumService.getGroupAlbumInfo(group.getId());
 		model.addAttribute("albumList", albumList);
-		
-		/*グループのアルバム数を取得*/
-		int albumCount =  albumService.getGroupAlbumCount(group.getId());
-		model.addAttribute("albumCount", albumCount);
 		
 		return "group/dashboard";
 	}
