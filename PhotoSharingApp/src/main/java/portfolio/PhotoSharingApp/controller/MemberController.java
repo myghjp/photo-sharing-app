@@ -71,6 +71,12 @@ public class MemberController {
 	
 		String email = form.getEmailAddress();
 		
+		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+		
+		/*findByEmail*/
+		/*findIdByEmail×*/
+		
+		
 		/*メールアドレスは登録されているか*/
 		if (accountService.isEmailAddressRegistered(email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError");
@@ -79,6 +85,8 @@ public class MemberController {
 		else if (accountService.isGroupAdminEmailAddress(group.getAccountId(),email)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError3");
 		}
+		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+		
 		/*メールアドレスは追加済か*/
 		else if (memberService.isEmailAddressAdded(email,group)) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError2");
