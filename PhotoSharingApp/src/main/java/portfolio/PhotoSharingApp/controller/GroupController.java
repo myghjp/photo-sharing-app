@@ -54,8 +54,6 @@ public class GroupController {
 
 		sessionStatus.setComplete();
 	    
-	    model.addAttribute("userId",user.getUserId());
-	    
 	    /*所属グループ情報を取得*/
 		List<Group> groupList = groupService.getAffiliationGroupInfo(user.getUserId());
 		model.addAttribute("groupList", groupList);

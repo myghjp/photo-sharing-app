@@ -32,7 +32,7 @@
 								<button type="submit" th:value="${list.id}" name="id" 
 									th:text="#{openBtn}" class="card-link btn btn-outline-primary">
 								</button>
-								<th:block th:if="${list.accountId == userId}">
+								<th:block th:if="${list.accountId == #authentication.principal.userId}">
 									<!-- Button trigger modal -->
 									<button type="button" th:text="#{deleteBtn}" data-bs-toggle="modal" 
 										th:data-bs-target="'#' + ${list.id}"
