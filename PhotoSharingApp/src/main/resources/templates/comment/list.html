@@ -49,7 +49,7 @@
 									<div th:text="${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}" class="me-3"></div>
 								</div>
 								<div class="row me-1">
-									<th:block th:if="${list.Account?.username != null and list.Account.username == loginUser}">
+									<th:block th:if="${list.Account?.username != null and list.accountId == #authentication.principal.userId}">
 										<!-- Button trigger modal -->
 										<button type="button" th:text="#{deleteBtn}" data-bs-toggle="modal" 
 											th:data-bs-target="'#' + ${list.id}" class="btn btn-outline-danger">

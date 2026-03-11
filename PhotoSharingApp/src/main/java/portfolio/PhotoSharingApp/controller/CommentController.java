@@ -45,8 +45,6 @@ public class CommentController {
 			model.addAttribute("isAdmin",true);
 		}
 		
-		model.addAttribute("loginUser",user.getUsername());
-		
 		/*グループのコメント情報を取得*/
 		List<Comment> commentList = commentService.getGroupCommentInfo(group.getId());
 		model.addAttribute("commentList", commentList);

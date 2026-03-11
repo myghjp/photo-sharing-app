@@ -68,7 +68,6 @@ public class GroupController {
 	@PostMapping("/create-group")
 	public String postCreateGroup(
 			Model model
-			,SessionStatus sessionStatus
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("createGroupForm") @Validated CreateGroupForm form
 			,BindingResult bindingResult

@@ -41,6 +41,7 @@
 		select photos.id
 			,accounts.user as accounts_user
 			,photo
+			,photos.account_id
 			,photos.create_date_time
 		from photos
 			left join accounts

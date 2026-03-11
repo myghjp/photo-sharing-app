@@ -40,8 +40,9 @@
 	<select id="selectByGroupId" resultMap="commentsTable">
 		select comments.id
 			,accounts.user as accounts_user
-			,comments.create_date_time
 			,comments.comment
+			,comments.account_id
+			,comments.create_date_time
 		from comments
 			left join accounts
 			on comments.account_id = accounts.id
