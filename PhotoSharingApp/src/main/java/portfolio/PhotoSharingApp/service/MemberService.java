@@ -19,5 +19,4 @@ public interface MemberService {
 	
 	public boolean isEmailAddressAdded(String email,Group group);
 	
-	public boolean isGroupAdmin(int memberId,int userId);
 }

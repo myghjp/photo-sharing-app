@@ -23,5 +23,4 @@ public interface MemberMapper {
 	
 	public Integer selectIdByEmailAndGroup(String email,@Param("group")Group group);
 	
-	public Integer selectAccountIdByMemberId(Integer memberId);
 }

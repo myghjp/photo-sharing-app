@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import portfolio.PhotoSharingApp.entity.Account;
@@ -105,11 +106,12 @@ public class MemberController {
 			Model model
 			,@RequestParam("id") int memberId
 			,@AuthenticationPrincipal LoginUserDetails user
+			,@SessionAttribute("group")Group group
 			) {
 		
-		/*グループ管理者か*/
-		if (memberService.isGroupAdmin(memberId,user.getUserId())) {
-			throw new AccessDeniedException("不正なIDです");
+		/*メンバーを削除するユーザはこのグループ管理者か*/
+		if (group.getAccountId() != user.getUserId()) {
+			throw new AccessDeniedException("このグループ管理者ではありません");
 		}
 		
 		memberService.delete(memberId);

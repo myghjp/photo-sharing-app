@@ -77,12 +77,4 @@
 			or groups_members.account_id = #{group.accountId})
 	</select>
 	
-	<select id="selectAccountIdByMemberId" resultType="Integer">
-		select groups.account_id
-		from groups_members
-			left join `groups`
-				on group_id = groups.id
-		where groups_members.id = #{memberId}
-	</select>
-	
 </mapper>

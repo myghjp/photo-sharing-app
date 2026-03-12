@@ -46,13 +46,4 @@ public class MemberServiceImpl implements MemberService{
 			return true;
 		}
 	}
-	
-	@Override
-	public boolean isGroupAdmin(int memberId,int userId) {
-		if (memberMapper.selectAccountIdByMemberId(memberId) == userId) {
-			return false;
-		} else {
-			return true;
-		}
-	}
 }
