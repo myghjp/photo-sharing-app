@@ -34,10 +34,9 @@ public class AccountServiceImpl implements AccountService{
 	}
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
-	
 	@Override
-	public int findIdByEmail(String emailAddress) {
-		return accountMapper.selectIdByEmail(emailAddress);
+	public Account findByEmail(String emailAddress) {
+		return accountMapper.selectByEmail(emailAddress); 
 	}
 	
 	@Override
@@ -55,24 +54,6 @@ public class AccountServiceImpl implements AccountService{
 			return false;
 		} else {
 			return true;
-		}
-	}
-	
-	@Override
-	public boolean isEmailAddressRegistered(String emailAddress) {
-		if (accountMapper.selectIdByEmail(emailAddress) != null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
-	@Override
-	public boolean isGroupAdminEmailAddress(int groupAdminId,String email) {
-		if (accountMapper.selectEmailByAdminId(groupAdminId).equals(email) == email.equals(email)) {
-			return true;
-		} else {
-			return false;
 		}
 	}
 }

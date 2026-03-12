@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import portfolio.PhotoSharingApp.entity.Account;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.entity.Member;
 import portfolio.PhotoSharingApp.form.AddMemberForm;
@@ -68,28 +69,21 @@ public class MemberController {
 			,BindingResult bindingResult
 			,@ModelAttribute("group")Group group
 		) {
-	
+		
 		String email = form.getEmailAddress();
-		
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
-		
-		/*findByEmail*/
-		/*findIdByEmail×*/
-		
+		Account account = accountService.findByEmail(email);
 		
 		/*メールアドレスは登録されているか*/
-		if (accountService.isEmailAddressRegistered(email)) {
+		if (account == null) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError");
 		}
 		/*グループ管理者のメールアドレスか*/
-		else if (accountService.isGroupAdminEmailAddress(group.getAccountId(),email)) {
-			bindingResult.rejectValue("emailAddress", "addMemberEmailError3");
-		}
-		/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
-		
-		/*メールアドレスは追加済か*/
-		else if (memberService.isEmailAddressAdded(email,group)) {
+		else if (account.getEmailAddress().equals(group.getAccount().getEmailAddress())) {
 			bindingResult.rejectValue("emailAddress", "addMemberEmailError2");
+		}
+		/*メールアドレスは追加済か*/
+		else if (memberService.isEmailAddressAdded(account.getEmailAddress(),group)) {
+			bindingResult.rejectValue("emailAddress", "addMemberEmailError3");
 		}
 		
 		if (bindingResult.hasErrors()) {
@@ -98,7 +92,7 @@ public class MemberController {
 		
 		Member member = new Member();
 		member.setGroupId(group.getId());
-		member.setAccountId(accountService.findIdByEmail(email));
+		member.setAccountId(account.getId());
 
 		memberService.insert(member);
 		

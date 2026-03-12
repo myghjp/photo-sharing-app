@@ -18,10 +18,6 @@ public interface AccountMapper {
 	
 	public Account selectByEmail(String email);
 	
-	public Integer selectIdByEmail(String email);
-	
 	public String selectUserByUser(String username);
-	
-	public String selectEmailByAdminId(Integer adminId);
 	
 }

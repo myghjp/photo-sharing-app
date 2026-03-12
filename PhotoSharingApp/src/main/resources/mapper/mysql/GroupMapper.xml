@@ -48,9 +48,15 @@
 	</select>
 	
 	<select id="selectByGroupId" resultMap="groupsTable">
-		select *
+		select groups.id
+			,group_name
+			,groups.account_id
+			,groups.create_date_time
+			,accounts.email_address as accounts_email_address
 		from `groups`
-		where id = #{groupId}
+			left join accounts
+			on groups.account_id = accounts.id
+		where groups.id = #{groupId}
 	</select>
 	
 	<select id="selectAccountByGroupId" resultMap="groupsTable">

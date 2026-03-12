@@ -14,14 +14,10 @@ public interface AccountService {
 	
 	/*ーーーーーーーーーーーーーーーーーーーー*/
 	
-	public int findIdByEmail(String emailAddress);
+	public Account findByEmail(String emailAddress);
 	
 	public boolean isUsernameDuplicate(String username);
 	
 	public boolean isEmailAddressDuplicate(String emailAddress);
 	
-	public boolean isEmailAddressRegistered(String emailAddress);
-	
-	public boolean isGroupAdminEmailAddress(int groupAdminId,String email);
-
 }
