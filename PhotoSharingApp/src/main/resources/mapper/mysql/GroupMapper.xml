@@ -59,6 +59,12 @@
 		where groups.id = #{groupId}
 	</select>
 	
+	<select id="selectByGroupName" resultMap="groupsTable">
+		select *
+		from `groups`
+		where group_name = #{groupName}
+	</select>
+	
 	<select id="selectAccountByGroupId" resultMap="groupsTable">
 		select accounts.user as accounts_user
 			,accounts.email_address as accounts_email_address
@@ -66,12 +72,6 @@
 			left join accounts
 			on groups.account_id = accounts.id
 		where groups.id = #{groupId}
-	</select>
-	
-	<select id="selectGroupNameByGroupName" resultType="String">
-		select group_name
-		from `groups`
-		where group_name = #{groupName}
 	</select>
 	
 	<select id="selectAccountIdByGroupId" resultType="Integer">

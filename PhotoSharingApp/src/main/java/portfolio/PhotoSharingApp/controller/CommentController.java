@@ -35,10 +35,10 @@ public class CommentController {
 	@GetMapping("/list-comment")
 	public String getListComment(
 			Model model
-			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("listCommentForm")ListCommentForm form
+			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("group")Group group
-			) {
+		) {
 		
 		/*グループ管理者か*/
 		if (group.getAccountId() == user.getUserId()) {
@@ -56,17 +56,16 @@ public class CommentController {
 	public String postListComment(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
-			,@ModelAttribute("listCommentForm") @Validated ListCommentForm form
+			,@ModelAttribute("listCommentForm")@Validated ListCommentForm form
 			,BindingResult bindingResult
 			,@ModelAttribute("group")Group group
-			) {
+		) {
 		
 		if (bindingResult.hasErrors()) {
-			return getListComment(model,user,form,group);
+			return getListComment(model,form,user,group);
 		}
 		
 		Comment comment = modelMapper.map(form, Comment.class);
-		
 		comment.setGroupId(group.getId());
 		comment.setAccountId(user.getUserId());
 		
@@ -79,7 +78,7 @@ public class CommentController {
 	public String postDeleteComment(
 			@RequestParam("id") int commentId
 			,@AuthenticationPrincipal LoginUserDetails user
-			) {
+		) {
 		
 		/*投稿者か*/
 		if (commentService.isCommenter(commentId,user.getUserId())) {

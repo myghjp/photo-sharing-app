@@ -36,7 +36,7 @@ public class DashboardController {
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("group")Group group
-			) {
+		) {
 		
 		/*グループ管理者か*/
 		if (group.getAccountId() == user.getUserId()) {

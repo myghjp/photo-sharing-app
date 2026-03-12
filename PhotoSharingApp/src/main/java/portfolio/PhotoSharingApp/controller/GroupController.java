@@ -40,7 +40,7 @@ public class GroupController {
 	@GetMapping("/create-group")
 	public String getCreateGroup(
 			@ModelAttribute("createGroupForm")CreateGroupForm form
-			) {
+		) {
 		
 		return "group/create";
 	}
@@ -50,26 +50,24 @@ public class GroupController {
 			Model model
 			,SessionStatus sessionStatus
 			,@AuthenticationPrincipal LoginUserDetails user
-			) {
+		) {
 
 		sessionStatus.setComplete();
-	    
-	    /*所属グループ情報を取得*/
+	
+		/*所属グループ情報を取得*/
 		List<Group> groupList = groupService.getAffiliationGroupInfo(user.getUserId());
 		model.addAttribute("groupList", groupList);
 
 		return "group/list";
 	}
-	
-	/*ーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 
 	@PostMapping("/create-group")
 	public String postCreateGroup(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
-			,@ModelAttribute("createGroupForm") @Validated CreateGroupForm form
+			,@ModelAttribute("createGroupForm")@Validated CreateGroupForm form
 			,BindingResult bindingResult
-			) {
+		) {
 		
 		Group group = modelMapper.map(form, Group.class);
 
@@ -92,7 +90,7 @@ public class GroupController {
 	public String postListGroup(
 			Model model
 			,@RequestParam("id")int groupId
-			) {
+		) {
 
 		Group group = groupService.findById(groupId);
 		model.addAttribute("group",group);
@@ -104,7 +102,7 @@ public class GroupController {
 	public String postDeleteGroup(
 			@RequestParam("id") int groupId
 			,@AuthenticationPrincipal LoginUserDetails user
-			) {
+		) {
 		
 		/*グループ作成者か*/
 		if (groupService.isGroupCreator(groupId,user.getUserId())) {

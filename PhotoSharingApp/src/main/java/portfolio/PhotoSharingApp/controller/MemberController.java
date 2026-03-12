@@ -94,11 +94,10 @@ public class MemberController {
 		Member member = new Member();
 		member.setGroupId(group.getId());
 		member.setAccountId(account.getId());
-
+	
 		memberService.insert(member);
 		
 		return "redirect:list-member";
-	
 	}
 	
 	@PostMapping("/delete-member")
@@ -107,7 +106,7 @@ public class MemberController {
 			,@RequestParam("id") int memberId
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@SessionAttribute("group")Group group
-			) {
+		) {
 		
 		/*メンバーを削除するユーザはこのグループ管理者か*/
 		if (group.getAccountId() != user.getUserId()) {
@@ -115,7 +114,7 @@ public class MemberController {
 		}
 		
 		memberService.delete(memberId);
-
+	
 		return "redirect:list-member";
 	}
 }

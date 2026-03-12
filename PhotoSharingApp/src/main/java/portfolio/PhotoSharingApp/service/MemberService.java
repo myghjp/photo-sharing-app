@@ -18,5 +18,4 @@ public interface MemberService {
 	public Member findById(int memberId);
 	
 	public boolean isEmailAddressAdded(String email,Group group);
-	
 }

@@ -42,8 +42,8 @@
 		where email_address = #{email}
 	</select>
 	
-	<select id="selectUserByUser" resultType="String">
-		select user
+	<select id="selectByUsername" resultMap="accountsTable">
+		select *
 		from accounts
 		where user = #{username}
 	</select>

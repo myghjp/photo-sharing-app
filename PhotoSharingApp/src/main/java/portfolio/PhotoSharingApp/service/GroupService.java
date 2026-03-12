@@ -23,5 +23,4 @@ public interface GroupService {
 	public boolean isGroupCreator(int groupId,int userId);
 	
 	public boolean createdGroupExists(int userId);
-	
 }

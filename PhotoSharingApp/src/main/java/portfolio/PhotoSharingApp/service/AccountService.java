@@ -19,5 +19,4 @@ public interface AccountService {
 	public boolean isUsernameDuplicate(String username);
 	
 	public boolean isEmailAddressDuplicate(String emailAddress);
-	
 }

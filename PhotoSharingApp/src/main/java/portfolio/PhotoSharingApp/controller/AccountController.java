@@ -24,6 +24,9 @@ public class AccountController {
 
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private AccountService accountService;
@@ -31,12 +34,11 @@ public class AccountController {
 	@Autowired
 	private GroupService groupService;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
 	@GetMapping("/create-account")
 	public String getCreateAccount(
-			HttpSession session, @ModelAttribute("createAccountForm") CreateAccountForm form) {
+			HttpSession session
+			,@ModelAttribute("createAccountForm") CreateAccountForm form
+		) {
 
 		session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 
@@ -48,13 +50,13 @@ public class AccountController {
 		
 		return "account/delete";
 	}
-	
-	/*ーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 
 	@PostMapping("/create-account")
 	public String postCreateAcount(
-			HttpSession session, @ModelAttribute("createAccountForm") @Validated CreateAccountForm form,
-			BindingResult bindingResult) {
+			HttpSession session
+			,@ModelAttribute("createAccountForm")@Validated CreateAccountForm form
+			,BindingResult bindingResult
+		) {
 
 		Account account = modelMapper.map(form, Account.class);
 
@@ -83,12 +85,14 @@ public class AccountController {
 			Model model
 			,HttpSession session
 			,@AuthenticationPrincipal LoginUserDetails user
-			) {
+		) {
 		
 		/*作成したグループが存在しているか*/
 		if (groupService.createdGroupExists(user.getUserId())) {
+			
 			boolean error = true;
 			model.addAttribute("hasError", error);
+			
 			return "account/delete";
 		}
 		

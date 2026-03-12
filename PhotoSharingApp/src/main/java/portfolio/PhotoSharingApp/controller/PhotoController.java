@@ -100,7 +100,7 @@ public class PhotoController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@SessionAttribute("album")Album album
 			,@SessionAttribute("group")Group group
-			) throws IOException {
+		) throws IOException {
 		
 		/*アルバムの写真か*/
 		if (photoService.isAlbumPhoto(photoId, album.getId())) {

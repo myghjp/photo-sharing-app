@@ -41,7 +41,7 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public boolean isUsernameDuplicate(String username) {
-		if (accountMapper.selectUserByUser(username) == null) {
+		if (accountMapper.selectByUsername(username) == null) {
 			return false;
 		} else {
 			return true;

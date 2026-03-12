@@ -45,7 +45,7 @@ public class GroupServiceImpl implements GroupService{
 	
 	@Override
 	public boolean isGroupNameDuplicate(String groupName) {
-		if (groupMapper.selectGroupNameByGroupName(groupName) == null) {
+		if (groupMapper.selectByGroupName(groupName) == null) {
 			return false;
 		} else {
 			return true;

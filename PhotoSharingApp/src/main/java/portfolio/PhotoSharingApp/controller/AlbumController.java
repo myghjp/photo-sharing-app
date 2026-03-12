@@ -45,7 +45,7 @@ public class AlbumController {
 			,HttpSession httpSession
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("group")Group group
-			) {
+		) {
 		
 		httpSession.removeAttribute("album");
 		
@@ -65,7 +65,7 @@ public class AlbumController {
 	public String postListAlbum(
 			Model model
 			,@RequestParam("id")int albumId
-			) {
+		) {
 		
 		Album album = albumService.findById(albumId);
 		model.addAttribute("album",album);
@@ -78,18 +78,18 @@ public class AlbumController {
 			Model model
 			,HttpSession httpSession
 			,@AuthenticationPrincipal LoginUserDetails user
-			,@ModelAttribute("createAlbumForm") @Validated CreateAlbumForm form
+			,@ModelAttribute("createAlbumForm")@Validated CreateAlbumForm form
 			,BindingResult bindingResult
 			,@ModelAttribute("group")Group group
-			) {
+		) {
 		
 		if (bindingResult.hasErrors()) {
 			return getListAlbum(model,form,httpSession,user,group);
 		}
 		
 		Album album = modelMapper.map(form,Album.class);
-		
 		album.setGroupId(group.getId());
+		
 		albumService.add(album);
 		
 		return "redirect:list-album";
@@ -99,7 +99,7 @@ public class AlbumController {
 	public String postDeleteAlbum(
 			@RequestParam("id") int albumId
 			,@AuthenticationPrincipal LoginUserDetails user
-			) {
+		) {
 		
 		/*アルバム作成者か*/
 		if (albumService.isAlbumCreator(albumId,user.getUserId())) {

@@ -17,5 +17,4 @@ public interface AlbumService {
 	public Album findById(int albumId);
 	
 	public boolean isAlbumCreator(int albumId,int userId);
-	
 }

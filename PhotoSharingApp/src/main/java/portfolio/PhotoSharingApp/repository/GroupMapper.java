@@ -20,12 +20,11 @@ public interface GroupMapper {
 	
 	public Group selectByGroupId(Integer groupId);
 	
-	public Group selectAccountByGroupId(Integer groupId);
+	public Group selectByGroupName(String groupName);
 	
-	public String selectGroupNameByGroupName(String groupName);
+	public Group selectAccountByGroupId(Integer groupId);
 	
 	public Integer selectAccountIdByGroupId(Integer groupId);
 	
 	public Integer selectAccountIdById(Integer id);
-	
 }

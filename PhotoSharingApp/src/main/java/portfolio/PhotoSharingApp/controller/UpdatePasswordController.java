@@ -25,16 +25,16 @@ public class UpdatePasswordController {
 	private ModelMapper modelMapper;
 	
 	@Autowired
-	private AccountService accountService;
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	private PasswordEncoder passwordEncoder;
+	private AccountService accountService;
 
 	@GetMapping("/update-password")
 	public String getUpdatePassword(
 			Model model
 			,@ModelAttribute("updatePasswordForm")UpdatePasswordForm form
-			) {
+		) {
 		
 		return "account/update";
 	}
@@ -46,7 +46,7 @@ public class UpdatePasswordController {
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("updatePasswordForm")@Validated UpdatePasswordForm form
 			,BindingResult bindingResult
-			) throws Exception {
+		) throws Exception {
 		
 		/*パスワードの相関チェック*/
 		if (form.isPasswordValid()) {
@@ -58,9 +58,9 @@ public class UpdatePasswordController {
 		}
 		
 		Account account = modelMapper.map(form, Account.class);
-		
 		account.setId(user.getUserId());
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
+		
 		accountService.edit(account);
 		
 		session.invalidate();

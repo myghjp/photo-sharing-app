@@ -18,6 +18,5 @@ public interface AccountMapper {
 	
 	public Account selectByEmail(String email);
 	
-	public String selectUserByUser(String username);
-	
+	public Account selectByUsername(String username);
 }

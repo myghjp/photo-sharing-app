@@ -19,5 +19,4 @@ public interface PhotoService {
 	public boolean isAlbumPhoto(int photoId,int albumId);
 	
 	public boolean isUploader(int photoId,int userId);
-	
 }

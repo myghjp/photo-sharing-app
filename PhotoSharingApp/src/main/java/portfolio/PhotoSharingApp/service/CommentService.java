@@ -17,5 +17,4 @@ public interface CommentService {
 	public Comment findById(int commentId);
 	
 	public boolean isCommenter(int commentId,int userId);
-	
 }
