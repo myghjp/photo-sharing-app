@@ -16,6 +16,8 @@ public interface PhotoService {
 	
 	public Photo findById(int photoId);
 	
+	public boolean filenameExists(String filename);
+	
 	public boolean isAlbumPhoto(int photoId,int albumId);
 	
 	public boolean isUploader(int photoId,int userId);

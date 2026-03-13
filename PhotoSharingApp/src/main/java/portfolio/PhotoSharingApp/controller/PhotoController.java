@@ -12,6 +12,8 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import portfolio.PhotoSharingApp.entity.Album;
 import portfolio.PhotoSharingApp.entity.Group;
 import portfolio.PhotoSharingApp.entity.Photo;
+import portfolio.PhotoSharingApp.form.AddPhotoForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.PhotoService;
 
@@ -39,6 +42,7 @@ public class PhotoController {
 	@GetMapping("/list-photo")
 	public String getListPhoto(
 			Model model
+			,@ModelAttribute("addPhotoForm")AddPhotoForm form
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("group")Group group
 			,@ModelAttribute("album")Album album
@@ -65,16 +69,30 @@ public class PhotoController {
 	public String postListPhoto(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
-			,@RequestParam("multipartFile") MultipartFile file
+			,@ModelAttribute("addPhotoForm")@Validated AddPhotoForm form
+			,BindingResult bindingResult
+			,@SessionAttribute("group")Group group
 			,@SessionAttribute("album")Album album
-			)throws IOException {
+		)throws IOException {
+		
+		MultipartFile file = form.getPhoto();
 		
 		if (file.isEmpty()) {
-			return "redirect:list-photo";
+			bindingResult.rejectValue("photo", "addPhotoEmptyError");
 		}
 		
 		/*元のファイル名を取得*/
 		String originalFilename = file.getOriginalFilename();
+		
+		/*データベースに同じファイル名が存在するか*/
+		if(photoService.filenameExists(originalFilename)) {
+			bindingResult.rejectValue("photo", "addPhotoNameError");
+		}
+		
+		if (bindingResult.hasErrors()) {
+			return getListPhoto(model,form,user,group,album);
+		}
+		
 		/*画像保存先フォルダに保存*/
 		Path destPath = Paths.get(mediaDirectory, originalFilename);
 		/*保存先ディレクトリがなければ作成*/

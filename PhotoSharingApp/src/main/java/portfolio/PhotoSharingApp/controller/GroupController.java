@@ -73,7 +73,7 @@ public class GroupController {
 
 		/*グループ名と重複しているか*/
 		if (groupService.isGroupNameDuplicate(group.getGroupName())){
-			bindingResult.rejectValue("groupName","entryGroupNameError");
+			bindingResult.rejectValue("groupName","createGroupError");
 		}
 		
 		if (bindingResult.hasErrors()) {

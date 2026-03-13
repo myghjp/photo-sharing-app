@@ -53,9 +53,15 @@
 	</select>
 	
 	<select id="selectByPhotoId" resultMap="photosTable">
-		select id,photo
+		select *
 		from photos
 		where id = #{photoId}
+	</select>
+	
+	<select id="selectByPhoto" resultMap="photosTable">
+		select *
+		from photos
+		where photo = #{filename}
 	</select>
 	
 	<select id="selectAlbumIdByPhotoId" resultType="Integer">

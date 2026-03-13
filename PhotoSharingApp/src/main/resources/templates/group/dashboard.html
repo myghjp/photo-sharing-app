@@ -77,13 +77,13 @@
 					<table class="table table-striped table-hover border">
 						<thead>
 							<tr class="text-center">
-								<th scope="col" th:text="#{selectAlbumPage}"></th>
+								<th scope="col" th:text="#{listAlbumPage}"></th>
 							</tr>
 						</thead>
 						<tbody class="d-block overflow-y-scroll" style="height: 250px;">
 							<tr th:each="list:${albumList}" class="d-block">
 								<td class="d-block align-middle py-2">
-									<form method="post" th:action="@{/list-album}">
+									<form method="post" th:action="@{/open-photo}">
 										<button type="submit" th:text="${list.albumName}" name="id" th:value="${list.id}"
 											class="rounded list-group-item list-group-item-action text-primary">
 										</button>

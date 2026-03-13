@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
-<title th:text="#{selectGroupPage}"></title>
+<title th:text="#{listGroupPage}"></title>
 </head>
 <body class="bg-body-tertiary">
 
@@ -16,7 +16,7 @@
 
 	<div class="container">
 		<div class="row mb-3">
-			<div th:if="${#lists.isEmpty(groupList)}" th:text="#{selectGroupMessage}" class="text-center fs-2 m-3"></div>
+			<div th:if="${#lists.isEmpty(groupList)}" th:text="#{listGroupMessage}" class="text-center fs-2 m-3"></div>
 		</div>
 		<div class="row row-cols-1 row-cols-md-5 g-4">
 			<div th:each="list: ${groupList}">

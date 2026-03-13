@@ -64,18 +64,6 @@ public class AlbumController {
 	@PostMapping("/list-album")
 	public String postListAlbum(
 			Model model
-			,@RequestParam("id")int albumId
-		) {
-		
-		Album album = albumService.findById(albumId);
-		model.addAttribute("album",album);
-		
-		return "redirect:list-photo";
-	}
-	
-	@PostMapping("/create-album")
-	public String postCreateAlbum(
-			Model model
 			,HttpSession httpSession
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("createAlbumForm")@Validated CreateAlbumForm form
@@ -109,5 +97,17 @@ public class AlbumController {
 		albumService.delete(albumId);
 		
 		return "redirect:list-album";
+	}
+	
+	@PostMapping("/open-photo")
+	public String postOpenPhoto(
+			Model model
+			,@RequestParam("id")int albumId
+		) {
+		
+		Album album = albumService.findById(albumId);
+		model.addAttribute("album",album);
+		
+		return "redirect:list-photo";
 	}
 }

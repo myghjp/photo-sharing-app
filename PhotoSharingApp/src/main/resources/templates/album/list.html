@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
-<title th:text=#{selectAlbumPage}></title>
+<title th:text=#{listAlbumPage}></title>
 </head>
 <body>
 	<div layout:fragment="content">
@@ -20,7 +20,7 @@
 					<div class="d-flex justify-content-between align-items-center border-bottom py-3 mb-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb fw-bold fs-2 m-0">
-								<li class="breadcrumb-item active" aria-current="page" th:text="#{selectAlbumPage}"></li>
+								<li class="breadcrumb-item active" aria-current="page" th:text="#{listAlbumPage}"></li>
 							</ol>
 						</nav>
 						<div class="btn-toolbar mb-2 mb-md-0">
@@ -31,7 +31,7 @@
 					</div>
 					<th:block th:if="${isAdmin}">
 						<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3 mx-0">
-							<form method="post" th:action="@{/create-album}" th:object="${createAlbumForm}" class="text-center">
+							<form method="post" th:action="@{/list-album}" th:object="${createAlbumForm}" class="text-center">
 								<div class="d-flex justify-content-center">
 									<div class="col-sm-5">
 										<div class="input-group input-group-lg">
@@ -52,14 +52,14 @@
 					<div class="row row-cols-1 row-cols-md-5 g-4">
 						<div th:each="list:${albumList}">
 							<div class="card p-0">
-								<form method="post" th:action="@{/list-album}" class="text-center">
+								<form method="post" th:action="@{/open-photo}" class="text-center">
 									<div class="card-header">
 										<div class="card-title fs-5 fw-bold m-0" th:text="${list.albumName}"></div>
 									</div>
 									<div class="card-body">
 										<p class="card-text" th:text="#{createDate} + ': ' + ${#dates.format(list.createDateTime,'yyyy-MM-dd hh:mm:ss')}"></p>
 										<th:block th:if="${list.photo.albumId == 0}">
-											<p class="card-text" th:text="#{selectAlbumMessage}"></p>
+											<p class="card-text" th:text="#{listAlbumMessage}"></p>
 										</th:block>
 										<th:block th:unless="${list.photo.albumId == 0}">
 											<p class="card-text" th:text="#{photoCount} + ': ' + ${list.photo.albumId} +'枚'"></p>

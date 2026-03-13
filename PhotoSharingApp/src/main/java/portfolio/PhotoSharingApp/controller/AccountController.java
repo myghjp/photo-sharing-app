@@ -62,12 +62,12 @@ public class AccountController {
 
 		/*アカウント名が重複しているか*/
 		if (accountService.isUsernameDuplicate(account.getUsername())) {
-			bindingResult.rejectValue("username", "entryAccountNameError");
+			bindingResult.rejectValue("username", "createAccountNameError");
 		}
 
 		/*メールアドレスが重複しているか*/
 		if (accountService.isEmailAddressDuplicate(account.getEmailAddress())) {
-			bindingResult.rejectValue("emailAddress", "entryAccountEmailError");
+			bindingResult.rejectValue("emailAddress", "createAccountEmailError");
 		}
 
 		if (bindingResult.hasErrors()) {
