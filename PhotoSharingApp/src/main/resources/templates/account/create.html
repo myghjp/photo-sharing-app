@@ -16,7 +16,7 @@
 	<main class="container">
 		<div class="row align-items-center py-4">
 			<div class="col-md-4 mx-auto">
-				<form method="post" th:action="@{/create-account}" th:object="${createAccountForm}">
+				<form method="post" th:action="@{/account/create}" th:object="${createAccountForm}">
 					<h1 th:text="#{createAccountPage}" class="h1 fw-bold text-center mb-4"></h1>
 					<div class="form-floating mb-3">
 						<input type="text" id="username" th:field="*{username}"

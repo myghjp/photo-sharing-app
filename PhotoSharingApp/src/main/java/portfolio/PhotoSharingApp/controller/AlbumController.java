@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -24,6 +25,7 @@ import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.AlbumService;
 
 @Controller
+@RequestMapping("/album")
 @SessionAttributes(value = {"group","album"})
 public class AlbumController {
 	
@@ -38,7 +40,7 @@ public class AlbumController {
 		return new Album();
 	}
 	
-	@GetMapping("/list-album")
+	@GetMapping("/list")
 	public String getListAlbum(
 			Model model
 			,@ModelAttribute("createAlbumForm")CreateAlbumForm form
@@ -61,7 +63,7 @@ public class AlbumController {
 		return "album/list";
 	}
 	
-	@PostMapping("/list-album")
+	@PostMapping("/list")
 	public String postListAlbum(
 			Model model
 			,HttpSession httpSession
@@ -80,10 +82,10 @@ public class AlbumController {
 		
 		albumService.add(album);
 		
-		return "redirect:list-album";
+		return "redirect:list";
 	}
 	
-	@PostMapping("/delete-album")
+	@PostMapping("/delete")
 	public String postDeleteAlbum(
 			@RequestParam("id") int albumId
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -96,10 +98,10 @@ public class AlbumController {
 		
 		albumService.delete(albumId);
 		
-		return "redirect:list-album";
+		return "redirect:list";
 	}
 	
-	@PostMapping("/open-photo")
+	@PostMapping("/open")
 	public String postOpenPhoto(
 			Model model
 			,@RequestParam("id")int albumId
@@ -108,6 +110,6 @@ public class AlbumController {
 		Album album = albumService.findById(albumId);
 		model.addAttribute("album",album);
 		
-		return "redirect:list-photo";
+		return "redirect:/album/photo/list";
 	}
 }

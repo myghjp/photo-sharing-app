@@ -31,7 +31,7 @@ public class GlobalControllAdvice {
 	public String handleIllegalStateException(IllegalStateException e) {
 		
         if (e.getMessage().contains("Expected session attribute")) {
-			return "redirect:list-group";
+			return "redirect:/group/list";
         }
         throw e;
     }

@@ -31,7 +31,7 @@
 					</div>
 					<th:block th:if="${isAdmin}">
 						<div class="row d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center border-bottom pb-3 mb-3 mx-0">
-							<form method="post" th:action="@{/list-member}" th:object="${addMemberForm}" class="text-center">
+							<form method="post" th:action="@{/member/list}" th:object="${addMemberForm}" class="text-center">
 								<div class="d-flex justify-content-center">
 									<div class="col-sm-5">
 										<div class="input-group input-group-lg">
@@ -102,11 +102,11 @@
 											<div class="modal-body text-start py-0">
 												<div th:text="#{deleteMemberAlert}"></div>
 											</div>
-											<form method="post" th:action="@{/delete-member}">
+											<form method="post" th:action="@{/member/delete}">
 												<div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
 													<input type="hidden" name="id" th:value="${list.id}">
 													<input type="submit" th:value="#{deleteBtn}"class="btn btn-lg btn-danger">
-													<a th:href="@{'/list-member'}" th:text="#{cancelBtn}"
+													<a th:href="@{'/member/list'}" th:text="#{cancelBtn}"
 														data-bs-dismiss="modal" class="btn btn-lg btn-secondary">
 													</a>
 												</div>

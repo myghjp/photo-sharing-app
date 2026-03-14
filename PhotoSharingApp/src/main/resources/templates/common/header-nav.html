@@ -22,16 +22,16 @@
 		<div class="collapse navbar-collapse px-2" id="navbarSupportedContent">
 			<ul class="navbar-nav fs-5 me-auto">
 				<li class="nav-item">
-					<a th:href="@{'/list-group'}"
+					<a th:href="@{'/group/list'}"
 						th:text="#{listGroupBtn}" class="nav-link"
-						th:classappend="${currentURL == '/list-group'} ? 'active' : ''"
+						th:classappend="${currentURL == '/group/list'} ? 'active' : ''"
 						aria-current="page">
 					</a>
 				</li>
 				<li class="nav-item">
-					<a th:href="@{'/create-group'}"
+					<a th:href="@{'/group/create'}"
 						th:text="#{createGroupBtn}" class="nav-link"
-						th:classappend="${currentURL == '/create-group'} ? 'active' : ''"
+						th:classappend="${currentURL == '/group/create'} ? 'active' : ''"
 						aria-current="page">
 					</a>
 				</li>
@@ -39,20 +39,20 @@
 			<ul class="navbar-nav fs-5">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle"
-						th:classappend="${(currentURL == '/update-password' ? 'active' : '') 
-						+ (currentURL == '/delete-account' ? 'active' : '')}|"
+						th:classappend="${(currentURL == '/account/update-password' ? 'active' : '') 
+						+ (currentURL == '/account/delete' ? 'active' : '')}|"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false"
 					>
 						<span sec:authentication="principal.username"></span>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-end">
 						<li class="dropdown-item">
-							<a th:href="@{/update-password}" th:text="#{updatePasswordBtn}"
+							<a th:href="@{'/account/update-password'}" th:text="#{updatePasswordBtn}"
 								class="nav-link text-success-emphasis">
 							</a>
 						</li>
 						<li class="dropdown-item">
-							<a th:href="@{/delete-account}" th:text="#{deleteAccountBtn}"
+							<a th:href="@{'/account/delete'}" th:text="#{deleteAccountBtn}"
 								class="nav-link text-danger-emphasis">
 							</a>
 						</li>

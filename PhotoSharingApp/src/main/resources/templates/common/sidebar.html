@@ -24,19 +24,19 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a th:href="@{'/list-member'}" th:text="#{listMemberPage}" class="nav-link"
-					th:classappend="${currentURL == '/list-member'} ? 'active' : ''" aria-current="page">
+				<a th:href="@{'/member/list'}" th:text="#{listMemberPage}" class="nav-link"
+					th:classappend="${currentURL == '/member/list'} ? 'active' : ''" aria-current="page">
 				</a>
 			</li>
 			<li class="nav-item">
-				<a th:href="@{'/list-album'}" th:text="#{listAlbumPage}" class="nav-link"
-					th:classappend="${(currentURL == '/list-album' ? 'active' : '') 
-					+ (currentURL == '/list-photo' ? 'active' : '')}|" aria-current="page">
+				<a th:href="@{'/album/list'}" th:text="#{listAlbumPage}" class="nav-link"
+					th:classappend="${(currentURL == '/album/list' ? 'active' : '') 
+					+ (currentURL == '/album/photo/list' ? 'active' : '')}|" aria-current="page">
 				</a>
 			</li>
 			<li class="nav-item">
-				<a th:href="@{'/list-comment'}" th:text="#{listCommentPage}" class="nav-link"
-					th:classappend="${currentURL == '/list-comment'} ? 'active' : ''" aria-current="page">
+				<a th:href="@{'/comment/list'}" th:text="#{listCommentPage}" class="nav-link"
+					th:classappend="${currentURL == '/comment/list'} ? 'active' : ''" aria-current="page">
 				</a>
 			</li>
 		</ul>

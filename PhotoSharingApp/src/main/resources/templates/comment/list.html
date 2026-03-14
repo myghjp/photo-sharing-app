@@ -25,7 +25,7 @@
 						</nav>
 					</div>
 					<div class="row d-flex justify-content-center align-items-center border-bottom pb-3 mx-0 mb-3">
-						<form method="post" th:action="@{/list-comment}" th:object="${listCommentForm}">
+						<form method="post" th:action="@{/comment/list}" th:object="${listCommentForm}">
 							<div class="row">
 								<div class="input-group input-group-lg">
 									<span th:text="#{comment}" id="group-text" class="input-group-text text-secondary"></span>
@@ -76,11 +76,11 @@
 									<div class="modal-body py-0">
 										<div th:text="#{deleteCommentAlert}"></div>
 									</div>
-									<form method="post" th:action="@{/delete-comment}">
+									<form method="post" th:action="@{/comment/delete}">
 										<div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
 											<input type="hidden" name="id" th:value="${list.id}">
 											<input type="submit" th:value="#{deleteBtn}" class="btn btn-lg btn-danger">
-											<a th:href="@{'/list-comment'}" th:text="#{cancelBtn}" data-bs-dismiss="modal" class="btn btn-lg btn-secondary"></a>
+											<a th:href="@{'/comment/list'}" th:text="#{cancelBtn}" data-bs-dismiss="modal" class="btn btn-lg btn-secondary"></a>
 										</div>
 									</form>
 								</div>

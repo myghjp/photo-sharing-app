@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -23,6 +24,7 @@ import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.GroupService;
 
 @Controller
+@RequestMapping("/group")
 @SessionAttributes(value = {"group"})
 public class GroupController {
 	
@@ -37,7 +39,7 @@ public class GroupController {
 		return new Group();
 	}
 	
-	@GetMapping("/create-group")
+	@GetMapping("/create")
 	public String getCreateGroup(
 			@ModelAttribute("createGroupForm")CreateGroupForm form
 		) {
@@ -45,7 +47,7 @@ public class GroupController {
 		return "group/create";
 	}
 
-	@GetMapping("/list-group")
+	@GetMapping("/list")
 	public String getListGroup(
 			Model model
 			,SessionStatus sessionStatus
@@ -61,7 +63,7 @@ public class GroupController {
 		return "group/list";
 	}
 
-	@PostMapping("/create-group")
+	@PostMapping("/create")
 	public String postCreateGroup(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -83,10 +85,10 @@ public class GroupController {
 		group.setAccountId(user.getUserId());
 		groupService.create(group);
 		
-		return "redirect:list-group";
+		return "redirect:list";
 	}
 	
-	@PostMapping("/list-group")
+	@PostMapping("/list")
 	public String postListGroup(
 			Model model
 			,@RequestParam("id")int groupId
@@ -95,10 +97,10 @@ public class GroupController {
 		Group group = groupService.findById(groupId);
 		model.addAttribute("group",group);
 		
-		return "redirect:dashboard";
+		return "redirect:/dashboard";
 	}
 	
-	@PostMapping("/delete-group")
+	@PostMapping("/delete")
 	public String postDeleteGroup(
 			@RequestParam("id") int groupId
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -111,6 +113,6 @@ public class GroupController {
 
 		groupService.delete(groupId);
 
-		return "redirect:list-group";
+		return "redirect:list";
 	}
 }

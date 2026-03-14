@@ -11,15 +11,18 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpSession;
 import portfolio.PhotoSharingApp.entity.Account;
 import portfolio.PhotoSharingApp.form.CreateAccountForm;
+import portfolio.PhotoSharingApp.form.UpdatePasswordForm;
 import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.AccountService;
 import portfolio.PhotoSharingApp.service.GroupService;
 
 @Controller
+@RequestMapping("/account")
 public class AccountController {
 
 	@Autowired
@@ -34,7 +37,7 @@ public class AccountController {
 	@Autowired
 	private GroupService groupService;
 
-	@GetMapping("/create-account")
+	@GetMapping("/create")
 	public String getCreateAccount(
 			HttpSession session
 			,@ModelAttribute("createAccountForm") CreateAccountForm form
@@ -45,13 +48,22 @@ public class AccountController {
 		return "account/create";
 	}
 	
-	@GetMapping("/delete-account")
+	@GetMapping("/update-password")
+	public String getUpdatePassword(
+			Model model
+			,@ModelAttribute("updatePasswordForm")UpdatePasswordForm form
+		) {
+		
+		return "account/update-password";
+	}
+	
+	@GetMapping("/delete")
 	public String getDeleteAccount() {
 		
 		return "account/delete";
 	}
 
-	@PostMapping("/create-account")
+	@PostMapping("/create")
 	public String postCreateAcount(
 			HttpSession session
 			,@ModelAttribute("createAccountForm")@Validated CreateAccountForm form
@@ -79,8 +91,37 @@ public class AccountController {
 
 		return "redirect:login";
 	}
+	
+	@PostMapping("/update-password")
+	public String postUpdatePassword(
+			Model model
+			,HttpSession session
+			,@AuthenticationPrincipal LoginUserDetails user
+			,@ModelAttribute("updatePasswordForm")@Validated UpdatePasswordForm form
+			,BindingResult bindingResult
+		) throws Exception {
+		
+		/*パスワードの相関チェック*/
+		if (form.isPasswordValid()) {
+			bindingResult.rejectValue("passwordConfirmation", "updatePasswordError");
+		}
+		
+		if (bindingResult.hasErrors()) {
+			return getUpdatePassword(model,form);
+		}
+		
+		Account account = modelMapper.map(form, Account.class);
+		account.setId(user.getUserId());
+		account.setPassword(passwordEncoder.encode(account.getPassword()));
+		
+		accountService.edit(account);
+		
+		session.invalidate();
+		
+		return "redirect:login";
+	}
 
-	@PostMapping("/delete-account")
+	@PostMapping("/delete")
 	public String postDeleteAccount(
 			Model model
 			,HttpSession session

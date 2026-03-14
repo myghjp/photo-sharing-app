@@ -17,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -30,8 +31,9 @@ import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.PhotoService;
 
 @Controller
+@RequestMapping("/album/photo")
 @SessionAttributes(value = {"group","album"})
-public class PhotoController { 
+public class PhotoController {
 	
 	@Autowired
 	private PhotoService photoService;
@@ -39,7 +41,7 @@ public class PhotoController {
 	@Value("${app.media.directory}")
 	private String mediaDirectory;
 	
-	@GetMapping("/list-photo")
+	@GetMapping("/list")
 	public String getListPhoto(
 			Model model
 			,@ModelAttribute("addPhotoForm")AddPhotoForm form
@@ -50,7 +52,7 @@ public class PhotoController {
 		
 		/*アルバム不選択だとリダイレクト*/
 		if (album.getId() == null) {
-			return "redirect:list-album";
+			return "redirect:/album/list";
 		}
 		
 		/*グループ管理者か*/
@@ -65,7 +67,7 @@ public class PhotoController {
 		return "photo/list";
 	}
 	
-	@PostMapping("/list-photo")
+	@PostMapping("/list")
 	public String postListPhoto(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -108,10 +110,10 @@ public class PhotoController {
 		
 		photoService.add(photo);
 	
-		return "redirect:list-photo";
+		return "redirect:list";
 	}
 	
-	@PostMapping("/delete-photo")
+	@PostMapping("/delete")
 	public String postDeletePhoto(
 			Model model
 			,@RequestParam("id") int photoId
@@ -142,6 +144,6 @@ public class PhotoController {
 
 		photoService.remove(photoData.getId());
 
-		return "redirect:list-photo";
+		return "redirect:list";
 	}
 }

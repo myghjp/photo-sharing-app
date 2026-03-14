@@ -23,7 +23,7 @@
   					<div th:text="#{deleteAccountAlert}" class="fw-bold"></div>
 				</div>
 				<div th:text="#{deleteAccountMessage}" class="text-danger mb-4"></div>
-				<form method="post" th:action="@{/delete-account}">
+				<form method="post" th:action="@{/account/delete}">
 					<th:block th:if="${hasError}">
 						<div class="alert alert-danger alert-dismissible fade show">
 							<span th:text="#{deleteAccountError}" class="text-danger"></span>

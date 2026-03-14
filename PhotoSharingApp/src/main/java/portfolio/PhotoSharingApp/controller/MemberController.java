@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -26,6 +27,7 @@ import portfolio.PhotoSharingApp.service.GroupService;
 import portfolio.PhotoSharingApp.service.MemberService;
 
 @Controller
+@RequestMapping("/member")
 @SessionAttributes(value = {"group"})
 public class MemberController {
 
@@ -38,7 +40,7 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 
-	@GetMapping("/list-member")
+	@GetMapping("/list")
 	public String getListMember(
 			Model model
 			,@ModelAttribute("addMemberForm")AddMemberForm form
@@ -62,7 +64,7 @@ public class MemberController {
 		return "member/list";
 	}
 	
-	@PostMapping("/list-member")
+	@PostMapping("/list")
 	public String postListMember(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -97,10 +99,10 @@ public class MemberController {
 	
 		memberService.insert(member);
 		
-		return "redirect:list-member";
+		return "redirect:list";
 	}
 	
-	@PostMapping("/delete-member")
+	@PostMapping("/delete")
 	public String postDeleteMember(
 			Model model
 			,@RequestParam("id") int memberId
@@ -115,6 +117,6 @@ public class MemberController {
 		
 		memberService.delete(memberId);
 	
-		return "redirect:list-member";
+		return "redirect:list";
 	}
 }

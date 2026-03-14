@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -23,6 +24,7 @@ import portfolio.PhotoSharingApp.security.LoginUserDetails;
 import portfolio.PhotoSharingApp.service.CommentService;
 
 @Controller
+@RequestMapping("/comment")
 @SessionAttributes(value = {"group"})
 public class CommentController {
 	
@@ -32,7 +34,7 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
-	@GetMapping("/list-comment")
+	@GetMapping("/list")
 	public String getListComment(
 			Model model
 			,@ModelAttribute("listCommentForm")ListCommentForm form
@@ -52,7 +54,7 @@ public class CommentController {
 		return "comment/list";
 	}
 	
-	@PostMapping("/list-comment")
+	@PostMapping("/list")
 	public String postListComment(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -71,10 +73,10 @@ public class CommentController {
 		
 		commentService.add(comment);
 	
-		return "redirect:list-comment";
+		return "redirect:list";
 	}
 	
-	@PostMapping("/delete-comment")
+	@PostMapping("/delete")
 	public String postDeleteComment(
 			@RequestParam("id") int commentId
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -87,6 +89,6 @@ public class CommentController {
 
 		commentService.delete(commentId);
 
-		return "redirect:list-comment";
+		return "redirect:list";
 	}
 }

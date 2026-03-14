@@ -31,7 +31,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(authorize -> authorize
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 				.requestMatchers("/login").permitAll()
-				.requestMatchers("/create-account").permitAll()
+				.requestMatchers("/account/create").permitAll()
 				.requestMatchers("/media/**").permitAll()
 				.anyRequest().authenticated()
 			);
@@ -42,7 +42,7 @@ public class SecurityConfig {
 				.failureUrl("/login")
 				.usernameParameter("emailAddress")
 				.passwordParameter("password")
-				.defaultSuccessUrl("/list-group", true)
+				.defaultSuccessUrl("/group/list", true)
 				.permitAll()
 			).logout(logout -> logout
 				.logoutUrl("/postlogout")
