@@ -58,12 +58,6 @@
 		where id = #{photoId}
 	</select>
 	
-	<select id="selectByPhoto" resultMap="photosTable">
-		select *
-		from photos
-		where photo = #{filename}
-	</select>
-	
 	<select id="selectAlbumIdByPhotoId" resultType="Integer">
 		select album_id
 		from photos

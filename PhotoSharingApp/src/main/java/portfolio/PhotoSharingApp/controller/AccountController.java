@@ -38,7 +38,7 @@ public class AccountController {
 	private GroupService groupService;
 
 	@GetMapping("/create")
-	public String getCreateAccount(
+	public String getCreate(
 			HttpSession session
 			,@ModelAttribute("createAccountForm") CreateAccountForm form
 		) {
@@ -64,7 +64,7 @@ public class AccountController {
 	}
 
 	@PostMapping("/create")
-	public String postCreateAcount(
+	public String postCreate(
 			HttpSession session
 			,@ModelAttribute("createAccountForm")@Validated CreateAccountForm form
 			,BindingResult bindingResult
@@ -83,7 +83,7 @@ public class AccountController {
 		}
 
 		if (bindingResult.hasErrors()) {
-			return getCreateAccount(session, form);
+			return getCreate(session, form);
 		}
 
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
@@ -122,7 +122,7 @@ public class AccountController {
 	}
 
 	@PostMapping("/delete")
-	public String postDeleteAccount(
+	public String postDelete(
 			Model model
 			,HttpSession session
 			,@AuthenticationPrincipal LoginUserDetails user

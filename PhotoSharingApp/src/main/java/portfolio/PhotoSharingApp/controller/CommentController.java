@@ -35,7 +35,7 @@ public class CommentController {
 	private CommentService commentService;
 	
 	@GetMapping("/list")
-	public String getListComment(
+	public String getList(
 			Model model
 			,@ModelAttribute("listCommentForm")ListCommentForm form
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -55,7 +55,7 @@ public class CommentController {
 	}
 	
 	@PostMapping("/list")
-	public String postListComment(
+	public String postList(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("listCommentForm")@Validated ListCommentForm form
@@ -64,7 +64,7 @@ public class CommentController {
 		) {
 		
 		if (bindingResult.hasErrors()) {
-			return getListComment(model,form,user,group);
+			return getList(model,form,user,group);
 		}
 		
 		Comment comment = modelMapper.map(form, Comment.class);
@@ -77,7 +77,7 @@ public class CommentController {
 	}
 	
 	@PostMapping("/delete")
-	public String postDeleteComment(
+	public String postDelete(
 			@RequestParam("id") int commentId
 			,@AuthenticationPrincipal LoginUserDetails user
 		) {

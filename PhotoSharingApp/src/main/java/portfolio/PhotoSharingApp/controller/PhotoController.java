@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,7 +44,7 @@ public class PhotoController {
 	private String mediaDirectory;
 	
 	@GetMapping("/list")
-	public String getListPhoto(
+	public String getList(
 			Model model
 			,@ModelAttribute("addPhotoForm")AddPhotoForm form
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -68,7 +70,7 @@ public class PhotoController {
 	}
 	
 	@PostMapping("/list")
-	public String postListPhoto(
+	public String postList(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("addPhotoForm")@Validated AddPhotoForm form
@@ -83,20 +85,17 @@ public class PhotoController {
 			bindingResult.rejectValue("photo", "addPhotoEmptyError");
 		}
 		
-		/*元のファイル名を取得*/
-		String originalFilename = file.getOriginalFilename();
-		
-		/*データベースに同じファイル名が存在するか*/
-		if(photoService.filenameExists(originalFilename)) {
-			bindingResult.rejectValue("photo", "addPhotoNameError");
-		}
-		
 		if (bindingResult.hasErrors()) {
-			return getListPhoto(model,form,user,group,album);
+			return getList(model,form,user,group,album);
 		}
 		
+		/*ファイルの拡張子を取得*/
+		String originalFilename = file.getOriginalFilename();
+		String extension = StringUtils.getFilenameExtension(originalFilename);
+		// アップロードファイルはUUIDを使って重複しない名前に変更する
+		String fileName = UUID.randomUUID().toString() + "." + extension;
 		/*画像保存先フォルダに保存*/
-		Path destPath = Paths.get(mediaDirectory, originalFilename);
+		Path destPath = Paths.get(mediaDirectory, fileName);
 		/*保存先ディレクトリがなければ作成*/
 		Files.createDirectories(destPath.getParent());
 		/*アップロードしたファイルを保存*/
@@ -106,7 +105,7 @@ public class PhotoController {
 		
 		photo.setAlbumId(album.getId());
 		photo.setAccountId(user.getUserId());
-		photo.setPhoto(file.getOriginalFilename());
+		photo.setPhoto(fileName);
 		
 		photoService.add(photo);
 	
@@ -114,7 +113,7 @@ public class PhotoController {
 	}
 	
 	@PostMapping("/delete")
-	public String postDeletePhoto(
+	public String postDelete(
 			Model model
 			,@RequestParam("id") int photoId
 			,@AuthenticationPrincipal LoginUserDetails user

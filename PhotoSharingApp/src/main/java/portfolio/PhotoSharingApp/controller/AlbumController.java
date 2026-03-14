@@ -41,7 +41,7 @@ public class AlbumController {
 	}
 	
 	@GetMapping("/list")
-	public String getListAlbum(
+	public String getList(
 			Model model
 			,@ModelAttribute("createAlbumForm")CreateAlbumForm form
 			,HttpSession httpSession
@@ -64,7 +64,7 @@ public class AlbumController {
 	}
 	
 	@PostMapping("/list")
-	public String postListAlbum(
+	public String postList(
 			Model model
 			,HttpSession httpSession
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -74,7 +74,7 @@ public class AlbumController {
 		) {
 		
 		if (bindingResult.hasErrors()) {
-			return getListAlbum(model,form,httpSession,user,group);
+			return getList(model,form,httpSession,user,group);
 		}
 		
 		Album album = modelMapper.map(form,Album.class);
@@ -86,7 +86,7 @@ public class AlbumController {
 	}
 	
 	@PostMapping("/delete")
-	public String postDeleteAlbum(
+	public String postDelete(
 			@RequestParam("id") int albumId
 			,@AuthenticationPrincipal LoginUserDetails user
 		) {
@@ -102,7 +102,7 @@ public class AlbumController {
 	}
 	
 	@PostMapping("/open")
-	public String postOpenPhoto(
+	public String postOpen(
 			Model model
 			,@RequestParam("id")int albumId
 		) {

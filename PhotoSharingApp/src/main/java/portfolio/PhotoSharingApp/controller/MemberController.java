@@ -41,7 +41,7 @@ public class MemberController {
 	private MemberService memberService;
 
 	@GetMapping("/list")
-	public String getListMember(
+	public String getList(
 			Model model
 			,@ModelAttribute("addMemberForm")AddMemberForm form
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -65,7 +65,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("/list")
-	public String postListMember(
+	public String postList(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("addMemberForm")@Validated AddMemberForm form
@@ -90,7 +90,7 @@ public class MemberController {
 		}
 		
 		if (bindingResult.hasErrors()) {
-			return getListMember(model,form,user,group);
+			return getList(model,form,user,group);
 		}
 		
 		Member member = new Member();
@@ -103,7 +103,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("/delete")
-	public String postDeleteMember(
+	public String postDelete(
 			Model model
 			,@RequestParam("id") int memberId
 			,@AuthenticationPrincipal LoginUserDetails user

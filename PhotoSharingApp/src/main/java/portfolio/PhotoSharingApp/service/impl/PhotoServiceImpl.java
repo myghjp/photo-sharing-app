@@ -38,15 +38,6 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	@Override
-	public boolean filenameExists(String filename) {
-		if (photoMapper.selectByPhoto(filename) != null){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	@Override
 	public boolean isAlbumPhoto(int photoId,int albumId) {
 		if (photoMapper.selectAlbumIdByPhotoId(photoId) != albumId) {
 			return true;

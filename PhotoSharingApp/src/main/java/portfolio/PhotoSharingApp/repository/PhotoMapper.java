@@ -20,8 +20,6 @@ public interface PhotoMapper {
 	
 	public Photo selectByPhotoId(Integer photoId);
 	
-	public Photo selectByPhoto(String filename);
-	
 	public Integer selectAlbumIdByPhotoId(Integer photoId);
 	
 	public Integer selectAccountIdByPhotoId(Integer photoId);

@@ -40,7 +40,7 @@ public class GroupController {
 	}
 	
 	@GetMapping("/create")
-	public String getCreateGroup(
+	public String getCreate(
 			@ModelAttribute("createGroupForm")CreateGroupForm form
 		) {
 		
@@ -48,7 +48,7 @@ public class GroupController {
 	}
 
 	@GetMapping("/list")
-	public String getListGroup(
+	public String getList(
 			Model model
 			,SessionStatus sessionStatus
 			,@AuthenticationPrincipal LoginUserDetails user
@@ -64,7 +64,7 @@ public class GroupController {
 	}
 
 	@PostMapping("/create")
-	public String postCreateGroup(
+	public String postCreate(
 			Model model
 			,@AuthenticationPrincipal LoginUserDetails user
 			,@ModelAttribute("createGroupForm")@Validated CreateGroupForm form
@@ -79,7 +79,7 @@ public class GroupController {
 		}
 		
 		if (bindingResult.hasErrors()) {
-			return getCreateGroup(form);
+			return getCreate(form);
 		}
 		
 		group.setAccountId(user.getUserId());
@@ -89,7 +89,7 @@ public class GroupController {
 	}
 	
 	@PostMapping("/list")
-	public String postListGroup(
+	public String postList(
 			Model model
 			,@RequestParam("id")int groupId
 		) {
@@ -101,7 +101,7 @@ public class GroupController {
 	}
 	
 	@PostMapping("/delete")
-	public String postDeleteGroup(
+	public String postDelete(
 			@RequestParam("id") int groupId
 			,@AuthenticationPrincipal LoginUserDetails user
 		) {
