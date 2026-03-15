@@ -92,12 +92,16 @@ public class PhotoController {
 		/*ファイルの拡張子を取得*/
 		String originalFilename = file.getOriginalFilename();
 		String extension = StringUtils.getFilenameExtension(originalFilename);
+		
 		// アップロードファイルはUUIDを使って重複しない名前に変更する
 		String fileName = UUID.randomUUID().toString() + "." + extension;
+		
 		/*画像保存先フォルダに保存*/
 		Path destPath = Paths.get(mediaDirectory, fileName);
+		
 		/*保存先ディレクトリがなければ作成*/
 		Files.createDirectories(destPath.getParent());
+		
 		/*アップロードしたファイルを保存*/
 		Files.write(destPath, file.getBytes());
 		

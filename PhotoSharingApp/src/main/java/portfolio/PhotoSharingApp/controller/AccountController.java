@@ -58,7 +58,7 @@ public class AccountController {
 	}
 	
 	@GetMapping("/delete")
-	public String getDeleteAccount() {
+	public String getDelete() {
 		
 		return "account/delete";
 	}
